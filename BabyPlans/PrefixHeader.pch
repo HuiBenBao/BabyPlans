@@ -21,6 +21,7 @@
 //#endif
 #import "PersonalMethod.h"
 #import "UIImage+Category.h"
+#import <AFNetworking.h>
 
 #ifdef DEBUG
 #define DLog(format, ...) NSLog(format, ## __VA_ARGS__)

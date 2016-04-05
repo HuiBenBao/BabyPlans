@@ -7,7 +7,8 @@
 //
 
 #import "CloudLogin.h"
-#import "Encrypt.h"
+#import <AFNetworking.h>
+
 
 @interface CloudLogin()
 
@@ -150,10 +151,8 @@
     [CloudLogin getDataWithURL:path parameter:parameter success:^(id data) {
        
         success(data);
-        TCMLog(@"--- %@ --- %@ --- %@ ---",path,parameter,[data description]);
-    } failure:^(NSError *errorMessage) {
-        TCMLog(@"--- %@ --- %@ --- %@ ---",path,parameter,[errorMessage description]);
-        failure(errorMessage);
+            } failure:^(NSError *errorMessage) {
+               failure(errorMessage);
     }];
     
 
@@ -1366,7 +1365,7 @@
     AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
     
     //拼接接口
-    NSString * url = [NSString stringWithFormat:@"%@%@",BASE_URL,path];
+    NSString * url = [NSString stringWithFormat:@"%@%@",0,path];
     
     //设置返回的数据格式
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
