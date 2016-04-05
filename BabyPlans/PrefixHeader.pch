@@ -1,0 +1,106 @@
+//
+//  PrefixHeader.pch
+//  BabyPlans
+//
+//  Created by apple on 16/4/1.
+//  Copyright © 2016年 apple. All rights reserved.
+//
+
+//#ifdef __OBJC__
+//
+//
+//
+//extern float screentHeight, screentContentHeight;
+//extern float osVersion;
+//extern bool iOSNotSupport, iOS5, iOS7;
+//extern bool largeScreen;
+//
+//extern AppDelegate *delegate;
+//extern NavigationControl *ctr;
+//
+//#endif
+#import "PersonalMethod.h"
+#import "UIImage+Category.h"
+
+#ifdef DEBUG
+#define DLog(format, ...) NSLog(format, ## __VA_ARGS__)
+#define LogFunc NSLog(@"%s", __func__)
+#else
+#define DLog(format, ...)
+#define LogFunc ;
+#endif
+
+
+#define IosVersion floorf([[[UIDevice currentDevice] systemVersion] floatValue])
+#define iOS6  ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0)
+#define IOS7 [[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0
+#define IOS8 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+#define IOS9 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0)
+
+#define defaults [NSUserDefaults standardUserDefaults]
+
+#define KScreenRect [[UIScreen mainScreen] bounds]
+#define KScreenWidth [[UIScreen mainScreen] bounds].size.width
+#define KScreenHeight [[UIScreen mainScreen] bounds].size.height
+#define KNavBarHeight (IosVersion >= 7.0f ? 64.0f : LENGTH_4INCH_ADAPTED(44.0f))
+
+#define kScreen35	(KScreenHeight == 480)
+#define kScreen40	(KScreenHeight == 568)
+
+#define Color(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0]
+#define ColorI(c) [UIColor colorWithRed:((c>>16)&0xff)/255.0 green:((c>>8)&0xff)/255.0 blue:(c&0xff)/255.0 alpha:1.0]
+#define ColorA(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a/1.0]
+
+
+// 随机色
+#define RANDOM_COLOR Color(arc4random_uniform(255), arc4random_uniform(255), arc4random_uniform(255))
+
+
+
+// 多行文本的行间距
+#define LINE_SPACING (IosVersion >= 9 ? LENGTH_ADAPTED(0):LENGTH_ADAPTED(6))
+// 横向间距
+#define MARGINX (45.0f / 3) *SCREEN_WIDTH_RATIO55
+// 纵向间距
+#define MARGINY (30.0f / 3) *SCREEN_WIDTH_RATIO55
+
+
+// 以5.5寸屏的宽度为基准，计算宽比和高比
+#define	SCREEN_WIDTH_RATIO55	KScreenWidth/414.0f
+//#define SCREEN_HEIGHT_RATTO55   KScreenHeight/736.0f
+
+
+
+// 4inch的间距
+#define	LENGTH_ADAPTED(l)	l * SCREEN_WIDTH_RATIO55
+#define LENGTH_4INCH_ADAPTED(l) LENGTH_ADAPTED(l/0.77294686f)
+// 4ihch字体
+#define Font(s) [UIFont fontWithName:@"STHeitiSC-Light" size:s]
+#define FontBold(s) [UIFont  fontWithName:@"STHeitiSC-Medium" size:s]
+#define FontNum(s) [UIFont fontWithName:@"Avenir-Light" size:s]
+// s=flash文件中字体大小/3.0f，也即经过屏幕密度处理后的大小
+#define	FONT_ADAPTED_WIDTH(s)	[UIFont fontWithName:@"STHeitiSC-Light" size:(int)round(s * SCREEN_WIDTH_RATIO55)]
+#define	FONTBOLD_ADAPTED_WIDTH(s)	[UIFont fontWithName:@"STHeitiSC-Medium" size:(int)round(s * SCREEN_WIDTH_RATIO55)]
+#define FONT_ADAPTED_NUM(s)	[UIFont fontWithName:@"Avenir-Light" size:(int)round(s * SCREEN_WIDTH_RATIO55)]
+
+//一行文字的高度
+#define	ONE_STR_HEIGHT(s)	textSizeFont(@"高度", FONT_ADAPTED_NUM(s), MAXFLOAT, MAXFLOAT)
+
+// 以4inch屏幕为基准适配字体
+#define	FONT_4INCH_ADAPTED_WIDTH(s) FONT_ADAPTED_WIDTH(s/0.77294686f)
+#define	FONTBOLD_4INCH_ADAPTED_WIDTH(s) FONTBOLD_ADAPTED_WIDTH(s/0.77294686f)
+
+
+
+
+
+#define ValidStr(f) (f!=nil && [f isKindOfClass:[NSString class]] && ![f isEqualToString:@""])
+#define ValidDict(f) (f!=nil && [f isKindOfClass:[NSDictionary class]] && [f count]>0)
+#define ValidArray(f) (f!=nil && [f isKindOfClass:[NSArray class]] && [f count]>0)
+#define ValidNum(f) (f!=nil && [f isKindOfClass:[NSNumber class]])
+#define ValidClass(f,cls) (f!=nil && [f isKindOfClass:[cls class]])
+#define ValidData(f) (f!=nil && [f isKindOfClass:[NSData class]])
+
+// 计算文本的尺寸
+#define textSizeFont(text, fontSizeFont, width, height) [text boundingRectWithSize:CGSizeMake(width, height) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:fontSizeFont} context:nil].size;
+
