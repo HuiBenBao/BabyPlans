@@ -12,11 +12,11 @@
 
 @property (nonatomic,strong) PlazaDataModel * model;
 
-@property (nonatomic,strong) UIImageView * iconView;
-@property (nonatomic,strong) UILabel * nameLbl;
-@property (nonatomic,strong) UILabel * dateLbl;
-@property (nonatomic,strong) UIImageView * coverImgView;
-@property (nonatomic,strong) UILabel * contentLbl;
+@property (nonatomic,weak) UIImageView * iconView;
+@property (nonatomic,weak) UILabel * nameLbl;
+@property (nonatomic,weak) UILabel * dateLbl;
+@property (nonatomic,weak) UIImageView * coverImgView;
+@property (nonatomic,weak) UILabel * contentLbl;
 
 
 @end
@@ -29,23 +29,51 @@
     
     if (cell == nil) {
         cell = [[PlazaMainCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
+        
     }
     
     return cell;
+}
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        
+        //头像
+        UIImageView * imageView = [[UIImageView alloc] init];
+        
+        self.iconView = imageView;
+        [self addSubview:imageView];
+        
+        //昵称
+        UILabel * nameLbl = [[UILabel alloc] init];
+        nameLbl.textColor = ColorI(0x5b5b5b);
+        nameLbl.font = FONT_ADAPTED_NUM(kContentFont);
+        
+        self.nameLbl = nameLbl;
+        
+        [self addSubview:nameLbl];
+        
+        
+    }
+    return self;
 }
 - (void)setModelFrame:(PlazaDataFrame *)modelFrame{
 
     _modelFrame = modelFrame;
     self.model = modelFrame.model;
-}
 
-- (void)createUI{
- 
-//    self.iconView = [UIImageView]
 }
 
 - (void)layoutSubviews{
 
+    self.iconView.frame = self.modelFrame.iconF;
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:self.model.user.icon] placeholderImage:[UIImage imageNamed:@"allowDel"]];
+    _iconView.layer.cornerRadius = _iconView.height/2;
+    _iconView.clipsToBounds = YES;
+    
+    self.nameLbl.frame = self.modelFrame.nameF;
+    self.nameLbl.text = self.model.user.nickName;
     
 }
 @end

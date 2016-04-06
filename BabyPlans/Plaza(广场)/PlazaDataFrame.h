@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "PlazaDataModel.h"
 
+#define kMargin 10*SCREEN_WIDTH_RATIO55 //间隔
+#define kIconWH (40*SCREEN_WIDTH_RATIO55) //头像宽高
+//#define kNameH (16*SCREEN_WIDTH_RATIO55) //姓名高度
+#define kImageH (300*SCREEN_WIDTH_RATIO55) //图片高度
+#define kContentFont 14 //内容字体
+
 @interface PlazaDataFrame : NSObject
 
 @property (nonatomic,assign,readonly) CGRect iconF;

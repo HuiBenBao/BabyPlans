@@ -175,7 +175,7 @@ enum{
         
         tableView.delegate = self;
         tableView.dataSource = self;
-        
+        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
         [self.mainScrollView addSubview:tableView];
         
@@ -231,6 +231,7 @@ enum{
     PlazaMainCell * cell = [PlazaMainCell cellWithTableView:tableView];
     
     cell.modelFrame = dataF;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     int index1 = arc4random()%255;
     int index2 = arc4random()%255;

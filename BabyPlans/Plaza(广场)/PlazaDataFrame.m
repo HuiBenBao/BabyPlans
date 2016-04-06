@@ -8,11 +8,7 @@
 
 #import "PlazaDataFrame.h"
 
-#define kMargin 10*SCREEN_WIDTH_RATIO55 //间隔
-#define kIconWH (40*SCREEN_WIDTH_RATIO55) //头像宽高
-#define kNameH (12*SCREEN_WIDTH_RATIO55) //姓名高度
-#define kImageH (300*SCREEN_WIDTH_RATIO55) //图片高度
-#define kContentFont 16 //内容字体
+
 
 
 @interface PlazaDataFrame ()
@@ -35,10 +31,10 @@
     
     //3、姓名
     NSString * nameStr = [NSString stringWithFormat:@"%@",_model.user.nickName];
-    CGSize nameSize = textSizeFont(nameStr, FONT_ADAPTED_NUM(13), KScreenWidth, 0);
-    
+    CGSize nameSize = textSizeFont(nameStr, FONT_ADAPTED_NUM(kContentFont), MAXFLOAT, MAXFLOAT);
+    NSLog(@"name ==%@",nameStr);
     CGFloat nameX = CGRectGetMaxX(_iconF)+kMargin;
-    _nameF = CGRectMake(nameX, iconY, nameSize.width, kNameH);
+    _nameF = CGRectMake(nameX, iconY, nameSize.width, nameSize.height);
     
     // 3、计算图片位置
     CGFloat imageX = kMargin;

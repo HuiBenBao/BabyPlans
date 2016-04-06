@@ -24,7 +24,7 @@
 #import <AFNetworking.h>
 #import "UIView+Category.h"
 #import "MBProgressHUD.h"
-
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #ifdef DEBUG
 #define DLog(format, ...) NSLog(format, ## __VA_ARGS__)
