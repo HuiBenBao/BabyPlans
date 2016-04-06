@@ -16,6 +16,9 @@
 		18A114591CB3C3D500B13434 /* PlazaTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A114581CB3C3D500B13434 /* PlazaTopView.m */; };
 		18A1145C1CB49F7600B13434 /* PlazaDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A1145B1CB49F7600B13434 /* PlazaDataModel.m */; };
 		18A1145F1CB4A63A00B13434 /* UIView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A1145E1CB4A63A00B13434 /* UIView+Category.m */; };
+		18A114621CB4DBC400B13434 /* FWBUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A114611CB4DBC400B13434 /* FWBUserModel.m */; };
+		18A114661CB4F5B400B13434 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A114651CB4F5B400B13434 /* MBProgressHUD.m */; };
+		18A114691CB4FD5600B13434 /* PlazaDataFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A114681CB4FD5600B13434 /* PlazaDataFrame.m */; };
 		18F114AB1CAE36F600F53C42 /* FWBTarBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F114A61CAE36F600F53C42 /* FWBTarBarButton.m */; };
 		18F114AC1CAE36F600F53C42 /* MyTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F114A81CAE36F600F53C42 /* MyTabBar.m */; };
 		18F114AD1CAE36F600F53C42 /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F114AA1CAE36F600F53C42 /* RootTabBarController.m */; };
@@ -75,6 +78,12 @@
 		18A1145B1CB49F7600B13434 /* PlazaDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlazaDataModel.m; sourceTree = "<group>"; };
 		18A1145D1CB4A63A00B13434 /* UIView+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Category.h"; sourceTree = "<group>"; };
 		18A1145E1CB4A63A00B13434 /* UIView+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Category.m"; sourceTree = "<group>"; };
+		18A114601CB4DBC400B13434 /* FWBUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWBUserModel.h; sourceTree = "<group>"; };
+		18A114611CB4DBC400B13434 /* FWBUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWBUserModel.m; sourceTree = "<group>"; };
+		18A114641CB4F5B400B13434 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		18A114651CB4F5B400B13434 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		18A114671CB4FD5600B13434 /* PlazaDataFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlazaDataFrame.h; sourceTree = "<group>"; };
+		18A114681CB4FD5600B13434 /* PlazaDataFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlazaDataFrame.m; sourceTree = "<group>"; };
 		18F114A51CAE36F600F53C42 /* FWBTarBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWBTarBarButton.h; sourceTree = "<group>"; };
 		18F114A61CAE36F600F53C42 /* FWBTarBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWBTarBarButton.m; sourceTree = "<group>"; };
 		18F114A71CAE36F600F53C42 /* MyTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTabBar.h; sourceTree = "<group>"; };
@@ -194,6 +203,10 @@
 			children = (
 				18A1145A1CB49F7600B13434 /* PlazaDataModel.h */,
 				18A1145B1CB49F7600B13434 /* PlazaDataModel.m */,
+				18A114671CB4FD5600B13434 /* PlazaDataFrame.h */,
+				18A114681CB4FD5600B13434 /* PlazaDataFrame.m */,
+				18A114601CB4DBC400B13434 /* FWBUserModel.h */,
+				18A114611CB4DBC400B13434 /* FWBUserModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -207,6 +220,15 @@
 				18A114531CB3A66000B13434 /* UserMessCell.m */,
 			);
 			path = "UserMess(我的)";
+			sourceTree = "<group>";
+		};
+		18A114631CB4F5AD00B13434 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				18A114641CB4F5B400B13434 /* MBProgressHUD.h */,
+				18A114651CB4F5B400B13434 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 		18F114A41CAE36F600F53C42 /* MainController */ = {
@@ -350,6 +372,7 @@
 		3B4B6B80B72A80675EB35A2F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18A114631CB4F5AD00B13434 /* MBProgressHUD */,
 				E09338FE85BB969CD7D58012 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -556,12 +579,15 @@
 				18F114AC1CAE36F600F53C42 /* MyTabBar.m in Sources */,
 				186195BB1CB347080003A562 /* PlazaTableController.m in Sources */,
 				18F114C61CAE378600F53C42 /* PersonalMethod.m in Sources */,
+				18A114691CB4FD5600B13434 /* PlazaDataFrame.m in Sources */,
 				184BCA771CB362E5008314F4 /* CloudLogin.m in Sources */,
 				18F114F11CAE647100F53C42 /* FWBNavgationController.m in Sources */,
 				18F114AB1CAE36F600F53C42 /* FWBTarBarButton.m in Sources */,
+				18A114661CB4F5B400B13434 /* MBProgressHUD.m in Sources */,
 				186195CC1CB35BB00003A562 /* UserTableController.m in Sources */,
 				18A1145F1CB4A63A00B13434 /* UIView+Category.m in Sources */,
 				18F114C71CAE378600F53C42 /* UIImage+Category.m in Sources */,
+				18A114621CB4DBC400B13434 /* FWBUserModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

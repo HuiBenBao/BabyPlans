@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PlazaDataFrame.h"
+
 
 @interface PlazaMainCell : UITableViewCell
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
+@property (nonatomic,strong) PlazaDataFrame * modelFrame;
 
 @end

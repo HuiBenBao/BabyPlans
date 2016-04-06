@@ -23,6 +23,8 @@
 #import "UIImage+Category.h"
 #import <AFNetworking.h>
 #import "UIView+Category.h"
+#import "MBProgressHUD.h"
+
 
 #ifdef DEBUG
 #define DLog(format, ...) NSLog(format, ## __VA_ARGS__)
