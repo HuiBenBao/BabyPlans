@@ -29,6 +29,13 @@
 
     [super drawRect:rect];
     
-    self.imageEdgeInsets = UIEdgeInsetsMake(-10*SCREEN_WIDTH_RATIO55, 0, 0, 0);
+    if (self.currentTitle != nil) {
+        self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        
+        self.imageEdgeInsets = UIEdgeInsetsMake(-15*SCREEN_WIDTH_RATIO55,0, 0, -10);
+        self.titleEdgeInsets = UIEdgeInsetsMake(30*SCREEN_WIDTH_RATIO55, -rect.size.width/2, 0, 0);
+
+    }
+    
 }
 @end

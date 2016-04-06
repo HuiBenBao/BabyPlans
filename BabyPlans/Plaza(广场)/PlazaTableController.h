@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PlazaTableController : UITableViewController
+@interface PlazaTableController : UIViewController
 
 @end

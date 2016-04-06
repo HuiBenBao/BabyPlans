@@ -38,6 +38,8 @@
     [self.tabBar addSubview:tabBar];
     
     //添加对应的按钮个数
+    
+    NSArray * titleArr = @[@"广场",@"推荐",@"原创",@"我的"];
     for (int i = 0; i < self.viewControllers.count; i++) {
         
         //设置图片和选中状态下的图片
@@ -45,7 +47,11 @@
         NSString * seletTwoName = @"TabBar3";
         NSString * selectName = i == 2 ? seletTwoName :[NSString stringWithFormat:@"TabBarSeleted%d.png",i+1];
         
-        [tabBar addTarBarButtonWithImageName:name selectedImage:selectName];
+        NSString * title;
+        if (i!=2) {
+            title = i < 2 ? titleArr[i] : titleArr[i-1];
+        }
+        [tabBar addTarBarButtonWithImageName:name selectedImage:selectName btnName:title];
     }
 }
 

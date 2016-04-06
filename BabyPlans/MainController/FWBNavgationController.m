@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
 }
 
 /**
@@ -30,6 +31,7 @@
     // 设置背景图片
     [navBar setBackgroundImage:[UIImage imageWithColor:[UIColor orangeColor] ImgSize:CGRectMake(0, 0, KScreenWidth, 64)] forBarMetrics:UIBarMetricsDefault];
     
+//    [navBar setTintColor:[UIColor whiteColor]];
     // 设置标题文字颜色
     NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
     attrs[NSForegroundColorAttributeName] = [UIColor whiteColor];
@@ -39,22 +41,23 @@
     
     
     // 2.设置BarButtonItem的主题
-//    UIBarButtonItem *item = [UIBarButtonItem appearance];
-//    // 设置文字颜色
-//    NSMutableDictionary *itemAttrs = [NSMutableDictionary dictionary];
-//    itemAttrs[NSForegroundColorAttributeName] = [UIColor whiteColor];
-//    itemAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:14];
-//    [item setTitleTextAttributes:itemAttrs forState:UIControlStateNormal];
+    UIBarButtonItem *item = [UIBarButtonItem appearance];
+    // 设置文字颜色
+    NSMutableDictionary *itemAttrs = [NSMutableDictionary dictionary];
+    itemAttrs[NSForegroundColorAttributeName] = [UIColor whiteColor];
+    itemAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:14];
+    [item setTitleTextAttributes:itemAttrs forState:UIControlStateNormal];
     
-//    if (!iOS7) {
-//        // 设置按钮背景
-//        [item setBackgroundImage:[UIImage imageNamed:@"NavButton"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-//        [item setBackgroundImage:[UIImage imageNamed:@"NavButtonPressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
-//        
-//        // 设置返回按钮背景
-//        [item setBackButtonBackgroundImage:[UIImage imageNamed:@"NavBackButton"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-//        [item setBackButtonBackgroundImage:[UIImage imageNamed:@"NavBackButtonPressed"] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
-//    }
+}
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    
+    viewController.hidesBottomBarWhenPushed = YES;
+    
+    [super pushViewController:viewController animated:animated];
 }
 
+-(void)doBack:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

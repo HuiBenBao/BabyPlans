@@ -22,6 +22,7 @@
 #import "PersonalMethod.h"
 #import "UIImage+Category.h"
 #import <AFNetworking.h>
+#import "UIView+Category.h"
 
 #ifdef DEBUG
 #define DLog(format, ...) NSLog(format, ## __VA_ARGS__)
@@ -44,6 +45,7 @@
 #define KScreenWidth [[UIScreen mainScreen] bounds].size.width
 #define KScreenHeight [[UIScreen mainScreen] bounds].size.height
 #define KNavBarHeight (IosVersion >= 7.0f ? 64.0f : LENGTH_4INCH_ADAPTED(44.0f))
+#define KTabBarHeight 49
 
 #define kScreen35	(KScreenHeight == 480)
 #define kScreen40	(KScreenHeight == 568)
@@ -104,4 +106,6 @@
 
 // 计算文本的尺寸
 #define textSizeFont(text, fontSizeFont, width, height) [text boundingRectWithSize:CGSizeMake(width, height) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:fontSizeFont} context:nil].size;
+
+#define BASEURL @"http://115.28.136.139:8080/newbb/service"
 

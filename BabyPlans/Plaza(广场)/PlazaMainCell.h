@@ -10,4 +10,7 @@
 
 @interface PlazaMainCell : UITableViewCell
 
++ (instancetype)cellWithTableView:(UITableView *)tableView;
+
+
 @end

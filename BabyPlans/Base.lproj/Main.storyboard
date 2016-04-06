@@ -37,7 +37,6 @@
                     <view key="view" contentMode="scaleToFill" id="CpI-gU-Aac">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="推荐" id="vmS-zk-cdU"/>
                 </viewController>
@@ -45,48 +44,46 @@
             </objects>
             <point key="canvasLocation" x="510" y="-465"/>
         </scene>
-        <!--广场-->
-        <scene sceneID="ors-ls-6vT">
-            <objects>
-                <tableViewController id="OcA-eK-Rta" customClass="PlazaTableController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="lZC-Pi-62S">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="sectionIndexBackgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <connections>
-                            <outlet property="dataSource" destination="OcA-eK-Rta" id="acV-lT-r55"/>
-                            <outlet property="delegate" destination="OcA-eK-Rta" id="kZh-Fs-CDc"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="广场" id="duW-4U-eEK"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Cwh-VU-3cj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="498" y="-1284"/>
-        </scene>
-        <!--广场-->
+        <!--Navgation Controller-->
         <scene sceneID="ZQ9-cO-5eJ">
             <objects>
                 <navigationController id="cbd-xg-HTu" customClass="FWBNavgationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="广场" id="Gza-56-Xja"/>
+                    <tabBarItem key="tabBarItem" title="" id="Gza-56-Xja"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lho-OU-DGe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="OcA-eK-Rta" kind="relationship" relationship="rootViewController" id="hlj-B5-7ND"/>
+                        <segue destination="1eA-DW-AvT" kind="relationship" relationship="rootViewController" id="Tdg-r1-UWX"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gUq-L3-dFZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-426" y="-1284"/>
         </scene>
-        <!--推荐-->
+        <!--广场-->
+        <scene sceneID="czJ-I9-1vY">
+            <objects>
+                <viewController id="1eA-DW-AvT" customClass="PlazaTableController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1aB-k0-L8z"/>
+                        <viewControllerLayoutGuide type="bottom" id="hWc-nJ-f1O"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="maZ-AH-bXY">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="广场" id="6kE-go-FUX"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="auT-0K-l4B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="579" y="-1285"/>
+        </scene>
+        <!--Navgation Controller-->
         <scene sceneID="TyN-Lo-zJP">
             <objects>
                 <navigationController id="T7U-Xc-Vva" customClass="FWBNavgationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="推荐" id="mPW-HK-8J6"/>
+                    <tabBarItem key="tabBarItem" title="" id="mPW-HK-8J6"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0tc-SF-n6v">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -174,11 +171,11 @@
             </objects>
             <point key="canvasLocation" x="489" y="1279"/>
         </scene>
-        <!--原创-->
+        <!--Navgation Controller-->
         <scene sceneID="1Li-Ml-LGm">
             <objects>
                 <navigationController id="OBL-PM-9rd" customClass="FWBNavgationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="原创" id="cfX-pL-81f"/>
+                    <tabBarItem key="tabBarItem" title="" id="cfX-pL-81f"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="M1N-VD-2fm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -211,11 +208,11 @@
             </objects>
             <point key="canvasLocation" x="489" y="2079"/>
         </scene>
-        <!--我的-->
+        <!--Navgation Controller-->
         <scene sceneID="hH7-Vy-nRK">
             <objects>
                 <navigationController id="2GU-ld-sp6" customClass="FWBNavgationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的" id="eLe-R5-MaT"/>
+                    <tabBarItem key="tabBarItem" title="" id="eLe-R5-MaT"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RyF-HI-a94">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

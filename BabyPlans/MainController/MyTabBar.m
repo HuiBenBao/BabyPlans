@@ -18,7 +18,7 @@
 
 
 
-- (void)addTarBarButtonWithImageName:(NSString *)name selectedImage:(NSString *)selectedName{
+- (void)addTarBarButtonWithImageName:(NSString *)name selectedImage:(NSString *)selectedName btnName:(NSString *)title{
     //创建button
     FWBTarBarButton * button = [FWBTarBarButton buttonWithType:UIButtonTypeCustom];
     
@@ -28,6 +28,15 @@
     //设置图片
     [button setImage:[UIImage imageAutomaticName:name] forState:UIControlStateNormal];
     [button setImage:[UIImage imageAutomaticName:selectedName] forState:UIControlStateSelected];
+    
+    if (title) {
+        [button setTitle:title forState:UIControlStateNormal];
+        
+        [button setTitleColor:ColorI(0x8b8b8b) forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];
+        
+        button.titleLabel.font = FONT_ADAPTED_NUM(10);
+    }
     
     //设置点击响应
     [button addTarget:self action:@selector(tabBarButtonClick:) forControlEvents:UIControlEventTouchDown];

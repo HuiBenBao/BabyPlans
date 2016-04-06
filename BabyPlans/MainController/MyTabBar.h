@@ -23,7 +23,7 @@
 
 @property (nonatomic,assign) id <MyTabBarDelegate>delegate;
 
-- (void)addTarBarButtonWithImageName:(NSString *) name selectedImage:(NSString *) selectedName;
+- (void)addTarBarButtonWithImageName:(NSString *) name selectedImage:(NSString *) selectedName btnName:(NSString *)title;
 
 
 @end
