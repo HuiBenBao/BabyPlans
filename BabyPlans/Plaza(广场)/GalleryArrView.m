@@ -128,11 +128,22 @@
     
 
     GalleryImgModel * model = [self.galleryArr objectAtIndex:index];
-    self.avAudioPlayer = [[AVAudioPlayer alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:model.picture.voice]] error:nil];
-    //设置代理
-    _avAudioPlayer.delegate = self;
-
-    [_avAudioPlayer play];
+    
+    if (model.picture.voice) {
+        self.avAudioPlayer = [[AVAudioPlayer alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:model.picture.voice]] error:nil];
+        //设置代理
+        _avAudioPlayer.delegate = self;
+        
+        [_avAudioPlayer play];
+        
+    }else{ //声音是空时,1秒后滑动到下一张
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            [self nextImage];
+        });
+    }
+    
     
     
     
@@ -159,7 +170,25 @@
     self.imgScrollView.frame = self.bounds;
     
 }
+- (void)nextImage{
 
+    CGFloat currentX = self.imgScrollView.contentOffset.x + self.width;
+    
+    CGFloat index = currentX/self.width;
+    
+    
+    if (index>=self.galleryArr.count) {
+        currentX = 0;
+    }
+    self.imgScrollView.contentOffset = CGPointMake(currentX, 0);
+    
+    if (currentX == 0) {
+        [self stop];
+        [self poptips:@"播放完成"];
+    }else{
+        [self play];
+    }
+}
 #pragma ----mark-----UIScrollViewDelegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
 
@@ -171,25 +200,8 @@
 }
 #pragma ---mark----AVAudioPlayerDelegate
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
-
-    CGFloat currentX = self.imgScrollView.contentOffset.x + self.width;
     
-    CGFloat index = currentX/self.width;
-    
-    
-    if (index>=self.galleryArr.count) {
-        currentX = 0;
-    }
-    
-    self.imgScrollView.contentOffset = CGPointMake(currentX, 0);
-    
-    if (currentX == 0) {
-        [self stop];
-    }else{
-    
-        [self poptips:@"播放完成"];
-        [self play];
-    }
+    [self nextImage];
     
 }
 @end

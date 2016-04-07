@@ -169,6 +169,7 @@ enum{
     
     return _galleryView;
 }
+
 - (void)removeBackView{
 
     [UIApplication sharedApplication].statusBarHidden = NO;
@@ -289,12 +290,6 @@ enum{
     cell.modelFrame = dataF;
     
     cell.delegate = self;
-    
-//    int index1 = arc4random()%255;
-//    int index2 = arc4random()%255;
-//    int index3 = arc4random()%255;
-//    
-//    cell.backgroundColor = Color(index1, index2, index3);
     
     return cell;
 }
