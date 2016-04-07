@@ -31,7 +31,7 @@
     // 设置背景图片
     [navBar setBackgroundImage:[UIImage imageWithColor:[UIColor orangeColor] ImgSize:CGRectMake(0, 0, KScreenWidth, 64)] forBarMetrics:UIBarMetricsDefault];
     
-//    [navBar setTintColor:[UIColor whiteColor]];
+    [navBar setTintColor:[UIColor whiteColor]];
     // 设置标题文字颜色
     NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
     attrs[NSForegroundColorAttributeName] = [UIColor whiteColor];

@@ -24,14 +24,35 @@
     NSMutableDictionary * parma = [NSMutableDictionary dictionary];
     [parma setValue:type forKey:@"type"];
     [parma setValue:@"gallery_query" forKey:@"action"];
-    [parma setValue:@"page" forKey:@"1"];
-    [parma setValue:@"count" forKey:@"5"];
+//    [parma setValue:@"gallery_list" forKey:@"action"];
+
+    [parma setValue:page forKey:@"page"];
+    [parma setValue:count forKey:@"count"];
+//    [parma setValue:@"userId" forKey:@"5"];
+
     
     [CloudLogin getDataWithURL:nil parameter:parma success:^(id data) {
         success(data);
     } failure:^(NSError *errorMessage) {
         failure(errorMessage);
     }];
+}
+
++ (void)getPictureArrWithGalleryID:(NSString *)galleryID success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure{
+
+    NSMutableDictionary * parma = [NSMutableDictionary dictionary];
+    [parma setValue:@"gallery_Query" forKey:@"action"];
+    
+    
+    [parma setValue:galleryID forKey:@"gallery_id"];
+    
+    
+    [CloudLogin getDataWithURL:nil parameter:parma success:^(id data) {
+        success(data);
+    } failure:^(NSError *errorMessage) {
+        failure(errorMessage);
+    }];
+
 }
 
 #pragma mark>>>>>>------公用方法---------

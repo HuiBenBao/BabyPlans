@@ -14,7 +14,10 @@
 @property (nonatomic,strong) FWBUserModel * user;
 
 @property (nonatomic,strong) NSString * age;
-@property (nonatomic,strong) NSString * articleID;
+/**
+ *  图集ID
+ */
+@property (nonatomic,strong) NSString * galleryID;
 /**
  *  内容
  */

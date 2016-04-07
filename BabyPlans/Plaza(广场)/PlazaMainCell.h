@@ -9,11 +9,21 @@
 #import <UIKit/UIKit.h>
 #import "PlazaDataFrame.h"
 
+@class PlazaMainCell;
+@protocol PlazaMainCellDelegate <NSObject>
+
+@optional
+- (void)getImageArrWithID:(NSString *)galleryID;
+
+@end
 
 @interface PlazaMainCell : UITableViewCell
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 
 @property (nonatomic,strong) PlazaDataFrame * modelFrame;
+
+
+@property (nonatomic,weak) id <PlazaMainCellDelegate>delegate;
 
 @end

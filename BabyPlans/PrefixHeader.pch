@@ -25,6 +25,8 @@
 #import "UIView+Category.h"
 #import "MBProgressHUD.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "CloudLogin.h"
+
 
 #ifdef DEBUG
 #define DLog(format, ...) NSLog(format, ## __VA_ARGS__)
@@ -110,4 +112,5 @@
 #define textSizeFont(text, fontSizeFont, width, height) [text boundingRectWithSize:CGSizeMake(width, height) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:fontSizeFont} context:nil].size;
 
 #define BASEURL @"http://115.28.136.139:8080/newbb/service"
+#define TESTURL @"http://192.168.1.106:8080/babycms/service"
 

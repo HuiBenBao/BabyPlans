@@ -37,6 +37,11 @@
         if (ValidNum(dic[@"pictureCnt"])) {
             self.pictureCount = dic[@"pictureCnt"];
         }
+        
+        if (ValidNum(dic[@"id"])) {
+            self.galleryID = dic[@"id"];
+            
+        }
     }
     
     return self;

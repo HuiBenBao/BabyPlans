@@ -7,11 +7,11 @@
 //
 
 #import "PlazaTableController.h"
-#import "CloudLogin.h"
 #import "PlazaTopView.h"
 #import "PlazaDataModel.h"
 #import "PlazaMainCell.h"
 #import "PlazaDataFrame.h"
+#import "GalleryArrView.h"
 
 enum{
     TableViewLeft,
@@ -27,9 +27,9 @@ enum{
 #define tableHeaderHeight (45*SCREEN_WIDTH_RATIO55)
 #define TabbleViewCount 2  //tabbleView的个数
 
+#define DataCount @"5" //每页请求显示个数
 
-
-@interface PlazaTableController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,PlazaTopDelegate>
+@interface PlazaTableController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,PlazaTopDelegate,PlazaMainCellDelegate>
 
 @property (nonatomic,strong) PlazaTopView * topView;
 
@@ -49,12 +49,17 @@ enum{
  *  原创绘本页码
  */
 @property (nonatomic,assign) int pageOrginal;
-
+/**
+ *  查看大图时的背景view
+ */
+@property (nonatomic,strong) UIView * backView;
+@property (nonatomic,strong) GalleryArrView * galleryView;
 
 @end
 
 @implementation PlazaTableController
 
+#pragma ---mark---懒加载方法
 - (NSArray *)dataArrLeft{
     
     if (!_dataArrLeft) {
@@ -65,24 +70,30 @@ enum{
         
         [self.view bringSubviewToFront:HUD];
         
-        [CloudLogin getPlazaDataWithType:[NSString stringWithFormat:@"%d",DataTypeOrginal] page:@"1" count:@"5" success:^(NSDictionary *responseObject) {
+        
+        [CloudLogin getPlazaDataWithType:[NSString stringWithFormat:@"%d",DataTypeOrginal] page:@"1" count:DataCount success:^(NSDictionary *responseObject) {
             
             NSLog(@"原创绘本：==%@",responseObject);
             HUD.hidden = YES;
-            NSArray * dataArr = responseObject[@"galleries"];
             
-            for (NSDictionary * dic in dataArr) {
+            if ([responseObject[@"status"] intValue] == 0) {
                 
-                PlazaDataModel * model = [PlazaDataModel valueWithDic:dic];
+                NSArray * dataArr = responseObject[@"galleries"];
                 
-                PlazaDataFrame * modelFrame = [[PlazaDataFrame alloc] init];
-                modelFrame.model = model;
-                
-                [myDataArr addObject:modelFrame];
+                for (NSDictionary * dic in dataArr) {
+                    
+                    PlazaDataModel * model = [PlazaDataModel valueWithDic:dic];
+                    
+                    PlazaDataFrame * modelFrame = [[PlazaDataFrame alloc] init];
+                    modelFrame.model = model;
+                    
+                    [myDataArr addObject:modelFrame];
+                }
+                //            _HUD.hidden = YES;
+                _dataArrLeft = myDataArr;
+                [self.tableViewLeft reloadData];
+
             }
-            //            _HUD.hidden = YES;
-            _dataArrLeft = myDataArr;
-            [self.tableViewLeft reloadData];
             
         } failure:^(NSError *errorMessage) {
             HUD.hidden = YES;
@@ -104,27 +115,33 @@ enum{
         
         [self.view bringSubviewToFront:HUD];
         
-        [CloudLogin getPlazaDataWithType:[NSString stringWithFormat:@"%d",DataTypeClassical] page:@"1" count:@"5" success:^(NSDictionary *responseObject) {
+        [CloudLogin getPlazaDataWithType:[NSString stringWithFormat:@"%d",DataTypeClassical] page:@"1" count:DataCount success:^(NSDictionary *responseObject) {
             
             NSLog(@"经典绘本：==%@",responseObject);
             HUD.hidden = YES;
-            NSArray * dataArr = responseObject[@"galleries"];
             
-            for (NSDictionary * dic in dataArr) {
+            if ([responseObject[@"status"] intValue] == 0) {
+                NSArray * dataArr = responseObject[@"galleries"];
                 
-                PlazaDataModel * model = [PlazaDataModel valueWithDic:dic];
-                
-                PlazaDataFrame * modelFrame = [[PlazaDataFrame alloc] init];
-                modelFrame.model = model;
-                
-                [myDataArr addObject:modelFrame];
+                for (NSDictionary * dic in dataArr) {
+                    
+                    PlazaDataModel * model = [PlazaDataModel valueWithDic:dic];
+                    
+                    PlazaDataFrame * modelFrame = [[PlazaDataFrame alloc] init];
+                    modelFrame.model = model;
+                    
+                    [myDataArr addObject:modelFrame];
+                }
+                //            _HUD.hidden = YES;
+                _dataArrRight = myDataArr;
+                [self.tableViewRight reloadData];
             }
-//            _HUD.hidden = YES;
-            _dataArrRight = myDataArr;
-            [self.tableViewRight reloadData];
+            
             
         } failure:^(NSError *errorMessage) {
             HUD.hidden = YES;
+            
+            [self.view requsetFaild];
             NSLog(@"广场接口请求Error ==%@",errorMessage);
         }];
 
@@ -133,15 +150,54 @@ enum{
     return _dataArrRight;
 }
 
+- (UIView *)backView{
+
+    if (!_backView) {
+        _backView = [[UIView alloc] init];
+        _backView.backgroundColor = [UIColor blackColor];
+        [_backView addTarget:self action:@selector(removeBackView)];
+    }
+    return _backView;
+}
+
+- (GalleryArrView *)galleryView{
+
+    if (!_galleryView) {
+        _galleryView = [[GalleryArrView alloc] init];
+        [_galleryView addTarget:self action:@selector(removeBackView)];
+    }
+    
+    return _galleryView;
+}
+- (void)removeBackView{
+
+    [UIApplication sharedApplication].statusBarHidden = NO;
+
+    [UIView animateWithDuration:0.2 animations:^{
+        _backView.alpha = 0;
+        _galleryView.alpha = 0;
+        _backView.frame = CGRectMake(KScreenWidth/2, KScreenHeight/2, 0, 0);
+        _galleryView.frame = CGRectMake(KScreenWidth/2, KScreenHeight/2, 0, 0);
+        
+
+    } completion:^(BOOL finished) {
+        [_backView removeFromSuperview];
+        [_galleryView removeFromSuperview];
+        _galleryView = nil;
+
+    }];
+}
+#pragma ---mark----viewDidLoad
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self createTopView];
-    [self dataArrRight];
+//    [self dataArrRight];
     [self dataArrLeft];
     
     
 }
+#pragma ----mark-----创建视图
 
 - (void)createTopView{
 
@@ -231,13 +287,14 @@ enum{
     PlazaMainCell * cell = [PlazaMainCell cellWithTableView:tableView];
     
     cell.modelFrame = dataF;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    int index1 = arc4random()%255;
-    int index2 = arc4random()%255;
-    int index3 = arc4random()%255;
+    cell.delegate = self;
     
-    cell.backgroundColor = Color(index1, index2, index3);
+//    int index1 = arc4random()%255;
+//    int index2 = arc4random()%255;
+//    int index3 = arc4random()%255;
+//    
+//    cell.backgroundColor = Color(index1, index2, index3);
     
     return cell;
 }
@@ -252,6 +309,9 @@ enum{
         
         [self.topView selectAtIndex:index];
         
+        if (!_dataArrRight) {
+            [self dataArrRight];
+        }
     }
 }
 
@@ -272,5 +332,35 @@ enum{
         }];
         
     }
+    
+    if (!_dataArrRight) {
+        [self dataArrRight];
+    }
+}
+
+#pragma ---mark--PlazaMainCellDelegate
+
+- (void)getImageArrWithID:(NSString *)galleryID{
+
+    //弹窗
+    self.galleryView.galleryID = galleryID;
+    self.backView.frame = CGRectMake(KScreenWidth/2, KScreenHeight/2, 0, 0);
+    self.galleryView.frame = CGRectMake(KScreenWidth/2, KScreenHeight/2, 0, 0);
+    
+    [[[UIApplication sharedApplication].delegate window].rootViewController.view  addSubview:_backView];
+    [[[UIApplication sharedApplication].delegate window].rootViewController.view  addSubview:_galleryView];
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        
+        [UIApplication sharedApplication].statusBarHidden = YES;
+
+        _backView.frame = KScreenRect;
+        _backView.alpha = 0.8;
+
+        CGFloat gallArrH = KScreenHeight*2/3;
+        _galleryView.frame = CGRectMake(20, KScreenHeight/8, KScreenWidth-40, gallArrH);
+        _galleryView.alpha = 1;
+    }];
+    
 }
 @end
