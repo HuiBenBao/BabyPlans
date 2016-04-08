@@ -34,6 +34,8 @@
 		18CCD1271CB7907E002595FD /* plaza_bottomview3.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CCD11B1CB7907E002595FD /* plaza_bottomview3.png */; };
 		18CCD1281CB7907E002595FD /* plaza_bottomview3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CCD11C1CB7907E002595FD /* plaza_bottomview3@2x.png */; };
 		18CCD1291CB7907E002595FD /* plaza_bottomview3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CCD11D1CB7907E002595FD /* plaza_bottomview3@3x.png */; };
+		18CCD12D1CB79A1B002595FD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CCD12B1CB79A1B002595FD /* AppDelegate.m */; };
+		18CCD12E1CB79A1B002595FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18CCD12C1CB79A1B002595FD /* Main.storyboard */; };
 		18F114AB1CAE36F600F53C42 /* FWBTarBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F114A61CAE36F600F53C42 /* FWBTarBarButton.m */; };
 		18F114AC1CAE36F600F53C42 /* MyTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F114A81CAE36F600F53C42 /* MyTabBar.m */; };
 		18F114AD1CAE36F600F53C42 /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F114AA1CAE36F600F53C42 /* RootTabBarController.m */; };
@@ -50,8 +52,6 @@
 		18F114EE1CAE3B6F00F53C42 /* TabBarSeleted5.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F114E51CAE3B6F00F53C42 /* TabBarSeleted5.png */; };
 		18F114F11CAE647100F53C42 /* FWBNavgationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F114F01CAE647100F53C42 /* FWBNavgationController.m */; };
 		18FD4B321CAE34DD00ACD4BC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FD4B311CAE34DD00ACD4BC /* main.m */; };
-		18FD4B351CAE34DD00ACD4BC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FD4B341CAE34DD00ACD4BC /* AppDelegate.m */; };
-		18FD4B3B1CAE34DD00ACD4BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18FD4B391CAE34DD00ACD4BC /* Main.storyboard */; };
 		18FD4B3D1CAE34DD00ACD4BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18FD4B3C1CAE34DD00ACD4BC /* Assets.xcassets */; };
 		18FD4B4B1CAE34DD00ACD4BC /* BabyPlansTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FD4B4A1CAE34DD00ACD4BC /* BabyPlansTests.m */; };
 		18FD4B561CAE34DD00ACD4BC /* BabyPlansUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FD4B551CAE34DD00ACD4BC /* BabyPlansUITests.m */; };
@@ -117,6 +117,9 @@
 		18CCD11B1CB7907E002595FD /* plaza_bottomview3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plaza_bottomview3.png; sourceTree = "<group>"; };
 		18CCD11C1CB7907E002595FD /* plaza_bottomview3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plaza_bottomview3@2x.png"; sourceTree = "<group>"; };
 		18CCD11D1CB7907E002595FD /* plaza_bottomview3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plaza_bottomview3@3x.png"; sourceTree = "<group>"; };
+		18CCD12A1CB79A1B002595FD /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		18CCD12B1CB79A1B002595FD /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		18CCD12C1CB79A1B002595FD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		18F114A51CAE36F600F53C42 /* FWBTarBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWBTarBarButton.h; sourceTree = "<group>"; };
 		18F114A61CAE36F600F53C42 /* FWBTarBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWBTarBarButton.m; sourceTree = "<group>"; };
 		18F114A71CAE36F600F53C42 /* MyTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTabBar.h; sourceTree = "<group>"; };
@@ -141,9 +144,6 @@
 		18F114F01CAE647100F53C42 /* FWBNavgationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWBNavgationController.m; sourceTree = "<group>"; };
 		18FD4B2D1CAE34DD00ACD4BC /* BabyPlans.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyPlans.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18FD4B311CAE34DD00ACD4BC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		18FD4B331CAE34DD00ACD4BC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../BabyPlans/AppDelegate.h; sourceTree = "<group>"; };
-		18FD4B341CAE34DD00ACD4BC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../BabyPlans/AppDelegate.m; sourceTree = "<group>"; };
-		18FD4B3A1CAE34DD00ACD4BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		18FD4B3C1CAE34DD00ACD4BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18FD4B411CAE34DD00ACD4BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18FD4B461CAE34DD00ACD4BC /* BabyPlansTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabyPlansTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -331,9 +331,9 @@
 		18F114C81CAE37CC00F53C42 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
-				18FD4B331CAE34DD00ACD4BC /* AppDelegate.h */,
-				18FD4B341CAE34DD00ACD4BC /* AppDelegate.m */,
-				18FD4B391CAE34DD00ACD4BC /* Main.storyboard */,
+				18CCD12A1CB79A1B002595FD /* AppDelegate.h */,
+				18CCD12B1CB79A1B002595FD /* AppDelegate.m */,
+				18CCD12C1CB79A1B002595FD /* Main.storyboard */,
 			);
 			name = AppDelegate;
 			path = ../AppDelegate;
@@ -547,6 +547,7 @@
 				18CCD1291CB7907E002595FD /* plaza_bottomview3@3x.png in Resources */,
 				18CCD1211CB7907E002595FD /* plaza_bottomview1.png in Resources */,
 				18F114EB1CAE3B6F00F53C42 /* TabBarSeleted1.png in Resources */,
+				18CCD12E1CB79A1B002595FD /* Main.storyboard in Resources */,
 				18CCD1241CB7907E002595FD /* plaza_bottomview2.png in Resources */,
 				18A114561CB3BF4600B13434 /* Back_to_mainpage@3x.png in Resources */,
 				18CCD1261CB7907E002595FD /* plaza_bottomview2@3x.png in Resources */,
@@ -563,7 +564,6 @@
 				18F114EA1CAE3B6F00F53C42 /* TabBar5.png in Resources */,
 				18CCD1201CB7907E002595FD /* plaza_bottomview0@3x.png in Resources */,
 				18F114E91CAE3B6F00F53C42 /* TabBar4.png in Resources */,
-				18FD4B3B1CAE34DD00ACD4BC /* Main.storyboard in Resources */,
 				18CCD1231CB7907E002595FD /* plaza_bottomview1@3x.png in Resources */,
 				18F114E81CAE3B6F00F53C42 /* TabBar3.png in Resources */,
 				18CCD11F1CB7907E002595FD /* plaza_bottomview0@2x.png in Resources */,
@@ -640,9 +640,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18CCD12D1CB79A1B002595FD /* AppDelegate.m in Sources */,
 				18A114591CB3C3D500B13434 /* PlazaTopView.m in Sources */,
 				184644381CB628BC0082F346 /* GalleryArrView.m in Sources */,
-				18FD4B351CAE34DD00ACD4BC /* AppDelegate.m in Sources */,
 				18A1145C1CB49F7600B13434 /* PlazaDataModel.m in Sources */,
 				18A114541CB3A66000B13434 /* UserMessCell.m in Sources */,
 				1846443B1CB63FF30082F346 /* GalleryImgModel.m in Sources */,
@@ -695,18 +695,6 @@
 			targetProxy = 18FD4B521CAE34DD00ACD4BC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		18FD4B391CAE34DD00ACD4BC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				18FD4B3A1CAE34DD00ACD4BC /* Base */,
-			);
-			name = Main.storyboard;
-			path = ../BabyPlans;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		18FD4B581CAE34DD00ACD4BC /* Debug */ = {
