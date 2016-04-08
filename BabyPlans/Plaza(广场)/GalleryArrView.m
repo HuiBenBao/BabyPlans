@@ -15,6 +15,9 @@
 @property (nonatomic,strong) NSArray * galleryArr;
 
 @property (nonatomic,strong) UIScrollView * imgScrollView;
+
+@property (nonatomic,strong) UILabel * titleLbl;
+
 /**
  *  播放器player
  */
@@ -90,13 +93,26 @@
         
         [self addSubview:_imgScrollView];
         
+        self.titleLbl = [[UILabel alloc] init];
+        _titleLbl.font = FONT_ADAPTED_NUM(15);
+        _titleLbl.textColor = [UIColor whiteColor];
+        _titleLbl.textAlignment = NSTextAlignmentCenter;
+        _titleLbl.backgroundColor = [UIColor blackColor];
+        _titleLbl.alpha = 0.5;
+        
+        [self addSubview:_titleLbl];
+        
     }
     
     return self;
 }
 
 - (void)createUI{
+    
+    //显示当前位置
+    self.titleLbl.text = [NSString stringWithFormat:@"1/%ld",self.galleryArr.count];
 
+    //设置图集
     self.imgScrollView.pagingEnabled = YES;
     self.imgScrollView.bounces = NO;
     self.imgScrollView.contentSize = CGSizeMake(self.width*self.galleryArr.count, 0);
@@ -118,8 +134,25 @@
     //设置代理
     _avAudioPlayer.delegate = self;
     
+    //自动播放
     [self play];
 }
+
+- (void)layoutSubviews{
+    
+    [super layoutSubviews];
+    
+    self.imgScrollView.frame = self.bounds;
+    
+    CGFloat titleH = 40*SCREEN_WIDTH_RATIO55;
+    CGFloat titleW = self.width;
+    CGFloat titleX = 0;
+    CGFloat titleY = self.height - titleH;
+    
+    self.titleLbl.frame = CGRectMake(titleX, titleY, titleW, titleH);
+    
+}
+
 //播放
 - (void)play{
     
@@ -163,18 +196,12 @@
     _avAudioPlayer.currentTime = 0;  //当前播放时间设置为0
     [_avAudioPlayer stop];
 }
-- (void)layoutSubviews{
 
-    [super layoutSubviews];
-
-    self.imgScrollView.frame = self.bounds;
-    
-}
 - (void)nextImage{
 
     CGFloat currentX = self.imgScrollView.contentOffset.x + self.width;
     
-    CGFloat index = currentX/self.width;
+    int index = currentX/self.width;
     
     
     if (index>=self.galleryArr.count) {
@@ -185,11 +212,24 @@
     if (currentX == 0) {
         [self stop];
         [self poptips:@"播放完成"];
+        self.titleLbl.text = [NSString stringWithFormat:@"1/%ld",self.galleryArr.count];
     }else{
         [self play];
     }
 }
 #pragma ----mark-----UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+
+    
+    CGFloat currentX = self.imgScrollView.contentOffset.x + self.width/2;
+    
+    int index = currentX/self.width;
+    
+    if (index>1) {
+        self.titleLbl.text = [NSString stringWithFormat:@"%d/%ld",index,self.galleryArr.count];
+
+    }
+}
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
 
     [self stop];

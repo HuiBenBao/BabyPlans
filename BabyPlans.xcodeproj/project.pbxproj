@@ -36,6 +36,14 @@
 		18CCD1291CB7907E002595FD /* plaza_bottomview3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CCD11D1CB7907E002595FD /* plaza_bottomview3@3x.png */; };
 		18CCD12D1CB79A1B002595FD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CCD12B1CB79A1B002595FD /* AppDelegate.m */; };
 		18CCD12E1CB79A1B002595FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18CCD12C1CB79A1B002595FD /* Main.storyboard */; };
+		18CCD1381CB7A11E002595FD /* Recommend_btn5.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CCD1311CB7A11E002595FD /* Recommend_btn5.png */; };
+		18CCD1391CB7A11E002595FD /* Recommend_btn0.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CCD1321CB7A11E002595FD /* Recommend_btn0.png */; };
+		18CCD13A1CB7A11E002595FD /* Recommend_btn1.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CCD1331CB7A11E002595FD /* Recommend_btn1.png */; };
+		18CCD13B1CB7A11E002595FD /* Recommend_btn2.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CCD1341CB7A11E002595FD /* Recommend_btn2.png */; };
+		18CCD13C1CB7A11E002595FD /* Recommend_btn3.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CCD1351CB7A11E002595FD /* Recommend_btn3.png */; };
+		18CCD13D1CB7A11E002595FD /* Recommend_btn4.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CCD1361CB7A11E002595FD /* Recommend_btn4.png */; };
+		18CCD13E1CB7A11E002595FD /* RecommednTxt.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CCD1371CB7A11E002595FD /* RecommednTxt.png */; };
+		18CCD1411CB7A14F002595FD /* RecommendController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CCD1401CB7A14F002595FD /* RecommendController.m */; };
 		18F114AB1CAE36F600F53C42 /* FWBTarBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F114A61CAE36F600F53C42 /* FWBTarBarButton.m */; };
 		18F114AC1CAE36F600F53C42 /* MyTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F114A81CAE36F600F53C42 /* MyTabBar.m */; };
 		18F114AD1CAE36F600F53C42 /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F114AA1CAE36F600F53C42 /* RootTabBarController.m */; };
@@ -120,6 +128,15 @@
 		18CCD12A1CB79A1B002595FD /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		18CCD12B1CB79A1B002595FD /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		18CCD12C1CB79A1B002595FD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		18CCD1311CB7A11E002595FD /* Recommend_btn5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Recommend_btn5.png; sourceTree = "<group>"; };
+		18CCD1321CB7A11E002595FD /* Recommend_btn0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Recommend_btn0.png; sourceTree = "<group>"; };
+		18CCD1331CB7A11E002595FD /* Recommend_btn1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Recommend_btn1.png; sourceTree = "<group>"; };
+		18CCD1341CB7A11E002595FD /* Recommend_btn2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Recommend_btn2.png; sourceTree = "<group>"; };
+		18CCD1351CB7A11E002595FD /* Recommend_btn3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Recommend_btn3.png; sourceTree = "<group>"; };
+		18CCD1361CB7A11E002595FD /* Recommend_btn4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Recommend_btn4.png; sourceTree = "<group>"; };
+		18CCD1371CB7A11E002595FD /* RecommednTxt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecommednTxt.png; sourceTree = "<group>"; };
+		18CCD13F1CB7A14F002595FD /* RecommendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendController.h; sourceTree = "<group>"; };
+		18CCD1401CB7A14F002595FD /* RecommendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendController.m; sourceTree = "<group>"; };
 		18F114A51CAE36F600F53C42 /* FWBTarBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWBTarBarButton.h; sourceTree = "<group>"; };
 		18F114A61CAE36F600F53C42 /* FWBTarBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWBTarBarButton.m; sourceTree = "<group>"; };
 		18F114A71CAE36F600F53C42 /* MyTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTabBar.h; sourceTree = "<group>"; };
@@ -289,6 +306,30 @@
 			path = PlazaCellBottomImg;
 			sourceTree = "<group>";
 		};
+		18CCD12F1CB7A09D002595FD /* Recommend(推荐) */ = {
+			isa = PBXGroup;
+			children = (
+				18CCD13F1CB7A14F002595FD /* RecommendController.h */,
+				18CCD1401CB7A14F002595FD /* RecommendController.m */,
+			);
+			name = "Recommend(推荐)";
+			path = "Recommend()推荐";
+			sourceTree = "<group>";
+		};
+		18CCD1301CB7A11E002595FD /* recommendImg */ = {
+			isa = PBXGroup;
+			children = (
+				18CCD1311CB7A11E002595FD /* Recommend_btn5.png */,
+				18CCD1321CB7A11E002595FD /* Recommend_btn0.png */,
+				18CCD1331CB7A11E002595FD /* Recommend_btn1.png */,
+				18CCD1341CB7A11E002595FD /* Recommend_btn2.png */,
+				18CCD1351CB7A11E002595FD /* Recommend_btn3.png */,
+				18CCD1361CB7A11E002595FD /* Recommend_btn4.png */,
+				18CCD1371CB7A11E002595FD /* RecommednTxt.png */,
+			);
+			path = recommendImg;
+			sourceTree = "<group>";
+		};
 		18F114A41CAE36F600F53C42 /* MainController */ = {
 			isa = PBXGroup;
 			children = (
@@ -391,6 +432,7 @@
 				18F114A41CAE36F600F53C42 /* MainController */,
 				184BCA741CB362D0008314F4 /* Interface(接口) */,
 				186195B81CB346E30003A562 /* Plaza(广场) */,
+				18CCD12F1CB7A09D002595FD /* Recommend(推荐) */,
 				186195C91CB35B960003A562 /* UserMess(我的) */,
 				18FD4B301CAE34DD00ACD4BC /* Supporting Files */,
 			);
@@ -403,6 +445,7 @@
 				18F114CA1CAE385D00F53C42 /* PrefixHeader.pch */,
 				18FD4B3C1CAE34DD00ACD4BC /* Assets.xcassets */,
 				18FD4B411CAE34DD00ACD4BC /* Info.plist */,
+				18CCD1301CB7A11E002595FD /* recommendImg */,
 				18CCD1111CB7907E002595FD /* PlazaCellBottomImg */,
 				18F114AE1CAE375700F53C42 /* TabbarVC */,
 				18FD4B311CAE34DD00ACD4BC /* main.m */,
@@ -544,6 +587,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18CCD1381CB7A11E002595FD /* Recommend_btn5.png in Resources */,
 				18CCD1291CB7907E002595FD /* plaza_bottomview3@3x.png in Resources */,
 				18CCD1211CB7907E002595FD /* plaza_bottomview1.png in Resources */,
 				18F114EB1CAE3B6F00F53C42 /* TabBarSeleted1.png in Resources */,
@@ -557,14 +601,20 @@
 				18F114EC1CAE3B6F00F53C42 /* TabBarSeleted2.png in Resources */,
 				18F114ED1CAE3B6F00F53C42 /* TabBarSeleted4.png in Resources */,
 				18CCD1271CB7907E002595FD /* plaza_bottomview3.png in Resources */,
+				18CCD13D1CB7A11E002595FD /* Recommend_btn4.png in Resources */,
+				18CCD13A1CB7A11E002595FD /* Recommend_btn1.png in Resources */,
 				18FD4B3D1CAE34DD00ACD4BC /* Assets.xcassets in Resources */,
+				18CCD13B1CB7A11E002595FD /* Recommend_btn2.png in Resources */,
 				18CCD1281CB7907E002595FD /* plaza_bottomview3@2x.png in Resources */,
 				18CCD1251CB7907E002595FD /* plaza_bottomview2@2x.png in Resources */,
 				18CCD11E1CB7907E002595FD /* plaza_bottomview0.png in Resources */,
+				18CCD13E1CB7A11E002595FD /* RecommednTxt.png in Resources */,
 				18F114EA1CAE3B6F00F53C42 /* TabBar5.png in Resources */,
+				18CCD13C1CB7A11E002595FD /* Recommend_btn3.png in Resources */,
 				18CCD1201CB7907E002595FD /* plaza_bottomview0@3x.png in Resources */,
 				18F114E91CAE3B6F00F53C42 /* TabBar4.png in Resources */,
 				18CCD1231CB7907E002595FD /* plaza_bottomview1@3x.png in Resources */,
+				18CCD1391CB7A11E002595FD /* Recommend_btn0.png in Resources */,
 				18F114E81CAE3B6F00F53C42 /* TabBar3.png in Resources */,
 				18CCD11F1CB7907E002595FD /* plaza_bottomview0@2x.png in Resources */,
 				18F114E61CAE3B6F00F53C42 /* TabBar1.png in Resources */,
@@ -652,6 +702,7 @@
 				18F114AC1CAE36F600F53C42 /* MyTabBar.m in Sources */,
 				186195BB1CB347080003A562 /* PlazaTableController.m in Sources */,
 				18F114C61CAE378600F53C42 /* PersonalMethod.m in Sources */,
+				18CCD1411CB7A14F002595FD /* RecommendController.m in Sources */,
 				18A114691CB4FD5600B13434 /* PlazaDataFrame.m in Sources */,
 				184BCA771CB362E5008314F4 /* CloudLogin.m in Sources */,
 				1846443E1CB642CB0082F346 /* PictureModel.m in Sources */,
