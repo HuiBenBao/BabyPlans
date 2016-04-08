@@ -8,6 +8,8 @@
 
 #import "PlazaMainCell.h"
 
+#define BtnCount 4
+
 @interface PlazaMainCell ()
 
 @property (nonatomic,strong) PlazaDataModel * model;
@@ -20,6 +22,7 @@
 @property (nonatomic,weak) UIView * divLine;
 @property (nonatomic,weak) UILabel * imgTextLbl;
 
+@property (nonatomic,strong) UIView * bottomView;//评论、点赞、分享、关注等按钮所在的view
 
 @end
 
@@ -92,6 +95,25 @@
         self.contentLbl = contentLbl;
         [self addSubview:contentLbl];
         
+        //底部view
+        UIView * bottomV = [[UIView alloc] init];
+        
+        for (int i = 0; i < BtnCount; i++) {
+            
+            UIButton * bottomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//            bottomBtn.backgroundColor = [UIColor greenColor];
+            
+            bottomBtn.tag = i;
+            NSString * imgName = [NSString stringWithFormat:@"plaza_bottomview%d",i];
+            [bottomBtn setImage:[UIImage imageNamed:imgName] forState:UIControlStateNormal];
+            [bottomBtn addTarget:self action:@selector(bottomClick:) forControlEvents:UIControlEventTouchUpInside];
+            [bottomV addSubview:bottomBtn];
+        }
+        
+        self.bottomView = bottomV;
+        
+        [self addSubview:bottomV];
+        
         //分割线
         UIView * lineV = [[UIView alloc] init];
         lineV.backgroundColor = ColorI(0xdddddd);
@@ -143,6 +165,16 @@
     self.contentLbl.text = self.model.content;
     self.contentLbl.frame = self.modelFrame.contentF;
     
+    self.bottomView.frame = self.modelFrame.bottomViewF;
+    for (UIButton * btn in self.bottomView.subviews) {
+        
+        CGFloat btnH = self.bottomView.height;
+        CGFloat btnW = (KScreenWidth - kMargin*(BtnCount+1))/BtnCount;
+        CGFloat btnX = kMargin + (kMargin + btnW)*btn.tag;
+        
+        btn.frame = CGRectMake(btnX, 0, btnW, btnH);
+    }
+    
     self.divLine.frame = self.modelFrame.divLineF;
 }
 /**
@@ -152,6 +184,15 @@
     
     if ([self.delegate respondsToSelector:@selector(getImageArrWithID:)]) {
         [self.delegate getImageArrWithID:_model.galleryID];
+    }
+}
+/**
+ *  底部按钮点击方法
+ */
+- (void)bottomClick:(UIButton *)sender{
+
+    if ([self.delegate respondsToSelector:@selector(clickBottomBtnIndex:)]) {
+        [self.delegate clickBottomBtnIndex:sender.tag];
     }
 }
 @end

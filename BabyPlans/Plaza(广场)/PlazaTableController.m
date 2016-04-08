@@ -19,8 +19,9 @@ enum{
 } TableView;
 
 enum{
-    DataTypeOrginal, //原创绘本
-    DataTypeClassical //经典绘本
+    DataTypeClassical, //经典绘本
+    DataTypeOrginal //原创绘本
+
 } DataType;
 
 
@@ -70,10 +71,11 @@ enum{
         
         [self.view bringSubviewToFront:HUD];
         
+        self.pageClassical = 1;
         
-        [CloudLogin getPlazaDataWithType:[NSString stringWithFormat:@"%d",DataTypeOrginal] page:@"1" count:DataCount success:^(NSDictionary *responseObject) {
+        [CloudLogin getPlazaDataWithType:[NSString stringWithFormat:@"%d",DataTypeOrginal] page:[NSString stringWithFormat:@"%d",_pageClassical] count:DataCount success:^(NSDictionary *responseObject) {
             
-            NSLog(@"原创绘本：==%@",responseObject);
+            NSLog(@"经典绘本：==%@",responseObject);
             HUD.hidden = YES;
             
             if ([responseObject[@"status"] intValue] == 0) {
@@ -109,15 +111,18 @@ enum{
 
     if (!_dataArrRight) {
         
-        NSMutableArray * myDataArr = [NSMutableArray array];
         MBProgressHUD * HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         HUD.dimBackground=YES;
         
         [self.view bringSubviewToFront:HUD];
         
-        [CloudLogin getPlazaDataWithType:[NSString stringWithFormat:@"%d",DataTypeClassical] page:@"1" count:DataCount success:^(NSDictionary *responseObject) {
+        self.pageOrginal = 1;
+        
+        NSMutableArray * myDataArr = [NSMutableArray array];
+
+        [CloudLogin getPlazaDataWithType:[NSString stringWithFormat:@"%d",DataTypeClassical] page:[NSString stringWithFormat:@"%d",_pageOrginal] count:DataCount success:^(NSDictionary *responseObject) {
             
-            NSLog(@"经典绘本：==%@",responseObject);
+            NSLog(@"原创绘本：==%@",responseObject);
             HUD.hidden = YES;
             
             if ([responseObject[@"status"] intValue] == 0) {
@@ -234,6 +239,17 @@ enum{
         tableView.dataSource = self;
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
+        MJRefreshAutoNormalFooter * footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            // 进入刷新状态后会自动调用这个block
+            [self refreshWithTag:i];
+        }];
+        footer.stateLabel.hidden = YES;
+        
+        tableView.mj_footer = footer;
+        tableView.mj_footer.tag = tableView.tag;
+        
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        
         [self.mainScrollView addSubview:tableView];
         
         
@@ -242,6 +258,67 @@ enum{
     //将topView移到顶层
     [self.view bringSubviewToFront:_topView];
 }
+/**
+ *  获取下一页数据
+ */
+- (void)refreshWithTag:(NSInteger)tabViewTag{
+
+    BOOL isLeftTable = (tabViewTag == TableViewLeft);
+    int page = isLeftTable ? ++_pageClassical : ++_pageOrginal ;
+    int type = isLeftTable ? DataTypeClassical : DataTypeOrginal;
+    
+   
+
+    [CloudLogin getPlazaDataWithType:[NSString stringWithFormat:@"%d",type] page:[NSString stringWithFormat:@"%d",page] count:DataCount success:^(NSDictionary *responseObject) {
+        
+        NSArray * currentArr = isLeftTable ? _dataArrLeft : _dataArrRight;
+        NSMutableArray * myDataArr = [NSMutableArray arrayWithArray:currentArr];
+        UITableView * tableV = isLeftTable ? self.tableViewLeft : self.tableViewRight;
+        
+        if ([responseObject[@"status"] intValue] == 0) {
+            NSArray * dataArr = responseObject[@"galleries"];
+            
+            if (dataArr.count == 0) {
+                [tableV.mj_footer endRefreshingWithNoMoreData];
+                tableV.mj_footer.hidden = YES;
+                tableV.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+
+            }else{
+                [tableV.mj_footer setState:MJRefreshStateIdle];
+
+                
+            }
+            for (NSDictionary * dic in dataArr) {
+                
+                PlazaDataModel * model = [PlazaDataModel valueWithDic:dic];
+                
+                PlazaDataFrame * modelFrame = [[PlazaDataFrame alloc] init];
+                modelFrame.model = model;
+                
+                [myDataArr addObject:modelFrame];
+            }
+            
+            if (isLeftTable) {
+                _dataArrLeft = myDataArr;
+            }else{
+            
+                _dataArrRight = myDataArr;
+            }
+        
+            
+            [tableV reloadData];
+        }
+        
+        
+    } failure:^(NSError *errorMessage) {
+        
+        
+        [self.view requsetFaild];
+        NSLog(@"广场接口请求Error ==%@",errorMessage);
+    }];
+
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -304,7 +381,7 @@ enum{
         
         [self.topView selectAtIndex:index];
         
-        if (!_dataArrRight) {
+        if (!_dataArrRight && index==TableViewRight) {
             [self dataArrRight];
         }
     }
@@ -334,7 +411,11 @@ enum{
 }
 
 #pragma ---mark--PlazaMainCellDelegate
-
+/**
+ *  展示图集
+ *
+ *  @param galleryID 图集id
+ */
 - (void)getImageArrWithID:(NSString *)galleryID{
 
     //弹窗
@@ -357,5 +438,14 @@ enum{
         _galleryView.alpha = 1;
     }];
     
+}
+/**
+ *  cell底部四个按钮点击方法
+ *
+ *  @param index 按钮编号
+ */
+- (void)clickBottomBtnIndex:(NSInteger)index{
+
+    DLog(@"点击 了 --- %d",index);
 }
 @end

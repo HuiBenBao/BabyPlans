@@ -15,6 +15,7 @@
 @optional
 - (void)getImageArrWithID:(NSString *)galleryID;
 
+- (void)clickBottomBtnIndex:(NSInteger)index;
 @end
 
 @interface PlazaMainCell : UITableViewCell

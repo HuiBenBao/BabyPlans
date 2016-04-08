@@ -69,9 +69,11 @@
 
     _contentF = CGRectMake(contentX, contentY, contentSize.width, contentSize.height);
     
+    //7、底部view
+    _bottomViewF = CGRectMake(0, CGRectGetMaxY(_contentF), KScreenWidth, kBottomH);
     
     //分割线
-    CGFloat lineY = CGRectGetMaxY(_contentF)+kMargin;
+    CGFloat lineY = CGRectGetMaxY(_bottomViewF)+kMargin;
     
     _divLineF = CGRectMake(0, lineY, KScreenWidth, 1);
     

@@ -45,10 +45,10 @@
             </objects>
             <point key="canvasLocation" x="510" y="-465"/>
         </scene>
-        <!--Navgation Controller-->
+        <!--广场-->
         <scene sceneID="ZQ9-cO-5eJ">
             <objects>
-                <navigationController id="cbd-xg-HTu" customClass="FWBNavgationController" sceneMemberID="viewController">
+                <navigationController title="广场" definesPresentationContext="YES" id="cbd-xg-HTu" customClass="FWBNavgationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="Gza-56-Xja"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lho-OU-DGe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
