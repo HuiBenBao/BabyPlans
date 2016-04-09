@@ -15,7 +15,7 @@
  *
  *  @param type    0：原创绘本 1:经典绘本
  *  @param page    页码
- *  @param count   <#count description#>
+ *  @param count   每页显示的信息条数
  */
 + (void)getPlazaDataWithType:(NSString *)type page:(NSString *)page count:(NSString *)count success:(void(^)(NSDictionary * responseObject))success failure:(void (^)(NSError * errorMessage))failure;
 /**
@@ -24,5 +24,20 @@
  *  @param galleryID 图集id
  */
 + (void)getPictureArrWithGalleryID:(NSString *)galleryID success:(void(^)(NSDictionary * responseObject))success failure:(void (^)(NSError * errorMessage))failure;
+
+/**
+ *  获取评论
+ *
+ *  @param galleryID 图集id
+ */
++ (void)getCommentArrWithGalleryID:(NSString *)galleryID Page:(NSString *)page Count:(NSString *)count success:(void(^)(NSDictionary * responseObject))success failure:(void (^)(NSError * errorMessage))failure;
+
+/**
+ *  点赞
+ *
+ *  @param galleryID 图集id
+ *  @param type 0/1 true/false
+ */
++ (void)likeWithGalleryID:(NSString *)galleryID type:(NSString *)type success:(void(^)(NSDictionary * responseObject))success failure:(void (^)(NSError * errorMessage))failure;
 
 @end

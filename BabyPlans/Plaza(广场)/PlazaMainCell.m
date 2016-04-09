@@ -14,6 +14,8 @@
 
 @property (nonatomic,strong) PlazaDataModel * model;
 
+@property (nonatomic,strong) NSIndexPath * indexPath;
+
 @property (nonatomic,weak) UIImageView * iconView;
 @property (nonatomic,weak) UILabel * nameLbl;
 @property (nonatomic,weak) UILabel * dateLbl;
@@ -27,11 +29,12 @@
 @end
 
 @implementation PlazaMainCell
-+ (instancetype)cellWithTableView:(UITableView *)tableView{
++ (instancetype)cellWithTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath{
 
     static NSString * ident = @"PlazaMainCell";
     PlazaMainCell *cell = [tableView dequeueReusableCellWithIdentifier:ident];
     
+    cell.indexPath = indexPath;
     if (cell == nil) {
         cell = [[PlazaMainCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
         
@@ -134,7 +137,7 @@
 - (void)layoutSubviews{
 
     self.iconView.frame = self.modelFrame.iconF;
-    [_iconView sd_setImageWithURL:[NSURL URLWithString:self.model.user.icon] placeholderImage:[UIImage imageNamed:@"allowDel"]];
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:self.model.user.icon] placeholderImage:[UIImage imageNamed:@"DefaultImage"]];
     _iconView.layer.cornerRadius = _iconView.height/2;
     _iconView.clipsToBounds = YES;
     
@@ -144,7 +147,7 @@
     self.dateLbl.text = self.model.user.date;
     self.dateLbl.frame = self.modelFrame.dateF;
     
-    [self.coverImgView sd_setImageWithURL:[NSURL URLWithString:self.model.coverImg] placeholderImage:[UIImage imageNamed:@"allowDel"]];
+    [self.coverImgView sd_setImageWithURL:[NSURL URLWithString:self.model.coverImg] placeholderImage:[UIImage imageNamed:@"DefaultImage"]];
     self.coverImgView.layer.cornerRadius = 8*SCREEN_WIDTH_RATIO55;
     self.coverImgView.clipsToBounds = YES;
     
@@ -191,8 +194,8 @@
  */
 - (void)bottomClick:(UIButton *)sender{
 
-    if ([self.delegate respondsToSelector:@selector(clickBottomBtnIndex:)]) {
-        [self.delegate clickBottomBtnIndex:sender.tag];
+    if ([self.delegate respondsToSelector:@selector(clickBottomBtnIndex:galleryID:)]) {
+        [self.delegate clickBottomBtnIndex:sender.tag galleryID:_model.galleryID];
     }
 }
 @end

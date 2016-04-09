@@ -12,6 +12,7 @@
 #import "PlazaMainCell.h"
 #import "PlazaDataFrame.h"
 #import "GalleryArrView.h"
+#import "LoginViewController.h"
 
 enum{
     TableViewLeft,
@@ -362,7 +363,7 @@ enum{
         dataF = [_dataArrRight objectAtIndex:indexPath.row];
         
     }
-    PlazaMainCell * cell = [PlazaMainCell cellWithTableView:tableView];
+    PlazaMainCell * cell = [PlazaMainCell cellWithTableView:tableView indexPath:indexPath];
     
     cell.modelFrame = dataF;
     
@@ -444,8 +445,30 @@ enum{
  *
  *  @param index 按钮编号
  */
-- (void)clickBottomBtnIndex:(NSInteger)index{
+- (void)clickBottomBtnIndex:(NSInteger)index galleryID:(NSString *)galleryID{
 
-    DLog(@"点击 了 --- %d",index);
+    if (index==0) { //点赞
+        
+        if (![defaults objectForKey:@"token"]) {//未登录
+            
+            [self presentViewController:[[LoginViewController alloc] init] animated:YES completion:nil];
+        }else{
+            [CloudLogin likeWithGalleryID:galleryID type:@"1" success:^(NSDictionary *responseObject) {
+                NSLog(@"点赞----%@",responseObject);
+            } failure:^(NSError *errorMessage) {
+                NSLog(@"点赞----%@",errorMessage);
+            }];
+
+        }
+        
+    }else if (index == 1){//评论
+        
+    }else if (index==2){//关注
+    
+    }else if (index==3){//分享
+    
+        
+    }
+    
 }
 @end

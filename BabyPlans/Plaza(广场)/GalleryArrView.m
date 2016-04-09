@@ -125,7 +125,7 @@
         
         GalleryImgModel * model = [self.galleryArr objectAtIndex:i];
         
-        [imgView sd_setImageWithURL:[NSURL URLWithString:model.picture.image] placeholderImage:[UIImage imageNamed:@"allowDel"]];
+        [imgView sd_setImageWithURL:[NSURL URLWithString:model.picture.image] placeholderImage:[UIImage imageNamed:@"DefaultImage"]];
         [self.imgScrollView addSubview:imgView];
     }
     

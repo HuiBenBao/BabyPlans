@@ -62,7 +62,7 @@
 
 - (void)createTopCell{
 
-    UIImageView * iconV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"allowDel"]];
+    UIImageView * iconV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DefaultImage"]];
     CGFloat iconW = 100*SCREEN_WIDTH_RATIO55;
     CGFloat iconH = 100*SCREEN_WIDTH_RATIO55;
     CGFloat iconX = (KScreenWidth-iconW)/2;

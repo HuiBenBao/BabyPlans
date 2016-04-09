@@ -7,6 +7,7 @@
 //
 
 #import "RecommendController.h"
+#import "RecWebController.h"
 
 #define bigBtnCount 6
 @interface RecommendController ()
@@ -59,10 +60,11 @@
     
     
 }
-
+/**
+ *  点击跳转界面
+ */
 - (void)bigBtnClick:(UIButton *)sender{
 
-    NSLog(@"%ld",(long)sender.tag);
-    
+    [self.navigationController pushViewController:[RecWebController RecWebWithIndex:sender.tag] animated:YES];
 }
 @end

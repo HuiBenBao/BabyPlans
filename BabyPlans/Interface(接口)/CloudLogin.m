@@ -54,7 +54,37 @@
     }];
 
 }
++ (void)getCommentArrWithGalleryID:(NSString *)galleryID Page:(NSString *)page Count:(NSString *)count success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure{
 
+    NSMutableDictionary * parma = [NSMutableDictionary dictionary];
+    
+    [parma setValue:@"gcomment_Query" forKey:@"action"];
+    [parma setValue:galleryID forKey:@"gallery_id"];
+    [parma setValue:page forKey:@"page"];
+    [parma setValue:count forKey:@"count"];
+    
+    [CloudLogin getDataWithURL:nil parameter:parma success:^(id data) {
+        success(data);
+    } failure:^(NSError *errorMessage) {
+        failure(errorMessage);
+    }];
+
+}
++ (void)likeWithGalleryID:(NSString *)galleryID type:(NSString *)type success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure{
+
+    NSMutableDictionary * parma = [NSMutableDictionary dictionary];
+    
+    [parma setValue:@"gallery_Relation" forKey:@"action"];
+    [parma setValue:galleryID forKey:@"gallery_id"];
+    [parma setValue:type forKey:@"relation"];
+    
+    
+    [CloudLogin getDataWithURL:nil parameter:parma success:^(id data) {
+        success(data);
+    } failure:^(NSError *errorMessage) {
+        failure(errorMessage);
+    }];
+}
 #pragma mark>>>>>>------公用方法---------
 #pragma -----mark------网络数据请求方法
 

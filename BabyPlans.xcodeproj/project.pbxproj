@@ -44,6 +44,13 @@
 		18CCD13D1CB7A11E002595FD /* Recommend_btn4.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CCD1361CB7A11E002595FD /* Recommend_btn4.png */; };
 		18CCD13E1CB7A11E002595FD /* RecommednTxt.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CCD1371CB7A11E002595FD /* RecommednTxt.png */; };
 		18CCD1411CB7A14F002595FD /* RecommendController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CCD1401CB7A14F002595FD /* RecommendController.m */; };
+		18CCD1441CB8A461002595FD /* RecWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CCD1431CB8A461002595FD /* RecWebController.m */; };
+		18CCD1481CB8B46D002595FD /* OrginalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CCD1471CB8B46D002595FD /* OrginalController.m */; };
+		18CCD14B1CB8DA5C002595FD /* DefaultImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CCD14A1CB8DA5C002595FD /* DefaultImage.png */; };
+		18CCD14E1CB8E85B002595FD /* CommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CCD14D1CB8E85B002595FD /* CommentController.m */; };
+		18CCD1521CB8F355002595FD /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CCD1511CB8F355002595FD /* LoginViewController.m */; };
+		18CCD1561CB8F3B8002595FD /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CCD1551CB8F3B8002595FD /* LoginView.m */; };
+		18CCD1581CB8FA9E002595FD /* appLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CCD1571CB8FA9E002595FD /* appLogo.png */; };
 		18F114AB1CAE36F600F53C42 /* FWBTarBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F114A61CAE36F600F53C42 /* FWBTarBarButton.m */; };
 		18F114AC1CAE36F600F53C42 /* MyTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F114A81CAE36F600F53C42 /* MyTabBar.m */; };
 		18F114AD1CAE36F600F53C42 /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F114AA1CAE36F600F53C42 /* RootTabBarController.m */; };
@@ -137,6 +144,18 @@
 		18CCD1371CB7A11E002595FD /* RecommednTxt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecommednTxt.png; sourceTree = "<group>"; };
 		18CCD13F1CB7A14F002595FD /* RecommendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendController.h; sourceTree = "<group>"; };
 		18CCD1401CB7A14F002595FD /* RecommendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendController.m; sourceTree = "<group>"; };
+		18CCD1421CB8A461002595FD /* RecWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecWebController.h; sourceTree = "<group>"; };
+		18CCD1431CB8A461002595FD /* RecWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecWebController.m; sourceTree = "<group>"; };
+		18CCD1461CB8B46D002595FD /* OrginalController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrginalController.h; sourceTree = "<group>"; };
+		18CCD1471CB8B46D002595FD /* OrginalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrginalController.m; sourceTree = "<group>"; };
+		18CCD14A1CB8DA5C002595FD /* DefaultImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultImage.png; sourceTree = "<group>"; };
+		18CCD14C1CB8E85B002595FD /* CommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentController.h; sourceTree = "<group>"; };
+		18CCD14D1CB8E85B002595FD /* CommentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentController.m; sourceTree = "<group>"; };
+		18CCD1501CB8F355002595FD /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		18CCD1511CB8F355002595FD /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		18CCD1541CB8F3B8002595FD /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
+		18CCD1551CB8F3B8002595FD /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
+		18CCD1571CB8FA9E002595FD /* appLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appLogo.png; sourceTree = "<group>"; };
 		18F114A51CAE36F600F53C42 /* FWBTarBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWBTarBarButton.h; sourceTree = "<group>"; };
 		18F114A61CAE36F600F53C42 /* FWBTarBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWBTarBarButton.m; sourceTree = "<group>"; };
 		18F114A71CAE36F600F53C42 /* MyTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTabBar.h; sourceTree = "<group>"; };
@@ -233,6 +252,8 @@
 			children = (
 				186195B91CB347080003A562 /* PlazaTableController.h */,
 				186195BA1CB347080003A562 /* PlazaTableController.m */,
+				18CCD14C1CB8E85B002595FD /* CommentController.h */,
+				18CCD14D1CB8E85B002595FD /* CommentController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -311,6 +332,8 @@
 			children = (
 				18CCD13F1CB7A14F002595FD /* RecommendController.h */,
 				18CCD1401CB7A14F002595FD /* RecommendController.m */,
+				18CCD1421CB8A461002595FD /* RecWebController.h */,
+				18CCD1431CB8A461002595FD /* RecWebController.m */,
 			);
 			name = "Recommend(推荐)";
 			path = "Recommend()推荐";
@@ -328,6 +351,44 @@
 				18CCD1371CB7A11E002595FD /* RecommednTxt.png */,
 			);
 			path = recommendImg;
+			sourceTree = "<group>";
+		};
+		18CCD1451CB8B44A002595FD /* Orginal(原创) */ = {
+			isa = PBXGroup;
+			children = (
+				18CCD1461CB8B46D002595FD /* OrginalController.h */,
+				18CCD1471CB8B46D002595FD /* OrginalController.m */,
+			);
+			path = "Orginal(原创)";
+			sourceTree = "<group>";
+		};
+		18CCD1491CB8DA45002595FD /* DefaultImg */ = {
+			isa = PBXGroup;
+			children = (
+				18CCD14A1CB8DA5C002595FD /* DefaultImage.png */,
+				18CCD1571CB8FA9E002595FD /* appLogo.png */,
+			);
+			name = DefaultImg;
+			path = TabbarVC;
+			sourceTree = "<group>";
+		};
+		18CCD14F1CB8F33F002595FD /* Login(登录) */ = {
+			isa = PBXGroup;
+			children = (
+				18CCD1501CB8F355002595FD /* LoginViewController.h */,
+				18CCD1511CB8F355002595FD /* LoginViewController.m */,
+				18CCD1531CB8F3A7002595FD /* View */,
+			);
+			path = "Login(登录)";
+			sourceTree = "<group>";
+		};
+		18CCD1531CB8F3A7002595FD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18CCD1541CB8F3B8002595FD /* LoginView.h */,
+				18CCD1551CB8F3B8002595FD /* LoginView.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		18F114A41CAE36F600F53C42 /* MainController */ = {
@@ -432,8 +493,10 @@
 				18F114A41CAE36F600F53C42 /* MainController */,
 				184BCA741CB362D0008314F4 /* Interface(接口) */,
 				186195B81CB346E30003A562 /* Plaza(广场) */,
+				18CCD1451CB8B44A002595FD /* Orginal(原创) */,
 				18CCD12F1CB7A09D002595FD /* Recommend(推荐) */,
 				186195C91CB35B960003A562 /* UserMess(我的) */,
+				18CCD14F1CB8F33F002595FD /* Login(登录) */,
 				18FD4B301CAE34DD00ACD4BC /* Supporting Files */,
 			);
 			path = BabyPlans;
@@ -447,6 +510,7 @@
 				18FD4B411CAE34DD00ACD4BC /* Info.plist */,
 				18CCD1301CB7A11E002595FD /* recommendImg */,
 				18CCD1111CB7907E002595FD /* PlazaCellBottomImg */,
+				18CCD1491CB8DA45002595FD /* DefaultImg */,
 				18F114AE1CAE375700F53C42 /* TabbarVC */,
 				18FD4B311CAE34DD00ACD4BC /* main.m */,
 			);
@@ -598,6 +662,7 @@
 				18F114EE1CAE3B6F00F53C42 /* TabBarSeleted5.png in Resources */,
 				18CCD1221CB7907E002595FD /* plaza_bottomview1@2x.png in Resources */,
 				18F114E71CAE3B6F00F53C42 /* TabBar2.png in Resources */,
+				18CCD14B1CB8DA5C002595FD /* DefaultImage.png in Resources */,
 				18F114EC1CAE3B6F00F53C42 /* TabBarSeleted2.png in Resources */,
 				18F114ED1CAE3B6F00F53C42 /* TabBarSeleted4.png in Resources */,
 				18CCD1271CB7907E002595FD /* plaza_bottomview3.png in Resources */,
@@ -617,6 +682,7 @@
 				18CCD1391CB7A11E002595FD /* Recommend_btn0.png in Resources */,
 				18F114E81CAE3B6F00F53C42 /* TabBar3.png in Resources */,
 				18CCD11F1CB7907E002595FD /* plaza_bottomview0@2x.png in Resources */,
+				18CCD1581CB8FA9E002595FD /* appLogo.png in Resources */,
 				18F114E61CAE3B6F00F53C42 /* TabBar1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -692,22 +758,27 @@
 			files = (
 				18CCD12D1CB79A1B002595FD /* AppDelegate.m in Sources */,
 				18A114591CB3C3D500B13434 /* PlazaTopView.m in Sources */,
+				18CCD1561CB8F3B8002595FD /* LoginView.m in Sources */,
 				184644381CB628BC0082F346 /* GalleryArrView.m in Sources */,
 				18A1145C1CB49F7600B13434 /* PlazaDataModel.m in Sources */,
 				18A114541CB3A66000B13434 /* UserMessCell.m in Sources */,
+				18CCD1521CB8F355002595FD /* LoginViewController.m in Sources */,
 				1846443B1CB63FF30082F346 /* GalleryImgModel.m in Sources */,
 				18FD4B321CAE34DD00ACD4BC /* main.m in Sources */,
 				18F114AD1CAE36F600F53C42 /* RootTabBarController.m in Sources */,
 				186195C81CB357B60003A562 /* PlazaMainCell.m in Sources */,
 				18F114AC1CAE36F600F53C42 /* MyTabBar.m in Sources */,
 				186195BB1CB347080003A562 /* PlazaTableController.m in Sources */,
+				18CCD14E1CB8E85B002595FD /* CommentController.m in Sources */,
 				18F114C61CAE378600F53C42 /* PersonalMethod.m in Sources */,
 				18CCD1411CB7A14F002595FD /* RecommendController.m in Sources */,
 				18A114691CB4FD5600B13434 /* PlazaDataFrame.m in Sources */,
 				184BCA771CB362E5008314F4 /* CloudLogin.m in Sources */,
 				1846443E1CB642CB0082F346 /* PictureModel.m in Sources */,
 				18F114F11CAE647100F53C42 /* FWBNavgationController.m in Sources */,
+				18CCD1441CB8A461002595FD /* RecWebController.m in Sources */,
 				18F114AB1CAE36F600F53C42 /* FWBTarBarButton.m in Sources */,
+				18CCD1481CB8B46D002595FD /* OrginalController.m in Sources */,
 				18A114661CB4F5B400B13434 /* MBProgressHUD.m in Sources */,
 				186195CC1CB35BB00003A562 /* UserTableController.m in Sources */,
 				18A1145F1CB4A63A00B13434 /* UIView+Category.m in Sources */,

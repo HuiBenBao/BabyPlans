@@ -62,7 +62,7 @@
 // 随机色
 #define RANDOM_COLOR Color(arc4random_uniform(255), arc4random_uniform(255), arc4random_uniform(255))
 
-
+#define ViewBackColor Color(255, 254, 239)
 
 // 多行文本的行间距
 #define LINE_SPACING (IosVersion >= 9 ? LENGTH_ADAPTED(0):LENGTH_ADAPTED(6))

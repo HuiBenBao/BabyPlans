@@ -15,12 +15,12 @@
 @optional
 - (void)getImageArrWithID:(NSString *)galleryID;
 
-- (void)clickBottomBtnIndex:(NSInteger)index;
+- (void)clickBottomBtnIndex:(NSInteger)index galleryID:(NSString *)galleryID;
 @end
 
 @interface PlazaMainCell : UITableViewCell
 
-+ (instancetype)cellWithTableView:(UITableView *)tableView;
++ (instancetype)cellWithTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath;
 
 @property (nonatomic,strong) PlazaDataFrame * modelFrame;
 
