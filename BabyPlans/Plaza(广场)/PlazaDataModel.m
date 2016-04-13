@@ -42,6 +42,18 @@
             self.galleryID = dic[@"id"];
             
         }
+        
+        if (ValidNum(dic[@"likeCnt"])) {
+            NSNumber * like = dic[@"likeCnt"];
+            NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
+            self.likeCount = [numberFormatter stringFromNumber:like];
+            
+        }
+        
+        if (ValidNum(dic[@"commentCnt"])) {
+            self.commentCount = [[[NSNumberFormatter alloc] init] stringFromNumber:dic[@"commentCnt"]];
+            
+        }
     }
     
     return self;

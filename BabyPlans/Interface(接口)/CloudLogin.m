@@ -18,6 +18,37 @@
 
 @implementation CloudLogin
 
++ (void)loginWithPhoneNum:(NSString *)phoneNum password:(NSString *)password success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure{
+    
+    NSMutableDictionary * parma = [NSMutableDictionary dictionary];
+    [parma setValue:@"user_Login" forKey:@"action"];
+    
+    [parma setValue:phoneNum forKey:@"mobile"];
+    [parma setValue:[password MD5String] forKey:@"password"];
+    
+    [CloudLogin getDataWithURL:nil parameter:parma success:^(id data) {
+        success(data);
+    } failure:^(NSError *errorMessage) {
+        failure(errorMessage);
+    }];
+
+}
++ (void)getCodeWithPhoneNum:(NSString *)phoneNum success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure{
+    
+    NSMutableDictionary * parma = [NSMutableDictionary dictionary];
+    [parma setValue:@"verificode_Query" forKey:@"action"];
+    
+    [parma setValue:phoneNum forKey:@"mobile"];
+    
+    
+    [CloudLogin getDataWithURL:nil parameter:parma success:^(id data) {
+        success(data);
+    } failure:^(NSError *errorMessage) {
+        failure(errorMessage);
+    }];
+
+    
+}
 
 + (void)getPlazaDataWithType:(NSString *)type page:(NSString *)page count:(NSString *)count success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure{
     
@@ -77,13 +108,15 @@
     [parma setValue:@"gallery_Relation" forKey:@"action"];
     [parma setValue:galleryID forKey:@"gallery_id"];
     [parma setValue:type forKey:@"relation"];
-    
+//    [parma setValue:[defaults objectForKey:@"token"] forKey:@"userId"];
     
     [CloudLogin getDataWithURL:nil parameter:parma success:^(id data) {
         success(data);
     } failure:^(NSError *errorMessage) {
         failure(errorMessage);
     }];
+    
+    
 }
 #pragma mark>>>>>>------公用方法---------
 #pragma -----mark------网络数据请求方法
@@ -101,7 +134,12 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager.responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"application/json",@"text/html", nil]];
     
+    if ([defaults valueForKey:@"session"]) {
+        
+        [manager.requestSerializer setValue:[defaults valueForKey:@"session"] forHTTPHeaderField:@"session_id"];
 
+    }
+    
     [manager POST:url parameters:parameter progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];

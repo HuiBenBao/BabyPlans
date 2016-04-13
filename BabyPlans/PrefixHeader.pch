@@ -27,6 +27,9 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CloudLogin.h"
 #import "MJRefresh.h"
+#import "NSString+Category.h"
+#import "Session.h"
+
 
 #ifdef DEBUG
 #define DLog(format, ...) NSLog(format, ## __VA_ARGS__)
@@ -97,7 +100,8 @@
 #define	FONT_4INCH_ADAPTED_WIDTH(s) FONT_ADAPTED_WIDTH(s/0.77294686f)
 #define	FONTBOLD_4INCH_ADAPTED_WIDTH(s) FONTBOLD_ADAPTED_WIDTH(s/0.77294686f)
 
-
+#define	REG_EXTENDED	0001	/* Extended regular expressions */
+#define	REG_ICASE	0002	/* Compile ignoring upper/lower case */
 
 
 

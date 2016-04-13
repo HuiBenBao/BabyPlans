@@ -35,15 +35,9 @@
         }
         
         if (ValidNum(dic[@"createTime"])) {
-            self.date = dic[@"createTime"];
             
-            NSNumber *time = dic[@"createTime"];
-            NSDate *d = [[NSDate alloc]initWithTimeIntervalSince1970:[time integerValue]/1000.0];
-            
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
-            dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm";
-            self.date = [dateFormatter stringFromDate:d];
+            long long time = [dic[@"createTime"] longLongValue];
+            self.date = [PersonalMethod stringFromUnixTime:time];
             
         }
         

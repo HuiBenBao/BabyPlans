@@ -10,4 +10,5 @@
 
 @interface CommentController : UIViewController
 
++ (instancetype)commentWithGalleryID:(NSString *)galleryID;
 @end

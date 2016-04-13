@@ -11,6 +11,19 @@
 
 @interface CloudLogin : NSObject
 /**
+ *  获取验证码
+ *
+ *  @param phoneNum 手机号
+ */
++ (void)getCodeWithPhoneNum:(NSString *)phoneNum success:(void(^)(NSDictionary * responseObject))success failure:(void (^)(NSError * errorMessage))failure;
+/**
+ *  登录
+ *
+ *  @param phoneNum 手机号
+ *  @param password 密码
+ */
++ (void)loginWithPhoneNum:(NSString *)phoneNum password:(NSString *)password success:(void(^)(NSDictionary * responseObject))success failure:(void(^)(NSError * errorMessage))failure;
+/**
  *  获取广场数据
  *
  *  @param type    0：原创绘本 1:经典绘本

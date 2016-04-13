@@ -8,7 +8,6 @@
 
 #import "LoginView.h"
 
-
 @interface LoginView ()
 
 @property (nonatomic,strong) UIImageView * logoView;
@@ -57,6 +56,8 @@
     if (self = [super initWithFrame:frame]) {
         
         self.backgroundColor = ViewBackColor;
+//        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"LoginBackView"]];
+        
         
         //添加logo
         [self addSubview:self.logoView];
@@ -134,6 +135,8 @@
     [self addSubview:_signBtn];
     
     //忘记密码和注册按钮
+    CGFloat maxY = self.signBtn.bottom;
+    
     NSArray * titleArr = @[@"忘记密码",@"注册"];
     for (int i = 0; i < titleArr.count; i++) {
         UIButton * littleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -157,7 +160,65 @@
         
         [littleBtn addTarget:self action:@selector(littleBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:littleBtn];
+        
+        maxY = littleBtn.bottom;
     }
+    
+    //第三方登录
+    NSArray * loginTypeArr = @[@"新浪登录",@"微信登录",@"QQ登录"];
+    
+    for (int i = 0; i < loginTypeArr.count; i++) {
+        
+        UIButton * customBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        CGFloat margic = 20*SCREEN_WIDTH_RATIO55;
+        CGFloat btnW = (txtBackW - (loginTypeArr.count-1)*margic)/loginTypeArr.count;
+        CGFloat btnX = txtBackX + (btnW + margic)*i;
+        CGFloat btnY = maxY + 40*SCREEN_WIDTH_RATIO55;
+        CGFloat btnH = btnW;
+        
+        customBtn.frame = CGRectMake(btnX, btnY, btnW, btnH);
+        
+     
+        customBtn.titleLabel.font = FONT_ADAPTED_NUM(11);
+        [customBtn setTitleColor:ColorI(0x5b5b5b) forState:UIControlStateNormal];
+        [customBtn setTitle:loginTypeArr[i] forState:UIControlStateNormal];
+        
+        customBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, -btnH/2, 0);
+        [customBtn setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"signUpImg%d",i]] forState:UIControlStateNormal];
+        
+        [self addSubview:customBtn];
+        
+        if (i==loginTypeArr.count-1) {
+            maxY = customBtn.bottom;
+        }
+        
+
+    }
+    
+    //取消登录
+    UIButton * cancle = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    CGFloat cancleW = txtBackW/2;
+    CGFloat cancleH = signH;
+    CGFloat cancleY = (KScreenHeight - maxY - cancleH)/2 + maxY;
+    CGFloat cancleX = txtBackX + (txtBackW - cancleW)/2;
+    
+    cancle.frame = CGRectMake(cancleX, cancleY, cancleW, cancleH);
+    
+    cancle.backgroundColor = Color(246, 252, 254);
+    
+    [cancle setTitle:@"取 消 登 录" forState:UIControlStateNormal];
+    
+    cancle.layer.cornerRadius = 8;
+    cancle.clipsToBounds = YES;
+    cancle.titleLabel.font = FONT_ADAPTED_NUM(14);
+    [cancle setTitleColor:ColorI(0x4b4b4b) forState:UIControlStateNormal];
+    [cancle addTarget:self action:@selector(cancleBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self addSubview:cancle];
+    
+    
 }
 /**
  *  添加手势
@@ -177,14 +238,54 @@
     [self.phoneField resignFirstResponder];
     [self.passwordField resignFirstResponder];
 }
-
+/**
+ *  登录
+ */
 - (void)signClick:(UIButton *)button{
-
+    
+    [CloudLogin loginWithPhoneNum:[self.phoneField.text trim] password:[self.passwordField.text trim] success:^(NSDictionary *responseObject) {
+        NSLog(@"%@",responseObject);
+        
+        int status = [responseObject[@"status"] intValue];
+        if (status==0) {
+            [self poptips:@"登录成功"];
+            
+            //存入本地
+            NSDictionary * sessionDic = responseObject[@"session"];
+            Session * session = [Session shareSession];
+            [session setValueWithDic:sessionDic];
+            
+            [defaults setObject:session.sessionID forKey:@"session"];
+            if ([self.delegate respondsToSelector:@selector(loginSuccess)]) {
+                [self.delegate loginSuccess];
+            }
+        }else{
+        
+            [self poptips:responseObject[@"error"]];
+            
+        }
+    } failure:^(NSError *errorMessage) {
+        NSLog(@"%@",errorMessage);
+    }];
     
 }
-
+/**
+ *  注册或忘记密码
+ */
 - (void)littleBtnClick:(UIButton *)button{
 
-    
+    if ([self.delegate respondsToSelector:@selector(forgetOrRegisterWithTag:)]) {
+        [self.delegate forgetOrRegisterWithTag:button.tag];
+    }
 }
+/**
+ *  取消登录
+ */
+- (void)cancleBtnClick{
+
+    if ([self.delegate respondsToSelector:@selector(cancleLogin)]) {
+        [self.delegate cancleLogin];
+    }
+}
+
 @end

@@ -33,7 +33,7 @@
 /**
  *  监控音频播放进度
  */
-@property (nonatomic,strong) NSTimer *timer;
+//@property (nonatomic,strong) NSTimer *timer;
 
 @property (nonatomic,assign) int currentIndex;
 

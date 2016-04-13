@@ -31,8 +31,14 @@
  *  图片数量
  */
 @property (nonatomic,strong) NSString * pictureCount;
-
-
+/**
+ *  点赞数量
+ */
+@property (nonatomic,strong) NSString * likeCount;
+/**
+ *  评论数量
+ */
+@property (nonatomic,strong) NSString * commentCount;
 - (instancetype)initWithDic:(NSDictionary *)dic;
 + (instancetype)valueWithDic:(NSDictionary *)dic;
 

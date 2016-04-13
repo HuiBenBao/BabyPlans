@@ -15,6 +15,7 @@
 @property (nonatomic,strong) PlazaDataModel * model;
 
 @property (nonatomic,strong) NSIndexPath * indexPath;
+@property (nonatomic,strong) UITableView * tableView;
 
 @property (nonatomic,weak) UIImageView * iconView;
 @property (nonatomic,weak) UILabel * nameLbl;
@@ -34,14 +35,15 @@
     static NSString * ident = @"PlazaMainCell";
     PlazaMainCell *cell = [tableView dequeueReusableCellWithIdentifier:ident];
     
-    cell.indexPath = indexPath;
+    
     if (cell == nil) {
         cell = [[PlazaMainCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
     }
-    
+    cell.indexPath = indexPath;
+    cell.tableView = tableView;
     return cell;
 }
 
@@ -104,6 +106,9 @@
         for (int i = 0; i < BtnCount; i++) {
             
             UIButton * bottomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            
+            bottomBtn.titleLabel.font = FONT_ADAPTED_NUM(16);
+            [bottomBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
 //            bottomBtn.backgroundColor = [UIColor greenColor];
             
             bottomBtn.tag = i;
@@ -176,6 +181,27 @@
         CGFloat btnX = kMargin + (kMargin + btnW)*btn.tag;
         
         btn.frame = CGRectMake(btnX, 0, btnW, btnH);
+        
+        NSString * title;
+        switch (btn.tag) {
+            case 0:
+                title = _model.likeCount;
+                break;
+            case 1:
+                title = _model.commentCount;
+                break;
+            case 2:
+                title = @"关注";
+                break;
+            default:
+                title = @"分享";
+                break;
+        }
+        [btn setTitle:title forState:UIControlStateNormal];
+        
+        btn.titleEdgeInsets = UIEdgeInsetsMake(0, kMargin, 0, 0);
+        btn.imageEdgeInsets = UIEdgeInsetsMake(0, -kMargin, 0, 0);
+        
     }
     
     self.divLine.frame = self.modelFrame.divLineF;
@@ -194,8 +220,8 @@
  */
 - (void)bottomClick:(UIButton *)sender{
 
-    if ([self.delegate respondsToSelector:@selector(clickBottomBtnIndex:galleryID:)]) {
-        [self.delegate clickBottomBtnIndex:sender.tag galleryID:_model.galleryID];
+    if ([self.delegate respondsToSelector:@selector(clickBottomBtnIndex:galleryID:indexPath:tableTag:)]) {
+        [self.delegate clickBottomBtnIndex:sender.tag galleryID:_model.galleryID indexPath:self.indexPath tableTag:self.tableView.tag];
     }
 }
 @end

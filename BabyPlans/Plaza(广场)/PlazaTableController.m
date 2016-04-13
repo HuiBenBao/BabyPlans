@@ -8,11 +8,10 @@
 
 #import "PlazaTableController.h"
 #import "PlazaTopView.h"
-#import "PlazaDataModel.h"
 #import "PlazaMainCell.h"
-#import "PlazaDataFrame.h"
 #import "GalleryArrView.h"
 #import "LoginViewController.h"
+#import "CommentController.h"
 
 enum{
     TableViewLeft,
@@ -445,16 +444,51 @@ enum{
  *
  *  @param index 按钮编号
  */
-- (void)clickBottomBtnIndex:(NSInteger)index galleryID:(NSString *)galleryID{
+- (void)clickBottomBtnIndex:(NSInteger)index galleryID:(NSString *)galleryID indexPath:(NSIndexPath *)indexPath tableTag:(NSInteger)tableTag{
 
+    NSArray * dataArr = (tableTag==TableViewLeft) ? self.dataArrLeft : self.dataArrRight;
+    PlazaDataFrame * plazaFrame = [dataArr objectAtIndex:indexPath.row];
+    PlazaDataModel * model = plazaFrame.model;
+    UITableView * tableView = (tableTag==TableViewLeft) ? self.tableViewLeft : self.tableViewRight;
+    
     if (index==0) { //点赞
         
-        if (![defaults objectForKey:@"token"]) {//未登录
+        if (![defaults objectForKey:@"session"]) {//未登录
             
             [self presentViewController:[[LoginViewController alloc] init] animated:YES completion:nil];
         }else{
             [CloudLogin likeWithGalleryID:galleryID type:@"1" success:^(NSDictionary *responseObject) {
                 NSLog(@"点赞----%@",responseObject);
+                
+                int status = [responseObject[@"status"] intValue];
+                if (status==0) {
+                    [self.view poptips:@"点赞成功"];
+                    
+                    //修改并刷新数据
+                    model.likeCount = [NSString stringWithFormat:@"%d",[model.likeCount intValue]+1];
+                    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                }else if(status==2){//取消点赞
+                
+                    [CloudLogin likeWithGalleryID:galleryID type:@"0" success:^(NSDictionary *responseObject) {
+                        NSLog(@"取消点赞----%@",responseObject);
+                        
+                        int status = [responseObject[@"status"] intValue];
+                        if (status==0) {
+                            [self.view poptips:@"已取消点赞"];
+                            
+                            //修改并刷新数据
+                            model.likeCount = [NSString stringWithFormat:@"%d",[model.likeCount intValue]-1];
+                            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                            
+                        }else
+                            [self.view poptips:responseObject[@"error"]];
+                        
+                    } failure:^(NSError *errorMessage) {
+                        NSLog(@"点赞----%@",errorMessage);
+                    }];
+                }else
+                    [self.view poptips:responseObject[@"error"]];
+                
             } failure:^(NSError *errorMessage) {
                 NSLog(@"点赞----%@",errorMessage);
             }];
@@ -462,6 +496,8 @@ enum{
         }
         
     }else if (index == 1){//评论
+        
+        [self.navigationController pushViewController:[CommentController commentWithGalleryID:galleryID] animated:YES];
         
     }else if (index==2){//关注
     
@@ -471,4 +507,6 @@ enum{
     }
     
 }
+
+
 @end

@@ -8,8 +8,9 @@
 
 #import "LoginViewController.h"
 #import "LoginView.h"
+#import "RegisterController.h"
 
-@interface LoginViewController ()
+@interface LoginViewController ()<LoginViewDelegate>
 
 @property (nonatomic,strong) LoginView * loginView;
 
@@ -21,6 +22,7 @@
     [super viewDidLoad];
     
     self.loginView = [[LoginView alloc] initWithFrame:self.view.bounds];
+    self.loginView.delegate = self;
     [self.view addSubview:_loginView];
     
     
@@ -55,4 +57,24 @@
     
 }
 
+#pragma -----mark------LoginViewDelegate
+
+- (void)cancleLogin{
+
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+- (void)forgetOrRegisterWithTag:(NSInteger)btnTag{
+
+    UIStoryboard * storyBoard = [UIStoryboard storyboardWithName:@"RegisterController" bundle:nil];
+    RegisterController * VC = [storyBoard instantiateInitialViewController];
+    
+    [self presentViewController:VC animated:YES completion:nil];
+}
+
+- (void)loginSuccess{
+
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

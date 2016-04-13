@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		183DDAE81CBB35370085A42F /* LoginBackView.png in Resources */ = {isa = PBXBuildFile; fileRef = 183DDAE71CBB35370085A42F /* LoginBackView.png */; };
+		183DDAF81CBB76240085A42F /* signUpImg0.png in Resources */ = {isa = PBXBuildFile; fileRef = 183DDAF51CBB76240085A42F /* signUpImg0.png */; };
+		183DDAF91CBB76240085A42F /* signUpImg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 183DDAF61CBB76240085A42F /* signUpImg1.png */; };
+		183DDAFA1CBB76240085A42F /* signUpImg2.png in Resources */ = {isa = PBXBuildFile; fileRef = 183DDAF71CBB76240085A42F /* signUpImg2.png */; };
+		183DDAFC1CBB7ECF0085A42F /* RegisterController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 183DDAFB1CBB7ECF0085A42F /* RegisterController.storyboard */; };
+		183DDAFF1CBB85030085A42F /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DDAFE1CBB85030085A42F /* RegisterController.m */; };
+		183DDB021CBB93990085A42F /* NSString+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DDB011CBB93990085A42F /* NSString+Category.m */; };
+		183DDB061CBC9AA30085A42F /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DDB051CBC9AA30085A42F /* Session.m */; };
+		183DDB091CBCCE560085A42F /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DDB081CBCCE560085A42F /* CommentModel.m */; };
+		183DDB0F1CBCD9C90085A42F /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DDB0E1CBCD9C90085A42F /* CommentCell.m */; };
+		183DDB131CBCDE830085A42F /* CommentFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DDB121CBCDE830085A42F /* CommentFrame.m */; };
 		184644381CB628BC0082F346 /* GalleryArrView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184644371CB628BC0082F346 /* GalleryArrView.m */; };
 		1846443B1CB63FF30082F346 /* GalleryImgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846443A1CB63FF30082F346 /* GalleryImgModel.m */; };
 		1846443E1CB642CB0082F346 /* PictureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846443D1CB642CB0082F346 /* PictureModel.m */; };
@@ -91,6 +102,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		183DDAE71CBB35370085A42F /* LoginBackView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginBackView.png; sourceTree = "<group>"; };
+		183DDAF51CBB76240085A42F /* signUpImg0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signUpImg0.png; sourceTree = "<group>"; };
+		183DDAF61CBB76240085A42F /* signUpImg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signUpImg1.png; sourceTree = "<group>"; };
+		183DDAF71CBB76240085A42F /* signUpImg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signUpImg2.png; sourceTree = "<group>"; };
+		183DDAFB1CBB7ECF0085A42F /* RegisterController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RegisterController.storyboard; sourceTree = "<group>"; };
+		183DDAFD1CBB85030085A42F /* RegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterController.h; sourceTree = "<group>"; };
+		183DDAFE1CBB85030085A42F /* RegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterController.m; sourceTree = "<group>"; };
+		183DDB001CBB93990085A42F /* NSString+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Category.h"; sourceTree = "<group>"; };
+		183DDB011CBB93990085A42F /* NSString+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Category.m"; sourceTree = "<group>"; };
+		183DDB041CBC9AA30085A42F /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
+		183DDB051CBC9AA30085A42F /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Session.m; sourceTree = "<group>"; };
+		183DDB071CBCCE560085A42F /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
+		183DDB081CBCCE560085A42F /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
+		183DDB0D1CBCD9C90085A42F /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		183DDB0E1CBCD9C90085A42F /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		183DDB111CBCDE830085A42F /* CommentFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentFrame.h; sourceTree = "<group>"; };
+		183DDB121CBCDE830085A42F /* CommentFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentFrame.m; sourceTree = "<group>"; };
 		184644361CB628BC0082F346 /* GalleryArrView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryArrView.h; sourceTree = "<group>"; };
 		184644371CB628BC0082F346 /* GalleryArrView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryArrView.m; sourceTree = "<group>"; };
 		184644391CB63FF30082F346 /* GalleryImgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryImgModel.h; sourceTree = "<group>"; };
@@ -228,6 +256,26 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		183DDAF41CBB75F70085A42F /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				183DDAF51CBB76240085A42F /* signUpImg0.png */,
+				183DDAF61CBB76240085A42F /* signUpImg1.png */,
+				183DDAF71CBB76240085A42F /* signUpImg2.png */,
+			);
+			name = SignUp;
+			path = TabbarVC;
+			sourceTree = "<group>";
+		};
+		183DDB031CBC9A7F0085A42F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				183DDB041CBC9AA30085A42F /* Session.h */,
+				183DDB051CBC9AA30085A42F /* Session.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		184BCA741CB362D0008314F4 /* Interface(接口) */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +315,8 @@
 				18A114581CB3C3D500B13434 /* PlazaTopView.m */,
 				184644361CB628BC0082F346 /* GalleryArrView.h */,
 				184644371CB628BC0082F346 /* GalleryArrView.m */,
+				183DDB0D1CBCD9C90085A42F /* CommentCell.h */,
+				183DDB0E1CBCD9C90085A42F /* CommentCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -274,6 +324,10 @@
 		186195C51CB3578A0003A562 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				183DDB071CBCCE560085A42F /* CommentModel.h */,
+				183DDB081CBCCE560085A42F /* CommentModel.m */,
+				183DDB111CBCDE830085A42F /* CommentFrame.h */,
+				183DDB121CBCDE830085A42F /* CommentFrame.m */,
 				18A1145A1CB49F7600B13434 /* PlazaDataModel.h */,
 				18A1145B1CB49F7600B13434 /* PlazaDataModel.m */,
 				18A114671CB4FD5600B13434 /* PlazaDataFrame.h */,
@@ -365,6 +419,7 @@
 		18CCD1491CB8DA45002595FD /* DefaultImg */ = {
 			isa = PBXGroup;
 			children = (
+				183DDAE71CBB35370085A42F /* LoginBackView.png */,
 				18CCD14A1CB8DA5C002595FD /* DefaultImage.png */,
 				18CCD1571CB8FA9E002595FD /* appLogo.png */,
 			);
@@ -377,6 +432,10 @@
 			children = (
 				18CCD1501CB8F355002595FD /* LoginViewController.h */,
 				18CCD1511CB8F355002595FD /* LoginViewController.m */,
+				183DDAFB1CBB7ECF0085A42F /* RegisterController.storyboard */,
+				183DDAFD1CBB85030085A42F /* RegisterController.h */,
+				183DDAFE1CBB85030085A42F /* RegisterController.m */,
+				183DDB031CBC9A7F0085A42F /* Model */,
 				18CCD1531CB8F3A7002595FD /* View */,
 			);
 			path = "Login(登录)";
@@ -426,6 +485,8 @@
 				18F114C51CAE378600F53C42 /* UIImage+Category.m */,
 				18A1145D1CB4A63A00B13434 /* UIView+Category.h */,
 				18A1145E1CB4A63A00B13434 /* UIView+Category.m */,
+				183DDB001CBB93990085A42F /* NSString+Category.h */,
+				183DDB011CBB93990085A42F /* NSString+Category.m */,
 			);
 			path = GlobalMethod;
 			sourceTree = "<group>";
@@ -510,6 +571,7 @@
 				18FD4B411CAE34DD00ACD4BC /* Info.plist */,
 				18CCD1301CB7A11E002595FD /* recommendImg */,
 				18CCD1111CB7907E002595FD /* PlazaCellBottomImg */,
+				183DDAF41CBB75F70085A42F /* SignUp */,
 				18CCD1491CB8DA45002595FD /* DefaultImg */,
 				18F114AE1CAE375700F53C42 /* TabbarVC */,
 				18FD4B311CAE34DD00ACD4BC /* main.m */,
@@ -652,16 +714,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				18CCD1381CB7A11E002595FD /* Recommend_btn5.png in Resources */,
+				183DDAF81CBB76240085A42F /* signUpImg0.png in Resources */,
 				18CCD1291CB7907E002595FD /* plaza_bottomview3@3x.png in Resources */,
 				18CCD1211CB7907E002595FD /* plaza_bottomview1.png in Resources */,
 				18F114EB1CAE3B6F00F53C42 /* TabBarSeleted1.png in Resources */,
+				183DDAF91CBB76240085A42F /* signUpImg1.png in Resources */,
 				18CCD12E1CB79A1B002595FD /* Main.storyboard in Resources */,
+				183DDAE81CBB35370085A42F /* LoginBackView.png in Resources */,
 				18CCD1241CB7907E002595FD /* plaza_bottomview2.png in Resources */,
 				18A114561CB3BF4600B13434 /* Back_to_mainpage@3x.png in Resources */,
 				18CCD1261CB7907E002595FD /* plaza_bottomview2@3x.png in Resources */,
 				18F114EE1CAE3B6F00F53C42 /* TabBarSeleted5.png in Resources */,
 				18CCD1221CB7907E002595FD /* plaza_bottomview1@2x.png in Resources */,
 				18F114E71CAE3B6F00F53C42 /* TabBar2.png in Resources */,
+				183DDAFA1CBB76240085A42F /* signUpImg2.png in Resources */,
 				18CCD14B1CB8DA5C002595FD /* DefaultImage.png in Resources */,
 				18F114EC1CAE3B6F00F53C42 /* TabBarSeleted2.png in Resources */,
 				18F114ED1CAE3B6F00F53C42 /* TabBarSeleted4.png in Resources */,
@@ -680,6 +746,7 @@
 				18F114E91CAE3B6F00F53C42 /* TabBar4.png in Resources */,
 				18CCD1231CB7907E002595FD /* plaza_bottomview1@3x.png in Resources */,
 				18CCD1391CB7A11E002595FD /* Recommend_btn0.png in Resources */,
+				183DDAFC1CBB7ECF0085A42F /* RegisterController.storyboard in Resources */,
 				18F114E81CAE3B6F00F53C42 /* TabBar3.png in Resources */,
 				18CCD11F1CB7907E002595FD /* plaza_bottomview0@2x.png in Resources */,
 				18CCD1581CB8FA9E002595FD /* appLogo.png in Resources */,
@@ -758,28 +825,34 @@
 			files = (
 				18CCD12D1CB79A1B002595FD /* AppDelegate.m in Sources */,
 				18A114591CB3C3D500B13434 /* PlazaTopView.m in Sources */,
+				183DDAFF1CBB85030085A42F /* RegisterController.m in Sources */,
 				18CCD1561CB8F3B8002595FD /* LoginView.m in Sources */,
 				184644381CB628BC0082F346 /* GalleryArrView.m in Sources */,
 				18A1145C1CB49F7600B13434 /* PlazaDataModel.m in Sources */,
 				18A114541CB3A66000B13434 /* UserMessCell.m in Sources */,
 				18CCD1521CB8F355002595FD /* LoginViewController.m in Sources */,
+				183DDB061CBC9AA30085A42F /* Session.m in Sources */,
 				1846443B1CB63FF30082F346 /* GalleryImgModel.m in Sources */,
 				18FD4B321CAE34DD00ACD4BC /* main.m in Sources */,
 				18F114AD1CAE36F600F53C42 /* RootTabBarController.m in Sources */,
 				186195C81CB357B60003A562 /* PlazaMainCell.m in Sources */,
+				183DDB091CBCCE560085A42F /* CommentModel.m in Sources */,
 				18F114AC1CAE36F600F53C42 /* MyTabBar.m in Sources */,
+				183DDB021CBB93990085A42F /* NSString+Category.m in Sources */,
 				186195BB1CB347080003A562 /* PlazaTableController.m in Sources */,
 				18CCD14E1CB8E85B002595FD /* CommentController.m in Sources */,
 				18F114C61CAE378600F53C42 /* PersonalMethod.m in Sources */,
 				18CCD1411CB7A14F002595FD /* RecommendController.m in Sources */,
 				18A114691CB4FD5600B13434 /* PlazaDataFrame.m in Sources */,
 				184BCA771CB362E5008314F4 /* CloudLogin.m in Sources */,
+				183DDB0F1CBCD9C90085A42F /* CommentCell.m in Sources */,
 				1846443E1CB642CB0082F346 /* PictureModel.m in Sources */,
 				18F114F11CAE647100F53C42 /* FWBNavgationController.m in Sources */,
 				18CCD1441CB8A461002595FD /* RecWebController.m in Sources */,
 				18F114AB1CAE36F600F53C42 /* FWBTarBarButton.m in Sources */,
 				18CCD1481CB8B46D002595FD /* OrginalController.m in Sources */,
 				18A114661CB4F5B400B13434 /* MBProgressHUD.m in Sources */,
+				183DDB131CBCDE830085A42F /* CommentFrame.m in Sources */,
 				186195CC1CB35BB00003A562 /* UserTableController.m in Sources */,
 				18A1145F1CB4A63A00B13434 /* UIView+Category.m in Sources */,
 				18F114C71CAE378600F53C42 /* UIImage+Category.m in Sources */,
@@ -912,7 +985,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = BabyPlans/PrefixHeader.pch;
 				INFOPLIST_FILE = BabyPlans/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.baby.huibenbao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -929,7 +1002,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = BabyPlans/PrefixHeader.pch;
 				INFOPLIST_FILE = BabyPlans/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.baby.huibenbao;
 				PRODUCT_NAME = "$(TARGET_NAME)";

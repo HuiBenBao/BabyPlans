@@ -15,5 +15,8 @@
  *  获取设备型号
  */
 + (NSString *)getDeviceInfo;
-
+/**
+ *  将毫秒转化为时间
+ */
++ (NSString *)stringFromUnixTime:(long long)time;
 @end
