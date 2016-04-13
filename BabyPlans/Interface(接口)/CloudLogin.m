@@ -18,7 +18,7 @@
 
 @implementation CloudLogin
 
-+ (void)loginWithPhoneNum:(NSString *)phoneNum password:(NSString *)password success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure{
++ (void)loginWithPhoneNum:(NSString *)phoneNum password:(NSString *)password success:(Success)success failure:(Failure)failure{
     
     NSMutableDictionary * parma = [NSMutableDictionary dictionary];
     [parma setValue:@"user_Login" forKey:@"action"];
@@ -33,7 +33,7 @@
     }];
 
 }
-+ (void)getCodeWithPhoneNum:(NSString *)phoneNum success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure{
++ (void)getCodeWithPhoneNum:(NSString *)phoneNum success:(Success)success failure:(Failure)failure{
     
     NSMutableDictionary * parma = [NSMutableDictionary dictionary];
     [parma setValue:@"verificode_Query" forKey:@"action"];
@@ -50,7 +50,7 @@
     
 }
 
-+ (void)getPlazaDataWithType:(NSString *)type page:(NSString *)page count:(NSString *)count success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure{
++ (void)getPlazaDataWithType:(NSString *)type page:(NSString *)page count:(NSString *)count success:(Success)success failure:(Failure)failure{
     
     NSMutableDictionary * parma = [NSMutableDictionary dictionary];
     [parma setValue:type forKey:@"type"];
@@ -69,7 +69,7 @@
     }];
 }
 
-+ (void)getPictureArrWithGalleryID:(NSString *)galleryID success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure{
++ (void)getPictureArrWithGalleryID:(NSString *)galleryID success:(Success)success failure:(Failure)failure{
 
     NSMutableDictionary * parma = [NSMutableDictionary dictionary];
     [parma setValue:@"gallery_Query" forKey:@"action"];
@@ -85,7 +85,7 @@
     }];
 
 }
-+ (void)getCommentArrWithGalleryID:(NSString *)galleryID Page:(NSString *)page Count:(NSString *)count success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure{
++ (void)getCommentArrWithGalleryID:(NSString *)galleryID Page:(NSString *)page Count:(NSString *)count success:(Success)success failure:(Failure)failure{
 
     NSMutableDictionary * parma = [NSMutableDictionary dictionary];
     
@@ -101,7 +101,34 @@
     }];
 
 }
-+ (void)likeWithGalleryID:(NSString *)galleryID type:(NSString *)type success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure{
+
++ (void)pushCommentWithWithGalleryID:(NSString *)galleryID replyTo:(NSString *)replyTo voice:(NSString *)voice voiceLen:(NSString *)voiceLen content:(NSString *)content success:(Success)success failure:(Failure)failure{
+
+    NSMutableDictionary * parma = [NSMutableDictionary dictionary];
+    
+    [parma setValue:@"gcomment_Add" forKey:@"action"];
+    [parma setValue:galleryID forKey:@"gallery_id"];
+    ;
+    
+    
+    if (replyTo){
+        [parma setValue:replyTo forKey:@"reply_to"];
+    }
+    
+    
+    //语音评论
+    if (voice && [voiceLen intValue] > 0){
+        
+        [parma setValue:voice forKey:@"voice"];
+        [parma setValue:voiceLen forKey:@"voice_length"];
+        
+    }
+    //内容
+    if (content){
+        [parma setValue:content forKey:@"content"];
+    }
+}
++ (void)likeWithGalleryID:(NSString *)galleryID type:(NSString *)type success:(Success)success failure:(Failure)failure{
 
     NSMutableDictionary * parma = [NSMutableDictionary dictionary];
     

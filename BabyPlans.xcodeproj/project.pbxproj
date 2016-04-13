@@ -18,6 +18,8 @@
 		183DDB091CBCCE560085A42F /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DDB081CBCCE560085A42F /* CommentModel.m */; };
 		183DDB0F1CBCD9C90085A42F /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DDB0E1CBCD9C90085A42F /* CommentCell.m */; };
 		183DDB131CBCDE830085A42F /* CommentFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DDB121CBCDE830085A42F /* CommentFrame.m */; };
+		183DDB151CBE188D0085A42F /* touchSay.png in Resources */ = {isa = PBXBuildFile; fileRef = 183DDB141CBE188D0085A42F /* touchSay.png */; };
+		183DDB1F1CBE1C410085A42F /* comtentSend.png in Resources */ = {isa = PBXBuildFile; fileRef = 183DDB1E1CBE1C410085A42F /* comtentSend.png */; };
 		184644381CB628BC0082F346 /* GalleryArrView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184644371CB628BC0082F346 /* GalleryArrView.m */; };
 		1846443B1CB63FF30082F346 /* GalleryImgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846443A1CB63FF30082F346 /* GalleryImgModel.m */; };
 		1846443E1CB642CB0082F346 /* PictureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846443D1CB642CB0082F346 /* PictureModel.m */; };
@@ -102,6 +104,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1835582A1CBE49E900FA0C0E /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmp3lame.a; path = ../Desktop/libmp3lame.a; sourceTree = "<group>"; };
+		1835582B1CBE49E900FA0C0E /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libopencore-amrnb.a"; path = "../Desktop/libopencore-amrnb.a"; sourceTree = "<group>"; };
+		1835582C1CBE49E900FA0C0E /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libopencore-amrwb.a"; path = "../Desktop/libopencore-amrwb.a"; sourceTree = "<group>"; };
 		183DDAE71CBB35370085A42F /* LoginBackView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginBackView.png; sourceTree = "<group>"; };
 		183DDAF51CBB76240085A42F /* signUpImg0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signUpImg0.png; sourceTree = "<group>"; };
 		183DDAF61CBB76240085A42F /* signUpImg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signUpImg1.png; sourceTree = "<group>"; };
@@ -119,6 +124,8 @@
 		183DDB0E1CBCD9C90085A42F /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		183DDB111CBCDE830085A42F /* CommentFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentFrame.h; sourceTree = "<group>"; };
 		183DDB121CBCDE830085A42F /* CommentFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentFrame.m; sourceTree = "<group>"; };
+		183DDB141CBE188D0085A42F /* touchSay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = touchSay.png; sourceTree = "<group>"; };
+		183DDB1E1CBE1C410085A42F /* comtentSend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comtentSend.png; sourceTree = "<group>"; };
 		184644361CB628BC0082F346 /* GalleryArrView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryArrView.h; sourceTree = "<group>"; };
 		184644371CB628BC0082F346 /* GalleryArrView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryArrView.m; sourceTree = "<group>"; };
 		184644391CB63FF30082F346 /* GalleryImgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryImgModel.h; sourceTree = "<group>"; };
@@ -365,6 +372,8 @@
 		18CCD1111CB7907E002595FD /* PlazaCellBottomImg */ = {
 			isa = PBXGroup;
 			children = (
+				183DDB1E1CBE1C410085A42F /* comtentSend.png */,
+				183DDB141CBE188D0085A42F /* touchSay.png */,
 				18CCD1121CB7907E002595FD /* plaza_bottomview0.png */,
 				18CCD1131CB7907E002595FD /* plaza_bottomview0@2x.png */,
 				18CCD1141CB7907E002595FD /* plaza_bottomview0@3x.png */,
@@ -600,6 +609,9 @@
 		3B4B6B80B72A80675EB35A2F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1835582A1CBE49E900FA0C0E /* libmp3lame.a */,
+				1835582B1CBE49E900FA0C0E /* libopencore-amrnb.a */,
+				1835582C1CBE49E900FA0C0E /* libopencore-amrwb.a */,
 				18A114631CB4F5AD00B13434 /* MBProgressHUD */,
 				E09338FE85BB969CD7D58012 /* libPods.a */,
 			);
@@ -721,6 +733,7 @@
 				183DDAF91CBB76240085A42F /* signUpImg1.png in Resources */,
 				18CCD12E1CB79A1B002595FD /* Main.storyboard in Resources */,
 				183DDAE81CBB35370085A42F /* LoginBackView.png in Resources */,
+				183DDB151CBE188D0085A42F /* touchSay.png in Resources */,
 				18CCD1241CB7907E002595FD /* plaza_bottomview2.png in Resources */,
 				18A114561CB3BF4600B13434 /* Back_to_mainpage@3x.png in Resources */,
 				18CCD1261CB7907E002595FD /* plaza_bottomview2@3x.png in Resources */,
@@ -734,6 +747,7 @@
 				18CCD1271CB7907E002595FD /* plaza_bottomview3.png in Resources */,
 				18CCD13D1CB7A11E002595FD /* Recommend_btn4.png in Resources */,
 				18CCD13A1CB7A11E002595FD /* Recommend_btn1.png in Resources */,
+				183DDB1F1CBE1C410085A42F /* comtentSend.png in Resources */,
 				18FD4B3D1CAE34DD00ACD4BC /* Assets.xcassets in Resources */,
 				18CCD13B1CB7A11E002595FD /* Recommend_btn2.png in Resources */,
 				18CCD1281CB7907E002595FD /* plaza_bottomview3@2x.png in Resources */,
@@ -983,10 +997,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = BabyPlans/PrefixHeader.pch;
 				INFOPLIST_FILE = BabyPlans/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BabyPlans/GlobalMethod/lame",
+					"$(PROJECT_DIR)/MLAudioRecorder/amr_en_de/include/opencore-amrwb",
+					"$(PROJECT_DIR)/MLAudioRecorder/mp3_en_de",
+					"$(PROJECT_DIR)/MLAudioRecorder/amr_en_de/include/opencore-amrnb",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.baby.huibenbao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1000,10 +1022,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = BabyPlans/PrefixHeader.pch;
 				INFOPLIST_FILE = BabyPlans/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BabyPlans/GlobalMethod/lame",
+					"$(PROJECT_DIR)/MLAudioRecorder/amr_en_de/include/opencore-amrwb",
+					"$(PROJECT_DIR)/MLAudioRecorder/mp3_en_de",
+					"$(PROJECT_DIR)/MLAudioRecorder/amr_en_de/include/opencore-amrnb",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.baby.huibenbao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1016,6 +1046,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = BabyPlansTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BabyPlans/GlobalMethod/lame",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.baby.BabyPlansTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BabyPlans.app/BabyPlans";
@@ -1028,6 +1062,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = BabyPlansTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BabyPlans/GlobalMethod/lame",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.baby.BabyPlansTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BabyPlans.app/BabyPlans";
@@ -1039,6 +1077,10 @@
 			buildSettings = {
 				INFOPLIST_FILE = BabyPlansUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BabyPlans/GlobalMethod/lame",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.baby.BabyPlansUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = BabyPlans;
@@ -1050,6 +1092,10 @@
 			buildSettings = {
 				INFOPLIST_FILE = BabyPlansUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BabyPlans/GlobalMethod/lame",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.baby.BabyPlansUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = BabyPlans;

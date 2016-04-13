@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CommentController : UIViewController
+@interface CommentController : UIViewController{
+
+    int recordEncoding;
+    NSTimer *timerForPitch;
+
+}
 
 + (instancetype)commentWithGalleryID:(NSString *)galleryID;
 @end

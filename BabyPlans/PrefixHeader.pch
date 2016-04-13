@@ -29,7 +29,7 @@
 #import "MJRefresh.h"
 #import "NSString+Category.h"
 #import "Session.h"
-
+#import <Foundation/Foundation.h>
 
 #ifdef DEBUG
 #define DLog(format, ...) NSLog(format, ## __VA_ARGS__)

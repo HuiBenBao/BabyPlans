@@ -8,8 +8,24 @@
 
 #import "CommentController.h"
 #import "CommentCell.h"
+#import <AVFoundation/AVFoundation.h>
 
-@interface CommentController ()<UITableViewDataSource,UITableViewDelegate>
+
+
+#define TEXTVIEW_HEIGHT (60*SCREEN_WIDTH_RATIO55)
+
+
+enum
+{
+    ENC_AAC = 1,
+    ENC_ALAC = 2,
+    ENC_IMA4 = 3,
+    ENC_ILBC = 4,
+    ENC_ULAW = 5,
+    ENC_PCM = 6,
+} encodingTypes;
+
+@interface CommentController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 
 @property (nonatomic,strong) NSString * galleryID;
 
@@ -19,6 +35,17 @@
 
 @property (nonatomic,strong) UITableView * tableView;
 
+@property (nonatomic,strong) UITextField * messageField;
+//说话按钮
+@property (nonatomic,strong) UIButton * voiceBtn;
+
+@property (nonatomic,strong) NSString * documentsPath;
+
+@property (nonatomic,strong) AVAudioRecorder *audioRecorder;
+
+@property (nonatomic,strong) AVAudioPlayer * audioPlayer;
+
+@property (nonatomic,assign) int currentTime;
 
 @end
 
@@ -36,6 +63,7 @@
 
 - (NSArray *)dataArr{
 
+    
     if (!_dataArr) {
         
         NSMutableArray * dataMuArr = [NSMutableArray array];
@@ -77,16 +105,251 @@
     
     [self dataArr];
     
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    CGRect tabRect = self.view.bounds;
+    tabRect.size.height = KScreenHeight - TEXTVIEW_HEIGHT;
+    
+    self.tableView = [[UITableView alloc] initWithFrame:tabRect style:UITableViewStylePlain];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self.view addSubview:self.tableView];
     
+    
+    
     self.title = @"评论列表";
     self.view.backgroundColor = ViewBackColor;
+    
+    [self createTextField];
+    
 }
+
+/**
+ *  添加输入框
+ */
+- (void)createTextField{
+    
+    //底部view
+    UIView * endView = [[UIView alloc] initWithFrame:CGRectMake(0, KScreenHeight - TEXTVIEW_HEIGHT, KScreenWidth, TEXTVIEW_HEIGHT)];
+    endView.backgroundColor = Color(216, 216, 233);
+    
+    [self.view addSubview:endView];
+    
+    UIButton * changeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    CGFloat btnY = 10*SCREEN_WIDTH_RATIO55;
+    CGFloat btnH = endView.height - btnY*2;
+    CGFloat btnW = btnH;
+    CGFloat btnX = 10*SCREEN_WIDTH_RATIO55;
+    
+    changeBtn.frame = CGRectMake(btnX, btnY, btnW, btnH);
+    
+    [changeBtn setImage:[UIImage imageNamed:@"comtentSend"] forState:UIControlStateNormal];
+
+    [changeBtn setImage:[UIImage imageNamed:@"touchSay"] forState:UIControlStateSelected];
+    [changeBtn addTarget:self action:@selector(changeType:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [endView addSubview:changeBtn];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    //设置textField输入起始位置
+    CGFloat textX = CGRectGetMaxX(changeBtn.frame) + 46*SCREEN_WIDTH_RATIO55/3;
+    CGFloat textY = 24*SCREEN_WIDTH_RATIO55/3;
+    CGFloat textH = TEXTVIEW_HEIGHT - textY*2;
+    CGFloat textW = KScreenWidth - textX - 20*SCREEN_WIDTH_RATIO55;
+    
+    _messageField = [[UITextField alloc] initWithFrame:CGRectMake(textX, textY, textW, textH)];
+    
+    
+    _messageField.borderStyle = UITextBorderStyleRoundedRect;
+    _messageField.backgroundColor = ColorI(0xffffff);
+    _messageField.delegate = self;
+    
+    
+    [endView addSubview:_messageField];
+    
+    //添加按钮
+    self.voiceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _voiceBtn.frame = _messageField.frame;
+    [_voiceBtn setTitle:@"按住说话" forState:UIControlStateNormal];
+    
+   
+    [_voiceBtn addTarget:self action:@selector(shortTouch)
+       forControlEvents:UIControlEventTouchUpInside];
+
+    //长按事件
+    UILongPressGestureRecognizer *longPress =[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(LongPressed:)];
+    
+    [_voiceBtn addGestureRecognizer:longPress];
+
+    
+    _voiceBtn.backgroundColor = Color(206, 216, 233);
+    [_voiceBtn setTitleColor:ColorI(0x5b5b5b) forState:UIControlStateNormal];
+    _voiceBtn.layer.borderColor = ColorI(0x201fc3).CGColor;
+    _voiceBtn.layer.borderWidth = 0.5;
+    _voiceBtn.layer.cornerRadius = 10*SCREEN_WIDTH_RATIO55;
+    _voiceBtn.clipsToBounds = YES;
+    
+    [endView addSubview:_voiceBtn];
+    
+    //设置显示方法
+    _messageField.hidden =!changeBtn.selected;
+    _voiceBtn.hidden = changeBtn.selected;
+    
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
+    
+    [self.tableView addGestureRecognizer:singleTap];
+    
+}
+/**
+ *  长按事件处理
+ */
+- (void)LongPressed:(UILongPressGestureRecognizer *)longGesture{
+
+    if (longGesture.state==UIGestureRecognizerStateBegan) {
+        
+        _currentTime = 0;
+        [_voiceBtn setTitle:@"请讲话" forState:UIControlStateHighlighted];
+        [_voiceBtn setTitle:@"请讲话" forState:UIControlStateNormal];
+        [self startRecord];
+        timerForPitch =[NSTimer scheduledTimerWithTimeInterval: 1.0f target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
+        
+    }else if(longGesture.state == UIGestureRecognizerStateEnded){//长按结束 录音也结束
+        
+        [self stopRecording];
+        [_voiceBtn setTitle:@"按住说话" forState:UIControlStateNormal];
+        [timerForPitch invalidate];
+        timerForPitch = nil;
+    }
+}
+/**
+ *  短按事件
+ */
+- (void)shortTouch{
+
+    [self.view poptips:@"时间太短"];
+}
+/**
+ *  开始录音
+ */
+- (void)startRecord{
+
+    // kSeconds = 150.0;
+    NSLog(@"startRecording");
+    self.audioRecorder = nil;
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    [audioSession setCategory:AVAudioSessionCategoryRecord error:nil];
+    
+    
+    NSMutableDictionary *recordSettings = [[NSMutableDictionary alloc] initWithCapacity:10];
+    if(recordEncoding == ENC_PCM)
+    {
+        [recordSettings setObject:[NSNumber numberWithInt: kAudioFormatLinearPCM] forKey: AVFormatIDKey];
+        [recordSettings setObject:[NSNumber numberWithFloat:44100.0] forKey: AVSampleRateKey];
+        [recordSettings setObject:[NSNumber numberWithInt:2] forKey:AVNumberOfChannelsKey];
+        [recordSettings setObject:[NSNumber numberWithInt:16] forKey:AVLinearPCMBitDepthKey];
+        [recordSettings setObject:[NSNumber numberWithBool:NO] forKey:AVLinearPCMIsBigEndianKey];
+        [recordSettings setObject:[NSNumber numberWithBool:NO] forKey:AVLinearPCMIsFloatKey];
+    }
+    else
+    {
+        NSNumber *formatObject;
+        
+        switch (recordEncoding) {
+            case (ENC_AAC):
+                formatObject = [NSNumber numberWithInt: kAudioFormatMPEG4AAC];
+                break;
+            case (ENC_ALAC):
+                formatObject = [NSNumber numberWithInt: kAudioFormatAppleLossless];
+                break;
+            case (ENC_IMA4):
+                formatObject = [NSNumber numberWithInt: kAudioFormatAppleIMA4];
+                break;
+            case (ENC_ILBC):
+                formatObject = [NSNumber numberWithInt: kAudioFormatiLBC];
+                break;
+            case (ENC_ULAW):
+                formatObject = [NSNumber numberWithInt: kAudioFormatULaw];
+                break;
+            default:
+                formatObject = [NSNumber numberWithInt: kAudioFormatAppleIMA4];
+        }
+        
+        [recordSettings setObject:formatObject forKey: AVFormatIDKey];
+        [recordSettings setObject:[NSNumber numberWithFloat:44100.0] forKey: AVSampleRateKey];
+        [recordSettings setObject:[NSNumber numberWithInt:2] forKey:AVNumberOfChannelsKey];
+        [recordSettings setObject:[NSNumber numberWithInt:12800] forKey:AVEncoderBitRateKey];
+        [recordSettings setObject:[NSNumber numberWithInt:16] forKey:AVLinearPCMBitDepthKey];
+        [recordSettings setObject:[NSNumber numberWithInt: AVAudioQualityHigh] forKey: AVEncoderAudioQualityKey];
+    }
+    
+    
+    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(
+                                                            NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docsDir = [dirPaths objectAtIndex:0];
+    NSString *soundFilePath = [docsDir
+                               stringByAppendingPathComponent:@"recordT.caf"];
+    
+    NSURL *url = [NSURL fileURLWithPath:soundFilePath];
+    
+    
+    NSError *error = nil;
+    self.audioRecorder = [[ AVAudioRecorder alloc] initWithURL:url settings:recordSettings error:&error];
+    _audioRecorder.meteringEnabled = YES;
+    if ([_audioRecorder prepareToRecord] == YES){
+        _audioRecorder.meteringEnabled = YES;
+        [_audioRecorder record];
+        
+    }
+
+}
+/**
+ *  时间监听
+ */
+- (void)levelTimerCallback:(NSTimer *)timer {
+    _currentTime++;
+}
+-(void) pauseRecording {
+    [_audioRecorder pause];
+    self.voiceBtn.selected = NO;
+}
+/**
+ *  停止录音
+ */
+-(void) stopRecording {
+    [_audioRecorder stop];
+    
+    _currentTime=0;
+    NSLog(@"%d",_currentTime);
+}
+
+/**
+ *  更改输入方式
+ */
+- (void)changeType:(UIButton *)sender{
+   
+    //变更按钮标题
+    sender.selected = !sender.selected;
+    
+    //变换显示按钮
+    _messageField.hidden = !_messageField.hidden;
+    _voiceBtn.hidden = !_voiceBtn.hidden;
+    
+    if (_messageField.hidden) {//根据情况隐藏键盘
+        [_messageField resignFirstResponder];
+    }else{
+        [_messageField becomeFirstResponder];
+    }
+}
+/**
+ *  发送信息
+ */
+- (void)replyMess{
+}
+
 
 #pragma -----mark------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -108,4 +371,63 @@
     
     return cell;
 }
+
+#pragma mark - 键盘处理
+#pragma mark 键盘即将显示
+
+- (void)keyBoardWillShow:(NSNotification *)note{
+    
+    CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat ty = - rect.size.height;
+    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
+        self.view.transform = CGAffineTransformMakeTranslation(0, ty);
+    }];
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(-ty, 0, 0, 0);
+    
+    
+}
+#pragma mark 键盘即将退出
+- (void)keyBoardWillHide:(NSNotification *)note{
+    
+    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
+        self.view.transform = CGAffineTransformIdentity;
+    }];
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+
+    [textField resignFirstResponder];
+    textField.text = nil;
+    return YES;
+}
+/**
+ *  点击空白区域隐藏键盘
+ */
+-(void)keyboardHide:(UITapGestureRecognizer*)tap{
+    
+    [self.messageField resignFirstResponder];
+    
+}
+
+
+
+
+
+//获取document目录的路径
+- (NSString*) documentsPath {
+    if (! _documentsPath) {
+        NSArray *searchPaths =
+        NSSearchPathForDirectoriesInDomains
+        (NSDocumentDirectory, NSUserDomainMask, YES);
+        _documentsPath = [searchPaths objectAtIndex: 0];
+        
+    }
+    return _documentsPath;
+}
+
+
+
+
 @end
