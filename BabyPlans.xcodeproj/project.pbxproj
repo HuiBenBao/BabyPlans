@@ -27,6 +27,9 @@
 		186195BB1CB347080003A562 /* PlazaTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186195BA1CB347080003A562 /* PlazaTableController.m */; };
 		186195C81CB357B60003A562 /* PlazaMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 186195C71CB357B60003A562 /* PlazaMainCell.m */; };
 		186195CC1CB35BB00003A562 /* UserTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186195CB1CB35BB00003A562 /* UserTableController.m */; };
+		18886BA51CBF33C7007AEC7B /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18886BA41CBF33C7007AEC7B /* libmp3lame.a */; };
+		18886BA91CBF34A8007AEC7B /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 18886BA81CBF34A8007AEC7B /* AudioRecorder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		18886C2C1CBF6D84007AEC7B /* NagavitionBarImg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18886C2B1CBF6D84007AEC7B /* NagavitionBarImg.jpg */; };
 		18A114541CB3A66000B13434 /* UserMessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A114531CB3A66000B13434 /* UserMessCell.m */; };
 		18A114561CB3BF4600B13434 /* Back_to_mainpage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A114551CB3BF4600B13434 /* Back_to_mainpage@3x.png */; };
 		18A114591CB3C3D500B13434 /* PlazaTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A114581CB3C3D500B13434 /* PlazaTopView.m */; };
@@ -104,9 +107,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1835582A1CBE49E900FA0C0E /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmp3lame.a; path = ../Desktop/libmp3lame.a; sourceTree = "<group>"; };
-		1835582B1CBE49E900FA0C0E /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libopencore-amrnb.a"; path = "../Desktop/libopencore-amrnb.a"; sourceTree = "<group>"; };
-		1835582C1CBE49E900FA0C0E /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libopencore-amrwb.a"; path = "../Desktop/libopencore-amrwb.a"; sourceTree = "<group>"; };
 		183DDAE71CBB35370085A42F /* LoginBackView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginBackView.png; sourceTree = "<group>"; };
 		183DDAF51CBB76240085A42F /* signUpImg0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signUpImg0.png; sourceTree = "<group>"; };
 		183DDAF61CBB76240085A42F /* signUpImg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signUpImg1.png; sourceTree = "<group>"; };
@@ -140,6 +140,11 @@
 		186195C71CB357B60003A562 /* PlazaMainCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlazaMainCell.m; sourceTree = "<group>"; };
 		186195CA1CB35BB00003A562 /* UserTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTableController.h; sourceTree = "<group>"; };
 		186195CB1CB35BB00003A562 /* UserTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTableController.m; sourceTree = "<group>"; };
+		18886BA41CBF33C7007AEC7B /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmp3lame.a; sourceTree = "<group>"; };
+		18886BA71CBF34A8007AEC7B /* AudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecorder.h; sourceTree = "<group>"; };
+		18886BA81CBF34A8007AEC7B /* AudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecorder.m; sourceTree = "<group>"; };
+		18886BAA1CBF34EE007AEC7B /* lame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lame.h; sourceTree = "<group>"; };
+		18886C2B1CBF6D84007AEC7B /* NagavitionBarImg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = NagavitionBarImg.jpg; sourceTree = "<group>"; };
 		18A114521CB3A66000B13434 /* UserMessCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMessCell.h; sourceTree = "<group>"; };
 		18A114531CB3A66000B13434 /* UserMessCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMessCell.m; sourceTree = "<group>"; };
 		18A114551CB3BF4600B13434 /* Back_to_mainpage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Back_to_mainpage@3x.png"; sourceTree = "<group>"; };
@@ -234,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B317B4D9BEC908EB6DC446BC /* libPods.a in Frameworks */,
+				18886BA51CBF33C7007AEC7B /* libmp3lame.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +366,16 @@
 			path = "UserMess(我的)";
 			sourceTree = "<group>";
 		};
+		18886BA61CBF34A0007AEC7B /* AudioRecorder */ = {
+			isa = PBXGroup;
+			children = (
+				18886BA71CBF34A8007AEC7B /* AudioRecorder.h */,
+				18886BA81CBF34A8007AEC7B /* AudioRecorder.m */,
+				18886BAA1CBF34EE007AEC7B /* lame.h */,
+			);
+			path = AudioRecorder;
+			sourceTree = "<group>";
+		};
 		18A114631CB4F5AD00B13434 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -428,6 +444,7 @@
 		18CCD1491CB8DA45002595FD /* DefaultImg */ = {
 			isa = PBXGroup;
 			children = (
+				18886C2B1CBF6D84007AEC7B /* NagavitionBarImg.jpg */,
 				183DDAE71CBB35370085A42F /* LoginBackView.png */,
 				18CCD14A1CB8DA5C002595FD /* DefaultImage.png */,
 				18CCD1571CB8FA9E002595FD /* appLogo.png */,
@@ -561,6 +578,7 @@
 				18F114C81CAE37CC00F53C42 /* AppDelegate */,
 				18F114C11CAE378600F53C42 /* GlobalMethod */,
 				18F114A41CAE36F600F53C42 /* MainController */,
+				18886BA61CBF34A0007AEC7B /* AudioRecorder */,
 				184BCA741CB362D0008314F4 /* Interface(接口) */,
 				186195B81CB346E30003A562 /* Plaza(广场) */,
 				18CCD1451CB8B44A002595FD /* Orginal(原创) */,
@@ -609,9 +627,7 @@
 		3B4B6B80B72A80675EB35A2F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1835582A1CBE49E900FA0C0E /* libmp3lame.a */,
-				1835582B1CBE49E900FA0C0E /* libopencore-amrnb.a */,
-				1835582C1CBE49E900FA0C0E /* libopencore-amrwb.a */,
+				18886BA41CBF33C7007AEC7B /* libmp3lame.a */,
 				18A114631CB4F5AD00B13434 /* MBProgressHUD */,
 				E09338FE85BB969CD7D58012 /* libPods.a */,
 			);
@@ -734,6 +750,7 @@
 				18CCD12E1CB79A1B002595FD /* Main.storyboard in Resources */,
 				183DDAE81CBB35370085A42F /* LoginBackView.png in Resources */,
 				183DDB151CBE188D0085A42F /* touchSay.png in Resources */,
+				18886C2C1CBF6D84007AEC7B /* NagavitionBarImg.jpg in Resources */,
 				18CCD1241CB7907E002595FD /* plaza_bottomview2.png in Resources */,
 				18A114561CB3BF4600B13434 /* Back_to_mainpage@3x.png in Resources */,
 				18CCD1261CB7907E002595FD /* plaza_bottomview2@3x.png in Resources */,
@@ -847,6 +864,7 @@
 				18CCD1521CB8F355002595FD /* LoginViewController.m in Sources */,
 				183DDB061CBC9AA30085A42F /* Session.m in Sources */,
 				1846443B1CB63FF30082F346 /* GalleryImgModel.m in Sources */,
+				18886BA91CBF34A8007AEC7B /* AudioRecorder.m in Sources */,
 				18FD4B321CAE34DD00ACD4BC /* main.m in Sources */,
 				18F114AD1CAE36F600F53C42 /* RootTabBarController.m in Sources */,
 				186195C81CB357B60003A562 /* PlazaMainCell.m in Sources */,
@@ -1008,6 +1026,7 @@
 					"$(PROJECT_DIR)/MLAudioRecorder/amr_en_de/include/opencore-amrwb",
 					"$(PROJECT_DIR)/MLAudioRecorder/mp3_en_de",
 					"$(PROJECT_DIR)/MLAudioRecorder/amr_en_de/include/opencore-amrnb",
+					"$(PROJECT_DIR)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.baby.huibenbao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1033,6 +1052,7 @@
 					"$(PROJECT_DIR)/MLAudioRecorder/amr_en_de/include/opencore-amrwb",
 					"$(PROJECT_DIR)/MLAudioRecorder/mp3_en_de",
 					"$(PROJECT_DIR)/MLAudioRecorder/amr_en_de/include/opencore-amrnb",
+					"$(PROJECT_DIR)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.baby.huibenbao;
 				PRODUCT_NAME = "$(TARGET_NAME)";

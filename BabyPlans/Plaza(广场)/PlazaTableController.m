@@ -30,7 +30,7 @@ enum{
 
 #define DataCount @"5" //每页请求显示个数
 
-@interface PlazaTableController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,PlazaTopDelegate,PlazaMainCellDelegate>
+@interface PlazaTableController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,PlazaTopDelegate,PlazaMainCellDelegate,CommentControllerDelegate>
 
 @property (nonatomic,strong) PlazaTopView * topView;
 
@@ -444,8 +444,10 @@ enum{
  *
  *  @param index 按钮编号
  */
-- (void)clickBottomBtnIndex:(NSInteger)index galleryID:(NSString *)galleryID indexPath:(NSIndexPath *)indexPath tableTag:(NSInteger)tableTag{
+- (void)clickBottomBtn:(UIButton *)button galleryID:(NSString *)galleryID indexPath:(NSIndexPath *)indexPath tableTag:(NSInteger)tableTag{
 
+    NSInteger index = button.tag;
+    
     NSArray * dataArr = (tableTag==TableViewLeft) ? self.dataArrLeft : self.dataArrRight;
     PlazaDataFrame * plazaFrame = [dataArr objectAtIndex:indexPath.row];
     PlazaDataModel * model = plazaFrame.model;
@@ -497,10 +499,47 @@ enum{
         
     }else if (index == 1){//评论
         
-        [self.navigationController pushViewController:[CommentController commentWithGalleryID:galleryID] animated:YES];
+        CommentController * commentVC = [CommentController commentWithGalleryID:galleryID tabTag:(int)tableTag];
+        commentVC.indexPath = indexPath;
+        commentVC.delegate = self;
+        
+        [self.navigationController pushViewController:commentVC animated:YES];
         
     }else if (index==2){//关注
-    
+        
+        
+        [CloudLogin attentionToUserID:model.user.userID type:nil success:^(NSDictionary *responseObject) {
+            NSLog(@"%@",responseObject);
+            int status = [responseObject[@"status"] intValue];
+            if (status==0) {
+                
+                int following = [responseObject[@"following"] intValue];
+                
+                following = (following==0) ? 1 : 0;
+                
+                [CloudLogin attentionToUserID:model.user.userID type:[NSString stringWithFormat:@"%d",following] success:^(NSDictionary *responseObject) {
+                    int reslut = [responseObject[@"status"] intValue];
+                    NSLog(@"------%@",responseObject);
+                    if (reslut==0) {
+                        
+                        NSString * mess = (following == 0) ? @"关注成功" : @"已取消";
+                        [self.view poptips:mess];
+                        
+//                        if (following==0) {
+//                            [button setTitle:@"已关注" forState:UIControlStateNormal];
+//                            
+//                        }else{
+//                            [button setTitle:@"关注" forState:UIControlStateNormal];
+//                        }
+                    }
+                } failure:nil];
+                
+                
+            }
+            
+        } failure:^(NSError *errorMessage) {
+            NSLog(@"%@",errorMessage);
+        }];
     }else if (index==3){//分享
     
         
@@ -508,5 +547,18 @@ enum{
     
 }
 
+- (void)reloadPlazaDataWithGalleryID:(NSString *)galleryID tabTag:(NSInteger)tabTag indexPath:(NSIndexPath *)indexPath{
 
+    NSArray * dataArr = (tabTag==TableViewLeft) ? self.dataArrLeft : self.dataArrRight;
+    PlazaDataFrame * plazaFrame = [dataArr objectAtIndex:indexPath.row];
+    PlazaDataModel * model = plazaFrame.model;
+    int totalNum = [model.commentCount intValue]+1;
+    model.commentCount = [NSString stringWithFormat:@"%d",totalNum];
+    
+    UITableView * tableView = (tabTag==TableViewLeft) ? self.tableViewLeft : self.tableViewRight;
+    
+    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    
+}
 @end

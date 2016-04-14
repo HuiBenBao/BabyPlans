@@ -64,4 +64,12 @@ typedef void (^Failure)(NSError * errorMessage);
  */
 + (void)likeWithGalleryID:(NSString *)galleryID type:(NSString *)type success:(Success)success failure:(Failure)failure;
 
+/**
+ *  关注
+ *
+ *  @param userID 被关注者的id
+ *  @param type 0/1 true/false
+ */
++ (void)attentionToUserID:(NSString *)userID type:(NSString *)type success:(Success)success failure:(Failure)failure;
+
 @end

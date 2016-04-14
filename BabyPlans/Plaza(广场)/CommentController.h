@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+
+@protocol CommentControllerDelegate <NSObject>
+
+- (void)reloadPlazaDataWithGalleryID:(NSString *)galleryID tabTag:(NSInteger)tabTag indexPath:(NSIndexPath*)indexPath;
+
+@end
+
 @interface CommentController : UIViewController{
 
     int recordEncoding;
@@ -15,5 +22,11 @@
 
 }
 
-+ (instancetype)commentWithGalleryID:(NSString *)galleryID;
++ (instancetype)commentWithGalleryID:(NSString *)galleryID tabTag:(NSInteger)tabTag;
+
+@property (nonatomic,weak) id <CommentControllerDelegate>delegate;
+@property (nonatomic,strong) NSIndexPath * indexPath;
+
+
+
 @end

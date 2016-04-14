@@ -7,7 +7,7 @@
 //
 
 #import "CloudLogin.h"
-
+#import <AVFoundation/AVFoundation.h>
 
 @interface CloudLogin()
 
@@ -116,17 +116,51 @@
     }
     
     
-    //语音评论
-    if (voice && [voiceLen intValue] > 0){
+    //语音长度
+    [parma setValue:voiceLen forKey:@"voice_length"];
         
-        [parma setValue:voice forKey:@"voice"];
-        [parma setValue:voiceLen forKey:@"voice_length"];
-        
-    }
+
     //内容
     if (content){
         [parma setValue:content forKey:@"content"];
     }
+    
+    
+    
+    
+    //获取请求管理对象
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    //设置返回的数据格式
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager.responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"application/json",@"text/html", nil]];
+    
+    if ([defaults valueForKey:@"session"]) {
+        
+        [manager.requestSerializer setValue:[defaults valueForKey:@"session"] forHTTPHeaderField:@"session_id"];
+    }
+    [manager POST:BASEURL parameters:parma constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        if (!content) {
+            AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+            [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
+            NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *docsDir = [dirPaths objectAtIndex:0];
+            NSString *soundFilePath = [docsDir stringByAppendingPathComponent:@"recordTest.caf"];
+            
+            NSData * myData = [NSData dataWithContentsOfFile:soundFilePath];
+            
+            [formData appendPartWithFileData:myData name:@"voice" fileName:soundFilePath mimeType:@"audio/mp3"];
+        }
+        
+    } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        
+        success(dic);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure(error);
+    }];
+
 }
 + (void)likeWithGalleryID:(NSString *)galleryID type:(NSString *)type success:(Success)success failure:(Failure)failure{
 
@@ -144,6 +178,22 @@
     }];
     
     
+}
+
++ (void)attentionToUserID:(NSString *)userID type:(NSString *)type success:(Success)success failure:(Failure)failure{
+
+    NSMutableDictionary * parma = [NSMutableDictionary dictionary];
+    
+    [parma setValue:@"user_Relation" forKey:@"action"];
+    [parma setValue:userID forKey:@"user_id"];
+    [parma setValue:type forKey:@"relation"];
+    
+    
+    [CloudLogin getDataWithURL:nil parameter:parma success:^(id data) {
+        success(data);
+    } failure:^(NSError *errorMessage) {
+        failure(errorMessage);
+    }];
 }
 #pragma mark>>>>>>------公用方法---------
 #pragma -----mark------网络数据请求方法

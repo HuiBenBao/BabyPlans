@@ -81,6 +81,7 @@
         voiceBtn.backgroundColor = [UIColor orangeColor];
         [voiceBtn setTitleColor:ColorI(0x5b5b5b) forState:UIControlStateNormal];
         voiceBtn.titleLabel.font = FONT_ADAPTED_NUM(15);
+        [voiceBtn addTarget:self action:@selector(playVoice:) forControlEvents:UIControlEventTouchUpInside];
         
         self.voiceBtn = voiceBtn;
         [self addSubview:voiceBtn];
@@ -95,7 +96,12 @@
     }
     return self;
 }
+- (void)playVoice:(UIButton *)button{
 
+    if ([self.delegate respondsToSelector:@selector(playVoiceWithModel:)]) {
+        [self.delegate playVoiceWithModel:self.dataFrame.model];
+    }
+}
 - (void)setDataFrame:(CommentFrame *)dataFrame{
     
     _dataFrame = dataFrame;
@@ -118,11 +124,15 @@
     
     
     if (self.model.voice) {
+        self.contentLbl.hidden = YES;
+        self.voiceBtn.hidden = NO;
         self.voiceBtn.frame = self.dataFrame.voiceF;
         [self.voiceBtn setTitle:[NSString stringWithFormat:@"%@ s",self.model.voiceLen] forState:UIControlStateNormal];
         self.voiceBtn.layer.cornerRadius = _dataFrame.voiceF.size.height/2;
         self.voiceBtn.clipsToBounds = YES;
     }else{
+        self.voiceBtn.hidden = YES;
+        self.contentLbl.hidden = NO;
         self.contentLbl.text = self.model.content;
         self.contentLbl.frame = self.dataFrame.contentF;
 

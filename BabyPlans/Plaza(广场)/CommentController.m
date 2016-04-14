@@ -9,7 +9,7 @@
 #import "CommentController.h"
 #import "CommentCell.h"
 #import <AVFoundation/AVFoundation.h>
-
+#import "AudioRecorder.h"
 
 
 #define TEXTVIEW_HEIGHT (60*SCREEN_WIDTH_RATIO55)
@@ -25,9 +25,10 @@ enum
     ENC_PCM = 6,
 } encodingTypes;
 
-@interface CommentController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
+@interface CommentController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,AVAudioPlayerDelegate,CommentCellDelegate>
 
 @property (nonatomic,strong) NSString * galleryID;
+@property (nonatomic,assign) NSInteger tabTag;
 
 @property (nonatomic,strong) NSArray * dataArr;
 
@@ -42,6 +43,9 @@ enum
 @property (nonatomic,strong) NSString * documentsPath;
 
 @property (nonatomic,strong) AVAudioRecorder *audioRecorder;
+@property (nonatomic,strong) AVAudioPlayer * audioPlayer;
+
+@property (nonatomic,strong) NSData * mp3;
 
 
 @property (nonatomic,assign) int currentTime;
@@ -50,11 +54,12 @@ enum
 
 @implementation CommentController
 
-+ (instancetype)commentWithGalleryID:(NSString *)galleryID{
++ (instancetype)commentWithGalleryID:(NSString *)galleryID tabTag:(NSInteger)tabTag{
 
     CommentController * commentVC = [[self alloc] init];
     
     commentVC.galleryID = galleryID;
+    commentVC.tabTag = tabTag;
     commentVC.page = 1;
     
     return commentVC;
@@ -118,9 +123,31 @@ enum
     self.view.backgroundColor = ViewBackColor;
     
     [self createTextField];
-    
 }
 
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
+
+     NSLog(@"------开始");
+}
+
+- (void)audioPlayerBeginInterruption:(AVAudioPlayer *)player{
+    NSLog(@"开始");
+}
+/**
+ *  暂停
+ */
+- (void)pause{
+    
+    [_audioPlayer pause];
+}
+/**
+ *  停止
+ */
+- (void)stop{
+    
+    _audioPlayer.currentTime = 0;  //当前播放时间设置为0
+    [_audioPlayer stop];
+}
 /**
  *  添加输入框
  */
@@ -217,11 +244,13 @@ enum
     }else if(longGesture.state == UIGestureRecognizerStateEnded){//长按结束 录音也结束
         
         [self stopRecording];
+
         [_voiceBtn setTitle:@"按住说话" forState:UIControlStateNormal];
+        
         [timerForPitch invalidate];
         timerForPitch = nil;
         
-        [self replyMessWithType:YES];
+        [self replyMessWithType:YES content:nil];
     }
 }
 /**
@@ -236,6 +265,7 @@ enum
  */
 - (void)startRecord{
 
+    
     self.audioRecorder = nil;
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setCategory:AVAudioSessionCategoryRecord error:nil];
@@ -250,9 +280,7 @@ enum
         [recordSettings setObject:[NSNumber numberWithInt:16] forKey:AVLinearPCMBitDepthKey];
         [recordSettings setObject:[NSNumber numberWithBool:NO] forKey:AVLinearPCMIsBigEndianKey];
         [recordSettings setObject:[NSNumber numberWithBool:NO] forKey:AVLinearPCMIsFloatKey];
-    }
-    else
-    {
+    }else{
         NSNumber *formatObject;
         
         switch (recordEncoding) {
@@ -263,7 +291,7 @@ enum
                 formatObject = [NSNumber numberWithInt: kAudioFormatAppleLossless];
                 break;
             case (ENC_IMA4):
-                formatObject = [NSNumber numberWithInt: kAudioFormatMPEGLayer3];
+                formatObject = [NSNumber numberWithInt: kAudioFormatAppleIMA4];
                 break;
             case (ENC_ILBC):
                 formatObject = [NSNumber numberWithInt: kAudioFormatiLBC];
@@ -272,7 +300,7 @@ enum
                 formatObject = [NSNumber numberWithInt: kAudioFormatULaw];
                 break;
             default:
-                formatObject = [NSNumber numberWithInt: kAudioFormatMPEGLayer3];
+                formatObject = [NSNumber numberWithInt: kAudioFormatAppleIMA4];
         }
         
         [recordSettings setObject:formatObject forKey: AVFormatIDKey];
@@ -286,7 +314,7 @@ enum
     
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
-    NSString *soundFilePath = [docsDir stringByAppendingPathComponent:@"recordT.mp3"];
+    NSString *soundFilePath = [docsDir stringByAppendingPathComponent:@"recordTest.caf"];
     
     NSURL *url = [NSURL fileURLWithPath:soundFilePath];
     
@@ -309,16 +337,14 @@ enum
 }
 -(void) pauseRecording {
     [_audioRecorder pause];
-    self.voiceBtn.selected = NO;
 }
 /**
  *  停止录音
  */
 -(void) stopRecording {
     [_audioRecorder stop];
-    
+    self.totleTime = _currentTime;
     _currentTime=0;
-    NSLog(@"%d",_currentTime);
 }
 
 /**
@@ -342,27 +368,29 @@ enum
 /**
  *  发送信息
  */
-- (void)replyMessWithType:(BOOL)isVoice{
+- (void)replyMessWithType:(BOOL)isVoice content:(NSString *)content{
     
-    NSString *encodeMp3Str;
-    if (isVoice) {
-        
-        NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *docsDir = [dirPaths objectAtIndex:0];
-        NSString *soundFilePath = [docsDir stringByAppendingPathComponent:@"recordT.mp3"];
-        [soundFilePath dataUsingEncoding:NSUTF8StringEncoding];
-        NSData* pData = [NSData dataWithContentsOfFile:soundFilePath];
-        
-        encodeMp3Str = [pData base64EncodedStringWithOptions:(NSDataBase64EncodingOptions)0];
-
-    }
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    NSString * content = nil;
-    [CloudLogin pushCommentWithWithGalleryID:self.galleryID replyTo:nil voice:encodeMp3Str voiceLen:[NSString stringWithFormat:@"%d",_totleTime] content:content success:^(NSDictionary *responseObject) {
+    [CloudLogin pushCommentWithWithGalleryID:self.galleryID replyTo:nil voice:nil voiceLen:[NSString stringWithFormat:@"%d",_totleTime] content:content success:^(NSDictionary *responseObject) {
         NSLog(@"%@",responseObject);
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        int status = [responseObject[@"status"] intValue];
+        if (status == 0) {
+            //重置数据
+            self.dataArr = nil;
+            [self dataArr];
+            
+            
+            //修改广场页评论数
+            if ([self.delegate respondsToSelector:@selector(reloadPlazaDataWithGalleryID:tabTag:indexPath:)]) {
+                [self.delegate reloadPlazaDataWithGalleryID:self.galleryID tabTag:self.tabTag indexPath:self.indexPath];
+            }
+        }
     } failure:^(NSError *errorMessage) {
         NSLog(@"%@",errorMessage);
     }];
+
 }
 
 
@@ -381,6 +409,7 @@ enum
     CommentCell * cell = [CommentCell cellWithTableView:tableView indexPath:indexPath];
     
     CommentFrame * dataFrame = [_dataArr objectAtIndex:indexPath.row];
+    cell.delegate = self;
     
     cell.dataFrame = dataFrame;
     
@@ -414,10 +443,11 @@ enum
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
 
     [textField resignFirstResponder];
+    
+    NSString * content = textField.text;
+    [self replyMessWithType:NO content:content];
+    
     textField.text = nil;
-    
-    [self replyMessWithType:NO];
-    
     return YES;
 }
 /**
@@ -430,22 +460,17 @@ enum
 }
 
 
+#pragma ----mark----CommentCellDelegate
 
+- (void)playVoiceWithModel:(CommentModel *)model{
 
-
-//获取document目录的路径
-- (NSString*) documentsPath {
-    if (! _documentsPath) {
-        NSArray *searchPaths =
-        NSSearchPathForDirectoriesInDomains
-        (NSDocumentDirectory, NSUserDomainMask, YES);
-        _documentsPath = [searchPaths objectAtIndex: 0];
-        
+    NSError * error = nil;
+    self.audioPlayer = [[AVAudioPlayer alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:model.voice]]error:&error];
+    
+    if (!error) {
+        self.audioPlayer.numberOfLoops = 0;
+        [self.audioPlayer play];
     }
-    return _documentsPath;
 }
-
-
-
 
 @end

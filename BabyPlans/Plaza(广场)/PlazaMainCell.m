@@ -220,8 +220,8 @@
  */
 - (void)bottomClick:(UIButton *)sender{
 
-    if ([self.delegate respondsToSelector:@selector(clickBottomBtnIndex:galleryID:indexPath:tableTag:)]) {
-        [self.delegate clickBottomBtnIndex:sender.tag galleryID:_model.galleryID indexPath:self.indexPath tableTag:self.tableView.tag];
+    if ([self.delegate respondsToSelector:@selector(clickBottomBtn:galleryID:indexPath:tableTag:)]) {
+        [self.delegate clickBottomBtn:sender galleryID:_model.galleryID indexPath:self.indexPath tableTag:self.tableView.tag];
     }
 }
 @end
