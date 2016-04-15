@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LoginDelegate <NSObject>
+
+@optional
+- (void)reloadData;
+
+@end
+
 @interface LoginViewController : UIViewController
+
+@property (nonatomic,weak) id <LoginDelegate>delegate;
+
 
 @end

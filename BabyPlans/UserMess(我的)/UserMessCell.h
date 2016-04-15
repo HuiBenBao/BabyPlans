@@ -7,8 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserMessModel.h"
+
+#define iconCellHeight 230*SCREEN_WIDTH_RATIO55
+
+@protocol UserMessCellDelegate <NSObject>
+
+@optional
+- (void)bottomBtnIndex:(NSInteger)index;
+
+- (void)goLogin;
+
+- (void)pushDetailViewWithModel:(UserMessModel *)model;
+@end
 
 @interface UserMessCell : UITableViewCell
+
+@property (nonatomic,strong) UserMessModel * model;
+
+@property (nonatomic,weak) id <UserMessCellDelegate>delegate;
+
 
 + (instancetype)cellWithTableView:(UITableView *)tableView indexPath:(NSIndexPath*)indexPath;
 

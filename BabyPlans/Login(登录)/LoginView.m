@@ -7,7 +7,7 @@
 //
 
 #import "LoginView.h"
-
+#import <ShareSDK/ShareSDK.h>
 @interface LoginView ()
 
 @property (nonatomic,strong) UIImageView * logoView;
@@ -183,7 +183,7 @@
         customBtn.titleLabel.font = FONT_ADAPTED_NUM(11);
         [customBtn setTitleColor:ColorI(0x5b5b5b) forState:UIControlStateNormal];
         [customBtn setTitle:loginTypeArr[i] forState:UIControlStateNormal];
-        
+        [customBtn addTarget:self action:@selector(customBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         customBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, -btnH/2, 0);
         [customBtn setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"signUpImg%d",i]] forState:UIControlStateNormal];
         
@@ -220,6 +220,68 @@
     
     
 }
+
+- (void)customBtnClick:(UIButton *)sender{
+    if (sender.tag == 0) {
+        [ShareSDK getUserInfo:SSDKPlatformTypeSinaWeibo onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error) {
+            if (state == SSDKResponseStateSuccess) {
+                NSLog(@"uid=%@",user.uid);
+                NSLog(@"%@",user.credential);
+                NSLog(@"token=%@",user.credential.token);
+                NSLog(@"nickname=%@",user.nickname);
+            } else
+            {
+                NSLog(@"%@",error);
+            }
+
+        }];
+    }
+    if (sender.tag == 1) {
+        
+        [ShareSDK getUserInfo:SSDKPlatformTypeWechat
+               onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
+         {
+             if (state == SSDKResponseStateSuccess)
+             {
+                 NSLog(@"uid=%@",user.uid);
+                 NSLog(@"%@",user.credential);
+                 NSLog(@"token=%@",user.credential.token);
+                 NSLog(@"nickname=%@",user.nickname);
+             }
+             else
+             {
+                 NSLog(@"%@",error);
+             }
+         }];
+        
+    }
+
+
+    if (sender.tag == 2) {
+        
+        [ShareSDK getUserInfo:SSDKPlatformTypeQQ
+               onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
+         {
+             if (state == SSDKResponseStateSuccess)
+             {
+                 NSLog(@"uid=%@",user.uid);
+                 NSLog(@"%@",user.credential);
+                 NSLog(@"token=%@",user.credential.token);
+                 NSLog(@"nickname=%@",user.nickname);
+             }
+             else
+             {
+                 NSLog(@"%@",error);
+             }
+         }];
+
+    }
+    
+}
+
+
+
+
 /**
  *  添加手势
  */
@@ -255,6 +317,7 @@
             Session * session = [Session shareSession];
             [session setValueWithDic:sessionDic];
             
+            [defaults setObject:session.userId forKey:@"token"];
             [defaults setObject:session.sessionID forKey:@"session"];
             if ([self.delegate respondsToSelector:@selector(loginSuccess)]) {
                 [self.delegate loginSuccess];

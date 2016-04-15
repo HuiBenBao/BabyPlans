@@ -72,4 +72,9 @@ typedef void (^Failure)(NSError * errorMessage);
  */
 + (void)attentionToUserID:(NSString *)userID type:(NSString *)type success:(Success)success failure:(Failure)failure;
 
+/**
+ *  查看用户资料
+ */
++ (void)getUserMessageWithID:(NSString *)userID success:(Success)success failure:(Failure)failure;
+
 @end

@@ -12,7 +12,8 @@
 #import "GalleryArrView.h"
 #import "LoginViewController.h"
 #import "CommentController.h"
-
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKUI/ShareSDK+SSUI.h>
 enum{
     TableViewLeft,
     TableViewRight
@@ -446,19 +447,20 @@ enum{
  */
 - (void)clickBottomBtn:(UIButton *)button galleryID:(NSString *)galleryID indexPath:(NSIndexPath *)indexPath tableTag:(NSInteger)tableTag{
 
-    NSInteger index = button.tag;
-    
-    NSArray * dataArr = (tableTag==TableViewLeft) ? self.dataArrLeft : self.dataArrRight;
-    PlazaDataFrame * plazaFrame = [dataArr objectAtIndex:indexPath.row];
-    PlazaDataModel * model = plazaFrame.model;
-    UITableView * tableView = (tableTag==TableViewLeft) ? self.tableViewLeft : self.tableViewRight;
-    
-    if (index==0) { //点赞
+    if (![defaults objectForKey:@"session"]) {//未登录
         
-        if (![defaults objectForKey:@"session"]) {//未登录
+        [self presentViewController:[[LoginViewController alloc] init] animated:YES completion:nil];
+    }else{
+        
+        NSInteger index = button.tag;
+        
+        NSArray * dataArr = (tableTag==TableViewLeft) ? self.dataArrLeft : self.dataArrRight;
+        PlazaDataFrame * plazaFrame = [dataArr objectAtIndex:indexPath.row];
+        PlazaDataModel * model = plazaFrame.model;
+        UITableView * tableView = (tableTag==TableViewLeft) ? self.tableViewLeft : self.tableViewRight;
+        
+        if (index==0) { //点赞
             
-            [self presentViewController:[[LoginViewController alloc] init] animated:YES completion:nil];
-        }else{
             [CloudLogin likeWithGalleryID:galleryID type:@"1" success:^(NSDictionary *responseObject) {
                 NSLog(@"点赞----%@",responseObject);
                 
@@ -470,7 +472,7 @@ enum{
                     model.likeCount = [NSString stringWithFormat:@"%d",[model.likeCount intValue]+1];
                     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                 }else if(status==2){//取消点赞
-                
+                    
                     [CloudLogin likeWithGalleryID:galleryID type:@"0" success:^(NSDictionary *responseObject) {
                         NSLog(@"取消点赞----%@",responseObject);
                         
@@ -494,57 +496,86 @@ enum{
             } failure:^(NSError *errorMessage) {
                 NSLog(@"点赞----%@",errorMessage);
             }];
-
-        }
-        
-    }else if (index == 1){//评论
-        
-        CommentController * commentVC = [CommentController commentWithGalleryID:galleryID tabTag:(int)tableTag];
-        commentVC.indexPath = indexPath;
-        commentVC.delegate = self;
-        
-        [self.navigationController pushViewController:commentVC animated:YES];
-        
-    }else if (index==2){//关注
-        
-        
-        [CloudLogin attentionToUserID:model.user.userID type:nil success:^(NSDictionary *responseObject) {
-            NSLog(@"%@",responseObject);
-            int status = [responseObject[@"status"] intValue];
-            if (status==0) {
-                
-                int following = [responseObject[@"following"] intValue];
-                
-                following = (following==0) ? 1 : 0;
-                
-                [CloudLogin attentionToUserID:model.user.userID type:[NSString stringWithFormat:@"%d",following] success:^(NSDictionary *responseObject) {
-                    int reslut = [responseObject[@"status"] intValue];
-                    NSLog(@"------%@",responseObject);
-                    if (reslut==0) {
-                        
-                        NSString * mess = (following == 0) ? @"关注成功" : @"已取消";
-                        [self.view poptips:mess];
-                        
-//                        if (following==0) {
-//                            [button setTitle:@"已关注" forState:UIControlStateNormal];
-//                            
-//                        }else{
-//                            [button setTitle:@"关注" forState:UIControlStateNormal];
-//                        }
-                    }
-                } failure:nil];
-                
-                
-            }
             
-        } failure:^(NSError *errorMessage) {
-            NSLog(@"%@",errorMessage);
-        }];
-    }else if (index==3){//分享
-    
-        
+        }else if (index == 1){//评论
+            
+            CommentController * commentVC = [CommentController commentWithGalleryID:galleryID tabTag:(int)tableTag];
+            commentVC.indexPath = indexPath;
+            commentVC.delegate = self;
+            
+            [self.navigationController pushViewController:commentVC animated:YES];
+            
+        }else if (index==2){//关注
+            
+            
+            [CloudLogin attentionToUserID:model.user.userID type:nil success:^(NSDictionary *responseObject) {
+                NSLog(@"%@",responseObject);
+                int status = [responseObject[@"status"] intValue];
+                if (status==0) {
+                    
+                    int following = [responseObject[@"following"] intValue];
+                    
+                    following = (following==0) ? 1 : 0;
+                    
+                    [CloudLogin attentionToUserID:model.user.userID type:[NSString stringWithFormat:@"%d",following] success:^(NSDictionary *responseObject) {
+                        int reslut = [responseObject[@"status"] intValue];
+                        NSLog(@"------%@",responseObject);
+                        if (reslut==0) {
+                            
+                            NSString * mess = (following == 0) ? @"关注成功" : @"已取消";
+                            [self.view poptips:mess];
+                            
+                        }
+                    } failure:nil];
+                    
+                    
+                }
+                
+            } failure:^(NSError *errorMessage) {
+                NSLog(@"%@",errorMessage);
+            }];
+        }else if (index==3){//分享
+            
+            NSString *Urlstr = [NSString stringWithFormat:@"%@%@",GALLERY_PAGE,model.galleryID];
+            
+        if (model.coverImg) {
+            NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+            [shareParams SSDKSetupShareParamsByText:model.content
+                                             images:model.coverImg
+                                                url:[NSURL URLWithString:Urlstr]
+                                              title:@"绘本宝"
+                                            type:SSDKContentTypeAuto];
+
+                //2、分享（可以弹出我们的分享菜单和编辑界面）
+                [ShareSDK showShareActionSheet:nil
+                                         items:nil
+                                   shareParams:shareParams
+                           onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
+            switch (state) {
+                case SSDKResponseStateSuccess:
+                {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功" message:nil
+                                                                          delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                                       [alertView show];
+                                       break;
+                                   }
+                case SSDKResponseStateFail:
+                {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
+                                                    message:[NSString stringWithFormat:@"%@",error]
+                                                    delegate:nil
+                                           cancelButtonTitle:@"OK"
+                                           otherButtonTitles:nil];
+                [alert show];
+                        break;
+                    }
+                        default:
+                        break;
+                }
+             }
+         ];}
+        }
     }
-    
 }
 
 - (void)reloadPlazaDataWithGalleryID:(NSString *)galleryID tabTag:(NSInteger)tabTag indexPath:(NSIndexPath *)indexPath{

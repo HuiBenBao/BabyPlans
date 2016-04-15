@@ -35,7 +35,7 @@
  */
 - (void)createBtn{
 
-    CGFloat btnBackX = 45*SCREEN_WIDTH_RATIO55;
+    CGFloat btnBackX = 15*SCREEN_WIDTH_RATIO55;
     CGFloat btnBackW = KScreenWidth -btnBackX*2;
     CGFloat btnBackY = 5*SCREEN_WIDTH_RATIO55;
     CGFloat btnBackH = tableHeaderHeight - btnBackY*2;
@@ -47,7 +47,7 @@
     BtnView.layer.borderWidth = 1;
     BtnView.layer.borderColor = [UIColor orangeColor].CGColor;
     
-    NSArray * titleArr = @[@"经典绘本",@"原创绘本"];
+    NSArray * titleArr = @[@"经典绘本/故事直播",@"原创绘本/故事直播"];
     NSMutableArray * btnArr = [NSMutableArray array];
     
     for (int i = 0; i < titleArr.count ; i ++) {

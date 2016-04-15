@@ -72,9 +72,15 @@
     
     [self presentViewController:VC animated:YES completion:nil];
 }
-
+/**
+ *  登录成功
+ */
 - (void)loginSuccess{
 
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        if ([self.delegate respondsToSelector:@selector(reloadData)]) {
+            [self.delegate reloadData];
+        }
+    }];
 }
 @end

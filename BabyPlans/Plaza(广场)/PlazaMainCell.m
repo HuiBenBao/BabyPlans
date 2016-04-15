@@ -7,7 +7,7 @@
 //
 
 #import "PlazaMainCell.h"
-
+#import <ShareSDK/ShareSDK.h>
 #define BtnCount 4
 
 @interface PlazaMainCell ()
