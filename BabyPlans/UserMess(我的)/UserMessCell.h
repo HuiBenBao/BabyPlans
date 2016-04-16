@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "UserMessModel.h"
 
-#define iconCellHeight 230*SCREEN_WIDTH_RATIO55
+#define iconCellHeight 80*SCREEN_WIDTH_RATIO55
+#define threeBtnCellHeight  50*SCREEN_WIDTH_RATIO55
 
 @protocol UserMessCellDelegate <NSObject>
 
@@ -23,11 +24,10 @@
 
 @interface UserMessCell : UITableViewCell
 
-@property (nonatomic,strong) UserMessModel * model;
 
 @property (nonatomic,weak) id <UserMessCellDelegate>delegate;
 
 
-+ (instancetype)cellWithTableView:(UITableView *)tableView indexPath:(NSIndexPath*)indexPath;
++ (instancetype)cellWithTableView:(UITableView *)tableView indexPath:(NSIndexPath*)indexPath Model:(UserMessModel *)model;
 
 @end

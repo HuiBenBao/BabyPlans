@@ -110,7 +110,7 @@
 - (void)createUI{
     
     //显示当前位置
-    self.titleLbl.text = [NSString stringWithFormat:@"1/%ld",self.galleryArr.count];
+    self.titleLbl.text = [NSString stringWithFormat:@"1/%ld",(unsigned long)self.galleryArr.count];
 
     //设置图集
     self.imgScrollView.pagingEnabled = YES;
@@ -212,7 +212,7 @@
     if (currentX == 0) {
         [self stop];
         [self poptips:@"播放完成"];
-        self.titleLbl.text = [NSString stringWithFormat:@"1/%ld",self.galleryArr.count];
+        self.titleLbl.text = [NSString stringWithFormat:@"1/%ld",(unsigned long)self.galleryArr.count];
     }else{
         [self play];
     }
@@ -226,7 +226,7 @@
     int index = currentX/self.width;
     
     if (index>1) {
-        self.titleLbl.text = [NSString stringWithFormat:@"%d/%ld",index,self.galleryArr.count];
+        self.titleLbl.text = [NSString stringWithFormat:@"%d/%ld",index,(unsigned long)self.galleryArr.count];
 
     }
 }

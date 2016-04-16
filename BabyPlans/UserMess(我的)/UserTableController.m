@@ -10,7 +10,7 @@
 #import "UserMessCell.h"
 #import "Session.h"
 #import "LoginViewController.h"
-
+#import "UserSettingController.h"
 
 
 @interface UserTableController ()<LoginDelegate,UserMessCellDelegate>
@@ -23,20 +23,29 @@
 
 @implementation UserTableController
 
-- (void)viewDidAppear:(BOOL)animated{
-
-    [super viewDidAppear:animated];
-    
-    
-   
-
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    [self model];
-    [defaults removeObjectForKey:@"session"];
+    
+    if ([defaults objectForKey:@"session"]) {//已登录
+        
+        [self model];
+        
+    }
+    
+    //设置导航栏右侧按钮
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:self action:@selector(pushSetting)];
+    
+    //测试用
+//    [defaults removeObjectForKey:@"session"];
+}
+/**
+ *  右侧按钮点击事件
+ */
+- (void)pushSetting{
+    
+    [self.navigationController pushViewController:[[UserSettingController alloc] init] animated:YES];
 }
 
 - (void)reloadData{
@@ -88,9 +97,12 @@
 
     if (indexPath.section == 0 && indexPath.row == 0) {
         return iconCellHeight;
+    }else if(indexPath.section==0 && indexPath.row==1){
+    
+        return threeBtnCellHeight;
     }
     
-    return 45;
+    return 50*SCREEN_WIDTH_RATIO55;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
@@ -99,15 +111,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return (section == 0) ? 1 : 4;
+    return (section == 0) ? 2 : 4;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
 
+    return (section==0)?10:0;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UserMessCell * cell = [UserMessCell cellWithTableView:tableView indexPath:indexPath];
+    UserMessCell * cell = [UserMessCell cellWithTableView:tableView indexPath:indexPath Model:_model];
     
-    cell.model = _model;
     cell.delegate = self;
     
     return cell;
@@ -115,19 +129,21 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
+    if ([self isLogin]) {
     
-    if (indexPath.section == 1) {
-        
-        if ([self isLogin]) {
+        if (indexPath.section == 1) {
+            
             [self.navigationController pushViewController:[[UIViewController alloc] init] animated:YES];
+            
         }
-        
     }
+    
+    
 }
 #pragma ----mark-----UserMessCellDelegate
 - (void)bottomBtnIndex:(NSInteger)index{
 
-    NSLog(@"%ld",index);
+    NSLog(@"%ld",(long)index);
 }
 
 - (void)goLogin{

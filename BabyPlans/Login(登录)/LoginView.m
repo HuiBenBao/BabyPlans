@@ -179,7 +179,7 @@
         
         customBtn.frame = CGRectMake(btnX, btnY, btnW, btnH);
         
-     
+        customBtn.tag = i;
         customBtn.titleLabel.font = FONT_ADAPTED_NUM(11);
         [customBtn setTitleColor:ColorI(0x5b5b5b) forState:UIControlStateNormal];
         [customBtn setTitle:loginTypeArr[i] forState:UIControlStateNormal];
@@ -229,6 +229,8 @@
                 NSLog(@"%@",user.credential);
                 NSLog(@"token=%@",user.credential.token);
                 NSLog(@"nickname=%@",user.nickname);
+
+                [self loginWithName:user.nickname];
             } else
             {
                 NSLog(@"%@",error);
@@ -247,6 +249,7 @@
                  NSLog(@"%@",user.credential);
                  NSLog(@"token=%@",user.credential.token);
                  NSLog(@"nickname=%@",user.nickname);
+                 [self loginWithName:user.nickname];
              }
              else
              {
@@ -268,6 +271,8 @@
                  NSLog(@"%@",user.credential);
                  NSLog(@"token=%@",user.credential.token);
                  NSLog(@"nickname=%@",user.nickname);
+                 
+                 [self loginWithName:user.nickname];
              }
              else
              {
@@ -278,10 +283,36 @@
     }
     
 }
+/**
+ *  第三方登录成功后回调
+ */
+- (void)loginWithName:(NSString *)name{
 
-
-
-
+    [CloudLogin loginWithPhoneNum:name password:nil success:^(NSDictionary *responseObject) {
+        int status = [responseObject[@"status"] intValue];
+        
+        if (status==0) {
+            [self poptips:@"登录成功"];
+            
+            //存入本地
+            NSDictionary * sessionDic = responseObject[@"session"];
+            Session * session = [Session shareSession];
+            [session setValueWithDic:sessionDic];
+            
+            [defaults setObject:session.userId forKey:@"token"];
+            [defaults setObject:session.sessionID forKey:@"session"];
+            if ([self.delegate respondsToSelector:@selector(loginSuccess)]) {
+                [self.delegate loginSuccess];
+            }
+        }else{
+            
+            [self poptips:responseObject[@"error"]];
+            
+        }
+    } failure:^(NSError *errorMessage) {
+        NSLog(@"%@",errorMessage);
+    }];
+}
 /**
  *  添加手势
  */

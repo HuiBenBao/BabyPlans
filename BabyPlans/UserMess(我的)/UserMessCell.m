@@ -13,6 +13,7 @@
 @property (nonatomic,strong) NSIndexPath * indexPath;
 @property (nonatomic,weak) UIImageView * iconView;
 
+@property (nonatomic,strong) UserMessModel * model;
 
 @end
 
@@ -21,7 +22,7 @@
 
 
 + (instancetype)cellWithTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath
-{
+Model:(UserMessModel *)model{
     
     if (indexPath.section == 1) {
         
@@ -56,26 +57,37 @@
         
         
         return cell;
-    }else{
+    }else {
         
-        static NSString *ID = @"UserMessCellFirst";
         
-        UserMessCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        UserMessCell *cell = [[UserMessCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
         
         
         cell.indexPath = indexPath;
+        cell.model = model;
         
-        if (cell == nil) {
-            cell = [[UserMessCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
+        if (indexPath.row == 0) {
+            
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+            cell.backgroundColor = [UIColor whiteColor];
+            
+            [cell.imageView sd_setImageWithURL:[NSURL URLWithString:model.iconStr] placeholderImage:[UIImage imageAutomaticName:@"defaultIconImg"]];
+            
+            cell.imageView.layer.cornerRadius = 10;
+            cell.imageView.clipsToBounds = YES;
+            
+            cell.textLabel.font = FONT_ADAPTED_NUM(15);
+            cell.textLabel.textColor = ColorI(0x5b5b5b);
+            if (model) {
+                cell.textLabel.text = model.name;
+            }else{
+                cell.textLabel.text = @"请登录";
+            }
             
         }else{
-        
-            for (UIView * myView in cell.contentView.subviews) {
-                [myView removeFromSuperview];
-            }
+            [cell createThreeBtn];
         }
-        
-        [cell createTopCell];
         
         return cell;
     }
@@ -87,13 +99,12 @@
     if (self == [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        if ([reuseIdentifier isEqualToString:@"UserMessCellFirst"]) {
-            self.backgroundColor = [UIColor orangeColor];
-        }else{
-        
-            self.backgroundColor = [UIColor whiteColor];
+
+        if ([reuseIdentifier isEqualToString:@"UserMessCell"]) {
+            
             self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+            self.backgroundColor = [UIColor whiteColor];
             self.textLabel.textColor = ColorI(0x3b3b3b);
             self.textLabel.font = FONT_ADAPTED_NUM(14);
         }
@@ -103,132 +114,83 @@
     return self;
 }
 
-- (void)createTopCell{
-
-    CGFloat iconW = 100*SCREEN_WIDTH_RATIO55;
-    CGFloat iconH = 100*SCREEN_WIDTH_RATIO55;
-    CGFloat iconX = (KScreenWidth-iconW)/2;
-    CGFloat iconY = 0;
+- (void)createThreeBtn{
     
-    UIImageView * iconV = [[UIImageView alloc] initWithFrame:CGRectMake(iconX, iconY, iconW, iconH)];
-
-    iconV.layer.cornerRadius = iconH/2;
-    iconV.clipsToBounds = YES;
+    //添加下方三个按钮
     
-    [iconV sd_setImageWithURL:[NSURL URLWithString:self.model.iconStr] placeholderImage:[UIImage imageNamed:@"DefaultImage"]];
-    
-    [iconV addTarget:self action:@selector(iconClick)];
-    
-    [self.contentView addSubview:iconV];
-    
-    self.iconView = iconV;
-    
-    CGRect iconF = self.iconView.frame;
-    
-    iconF.origin.y = (iconCellHeight - iconF.size.height)/3;
-    self.iconView.frame = iconF;
-
-    //已登录时，显示下方三个按钮
-    if (self.model) {
-        //添加下方三个按钮
-        UIView * bottomV = [[UIView alloc] init];
-        CGFloat bottomH = 50*SCREEN_WIDTH_RATIO55;
-        CGFloat bottomY = iconCellHeight - bottomH;
+    NSArray * titleArr = @[@"发布的绘本",@"关注",@"粉丝"];
+    CGFloat lineW = 1;
+    for (int i = 0; i < titleArr.count; i ++) {
         
-        bottomV.frame = CGRectMake(0, bottomY, KScreenWidth, bottomH);
+        CGFloat btnW = KScreenWidth / 3 - (titleArr.count-1)*lineW;
+        CGFloat btnH = threeBtnCellHeight;
+        CGFloat btnX = (btnW+lineW)*i;
         
-        [self.contentView addSubview:bottomV];
-        
-        NSArray * titleArr = @[@"发布的绘本",@"关注",@"粉丝"];
-        CGFloat lineW = 1;
-        for (int i = 0; i < titleArr.count; i ++) {
+        for (int j = 0; j < 2; j++) {
             
-            CGFloat btnW = KScreenWidth / 3 - (titleArr.count-1)*lineW;
-            CGFloat btnH = bottomH;
-            CGFloat btnX = (btnW+lineW)*i;
+            CGFloat margicY = 5*SCREEN_WIDTH_RATIO55;
+            CGFloat lblX = btnX;
+            CGFloat lblH = btnH/2 - margicY;
+            CGFloat lblY = margicY + lblH*j;
+            CGFloat lblW = btnW;
             
-            for (int j = 0; j < 2; j++) {
+            UILabel * lbl = [[UILabel alloc] initWithFrame:CGRectMake(lblX, lblY, lblW, lblH)];
+            
+            lbl.textAlignment = NSTextAlignmentCenter;
+            lbl.textColor = ColorI(0x5b5b5b);
+            lbl.font = FONT_ADAPTED_NUM(14);
+            
+            if (j==0) {
                 
-                CGFloat lblX = btnX;
-                CGFloat lblH = btnH/2;
-                CGFloat lblY = lblH*j;
-                CGFloat lblW = btnW;
+                NSString * text;
                 
-                UILabel * lbl = [[UILabel alloc] initWithFrame:CGRectMake(lblX, lblY, lblW, lblH)];
-                
-                lbl.textAlignment = NSTextAlignmentCenter;
-                lbl.textColor = ColorI(0xffffff);
-                lbl.font = FONT_ADAPTED_NUM(14);
-                
-                if (j==0) {
-                    
-                    NSString * text;
-                    
-                    if (self.model) {
-                        switch (i) {
-                            case 0:
-                                text = _model.galleryCnt;
-                                break;
-                            case 1:
-                                text = _model.friendCount;
-                                break;
-                            case 2:
-                                text = _model.fanCount;
-                                break;
-                            default:
-                                break;
-                        }
-                    }else{
-                        text = @"0";
+                if (self.model) {
+                    switch (i) {
+                        case 0:
+                            text = _model.galleryCnt;
+                            break;
+                        case 1:
+                            text = _model.friendCount;
+                            break;
+                        case 2:
+                            text = _model.fanCount;
+                            break;
+                        default:
+                            break;
                     }
-                    
-                    lbl.text = text;
                 }else{
-                    
-                    lbl.text = titleArr[i];
+                    text = @"0";
                 }
                 
-                [bottomV addSubview:lbl];
-            }
-            
-            UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-            button.frame = CGRectMake(btnX, 0, btnW, btnH);
-            
-            button.tag = i;
-            [button addTarget:self action:@selector(bottomBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-            
-            button.backgroundColor = [UIColor clearColor];
-            
-            [bottomV addSubview:button];
-            
-            if (i!=(titleArr.count-1)) {
-                UIView * lineV = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(button.frame), 0, 1, btnH)];
-                lineV.backgroundColor = ColorI(0xffffff);
-                [bottomV addSubview:lineV];
+                lbl.text = text;
+            }else{
                 
+                lbl.text = titleArr[i];
             }
+            
+            [self.contentView addSubview:lbl];
         }
-
-    }else{
-    
-        UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        CGRect btnF = self.iconView.frame;
-        btnF.origin.y = CGRectGetMaxY(self.iconView.frame);
-        btnF.size.height = iconCellHeight - btnF.origin.y;
+        UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake(btnX, 0, btnW, btnH);
         
-        btn.frame = btnF;
+        button.tag = i;
+        [button addTarget:self action:@selector(bottomBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         
-        [btn setTitle:@"点 击 登 录" forState:UIControlStateNormal];
-        btn.titleLabel.font = FontBold(16);
-        [btn setTitleColor:ColorI(0xeeeeee) forState:UIControlStateNormal];
+        button.backgroundColor = [UIColor clearColor];
         
-        [btn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:button];
         
-        [self.contentView addSubview:btn];
+        if (i!=(titleArr.count-1)) {
+            UIView * lineV = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(button.frame), 0, 1, btnH)];
+            lineV.backgroundColor = ColorI(0xdddddd);
+            [self.contentView addSubview:lineV];
+            
+        }
     }
-    
+
 }
+
 /**
  *  头像下方三个按钮的点击事件
  */
@@ -274,9 +236,22 @@
     //分割线
     UIView * lineV = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height-1, KScreenWidth, 1)];
     
-    lineV.backgroundColor = ColorI(0xdddddd);
+    lineV.backgroundColor = ColorI(0xeeeeee);
     
     [self.contentView addSubview:lineV];
+    
+    CGRect imgF = self.imageView.frame;
+    imgF.size.height = self.height*2/3;
+    imgF.size.width = imgF.size.height;
+    
+    CGPoint imgPoint = self.imageView.center;
+    imgPoint.y = self.height/2;
+    
+    self.imageView.frame = imgF;
+    self.imageView.center = imgPoint;
+    
+    self.imageView.layer.cornerRadius = imgF.size.height/2;
+    self.imageView.clipsToBounds = YES;
 }
 
 @end

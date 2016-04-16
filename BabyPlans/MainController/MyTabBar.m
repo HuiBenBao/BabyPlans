@@ -32,8 +32,8 @@
     if (title) {
         [button setTitle:title forState:UIControlStateNormal];
         
-        [button setTitleColor:ColorI(0x8b8b8b) forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor colorWithRed:242/255.0 green:101/255.0 blue:34/255.0 alpha:1] forState:UIControlStateSelected];
         
         button.titleLabel.font = FONT_ADAPTED_NUM(10);
     }

@@ -23,8 +23,14 @@
     NSMutableDictionary * parma = [NSMutableDictionary dictionary];
     [parma setValue:@"user_Login" forKey:@"action"];
     
+    NSLog(@"%@",phoneNum);
     [parma setValue:phoneNum forKey:@"mobile"];
-    [parma setValue:[password MD5String] forKey:@"password"];
+    if (password) {
+        [parma setValue:[password MD5String] forKey:@"password"];
+    }else{
+        
+        [parma setValue:@"d41d8cd98f00b204e9800998ecf8427e" forKey:@"password"];
+    }
     
     [CloudLogin getDataWithURL:nil parameter:parma success:^(id data) {
         success(data);

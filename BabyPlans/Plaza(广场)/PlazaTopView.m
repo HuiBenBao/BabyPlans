@@ -61,7 +61,7 @@
         [btn setTitle:titleArr[i] forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-        [btn setBackgroundImage:[UIImage imageWithColor:[UIColor orangeColor] ImgSize:CGRectMake(0, 0, btnW, btnBackH)] forState:UIControlStateSelected];
+        [btn setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:242/255.0 green:101/255.0 blue:34/255.0 alpha:1.0] ImgSize:CGRectMake(0, 0, btnW, btnBackH)] forState:UIControlStateSelected];
         
         btn.tag = i;
         [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];

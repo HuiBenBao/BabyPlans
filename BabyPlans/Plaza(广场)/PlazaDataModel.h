@@ -39,6 +39,12 @@
  *  评论数量
  */
 @property (nonatomic,strong) NSString * commentCount;
+/**
+ *  合在一起的声音（分享时用到）
+ */
+@property (nonatomic,strong) NSString * galleryBase;
+
+
 - (instancetype)initWithDic:(NSDictionary *)dic;
 + (instancetype)valueWithDic:(NSDictionary *)dic;
 

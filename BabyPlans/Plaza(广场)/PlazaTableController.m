@@ -14,6 +14,9 @@
 #import "CommentController.h"
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKUI/ShareSDK+SSUI.h>
+
+
+
 enum{
     TableViewLeft,
     TableViewRight
@@ -538,42 +541,76 @@ enum{
             
             NSString *Urlstr = [NSString stringWithFormat:@"%@%@",GALLERY_PAGE,model.galleryID];
             
-        if (model.coverImg) {
-            NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-            [shareParams SSDKSetupShareParamsByText:model.content
-                                             images:model.coverImg
-                                                url:[NSURL URLWithString:Urlstr]
-                                              title:@"绘本宝"
-                                            type:SSDKContentTypeAuto];
-
+            if (model.coverImg) {
+                
+                NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+                [shareParams SSDKSetupShareParamsByText:model.content
+                                                 images:model.coverImg
+                                                    url:[NSURL URLWithString:Urlstr]
+                                                  title:@"绘本宝"
+                                                type:SSDKContentTypeAuto];
+                
+                
+                UIImageView * imgV = [[UIImageView alloc] init];
+                [imgV sd_setImageWithURL:[NSURL URLWithString:model.coverImg]];
+                
+                // 定制微信好友的分享内容
+                [shareParams SSDKSetupWeChatParamsByText:model.content
+                                                   title:@"绘本宝"
+                                                   url:[NSURL URLWithString:Urlstr]
+                                                   thumbImage:nil
+                                                   image:imgV.image
+                                                   musicFileURL:[NSURL URLWithString:model.galleryBase]
+                                                    extInfo:nil
+                                                    fileData:nil
+                                                    emoticonData:nil
+                                                    type:SSDKContentTypeAudio
+                                      forPlatformSubType:SSDKPlatformSubTypeWechatSession];
+                // 微信朋友圈
+                [shareParams SSDKSetupWeChatParamsByText:model.content
+                                                   title:@"绘本宝"
+                                                     url:[NSURL URLWithString:Urlstr]
+                                              thumbImage:nil
+                                                   image:imgV.image
+                                            musicFileURL:[NSURL URLWithString:model.galleryBase]
+                                                 extInfo:nil
+                                                fileData:nil
+                                            emoticonData:nil
+                                                    type:SSDKContentTypeAudio
+                                      forPlatformSubType:SSDKPlatformSubTypeWechatTimeline];
+                
+                
                 //2、分享（可以弹出我们的分享菜单和编辑界面）
                 [ShareSDK showShareActionSheet:nil
                                          items:nil
                                    shareParams:shareParams
                            onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
-            switch (state) {
-                case SSDKResponseStateSuccess:
-                {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功" message:nil
-                                                                          delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-                                       [alertView show];
-                                       break;
-                                   }
-                case SSDKResponseStateFail:
-                {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
-                                                    message:[NSString stringWithFormat:@"%@",error]
-                                                    delegate:nil
-                                           cancelButtonTitle:@"OK"
-                                           otherButtonTitles:nil];
-                [alert show];
-                        break;
-                    }
-                        default:
-                        break;
-                }
-             }
-         ];}
+                               
+                                    switch (state) {
+                                        case SSDKResponseStateSuccess: {
+                                            
+                                                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                                            
+                                               [alertView show];
+                                               break;
+                                        }
+                                        case SSDKResponseStateFail:{
+                                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
+                                                                            message:[NSString stringWithFormat:@"%@",error]
+                                                                            delegate:nil
+                                                                   cancelButtonTitle:@"OK"
+                                                                   otherButtonTitles:nil];
+                                                [alert show];
+                                                break;
+                                        }
+                                        default:
+                                                break;
+                                        }
+                }];
+                 
+            }
+            
+        
         }
     }
 }

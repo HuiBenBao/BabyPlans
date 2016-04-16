@@ -54,6 +54,10 @@
             self.commentCount = [[[NSNumberFormatter alloc] init] stringFromNumber:dic[@"commentCnt"]];
             
         }
+        
+        if (ValidStr(dic[@"galleryBase"])) {
+            self.galleryBase = dic[@"galleryBase"];
+        }
     }
     
     return self;
