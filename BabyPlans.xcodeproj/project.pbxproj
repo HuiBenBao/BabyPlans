@@ -11,7 +11,6 @@
 		183DDAF81CBB76240085A42F /* signUpImg0.png in Resources */ = {isa = PBXBuildFile; fileRef = 183DDAF51CBB76240085A42F /* signUpImg0.png */; };
 		183DDAF91CBB76240085A42F /* signUpImg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 183DDAF61CBB76240085A42F /* signUpImg1.png */; };
 		183DDAFA1CBB76240085A42F /* signUpImg2.png in Resources */ = {isa = PBXBuildFile; fileRef = 183DDAF71CBB76240085A42F /* signUpImg2.png */; };
-		183DDAFC1CBB7ECF0085A42F /* RegisterController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 183DDAFB1CBB7ECF0085A42F /* RegisterController.storyboard */; };
 		183DDAFF1CBB85030085A42F /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DDAFE1CBB85030085A42F /* RegisterController.m */; };
 		183DDB021CBB93990085A42F /* NSString+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DDB011CBB93990085A42F /* NSString+Category.m */; };
 		183DDB061CBC9AA30085A42F /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = 183DDB051CBC9AA30085A42F /* Session.m */; };
@@ -24,6 +23,8 @@
 		1846443B1CB63FF30082F346 /* GalleryImgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846443A1CB63FF30082F346 /* GalleryImgModel.m */; };
 		1846443E1CB642CB0082F346 /* PictureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846443D1CB642CB0082F346 /* PictureModel.m */; };
 		184BCA771CB362E5008314F4 /* CloudLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 184BCA761CB362E5008314F4 /* CloudLogin.m */; };
+		185509541CC4DFF2002834D3 /* LessonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185509531CC4DFF2002834D3 /* LessonViewController.m */; };
+		185509571CC4EADC002834D3 /* LessonListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 185509561CC4EADC002834D3 /* LessonListModel.m */; };
 		186195BB1CB347080003A562 /* PlazaTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186195BA1CB347080003A562 /* PlazaTableController.m */; };
 		186195C81CB357B60003A562 /* PlazaMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 186195C71CB357B60003A562 /* PlazaMainCell.m */; };
 		186195CC1CB35BB00003A562 /* UserTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186195CB1CB35BB00003A562 /* UserTableController.m */; };
@@ -134,7 +135,6 @@
 		183DDAF51CBB76240085A42F /* signUpImg0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signUpImg0.png; sourceTree = "<group>"; };
 		183DDAF61CBB76240085A42F /* signUpImg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signUpImg1.png; sourceTree = "<group>"; };
 		183DDAF71CBB76240085A42F /* signUpImg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signUpImg2.png; sourceTree = "<group>"; };
-		183DDAFB1CBB7ECF0085A42F /* RegisterController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RegisterController.storyboard; sourceTree = "<group>"; };
 		183DDAFD1CBB85030085A42F /* RegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterController.h; sourceTree = "<group>"; };
 		183DDAFE1CBB85030085A42F /* RegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterController.m; sourceTree = "<group>"; };
 		183DDB001CBB93990085A42F /* NSString+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Category.h"; sourceTree = "<group>"; };
@@ -157,6 +157,10 @@
 		1846443D1CB642CB0082F346 /* PictureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureModel.m; sourceTree = "<group>"; };
 		184BCA751CB362E5008314F4 /* CloudLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloudLogin.h; sourceTree = "<group>"; };
 		184BCA761CB362E5008314F4 /* CloudLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloudLogin.m; sourceTree = "<group>"; };
+		185509521CC4DFF2002834D3 /* LessonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LessonViewController.h; sourceTree = "<group>"; };
+		185509531CC4DFF2002834D3 /* LessonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LessonViewController.m; sourceTree = "<group>"; };
+		185509551CC4EADC002834D3 /* LessonListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LessonListModel.h; sourceTree = "<group>"; };
+		185509561CC4EADC002834D3 /* LessonListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LessonListModel.m; sourceTree = "<group>"; };
 		186195B91CB347080003A562 /* PlazaTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlazaTableController.h; sourceTree = "<group>"; };
 		186195BA1CB347080003A562 /* PlazaTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlazaTableController.m; sourceTree = "<group>"; };
 		186195C61CB357B60003A562 /* PlazaMainCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlazaMainCell.h; sourceTree = "<group>"; };
@@ -600,6 +604,10 @@
 			children = (
 				18CCD13F1CB7A14F002595FD /* RecommendController.h */,
 				18CCD1401CB7A14F002595FD /* RecommendController.m */,
+				185509521CC4DFF2002834D3 /* LessonViewController.h */,
+				185509531CC4DFF2002834D3 /* LessonViewController.m */,
+				185509551CC4EADC002834D3 /* LessonListModel.h */,
+				185509561CC4EADC002834D3 /* LessonListModel.m */,
 				18CCD1421CB8A461002595FD /* RecWebController.h */,
 				18CCD1431CB8A461002595FD /* RecWebController.m */,
 			);
@@ -648,7 +656,6 @@
 			children = (
 				18CCD1501CB8F355002595FD /* LoginViewController.h */,
 				18CCD1511CB8F355002595FD /* LoginViewController.m */,
-				183DDAFB1CBB7ECF0085A42F /* RegisterController.storyboard */,
 				183DDAFD1CBB85030085A42F /* RegisterController.h */,
 				183DDAFE1CBB85030085A42F /* RegisterController.m */,
 				183DDB031CBC9A7F0085A42F /* Model */,
@@ -980,7 +987,6 @@
 				18CCD1231CB7907E002595FD /* plaza_bottomview1@3x.png in Resources */,
 				18886C781CC0DB27007AEC7B /* NagavitionBarImg.png in Resources */,
 				18CCD1391CB7A11E002595FD /* Recommend_btn0.png in Resources */,
-				183DDAFC1CBB7ECF0085A42F /* RegisterController.storyboard in Resources */,
 				18F114E81CAE3B6F00F53C42 /* TabBar3.png in Resources */,
 				18CCD11F1CB7907E002595FD /* plaza_bottomview0@2x.png in Resources */,
 				18CCD1581CB8FA9E002595FD /* appLogo.png in Resources */,
@@ -1070,6 +1076,7 @@
 				183DDB061CBC9AA30085A42F /* Session.m in Sources */,
 				1846443B1CB63FF30082F346 /* GalleryImgModel.m in Sources */,
 				18886BA91CBF34A8007AEC7B /* AudioRecorder.m in Sources */,
+				185509571CC4EADC002834D3 /* LessonListModel.m in Sources */,
 				18FD4B321CAE34DD00ACD4BC /* main.m in Sources */,
 				18F114AD1CAE36F600F53C42 /* RootTabBarController.m in Sources */,
 				186195C81CB357B60003A562 /* PlazaMainCell.m in Sources */,
@@ -1088,6 +1095,7 @@
 				18CCD1441CB8A461002595FD /* RecWebController.m in Sources */,
 				18F114AB1CAE36F600F53C42 /* FWBTarBarButton.m in Sources */,
 				18CCD1481CB8B46D002595FD /* OrginalController.m in Sources */,
+				185509541CC4DFF2002834D3 /* LessonViewController.m in Sources */,
 				18A114661CB4F5B400B13434 /* MBProgressHUD.m in Sources */,
 				183DDB131CBCDE830085A42F /* CommentFrame.m in Sources */,
 				186195CC1CB35BB00003A562 /* UserTableController.m in Sources */,

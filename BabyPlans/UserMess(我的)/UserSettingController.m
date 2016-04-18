@@ -31,6 +31,8 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
     
     [self.view addSubview:_tableView];
 }
@@ -48,18 +50,33 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
     UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+    cell.selectionStyle = UITableViewCellEditingStyleNone;
+
     if (indexPath.section==0) {
         cell.textLabel.text = _titleArr[indexPath.row];
         cell.textLabel.font = FONT_ADAPTED_NUM(17);
         cell.textLabel.textColor = ColorI(0x3b3b3b);
+        
+        //分割线
+        [cell.contentView buildBgView:ColorI(0xdddddd) frame:CGRectMake(0, cell.height-1, KScreenWidth, 1)];
     }else{
-//        cell = [[UITableViewCell alloc] init];
+
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn addTarget:self action:@selector(BtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        btn.frame = CGRectMake(0, 0, KScreenWidth, 50);
-        cell.textLabel.backgroundColor = [UIColor orangeColor];
-        cell.textLabel.text = @"注销";
-        [cell addSubview:btn];
+        btn.backgroundColor = [UIColor orangeColor];
+        
+        CGFloat btnX = 30*SCREEN_WIDTH_RATIO55;
+        CGFloat btnW = KScreenWidth - btnX*2;
+        
+        btn.frame = CGRectMake(btnX,0, btnW, cell.frame.size.height);
+        btn.layer.cornerRadius = 10*SCREEN_WIDTH_RATIO55;
+        btn.clipsToBounds = YES;
+        [btn setTitle:@"注销" forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        [cell.contentView addSubview:btn];
+        
+        cell.backgroundColor = [UIColor clearColor];
     }
     
     return cell;
@@ -77,9 +94,19 @@
         
         [defaults removeObjectForKey:@"session"];
         [defaults removeObjectForKey:@"token"];
-        [self.navigationController popViewControllerAnimated:YES];
+        
+        if ([self.delegate respondsToSelector:@selector(loginOutAndReloadSuccess:)]) {
+            [self.delegate loginOutAndReloadSuccess:^(BOOL isReload) {
+               
+                if (isReload) {
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+            }];
+        }
     }
 }
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
     

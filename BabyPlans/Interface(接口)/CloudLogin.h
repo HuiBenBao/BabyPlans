@@ -26,6 +26,14 @@ typedef void (^Failure)(NSError * errorMessage);
  */
 + (void)loginWithPhoneNum:(NSString *)phoneNum password:(NSString *)password success:(Success)success failure:(Failure)failure;
 /**
+ *  注册
+ *
+ *  @param phoneNum 手机号
+ *  @param password 密码
+ *  @param code 验证码
+ */
++ (void)registerWithPhoneNum:(NSString *)phoneNum password:(NSString *)password code:(NSString *)code success:(Success)success failure:(Failure)failure;
+/**
  *  获取广场数据
  *
  *  @param type    0：原创绘本 1:经典绘本
@@ -77,4 +85,10 @@ typedef void (^Failure)(NSError * errorMessage);
  */
 + (void)getUserMessageWithID:(NSString *)userID success:(Success)success failure:(Failure)failure;
 
+/**
+ *  查看课程
+ *  @param count 每页显示个数
+ *  @param page 显示页数（从1开始）
+ */
++ (void)getLessonCount:(NSString *)count Page:(NSString *)page Success:(Success)success failure:(Failure)failure;
 @end

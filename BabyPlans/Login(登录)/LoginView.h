@@ -26,5 +26,8 @@
 
 @property (nonatomic,weak) id <LoginViewDelegate>delegate;
 
-
+/**
+ *  外部登录
+ */
+- (void)loginWithPhoneNum:(NSString *)phonenum passWord:(NSString *)password;
 @end

@@ -17,6 +17,8 @@
 
 @property (nonatomic,strong) UIButton * signBtn;
 
+@property (nonatomic,strong) NSString * Phone;
+@property (nonatomic,strong) NSString * Password;
 @end
 
 @implementation LoginView
@@ -119,6 +121,8 @@
             self.passwordField = textField;
         }
         
+        
+
         [txtBackV addSubview:textField];
     }
     
@@ -382,4 +386,13 @@
     }
 }
 
+-(void)loginWithPhoneNum:(NSString *)phonenum passWord:(NSString *)password{
+    
+    _phoneField.text = phonenum;
+    _passwordField.text = password;
+    
+    [self signClick:_signBtn];
+    
+    
+}
 @end

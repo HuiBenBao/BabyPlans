@@ -13,7 +13,7 @@
 #import "UserSettingController.h"
 
 
-@interface UserTableController ()<LoginDelegate,UserMessCellDelegate>
+@interface UserTableController ()<LoginDelegate,UserMessCellDelegate,UserSettingDelegate>
 
 @property (nonatomic,strong) NSArray * dataArr;
 
@@ -45,9 +45,19 @@
  */
 - (void)pushSetting{
     
-    [self.navigationController pushViewController:[[UserSettingController alloc] init] animated:YES];
+    UserSettingController * VC = [[UserSettingController alloc] init];
+    VC.delegate = self;
+    
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
+#pragma ----mark----UserSettingDelegate
+- (void)loginOutAndReloadSuccess:(Reload)success{
+
+    self.model = nil;
+    [self.tableView reloadData];
+    success(YES);
+}
 - (void)reloadData{
     
     [CloudLogin getUserMessageWithID:[defaults objectForKey:@"token"] success:^(NSDictionary *responseObject) {
@@ -152,6 +162,7 @@
     loginVC.delegate = self;
     
     [self presentViewController:loginVC animated:YES completion:nil];
+    
 }
 - (void)pushDetailViewWithModel:(UserMessModel *)model{
 

@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+
+@protocol RegisterControllerDelegate <NSObject>
+@required
+- (void)getInfoPhoneNum:(NSString *)phonenum passWord:(NSString *)password;
+
+@end
+
 @interface RegisterController : UIViewController
+
+@property (nonatomic,weak) id <RegisterControllerDelegate>delegate;
 
 @end

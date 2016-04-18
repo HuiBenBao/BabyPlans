@@ -14,9 +14,13 @@
  */
 - (NSString *)trim;
 /**
- *  是否是数字
+ *  是否是手机号
  */
 - (BOOL)isValidPhoneNo;
+/**
+ *  是否数字
+ */
+- (BOOL)isNumber;
 
 -(BOOL) grep:(NSString*)pattern options:(int)options;
 - (NSString *)MD5String;

@@ -97,6 +97,8 @@ enum{
                 }
                 //            _HUD.hidden = YES;
                 _dataArrLeft = myDataArr;
+                
+                [self.tableViewLeft.mj_header setState:MJRefreshStateIdle];
                 [self.tableViewLeft reloadData];
 
             }
@@ -143,6 +145,8 @@ enum{
                 }
                 //            _HUD.hidden = YES;
                 _dataArrRight = myDataArr;
+                
+                [self.tableViewRight.mj_header setState:MJRefreshStateIdle];
                 [self.tableViewRight reloadData];
             }
             
@@ -219,7 +223,7 @@ enum{
     //底层视图
     self.mainScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     
-    _mainScrollView.backgroundColor = ColorI(0xff0000);
+    _mainScrollView.backgroundColor = ColorI(0xffffff);
     _mainScrollView.contentSize = CGSizeMake(KScreenWidth*TabbleViewCount, 0);
     _mainScrollView.pagingEnabled = YES;
     _mainScrollView.delegate = self;
@@ -229,7 +233,7 @@ enum{
     //将tabbleView添加到scrollerView上
     for (int i = 0; i < TabbleViewCount; i ++) {
         
-        UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(KScreenWidth*i, 0, KScreenWidth, KScreenHeight-KNavBarHeight) style:UITableViewStyleGrouped];
+        UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(KScreenWidth*i, tableHeaderHeight, KScreenWidth, KScreenHeight-KNavBarHeight-tableHeaderHeight-KTabBarHeight) style:UITableViewStylePlain];
         
         if (i==0) {
             tableView.tag = TableViewLeft;
@@ -247,9 +251,32 @@ enum{
             // 进入刷新状态后会自动调用这个block
             [self refreshWithTag:i];
         }];
+        
+        MJRefreshStateHeader * header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
+            // 进入刷新状态后会自动调用这个block
+//            [self refreshWithTag:i];
+            CGFloat currentX = self.mainScrollView.contentOffset.x;
+            currentX = currentX+KScreenWidth/2;
+            
+            int cuIndex = currentX/KScreenWidth;
+            
+//            self.topView.hidden = 1;
+            
+            if (cuIndex==0) {//左侧tableView
+                self.dataArrLeft = nil;
+                [self dataArrLeft];
+            }else{
+                self.dataArrRight = nil;
+                [self dataArrRight];
+            }
+        }];
+        
+        
         footer.stateLabel.hidden = YES;
         
+        tableView.mj_header = header;
         tableView.mj_footer = footer;
+        tableView.mj_header.tag = tableView.tag;
         tableView.mj_footer.tag = tableView.tag;
         
         tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);

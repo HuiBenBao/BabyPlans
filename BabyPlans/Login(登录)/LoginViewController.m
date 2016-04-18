@@ -10,9 +10,11 @@
 #import "LoginView.h"
 #import "RegisterController.h"
 
-@interface LoginViewController ()<LoginViewDelegate>
+@interface LoginViewController ()<LoginViewDelegate, RegisterControllerDelegate>
 
 @property (nonatomic,strong) LoginView * loginView;
+
+
 
 @end
 
@@ -30,6 +32,16 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+/**
+ *  手机号，密码
+ */
+- (void)getInfoPhoneNum:(NSString *)phonenum passWord:(NSString *)password{
+   
+    if (self.loginView) {
+        [self.loginView loginWithPhoneNum:phonenum passWord:password];
+    }
 }
 
 #pragma mark - 键盘处理
@@ -67,8 +79,9 @@
 }
 - (void)forgetOrRegisterWithTag:(NSInteger)btnTag{
 
-    UIStoryboard * storyBoard = [UIStoryboard storyboardWithName:@"RegisterController" bundle:nil];
-    RegisterController * VC = [storyBoard instantiateInitialViewController];
+    RegisterController * VC = [[RegisterController alloc] init];
+    
+    VC.delegate = self;
     
     [self presentViewController:VC animated:YES completion:nil];
 }

@@ -23,7 +23,6 @@
     NSMutableDictionary * parma = [NSMutableDictionary dictionary];
     [parma setValue:@"user_Login" forKey:@"action"];
     
-    NSLog(@"%@",phoneNum);
     [parma setValue:phoneNum forKey:@"mobile"];
     if (password) {
         [parma setValue:[password MD5String] forKey:@"password"];
@@ -39,6 +38,25 @@
     }];
 
 }
+
++ (void)registerWithPhoneNum:(NSString *)phoneNum password:(NSString *)password code:(NSString *)code success:(Success)success failure:(Failure)failure{
+
+    NSMutableDictionary * parma = [NSMutableDictionary dictionary];
+    [parma setValue:@"user_Register" forKey:@"action"];
+    
+    [parma setValue:phoneNum forKey:@"mobile"];
+    [parma setValue:code  forKey:@"verifi_code"];
+
+    [parma setValue:[password MD5String] forKey:@"password"];
+    
+    
+    [CloudLogin getDataWithURL:nil parameter:parma success:^(id data) {
+        success(data);
+    } failure:^(NSError *errorMessage) {
+        failure(errorMessage);
+    }];
+}
+
 + (void)getCodeWithPhoneNum:(NSString *)phoneNum success:(Success)success failure:(Failure)failure{
     
     NSMutableDictionary * parma = [NSMutableDictionary dictionary];
@@ -216,7 +234,23 @@
     }];
 
 }
++ (void)getLessonCount:(NSString *)count Page:(NSString *)page Success:(Success)success failure:(Failure)failure{
 
+    NSMutableDictionary * parma = [NSMutableDictionary dictionary];
+    
+    [parma setValue:@"lesson_Query" forKey:@"action"];
+    [parma setValue:@"2" forKey:@"type"];// 2 ：绘本宝
+    [parma setValue:count forKey:@"count"];
+    [parma setValue:page forKey:@"page"];
+
+    
+    [CloudLogin getDataWithURL:nil parameter:parma success:^(id data) {
+        success(data);
+    } failure:^(NSError *errorMessage) {
+        failure(errorMessage);
+    }];
+
+}
 
 
 
@@ -225,13 +259,11 @@
 
 + (void)getDataWithURL:(NSString *)path parameter:(id)parameter success:(void(^)(id data))success failure:(void (^)(NSError * errorMessage))failure{
 
-    
     //获取请求管理对象
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     //拼接接口
-    NSString * url = (path == nil) ? BASEURL : [NSString stringWithFormat:@"%@/%@",BASEURL,path];
-    
+    NSString * url = (path == nil) ? BASEURL : [NSString stringWithFormat:@"%@/%@",BASEURL,path];    
     //设置返回的数据格式
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager.responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"application/json",@"text/html", nil]];
