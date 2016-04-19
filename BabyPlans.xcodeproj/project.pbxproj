@@ -25,6 +25,8 @@
 		184BCA771CB362E5008314F4 /* CloudLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 184BCA761CB362E5008314F4 /* CloudLogin.m */; };
 		185509541CC4DFF2002834D3 /* LessonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185509531CC4DFF2002834D3 /* LessonViewController.m */; };
 		185509571CC4EADC002834D3 /* LessonListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 185509561CC4EADC002834D3 /* LessonListModel.m */; };
+		185509991CC5C552002834D3 /* LessonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 185509981CC5C552002834D3 /* LessonCell.m */; };
+		1855099B1CC5DCEA002834D3 /* LessonPlacdehoder.png in Resources */ = {isa = PBXBuildFile; fileRef = 1855099A1CC5DCEA002834D3 /* LessonPlacdehoder.png */; };
 		186195BB1CB347080003A562 /* PlazaTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186195BA1CB347080003A562 /* PlazaTableController.m */; };
 		186195C81CB357B60003A562 /* PlazaMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 186195C71CB357B60003A562 /* PlazaMainCell.m */; };
 		186195CC1CB35BB00003A562 /* UserTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186195CB1CB35BB00003A562 /* UserTableController.m */; };
@@ -161,6 +163,9 @@
 		185509531CC4DFF2002834D3 /* LessonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LessonViewController.m; sourceTree = "<group>"; };
 		185509551CC4EADC002834D3 /* LessonListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LessonListModel.h; sourceTree = "<group>"; };
 		185509561CC4EADC002834D3 /* LessonListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LessonListModel.m; sourceTree = "<group>"; };
+		185509971CC5C552002834D3 /* LessonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LessonCell.h; sourceTree = "<group>"; };
+		185509981CC5C552002834D3 /* LessonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LessonCell.m; sourceTree = "<group>"; };
+		1855099A1CC5DCEA002834D3 /* LessonPlacdehoder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LessonPlacdehoder.png; sourceTree = "<group>"; };
 		186195B91CB347080003A562 /* PlazaTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlazaTableController.h; sourceTree = "<group>"; };
 		186195BA1CB347080003A562 /* PlazaTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlazaTableController.m; sourceTree = "<group>"; };
 		186195C61CB357B60003A562 /* PlazaMainCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlazaMainCell.h; sourceTree = "<group>"; };
@@ -377,6 +382,37 @@
 				184BCA761CB362E5008314F4 /* CloudLogin.m */,
 			);
 			path = "Interface(接口)";
+			sourceTree = "<group>";
+		};
+		1855099C1CC5DEB0002834D3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				18CCD1421CB8A461002595FD /* RecWebController.h */,
+				18CCD1431CB8A461002595FD /* RecWebController.m */,
+				18CCD13F1CB7A14F002595FD /* RecommendController.h */,
+				18CCD1401CB7A14F002595FD /* RecommendController.m */,
+				185509521CC4DFF2002834D3 /* LessonViewController.h */,
+				185509531CC4DFF2002834D3 /* LessonViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		1855099D1CC5DEB8002834D3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				185509981CC5C552002834D3 /* LessonCell.m */,
+				185509971CC5C552002834D3 /* LessonCell.h */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		1855099E1CC5DEBE002834D3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				185509561CC4EADC002834D3 /* LessonListModel.m */,
+				185509551CC4EADC002834D3 /* LessonListModel.h */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		186195B81CB346E30003A562 /* Plaza(广场) */ = {
@@ -602,14 +638,9 @@
 		18CCD12F1CB7A09D002595FD /* Recommend(推荐) */ = {
 			isa = PBXGroup;
 			children = (
-				18CCD13F1CB7A14F002595FD /* RecommendController.h */,
-				18CCD1401CB7A14F002595FD /* RecommendController.m */,
-				185509521CC4DFF2002834D3 /* LessonViewController.h */,
-				185509531CC4DFF2002834D3 /* LessonViewController.m */,
-				185509551CC4EADC002834D3 /* LessonListModel.h */,
-				185509561CC4EADC002834D3 /* LessonListModel.m */,
-				18CCD1421CB8A461002595FD /* RecWebController.h */,
-				18CCD1431CB8A461002595FD /* RecWebController.m */,
+				1855099E1CC5DEBE002834D3 /* Model */,
+				1855099D1CC5DEB8002834D3 /* View */,
+				1855099C1CC5DEB0002834D3 /* Controller */,
 			);
 			name = "Recommend(推荐)";
 			path = "Recommend()推荐";
@@ -641,6 +672,7 @@
 		18CCD1491CB8DA45002595FD /* DefaultImg */ = {
 			isa = PBXGroup;
 			children = (
+				1855099A1CC5DCEA002834D3 /* LessonPlacdehoder.png */,
 				18886C7D1CC2195C007AEC7B /* defaultIconImg.png */,
 				18886C771CC0DB27007AEC7B /* NagavitionBarImg.png */,
 				183DDAE71CBB35370085A42F /* LoginBackView.png */,
@@ -962,6 +994,7 @@
 				18F114EE1CAE3B6F00F53C42 /* TabBarSeleted5.png in Resources */,
 				18CCD1221CB7907E002595FD /* plaza_bottomview1@2x.png in Resources */,
 				18F114E71CAE3B6F00F53C42 /* TabBar2.png in Resources */,
+				1855099B1CC5DCEA002834D3 /* LessonPlacdehoder.png in Resources */,
 				18886C601CC0CE46007AEC7B /* ShareSDKUI.bundle in Resources */,
 				18886C7E1CC2195C007AEC7B /* defaultIconImg.png in Resources */,
 				183DDAFA1CBB76240085A42F /* signUpImg2.png in Resources */,
@@ -1069,6 +1102,7 @@
 				18A114591CB3C3D500B13434 /* PlazaTopView.m in Sources */,
 				183DDAFF1CBB85030085A42F /* RegisterController.m in Sources */,
 				18CCD1561CB8F3B8002595FD /* LoginView.m in Sources */,
+				185509991CC5C552002834D3 /* LessonCell.m in Sources */,
 				184644381CB628BC0082F346 /* GalleryArrView.m in Sources */,
 				18A1145C1CB49F7600B13434 /* PlazaDataModel.m in Sources */,
 				18A114541CB3A66000B13434 /* UserMessCell.m in Sources */,

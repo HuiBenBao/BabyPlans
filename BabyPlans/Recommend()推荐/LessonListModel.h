@@ -15,6 +15,12 @@
  *  评论数量
  */
 @property (nonatomic,strong) NSString * commentCnt;
+/**
+ *  主图
+ */
+@property (nonatomic,strong) NSString * coverImg;
+@property (nonatomic,strong) NSString * createTime;
+
 @property (nonatomic,strong) NSString * videoLength;
 /**
  *  主视频
@@ -24,6 +30,8 @@
  *  预告片
  */
 @property (nonatomic,strong) NSString * videoPreview;
+
+@property (nonatomic,strong) NSString * messID;
 
 
 - (instancetype)initWithDic:(NSDictionary *)dic;

@@ -17,7 +17,6 @@
 
     if (self = [super init]) {
         if (ValidNum(dic[@"createTime"])) {
-            self.createTime = dic[@"createTime"];
             long long time = [dic[@"createTime"] longLongValue];
 
             self.createTime = [PersonalMethod stringFromUnixTime:time];
