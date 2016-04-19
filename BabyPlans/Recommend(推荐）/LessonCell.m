@@ -24,6 +24,8 @@
     
     if (!cell) {
         cell = [[LessonCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseID];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     return cell;

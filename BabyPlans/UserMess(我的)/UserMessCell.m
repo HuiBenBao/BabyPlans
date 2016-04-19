@@ -209,22 +209,7 @@ Model:(UserMessModel *)model{
         [self.delegate goLogin];
     }
 }
-/**
- *  点击头像
- */
-- (void)iconClick{
 
-    if (self.model) {
-        if ([self.delegate respondsToSelector:@selector(pushDetailViewWithModel:)]) {
-            [self.delegate pushDetailViewWithModel:self.model];
-        }
-    }else{
-        if ([self.delegate respondsToSelector:@selector(goLogin)]) {
-            [self.delegate goLogin];
-        }
-    }
-   
-}
 
 - (void)setModel:(UserMessModel *)model{
 

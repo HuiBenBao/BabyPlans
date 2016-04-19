@@ -19,7 +19,6 @@
 
 - (void)goLogin;
 
-- (void)pushDetailViewWithModel:(UserMessModel *)model;
 @end
 
 @interface UserMessCell : UITableViewCell

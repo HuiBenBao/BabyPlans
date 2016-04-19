@@ -45,6 +45,25 @@
             </objects>
             <point key="canvasLocation" x="510" y="-465"/>
         </scene>
+        <!--Upload View Controller-->
+        <scene sceneID="AJf-rB-5CF">
+            <objects>
+                <viewController id="FOz-to-hte" customClass="UploadViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AyG-o5-1Gc"/>
+                        <viewControllerLayoutGuide type="bottom" id="icq-ur-F1U"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WyO-9x-EYk">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="jLW-Cm-IGE"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Dg-Hq-Nap" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="520" y="418"/>
+        </scene>
         <!--广场-->
         <scene sceneID="ZQ9-cO-5eJ">
             <objects>
@@ -98,25 +117,6 @@
             </objects>
             <point key="canvasLocation" x="-435" y="-465"/>
         </scene>
-        <!--绘本宝-->
-        <scene sceneID="oli-Fz-hxS">
-            <objects>
-                <tableViewController id="Fcs-I5-VeS" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="1Ux-LI-6BE">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <connections>
-                            <outlet property="dataSource" destination="Fcs-I5-VeS" id="1JI-yJ-RJi"/>
-                            <outlet property="delegate" destination="Fcs-I5-VeS" id="Twh-A1-hFr"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="绘本宝" id="cxJ-5Y-PH0"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uzt-ME-sEu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="489" y="423"/>
-        </scene>
         <!--Navgation Controller-->
         <scene sceneID="kGB-Lw-TDP">
             <objects>
@@ -127,7 +127,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Fcs-I5-VeS" kind="relationship" relationship="rootViewController" id="QbY-5Z-qsl"/>
+                        <segue destination="FOz-to-hte" kind="relationship" relationship="rootViewController" id="HQm-24-bAS"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vwo-do-Z4A" userLabel="First Responder" sceneMemberID="firstResponder"/>

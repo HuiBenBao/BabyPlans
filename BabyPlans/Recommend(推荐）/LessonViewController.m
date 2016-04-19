@@ -8,6 +8,7 @@
 
 #import "LessonViewController.h"
 #import "LessonCell.h"
+#import "PlayerViewController.h"
 
 #define CountInOnePage 10    //每页显示数据个数
 
@@ -141,5 +142,18 @@
     cell.model = model;
     
     return cell;
+}
+
+#pragma ----mark------UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    LessonListModel * model = [_dataArr objectAtIndex:indexPath.row];
+    
+//    [self.navigationController pushViewController:[[AvdioPlayerController alloc] initWithModel:model] animated:YES];
+    
+    PlayerViewController *player = [[PlayerViewController alloc] init];
+    player.hidesBottomBarWhenPushed = YES;
+    player.videoModel = model;
+    [self.navigationController pushViewController:player animated:YES];
 }
 @end

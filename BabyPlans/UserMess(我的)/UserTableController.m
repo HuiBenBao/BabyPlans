@@ -11,7 +11,7 @@
 #import "Session.h"
 #import "LoginViewController.h"
 #import "UserSettingController.h"
-
+#import "UserDetailController.h"
 
 @interface UserTableController ()<LoginDelegate,UserMessCellDelegate,UserSettingDelegate>
 
@@ -145,6 +145,12 @@
             
             [self.navigationController pushViewController:[[UIViewController alloc] init] animated:YES];
             
+        }else if(indexPath.section==0){
+        
+            if (indexPath.row==0) {
+                [self.navigationController pushViewController:[UserDetailController userDetailWithModel:_model] animated:YES];
+
+            }
         }
     }
     
@@ -164,9 +170,7 @@
     [self presentViewController:loginVC animated:YES completion:nil];
     
 }
-- (void)pushDetailViewWithModel:(UserMessModel *)model{
 
-}
 #pragma ---mark-----判断是否登录
 - (BOOL)isLogin{
 

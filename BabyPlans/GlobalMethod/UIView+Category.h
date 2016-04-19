@@ -16,6 +16,7 @@
 
 - (CGFloat)height;
 - (CGFloat)width;
+- (CGFloat)right;
 -(UIView*) buildBgView:(UIColor*)color frame:(CGRect)rect;
 -(UILabel*) buildLabel:(NSString*)str frame:(CGRect)frame font:(UIFont*)font color:(UIColor*)color;
 /**

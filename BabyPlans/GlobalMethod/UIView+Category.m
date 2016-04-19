@@ -22,7 +22,10 @@
     
     return self.frame.size.width;
 }
+- (CGFloat)right{
 
+    return self.frame.origin.x + self.frame.size.width;
+}
 
 -(UIView*) buildBgView:(UIColor*)color frame:(CGRect)rect
 {
