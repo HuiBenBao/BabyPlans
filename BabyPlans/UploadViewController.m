@@ -7,83 +7,74 @@
 //
 
 #import "UploadViewController.h"
-#import "NewGalleryViewController.h"
-#import "NewPictureViewController.h"
+#import "CreateMyPictureController.h"
 
 @interface UploadViewController ()
+
 
 @end
 
 @implementation UploadViewController
 
+- (void)viewWillAppear:(BOOL)animated{
 
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
+    
     [self createUI];
 }
 
 - (void)createUI {
     
-    self.title = @"绘本宝";
-    self.view.backgroundColor = Color(255, 253, 234);
-    
-    CGFloat btnW = 80;
-    
-    float posY = (KScreenHeight - 20 - 180)/2;
-    UIButton *multiBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    multiBtn.frame = CGRectMake((KScreenWidth-btnW)/2, posY, btnW, btnW);
-    multiBtn.layer.cornerRadius = 40;
-    multiBtn.layer.borderColor = [UIColor colorWithRed:242/255.0 green:101/255.0 blue:34/255.0 alpha:1].CGColor;
-    multiBtn.layer.borderWidth = 2;
-    multiBtn.backgroundColor = [UIColor whiteColor];
-    [multiBtn setTitleColor:[UIColor colorWithRed:242/255.0 green:101/255.0 blue:34/255.0 alpha:1] forState:UIControlStateNormal];
-    [multiBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    [multiBtn setTitle:@"原创绘本" forState:UIControlStateNormal];
-    multiBtn.titleLabel.font = [UIFont systemFontOfSize:18];
-    [multiBtn addTarget:self action:@selector(newMultiPicture) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:multiBtn];
+    self.navigationItem.title = @"绘本宝";
+    self.view.backgroundColor = ViewBackColor;
     
     
-    posY += 80;
-    posY += 20;
-    UIButton *singleBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    singleBtn.frame = CGRectMake((KScreenWidth-btnW)/2, posY, 80, 80);
-    singleBtn.layer.cornerRadius = 40;
-    singleBtn.backgroundColor = [UIColor colorWithRed:242/255.0 green:101/255.0 blue:34/255.0 alpha:1];
-    [singleBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [singleBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    [singleBtn setTitle:@"经典绘本" forState:UIControlStateNormal];
-    singleBtn.titleLabel.font = [UIFont systemFontOfSize:18];
-    [singleBtn addTarget:self action:@selector(newSinglePicture) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:singleBtn];
+    NSArray * titleArr = @[@"原创绘本",@"经典绘本"];
+    
+    CGFloat btnW = 100*SCREEN_WIDTH_RATIO55;
+    CGFloat btnH = btnW;
+    CGFloat margic = 40*SCREEN_WIDTH_RATIO55;
+    CGFloat btnX = (KScreenWidth - btnW)/2;
+    
+    CGFloat tempY = (KScreenHeight - KTabBarHeight - btnH*titleArr.count - margic)/2;
+    for (int i = 0; i < titleArr.count; i++) {
+        
+        CGFloat btnY = tempY + (btnH+margic)*i;
+        
+        UIButton * paintBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        paintBtn.frame = CGRectMake(btnX, btnY, btnW, btnH);
+        
+        paintBtn.layer.borderWidth = 1;
+        paintBtn.layer.borderColor = [UIColor orangeColor].CGColor;
+        paintBtn.layer.cornerRadius = btnH/2;
+        paintBtn.clipsToBounds = YES;
+        
+        paintBtn.titleLabel.font = FONT_ADAPTED_NUM(18);
+        [paintBtn setTitle:titleArr[i] forState:UIControlStateNormal];
+        
+        UIColor * titleColor = (i==0) ? [UIColor orangeColor] : ColorI(0xffffff);
+        [paintBtn setTitleColor:titleColor forState:UIControlStateNormal];
+        [paintBtn setBackgroundColor:(i==1) ? [UIColor orangeColor] : ColorI(0xffffff)];
+        
+        paintBtn.tag = i;
+        [paintBtn addTarget:self action:@selector(paintClick:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self.view addSubview:paintBtn];
+    }
+
 }
 
 
 #pragma mark uievent
+- (void)paintClick:(UIButton *)sender{
 
-- (void)newSinglePicture {
-        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"0"] forKey:@"glSegementIndex"];
-        NewGalleryViewController *ngVC = [[NewGalleryViewController alloc] init];
-    
-//        ngVC.maxPictureCount = 30;
-//
-//        [self.navigationController pushViewController:ngVC animation:ViewSwitchAnimationNone finished:^{
-//        
-//        NewPictureViewController *picCtr = [[NewPictureViewController alloc] initWithRoot:ngVC];
-//
-//        [self.navigationController pushViewController:picCtr animated:YES];
-//    }];
-    
-}
-
-- (void)newMultiPicture {
-     [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"1"] forKey:@"glSegementIndex"];
-    NewGalleryViewController *ngVC = [[NewGalleryViewController alloc] init];
-//    ngVC.maxPictureCount = 30;
-
+    CreateMyPictureController *ngVC = [[CreateMyPictureController alloc] init];
     [self.navigationController pushViewController:ngVC animated:YES];
-    
+
 }
 
 

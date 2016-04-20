@@ -265,7 +265,6 @@ enum
  */
 - (void)startRecord{
 
-    
     self.audioRecorder = nil;
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setCategory:AVAudioSessionCategoryRecord error:nil];
