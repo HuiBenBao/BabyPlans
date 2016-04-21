@@ -9,7 +9,7 @@
 #import "CommentController.h"
 #import "CommentCell.h"
 #import <AVFoundation/AVFoundation.h>
-#import "AudioRecorder.h"
+
 
 
 #define TEXTVIEW_HEIGHT (60*SCREEN_WIDTH_RATIO55)

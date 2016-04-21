@@ -73,6 +73,7 @@
 - (void)paintClick:(UIButton *)sender{
 
     CreateMyPictureController *ngVC = [[CreateMyPictureController alloc] init];
+    ngVC.type = [NSString stringWithFormat:@"%ld",sender.tag];
     [self.navigationController pushViewController:ngVC animated:YES];
 
 }

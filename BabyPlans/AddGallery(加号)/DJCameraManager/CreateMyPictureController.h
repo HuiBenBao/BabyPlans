@@ -10,4 +10,6 @@
 
 @interface CreateMyPictureController : UIViewController
 
+@property (nonatomic,strong) NSString * type;
+
 @end

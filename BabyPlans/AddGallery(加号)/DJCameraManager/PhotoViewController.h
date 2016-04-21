@@ -11,7 +11,7 @@
 @protocol PhotoViewControllerDelegate <NSObject>
 
 @optional
-- (void)updateVoice:(NSString *)voiceStr image:(UIImage *)image;
+- (void)updateImgID:(NSString *)imgID image:(UIImage *)image;
 
 @end
 

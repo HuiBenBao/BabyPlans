@@ -91,4 +91,19 @@ typedef void (^Failure)(NSError * errorMessage);
  *  @param page 显示页数（从1开始）
  */
 + (void)getLessonCount:(NSString *)count Page:(NSString *)page Success:(Success)success failure:(Failure)failure;
+/**
+ *  上传图片和声音
+ *
+ *  @param image    图片
+ *  @param voiceLen 声音长度
+ */
++ (void)updatePictureWithImage:(UIImage *)image voiceLength:(NSString *)voiceLen uccess:(Success)success failure:(Failure)failure;
+/**
+ *  发布
+ *
+ *  @param content  内容
+ *  @param imgIDArr 图片id数组
+ */
++ (void)publishContent:(NSString *)content type:(NSString *)type ImgIDArr:(NSArray *)imgIDArr Success:(Success)success failure:(Failure)failure;
+
 @end

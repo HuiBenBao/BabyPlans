@@ -12,7 +12,6 @@
 @interface AddPicScrollView ()
 
 @property (nonatomic,strong) UIImageView * addImgView;
-@property (nonatomic,strong) NSMutableArray * imageViewArr;
 
 
 @end
@@ -37,17 +36,19 @@
         
         [self addSubview:_addImgView];
         
-        self.imageViewArr = [NSMutableArray array];
+        _imageViewArr = [NSMutableArray array];
     }
     
     return self;
 }
-- (void)addPicture:(UIImage *)img voice:(NSString *)voice{
+- (void)addPicture:(UIImage *)img imgID:(NSString *)imgID{
 
     UIImageView * imgView = [[UIImageView alloc] initWithImage:img];
     
+    imgView.tag = [imgID intValue];
+    
     [self addSubview:imgView];
-    [self.imageViewArr insertObject:imgView atIndex:0];
+    [_imageViewArr insertObject:imgView atIndex:0];
     
 }
 - (void)layoutSubviews{

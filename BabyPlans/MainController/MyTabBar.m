@@ -35,7 +35,7 @@
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor colorWithRed:242/255.0 green:101/255.0 blue:34/255.0 alpha:1] forState:UIControlStateSelected];
         
-        button.titleLabel.font = FONT_ADAPTED_NUM(10);
+        button.titleLabel.font = FONT_ADAPTED_NUM(15);
     }
     
     //设置点击响应

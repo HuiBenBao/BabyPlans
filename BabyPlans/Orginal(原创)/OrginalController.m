@@ -8,8 +8,8 @@
 
 #import "OrginalController.h"
 
-#define OrginalURL @"http://m.bbjhart.com/nd.jsp?id=541#module12"
-
+//#define OrginalURL @"http://m.bbjhart.com/nd.jsp?id=541#module12"
+#define OrginalURL @"http://m.v.qq.com/x/vplus/baobeijihua?pt=5&ver=4.8.0.12072&ptag=4_4.8.0.12072_wxf"
 @interface OrginalController ()<UIWebViewDelegate>
 
 @property (nonatomic,strong) MBProgressHUD * hud;

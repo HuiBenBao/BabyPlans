@@ -10,13 +10,16 @@
 #import "DJCameraViewController.h"
 #import "AddPicScrollView.h"
 #import "PhotoViewController.h"
+#import "MyTextView.h"
 
-@interface CreateMyPictureController ()<UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,AddPicScrollViewDelegate>
+@interface CreateMyPictureController ()<UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,AddPicScrollViewDelegate,PhotoViewControllerDelegate,UITextViewDelegate>
 
 //选择相片后存储在沙盒中的完整路径
 @property (nonatomic,strong) NSString * filePath;
 
 @property (nonatomic,strong) AddPicScrollView * addPicView;
+
+@property (nonatomic,strong) MyTextView * textView;
 
 @end
 
@@ -36,8 +39,72 @@
     self.addPicView.picDelegate = self;
     
     [self.view addSubview:_addPicView];
+    
+    self.textView = [[MyTextView alloc] initWithFrame:CGRectMake(10, _addPicView.bottom+10, KScreenWidth-20, 150*SCREEN_WIDTH_RATIO55)];
+    
+    self.textView.backgroundColor = ViewBackColor;
+    _textView.delegate = self;
+    [self.view addSubview:_textView];
+    
+    UIButton * publishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    publishBtn.frame = CGRectMake(20, _textView.bottom+30*SCREEN_WIDTH_RATIO55, KScreenWidth-40, 50*SCREEN_WIDTH_RATIO55);
+    
+    publishBtn.layer.cornerRadius = 8*SCREEN_WIDTH_RATIO55;
+    publishBtn.clipsToBounds = YES;
+    [publishBtn setTitle:@"发布" forState:UIControlStateNormal];
+    [publishBtn setTitleColor:ColorI(0xffffff) forState:UIControlStateNormal];
+    publishBtn.backgroundColor = [UIColor orangeColor];
+    
+    [publishBtn addTarget:self action:@selector(publishClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:publishBtn];
+}
+/**
+ *  发布按钮点击
+ */
+- (void)publishClick{
+
+    NSMutableArray * tempArr = [NSMutableArray array];
+    
+    for (UIImageView * imgV in self.addPicView.imageViewArr) {
+        if (imgV.tag > 0) {
+            [tempArr addObject:@(imgV.tag)];
+        }
+    }
+    
+    [CloudLogin publishContent:self.textView.text type:_type ImgIDArr:tempArr Success:^(NSDictionary *responseObject) {
+        NSLog(@"%@",responseObject);
+        
+        int status = [responseObject[@"status"] intValue];
+        
+        if (status==0) {
+            
+            [self.view poptips:@"发布成功"];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+        }else{
+        
+            [self.view poptips:responseObject[@"error"]];
+        }
+    } failure:^(NSError *errorMessage) {
+        [self.view poptips:@"网络异常"];
+    }];
+}
+#pragma ----mark-----UITextVIewDelegate
+- (void)textViewDidEndEditing:(UITextView *)textView{
+
+    _textView.placeholderLabel.hidden = YES;
 }
 
+- (void)textViewDidChange:(UITextView *)textView{
+
+    if ([_textView.text trim].length<=0) {
+        _textView.placeholderLabel.hidden = NO;
+    }
+}
 #pragma ------mark-----AddPicScrollViewDelegate
 
 - (void)addPictureBtnClick{
@@ -89,7 +156,7 @@
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
         //设置拍照后的图片可被编辑
-        picker.allowsEditing = YES;
+        picker.allowsEditing = NO;
         picker.sourceType = sourceType;
         
         [self presentViewController:picker animated:YES completion:^{
@@ -176,6 +243,8 @@
             PhotoViewController * VC = [[PhotoViewController alloc] init];
             
             VC.image = [UIImage imageWithContentsOfFile:_filePath];
+            VC.delegate = self;
+            
             [self presentViewController:VC animated:YES completion:nil];
             
         }];
@@ -185,6 +254,12 @@
     }
     
 }
+#pragma ----mark------PhotoViewControllerDelegate
+- (void)updateImgID:(NSString *)imgID image:(UIImage *)image{
+
+    [self.addPicView addPicture:image imgID:imgID];
+}
+
 #pragma mark- 缩放图片
 -(UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSize
 {

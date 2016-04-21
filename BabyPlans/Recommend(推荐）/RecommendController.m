@@ -25,27 +25,27 @@
 
 - (void)createUI{
 
-    CGFloat txtW = 304*SCREEN_WIDTH_RATIO55;
-    CGFloat txtH = 51*SCREEN_WIDTH_RATIO55;
-    CGFloat txtX = (KScreenWidth - txtW)/2;
-    CGFloat txtY = 100*SCREEN_WIDTH_RATIO55;
-    
-    UIImageView * txtView = [[UIImageView alloc] initWithFrame:CGRectMake(txtX, txtY, txtW, txtH)];
-    
-    txtView.image = [UIImage imageNamed:@"RecommednTxt"];
-    
-    [self.view addSubview:txtView];
+//    CGFloat txtW = 304*SCREEN_WIDTH_RATIO55;
+//    CGFloat txtH = 51*SCREEN_WIDTH_RATIO55;
+//    CGFloat txtX = (KScreenWidth - txtW)/2;
+//    CGFloat txtY = 100*SCREEN_WIDTH_RATIO55;
+//    
+//    UIImageView * txtView = [[UIImageView alloc] initWithFrame:CGRectMake(txtX, txtY, txtW, txtH)];
+//    
+//    txtView.image = [UIImage imageNamed:@"RecommednTxt"];
+//    
+//    [self.view addSubview:txtView];
     
     int count = 2;  //每行显示按钮个数
     for (int i = 0; i < bigBtnCount; i ++) {
         
         UIButton * bigBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         
-        CGFloat btnH = 100*SCREEN_WIDTH_RATIO55;
+        CGFloat btnH = 140*SCREEN_WIDTH_RATIO55;
         CGFloat btnW = btnH;
         CGFloat margic = (KScreenWidth-btnW*count) / (count*2);
         CGFloat btnX = margic + (btnW+margic*2) * (i%2);
-        CGFloat btnY = txtView.bottom + 50*SCREEN_WIDTH_RATIO55 + (btnW+margic) * (i/2);
+        CGFloat btnY = KNavBarHeight + 60*SCREEN_WIDTH_RATIO55 + (btnW+margic) * (i/2);
         
         bigBtn.frame = CGRectMake(btnX, btnY, btnW, btnH);
         

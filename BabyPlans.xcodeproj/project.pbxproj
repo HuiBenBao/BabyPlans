@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1829DE4D1CC8F4D200D0DB02 /* slider_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 1829DE4C1CC8F4D200D0DB02 /* slider_left.png */; };
+		1829DE501CC8FE6100D0DB02 /* MyTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829DE4F1CC8FE6100D0DB02 /* MyTextView.m */; };
 		183DDAE81CBB35370085A42F /* LoginBackView.png in Resources */ = {isa = PBXBuildFile; fileRef = 183DDAE71CBB35370085A42F /* LoginBackView.png */; };
 		183DDAF81CBB76240085A42F /* signUpImg0.png in Resources */ = {isa = PBXBuildFile; fileRef = 183DDAF51CBB76240085A42F /* signUpImg0.png */; };
 		183DDAF91CBB76240085A42F /* signUpImg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 183DDAF61CBB76240085A42F /* signUpImg1.png */; };
@@ -79,12 +81,10 @@
 		18550A301CC73430002834D3 /* addpic_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 18550A2F1CC73430002834D3 /* addpic_btn.png */; };
 		18550A331CC77391002834D3 /* addImg_playBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 18550A321CC77391002834D3 /* addImg_playBtn.png */; };
 		18550A351CC78C46002834D3 /* voiceChangePic.png in Resources */ = {isa = PBXBuildFile; fileRef = 18550A341CC78C46002834D3 /* voiceChangePic.png */; };
-		18550A381CC794A2002834D3 /* SCListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 18550A371CC794A2002834D3 /* SCListener.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		186195BB1CB347080003A562 /* PlazaTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186195BA1CB347080003A562 /* PlazaTableController.m */; };
 		186195C81CB357B60003A562 /* PlazaMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 186195C71CB357B60003A562 /* PlazaMainCell.m */; };
 		186195CC1CB35BB00003A562 /* UserTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186195CB1CB35BB00003A562 /* UserTableController.m */; };
 		18886BA51CBF33C7007AEC7B /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18886BA41CBF33C7007AEC7B /* libmp3lame.a */; };
-		18886BA91CBF34A8007AEC7B /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 18886BA81CBF34A8007AEC7B /* AudioRecorder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		18886C351CC0944A007AEC7B /* UserMessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18886C341CC0944A007AEC7B /* UserMessModel.m */; };
 		18886C391CC0CA0E007AEC7B /* UserDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18886C381CC0CA0E007AEC7B /* UserDetailController.m */; };
 		18886C5E1CC0CE46007AEC7B /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18886C3C1CC0CE46007AEC7B /* ShareSDK.framework */; };
@@ -184,6 +184,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1829DE4C1CC8F4D200D0DB02 /* slider_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_left.png; sourceTree = "<group>"; };
+		1829DE4E1CC8FE6100D0DB02 /* MyTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTextView.h; sourceTree = "<group>"; };
+		1829DE4F1CC8FE6100D0DB02 /* MyTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTextView.m; sourceTree = "<group>"; };
 		183DDAE71CBB35370085A42F /* LoginBackView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LoginBackView.png; sourceTree = "<group>"; };
 		183DDAF51CBB76240085A42F /* signUpImg0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signUpImg0.png; sourceTree = "<group>"; };
 		183DDAF61CBB76240085A42F /* signUpImg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signUpImg1.png; sourceTree = "<group>"; };
@@ -284,8 +287,6 @@
 		18550A2F1CC73430002834D3 /* addpic_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addpic_btn.png; sourceTree = "<group>"; };
 		18550A321CC77391002834D3 /* addImg_playBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addImg_playBtn.png; sourceTree = "<group>"; };
 		18550A341CC78C46002834D3 /* voiceChangePic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = voiceChangePic.png; sourceTree = "<group>"; };
-		18550A361CC794A2002834D3 /* SCListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCListener.h; sourceTree = "<group>"; };
-		18550A371CC794A2002834D3 /* SCListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCListener.m; sourceTree = "<group>"; };
 		186195B91CB347080003A562 /* PlazaTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlazaTableController.h; sourceTree = "<group>"; };
 		186195BA1CB347080003A562 /* PlazaTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlazaTableController.m; sourceTree = "<group>"; };
 		186195C61CB357B60003A562 /* PlazaMainCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlazaMainCell.h; sourceTree = "<group>"; };
@@ -293,9 +294,6 @@
 		186195CA1CB35BB00003A562 /* UserTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTableController.h; sourceTree = "<group>"; };
 		186195CB1CB35BB00003A562 /* UserTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTableController.m; sourceTree = "<group>"; };
 		18886BA41CBF33C7007AEC7B /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmp3lame.a; sourceTree = "<group>"; };
-		18886BA71CBF34A8007AEC7B /* AudioRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecorder.h; sourceTree = "<group>"; };
-		18886BA81CBF34A8007AEC7B /* AudioRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecorder.m; sourceTree = "<group>"; };
-		18886BAA1CBF34EE007AEC7B /* lame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lame.h; sourceTree = "<group>"; };
 		18886C331CC0944A007AEC7B /* UserMessModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMessModel.h; sourceTree = "<group>"; };
 		18886C341CC0944A007AEC7B /* UserMessModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMessModel.m; sourceTree = "<group>"; };
 		18886C371CC0CA0E007AEC7B /* UserDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailController.h; sourceTree = "<group>"; };
@@ -630,14 +628,14 @@
 			children = (
 				185509D51CC6363B002834D3 /* UploadViewController.h */,
 				185509D41CC6363B002834D3 /* UploadViewController.m */,
-				18550A361CC794A2002834D3 /* SCListener.h */,
-				18550A371CC794A2002834D3 /* SCListener.m */,
 				18550A291CC729D9002834D3 /* CreateMyPictureController.h */,
 				18550A2A1CC729D9002834D3 /* CreateMyPictureController.m */,
 				185509E01CC71C34002834D3 /* DJCameraViewController.h */,
 				185509E11CC71C34002834D3 /* DJCameraViewController.m */,
 				18550A261CC71CE0002834D3 /* PhotoViewController.h */,
 				18550A271CC71CE0002834D3 /* PhotoViewController.m */,
+				1829DE4E1CC8FE6100D0DB02 /* MyTextView.h */,
+				1829DE4F1CC8FE6100D0DB02 /* MyTextView.m */,
 			);
 			name = Controller;
 			path = DJCameraManager;
@@ -719,16 +717,6 @@
 				18886C341CC0944A007AEC7B /* UserMessModel.m */,
 			);
 			path = "UserMess(我的)";
-			sourceTree = "<group>";
-		};
-		18886BA61CBF34A0007AEC7B /* AudioRecorder */ = {
-			isa = PBXGroup;
-			children = (
-				18886BA71CBF34A8007AEC7B /* AudioRecorder.h */,
-				18886BA81CBF34A8007AEC7B /* AudioRecorder.m */,
-				18886BAA1CBF34EE007AEC7B /* lame.h */,
-			);
-			path = AudioRecorder;
 			sourceTree = "<group>";
 		};
 		18886C361CC0C9BC007AEC7B /* Controller */ = {
@@ -1035,7 +1023,6 @@
 				18F114C81CAE37CC00F53C42 /* AppDelegate */,
 				18F114C11CAE378600F53C42 /* GlobalMethod */,
 				18F114A41CAE36F600F53C42 /* MainController */,
-				18886BA61CBF34A0007AEC7B /* AudioRecorder */,
 				184BCA741CB362D0008314F4 /* Interface(接口) */,
 				186195B81CB346E30003A562 /* Plaza(广场) */,
 				185509D01CC6361C002834D3 /* AddGallery(加号) */,
@@ -1054,6 +1041,7 @@
 				18F114CA1CAE385D00F53C42 /* PrefixHeader.pch */,
 				18FD4B3C1CAE34DD00ACD4BC /* Assets.xcassets */,
 				18FD4B411CAE34DD00ACD4BC /* Info.plist */,
+				1829DE4C1CC8F4D200D0DB02 /* slider_left.png */,
 				18550A311CC7738B002834D3 /* CreateMyGallery */,
 				18CCD1301CB7A11E002595FD /* recommendImg */,
 				18CCD1111CB7907E002595FD /* PlazaCellBottomImg */,
@@ -1264,6 +1252,7 @@
 				18550A201CC71C34002834D3 /* touch_focus@2x.png in Resources */,
 				18CCD1251CB7907E002595FD /* plaza_bottomview2@2x.png in Resources */,
 				18550A131CC71C34002834D3 /* flashing_off@2x.png in Resources */,
+				1829DE4D1CC8F4D200D0DB02 /* slider_left.png in Resources */,
 				18CCD11E1CB7907E002595FD /* plaza_bottomview0.png in Resources */,
 				18550A121CC71C34002834D3 /* flashing_off.png in Resources */,
 				18CCD13E1CB7A11E002595FD /* RecommednTxt.png in Resources */,
@@ -1377,7 +1366,6 @@
 				18CCD1521CB8F355002595FD /* LoginViewController.m in Sources */,
 				183DDB061CBC9AA30085A42F /* Session.m in Sources */,
 				1846443B1CB63FF30082F346 /* GalleryImgModel.m in Sources */,
-				18886BA91CBF34A8007AEC7B /* AudioRecorder.m in Sources */,
 				18FD4B321CAE34DD00ACD4BC /* main.m in Sources */,
 				185509AD1CC5E36F002834D3 /* RecommendController.m in Sources */,
 				185509AA1CC5E36F002834D3 /* LessonCell.m in Sources */,
@@ -1390,7 +1378,6 @@
 				18F114AC1CAE36F600F53C42 /* MyTabBar.m in Sources */,
 				185509BE1CC61023002834D3 /* JRControlView.m in Sources */,
 				183DDB021CBB93990085A42F /* NSString+Category.m in Sources */,
-				18550A381CC794A2002834D3 /* SCListener.m in Sources */,
 				18550A051CC71C34002834D3 /* DJCameraViewController.m in Sources */,
 				186195BB1CB347080003A562 /* PlazaTableController.m in Sources */,
 				18CCD14E1CB8E85B002595FD /* CommentController.m in Sources */,
@@ -1415,6 +1402,7 @@
 				18F114C71CAE378600F53C42 /* UIImage+Category.m in Sources */,
 				18886C351CC0944A007AEC7B /* UserMessModel.m in Sources */,
 				18A114621CB4DBC400B13434 /* FWBUserModel.m in Sources */,
+				1829DE501CC8FE6100D0DB02 /* MyTextView.m in Sources */,
 				18550A241CC71C34002834D3 /* UIImage+DJResize.m in Sources */,
 				185509C01CC61023002834D3 /* PlayerViewController.m in Sources */,
 			);

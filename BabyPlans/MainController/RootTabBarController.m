@@ -39,7 +39,7 @@
     
     //添加对应的按钮个数
     
-    NSArray * titleArr = @[@"广场",@"推荐",@"原创",@"我的"];
+    NSArray * titleArr = @[@"广场",@"分类",@"故事",@"我的"];
     for (int i = 0; i < self.viewControllers.count; i++) {
         
         //设置图片和选中状态下的图片

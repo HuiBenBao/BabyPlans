@@ -18,8 +18,9 @@
 
 @interface AddPicScrollView : UIScrollView
 
-- (void)addPicture:(UIImage *)img voice:(NSString *)voice;
+- (void)addPicture:(UIImage *)img imgID:(NSString *)imgID;
 
 @property (nonatomic,weak) id <AddPicScrollViewDelegate>picDelegate;
+@property (nonatomic,strong,readonly) NSMutableArray * imageViewArr;
 
 @end

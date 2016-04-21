@@ -20,7 +20,7 @@ enum
 #import "PhotoViewController.h"
 #import "UIButton+DJBlock.h"
 #import <AVFoundation/AVFoundation.h>
-#import "SCListener.h"
+
 
 #define BottomHeight 100*SCREEN_WIDTH_RATIO55
 
@@ -32,8 +32,6 @@ enum
 @property (nonatomic,strong) AVAudioRecorder *audioRecorder;
 @property (nonatomic,strong) AVAudioPlayer * audioPlayer;
 
-@property (nonatomic,strong) NSData * mp3;
-
 @property (nonatomic,assign) int recordEncoding;
 @property (nonatomic,strong) NSTimer * timerForPitch;
 @property (nonatomic,strong) NSString * soundPath;
@@ -41,6 +39,7 @@ enum
 
 
 @property (nonatomic,weak) UIImageView * changeView;
+@property (nonatomic,weak) UIImageView * chageLittleView;
 
 @end
 
@@ -97,13 +96,32 @@ enum
         [self.view poptips:@"请添加声音"];
     }else{
     
-        if ([self.delegate respondsToSelector:@selector(updateVoice:image:)]) {
-            [self.delegate updateVoice:_soundPath image:self.image];
+        [CloudLogin updatePictureWithImage:_image voiceLength:[NSString stringWithFormat:@"%d",_currentTime] uccess:^(NSDictionary *responseObject) {
+            NSLog(@"%@",responseObject);
             
-            [self dismissViewControllerAnimated:YES completion:^{
-                _soundPath = nil;
-            }];
-        }
+            int status = [responseObject[@"staus"] intValue];
+            if (status == 0) {
+                
+                int imgID = [responseObject[@"pictureId"] intValue];
+                
+                if ([self.delegate respondsToSelector:@selector(updateImgID:image:)]) {
+                    [self.delegate updateImgID:[NSString stringWithFormat:@"%d",imgID] image:self.image];
+                    
+                    [self dismissViewControllerAnimated:YES completion:^{
+                        _soundPath = nil;
+                        _currentTime = 0;
+                    }];
+                }
+
+                
+            }else{
+            
+                [self.view poptips:responseObject[@"error"]];
+            }
+        } failure:^(NSError *errorMessage) {
+            [self.view poptips:@"网络异常"];
+        }];
+        
     }
 }
 
@@ -115,23 +133,23 @@ enum
     
     [self.view addSubview:bottomView];
     
-    //分类按钮
-    UIButton * classBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    CGFloat classW = 60*SCREEN_WIDTH_RATIO55;
-    CGFloat classH = classW;
-    CGFloat classX = (KScreenWidth/3 - classW)/2;
-    CGFloat classY = (BottomHeight - classH)/2;
-    
-    [classBtn setTitle:@"分类" forState:UIControlStateNormal];
-    [classBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-    classBtn.layer.cornerRadius = 8*SCREEN_WIDTH_RATIO55;
-    classBtn.layer.borderColor = [UIColor orangeColor].CGColor;
-    classBtn.layer.borderWidth = 1;
-    classBtn.clipsToBounds = YES;
-    
-    classBtn.frame = CGRectMake(classX, classY, classW, classH);
-    [bottomView addSubview:classBtn];
+//    //分类按钮
+//    UIButton * classBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    
+//    CGFloat classW = 60*SCREEN_WIDTH_RATIO55;
+//    CGFloat classH = classW;
+//    CGFloat classX = (KScreenWidth/3 - classW)/2;
+//    CGFloat classY = (BottomHeight - classH)/2;
+//    
+//    [classBtn setTitle:@"分类" forState:UIControlStateNormal];
+//    [classBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+//    classBtn.layer.cornerRadius = 8*SCREEN_WIDTH_RATIO55;
+//    classBtn.layer.borderColor = [UIColor orangeColor].CGColor;
+//    classBtn.layer.borderWidth = 1;
+//    classBtn.clipsToBounds = YES;
+//    
+//    classBtn.frame = CGRectMake(classX, classY, classW, classH);
+//    [bottomView addSubview:classBtn];
     
     //录音按钮
     UIButton * recordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -158,7 +176,7 @@ enum
     //回放按钮
     UIButton * playBackBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    CGFloat backW = classW;
+    CGFloat backW = 60*SCREEN_WIDTH_RATIO55;
     CGFloat backH = backW;
     CGFloat backY = (BottomHeight - backW)/2;
     CGFloat backX = KScreenWidth*2/3 + (KScreenWidth/3 -backW)/2;
@@ -316,10 +334,10 @@ enum
         [_audioRecorder record];
         
         _currentTime = 0;
+        
+        [self createChangeView];
         //定时器
         self.timerForPitch =[NSTimer scheduledTimerWithTimeInterval: 1.0f target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
-        //声音监听
-        [[SCListener sharedListener] listen];
         
         if (!self.changeView) {
             [self createChangeView];
@@ -335,13 +353,40 @@ enum
 - (void)levelTimerCallback:(NSTimer *)timer {
     _currentTime++;
     
-    Float32 voice = [[SCListener sharedListener] averagePower];
+    float   level;                // The linear 0.0 .. 1.0 value we need.
+    float   minDecibels = -80.0f; // Or use -60dB, which I measured in a silent room.
+    float   decibels    = [_audioRecorder averagePowerForChannel:0];
     
-    CGRect chanF = self.changeView.frame;
-    chanF.origin.y = voice;
+    if (decibels < minDecibels)
+    {
+        level = 0.0f;
+    }
+    else if (decibels >= 0.0f)
+    {
+        level = 1.0f;
+    }
+    else
+    {
+        float   root            = 2.0f;
+        float   minAmp          = powf(10.0f, 0.05f * minDecibels);
+        float   inverseAmpRange = 1.0f / (1.0f - minAmp);
+        float   amp             = powf(10.0f, 0.05f * decibels);
+        float   adjAmp          = (amp - minAmp) * inverseAmpRange;
+        
+        level = powf(adjAmp, 1.0f / root);
+    }
     
-    [UIView animateWithDuration:0.1 animations:^{
-        self.changeView.frame = chanF;
+
+    
+
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        CGRect littleF = self.chageLittleView.frame;
+        littleF.size.height = (_changeView.height/2)*level;
+        littleF.origin.y = littleF.origin.y - littleF.size.height;
+        
+        self.chageLittleView.frame = littleF;
     }];
     
 }
@@ -353,7 +398,9 @@ enum
     
     [_audioRecorder stop];
     
-    
+    self.changeView.hidden = YES;
+    [self.changeView removeFromSuperview];
+    self.changeView = nil;
 }
 
 - (void)cancelRecord{
@@ -369,6 +416,13 @@ enum
     changeView.center = self.view.center;
     self.changeView = changeView;
     
+    UIImageView * littleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"slider_left"]];
+    CGFloat littleW = _changeView.frame.size.width/8;
+    littleView.frame = CGRectMake((_changeView.width - littleW)/2, _changeView.height/2, littleW, 10);
+    
+    self.chageLittleView = littleView;
+    
+    [_changeView addSubview:littleView];
     [self.view addSubview:changeView];
     [self.view bringSubviewToFront:changeView];
 }
