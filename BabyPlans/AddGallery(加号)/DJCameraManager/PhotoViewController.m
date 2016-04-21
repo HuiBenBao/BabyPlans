@@ -14,7 +14,7 @@ enum
     ENC_ILBC = 4,
     ENC_ULAW = 5,
     ENC_PCM = 6,
-} encodingTypes;
+} encodingType;
 
 
 #import "PhotoViewController.h"
