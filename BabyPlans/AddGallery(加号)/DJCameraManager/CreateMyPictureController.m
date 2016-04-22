@@ -7,7 +7,6 @@
 //
 
 #import "CreateMyPictureController.h"
-#import "DJCameraViewController.h"
 #import "AddPicScrollView.h"
 #import "PhotoViewController.h"
 #import "MyTextView.h"
@@ -59,6 +58,8 @@
     [publishBtn addTarget:self action:@selector(publishClick) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:publishBtn];
+    
+    [self.view addTarget:self action:@selector(packUpKeyborad)];
 }
 /**
  *  发布按钮点击
@@ -268,5 +269,11 @@
     UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return scaledImage;
+}
+
+#pragma ----mark-----点击空白处收起键盘
+- (void)packUpKeyborad{
+
+    [self.textView resignFirstResponder];
 }
 @end

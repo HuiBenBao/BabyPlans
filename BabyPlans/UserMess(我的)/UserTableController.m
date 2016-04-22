@@ -13,7 +13,8 @@
 #import "UserSettingController.h"
 #import "UserDetailController.h"
 
-@interface UserTableController ()<LoginDelegate,UserMessCellDelegate,UserSettingDelegate>
+
+@interface UserTableController ()<LoginDelegate,UserMessCellDelegate,UserSettingDelegate,UserDetailControllerDelegate>
 
 @property (nonatomic,strong) NSArray * dataArr;
 
@@ -116,7 +117,7 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -126,6 +127,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
 
     return (section==0)?10:0;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+
+    UIView * footer = [[UIView alloc] init];
+    footer.backgroundColor = [UIColor clearColor];
+    
+    return footer;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -148,7 +156,11 @@
         }else if(indexPath.section==0){
         
             if (indexPath.row==0) {
-                [self.navigationController pushViewController:[UserDetailController userDetailWithModel:_model] animated:YES];
+                
+                UserDetailController * VC = [UserDetailController userDetailWithModel:_model];
+                VC.delegate = self;
+                
+                [self.navigationController pushViewController:VC animated:YES];
 
             }
         }
@@ -156,6 +168,14 @@
     
     
 }
+
+#pragma ----mark-----UserDetailControllerDelegate
+- (void)updateUserMess{
+
+    self.model = nil;
+    [self model];
+}
+
 #pragma ----mark-----UserMessCellDelegate
 - (void)bottomBtnIndex:(NSInteger)index{
 

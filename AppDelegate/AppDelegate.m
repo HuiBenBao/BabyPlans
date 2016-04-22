@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
+#import "GuideViewController.h"
+#import "RootTabBarController.h"
 
 //腾讯开放平台（对应QQ和QQ空间）SDK头文件
 #import <TencentOpenAPI/TencentOAuth.h>
@@ -18,7 +20,7 @@
 //新浪微博SDK头文件
 #import "WeiboSDK.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<UIAlertViewDelegate>
 
 @end
 
@@ -28,10 +30,33 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     
-    //时间栏样式
-    application.statusBarStyle = UIStatusBarStyleLightContent;
-    application.statusBarHidden = NO;
+    //是否是第一次进入app
+    if([defaults objectForKey:@"isFirstComeIn"] == nil){
+        // 首次运行进入引导页
+        [[UIApplication sharedApplication] setStatusBarHidden:YES];
+        self.window.rootViewController = [[GuideViewController alloc] init];
+        
+    }else {
+        
+        //时间栏样式
+        application.statusBarStyle = UIStatusBarStyleLightContent;
+        application.statusBarHidden = NO;
 
+        
+        // 不是首次运行则进入主页
+        UIStoryboard *storyboard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        
+        //2.下面这个方法代表着创建storyboard中箭头指向的控制器（初始控制器）
+        RootTabBarController *controller=[storyboard instantiateInitialViewController];
+        
+        
+        //3.设置控制器为Window的根控制器
+        self.window.rootViewController=controller;
+        
+        //版本更新
+        [self VersionUpdate];
+    }
+    
     /**
      *  设置ShareSDK的appKey，如果尚未在ShareSDK官网注册过App，请移步到http://mob.com/login 登录后台进行应用注册
      *  在将生成的AppKey传入到此方法中。
@@ -90,10 +115,63 @@
                  break;
          }
      }];
+    
+    [self.window makeKeyAndVisible];
     return YES;
   
 }
 
+#pragma ----mark-----版本更新
+- (void)VersionUpdate{
+
+    NSString *urlStr = @"https://itunes.apple.com/lookup?id=1061521366";
+    NSURL *url = [NSURL URLWithString:urlStr];
+    NSURLRequest *req = [NSURLRequest requestWithURL:url];
+    [NSURLConnection connectionWithRequest:req delegate:self];
+
+   
+    
+}
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
+
+    NSError * error = nil;
+    NSDictionary * json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+
+    
+    if (json != nil && error==nil) {
+        [self checkAppUpdate:json];
+    }
+}
+/**
+ *  与当前版本比较
+ */
+- (void)checkAppUpdate:(NSDictionary *)appInfo{
+
+    NSString * version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    NSString * appInfo1 = [[[appInfo objectForKey:@"results"]objectAtIndex:0]objectForKey:@"version"];
+    
+    if (![appInfo1 isEqualToString:version]) {
+        
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"" message:[NSString stringWithFormat:@"新版本 %@ 已发布 ",appInfo1] delegate:self.class cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+        
+        alert.delegate = self;
+        [alert addButtonWithTitle:@"前往更新"];
+        [alert show];
+        alert.tag = 20;
+    }else{
+        [[[UIAlertView alloc] initWithTitle:nil message:@"已是最新版本" delegate:self.class cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil] show];
+    }
+    
+}
+
+#pragma ---mark----AlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
+
+    if (buttonIndex==1 && alertView.tag==20) {
+        NSString * url = @"https://itunes.apple.com/cn/app/id1061521366";
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+    }
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

@@ -105,5 +105,19 @@ typedef void (^Failure)(NSError * errorMessage);
  *  @param imgIDArr 图片id数组
  */
 + (void)publishContent:(NSString *)content type:(NSString *)type ImgIDArr:(NSArray *)imgIDArr Success:(Success)success failure:(Failure)failure;
-
+/**
+ *  修改用户信息
+ *
+ *  @param icon     头像
+ *  @param name     昵称
+ *  @param birthday 生日
+ *  @param sex      性别
+ */
++ (void)changeIcon:(UIImage *)icon nikeName:(NSString *)name birthday:(NSString *)birthday sex:(NSString *)sex Success:(Success)success failure:(Failure)failure;
+/**
+ *  意见反馈
+ *
+ *  @param content 反馈内容
+ */
++ (void)SuggestWithContent:(NSString *)content Success:(Success)success failure:(Failure)failure;
 @end

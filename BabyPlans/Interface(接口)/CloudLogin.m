@@ -187,6 +187,85 @@
 
 }
 
++ (void)changeIcon:(UIImage *)icon nikeName:(NSString *)name birthday:(NSString *)birthday sex:(NSString *)sex Success:(Success)success failure:(Failure)failure{
+    
+    NSMutableDictionary * parma = [NSMutableDictionary dictionary];
+    
+    [parma setValue:@"user_Edit" forKey:@"action"];
+    
+    if (name){
+        [parma setValue:name forKey:@"nick_name"];
+    }
+    
+    if (birthday){
+        [parma setValue:birthday forKey:@"birthday"];
+    }
+    
+    if (sex){
+        [parma setValue:sex forKey:@"gender"];
+    }
+    
+    //获取请求管理对象
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    //设置返回的数据格式
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager.responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"application/json",@"text/html", nil]];
+    
+    if ([defaults valueForKey:@"session"]) {
+        
+        [manager.requestSerializer setValue:[defaults valueForKey:@"session"] forHTTPHeaderField:@"session_id"];
+    }
+    [manager POST:BASEURL parameters:parma constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        if (icon) {
+            
+            //这里将图片放在沙盒的documents文件夹中
+            NSString * DocumentsPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+            
+            //文件管理器
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            
+            //把刚刚图片转换的data对象拷贝至沙盒中 并保存为image.jpg
+            [fileManager createDirectoryAtPath:DocumentsPath withIntermediateDirectories:YES attributes:nil error:nil];
+            
+            //    图片压缩
+            NSData *imageDate = UIImageJPEGRepresentation(icon, 0.5);
+            
+            [fileManager createFileAtPath:[DocumentsPath stringByAppendingString:@"/image.png"] contents:imageDate attributes:nil];
+            
+            //得到选择后沙盒中图片的完整路径
+            NSString * filePath = [[NSString alloc]initWithFormat:@"%@%@",DocumentsPath,  @"/image.png"];
+            
+            [formData appendPartWithFileData:imageDate name:@"avatar" fileName:filePath mimeType:@"image/png"];
+        }
+
+        
+    } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        
+        success(dic);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure(error);
+    }];
+
+}
+
++ (void)SuggestWithContent:(NSString *)content Success:(Success)success failure:(Failure)failure{
+
+    NSMutableDictionary * parma = [NSMutableDictionary dictionary];
+    
+    [parma setValue:@"feedback_Add" forKey:@"action"];
+    [parma setValue:content forKey:@"content"];
+    
+    [CloudLogin getDataWithURL:nil parameter:parma success:^(id data) {
+        success(data);
+    } failure:^(NSError *errorMessage) {
+        failure(errorMessage);
+    }];
+
+    
+}
 + (void)updatePictureWithImage:(UIImage *)image voiceLength:(NSString *)voiceLen uccess:(Success)success failure:(Failure)failure{
 
     NSMutableDictionary * parma = [NSMutableDictionary dictionary];

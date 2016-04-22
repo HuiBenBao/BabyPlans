@@ -50,6 +50,10 @@ enum
 
 @property (nonatomic,assign) int currentTime;
 @property (nonatomic,assign) int totleTime;
+
+@property (nonatomic,weak) UIImageView * changeView;
+@property (nonatomic,weak) UIImageView * chageLittleView;
+
 @end
 
 @implementation CommentController
@@ -65,6 +69,13 @@ enum
     return commentVC;
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+
+    [super viewWillDisappear:animated];
+    
+    [self stop];
+    [self stopRecording];
+}
 - (NSArray *)dataArr{
 
     
@@ -320,6 +331,7 @@ enum
     
     NSError *error = nil;
     self.audioRecorder = [[ AVAudioRecorder alloc] initWithURL:url settings:recordSettings error:&error];
+    [self createChangeView];
     _audioRecorder.meteringEnabled = YES;
     if ([_audioRecorder prepareToRecord] == YES){
         _audioRecorder.meteringEnabled = YES;
@@ -333,6 +345,36 @@ enum
  */
 - (void)levelTimerCallback:(NSTimer *)timer {
     _currentTime++;
+    
+    [_audioRecorder updateMeters];
+    
+    float   level;                // The linear 0.0 .. 1.0 value we need.
+    float   minDecibels = -80.0f; // Or use -60dB, which I measured in a silent room.
+    float   decibels    = [_audioRecorder averagePowerForChannel:0];
+    
+    if (decibels < minDecibels){
+        level = 0.0f;
+    }else if (decibels >= 0.0f){
+        level = 1.0f;
+    }else{
+        float   root            = 2.0f;
+        float   minAmp          = powf(10.0f, 0.05f * minDecibels);
+        float   inverseAmpRange = 1.0f / (1.0f - minAmp);
+        float   amp             = powf(10.0f, 0.05f * decibels);
+        float   adjAmp          = (amp - minAmp) * inverseAmpRange;
+        
+        level = powf(adjAmp, 1.0f / root);
+    }
+    
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        CGRect littleF = self.chageLittleView.frame;
+        littleF.size.height = (_changeView.height/2)*level+10*SCREEN_WIDTH_RATIO55;
+        littleF.origin.y = _changeView.height/2 + 10 - littleF.size.height;
+        
+        self.chageLittleView.frame = littleF;
+    }];
 }
 -(void) pauseRecording {
     [_audioRecorder pause];
@@ -344,6 +386,27 @@ enum
     [_audioRecorder stop];
     self.totleTime = _currentTime;
     _currentTime=0;
+    
+    self.changeView.hidden = YES;
+    [self.changeView removeFromSuperview];
+    self.changeView = nil;
+}
+- (void)createChangeView{
+    
+    UIImageView * changeView = [[UIImageView alloc] initWithImage:[UIImage imageAutomaticName:@"voiceChangePic"]];
+    
+    changeView.center = self.view.center;
+    self.changeView = changeView;
+    
+    UIImageView * littleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"slider_left"]];
+    CGFloat littleW = _changeView.frame.size.width/8;
+    littleView.frame = CGRectMake((_changeView.width - littleW)/2, _changeView.height/2, littleW, 10);
+    
+    self.chageLittleView = littleView;
+    
+    [_changeView addSubview:littleView];
+    [self.view addSubview:changeView];
+    [self.view bringSubviewToFront:changeView];
 }
 
 /**
@@ -369,27 +432,34 @@ enum
  */
 - (void)replyMessWithType:(BOOL)isVoice content:(NSString *)content{
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    [CloudLogin pushCommentWithWithGalleryID:self.galleryID replyTo:nil voice:nil voiceLen:[NSString stringWithFormat:@"%d",_totleTime] content:content success:^(NSDictionary *responseObject) {
-        NSLog(@"%@",responseObject);
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        int status = [responseObject[@"status"] intValue];
-        if (status == 0) {
-            //重置数据
-            self.dataArr = nil;
-            [self dataArr];
-            
-            
-            //修改广场页评论数
-            if ([self.delegate respondsToSelector:@selector(reloadPlazaDataWithGalleryID:tabTag:indexPath:)]) {
-                [self.delegate reloadPlazaDataWithGalleryID:self.galleryID tabTag:self.tabTag indexPath:self.indexPath];
+    if (!content && _totleTime<3) {
+        [self.view poptips:@"请评论大于3秒的语音"];
+    }else{
+        
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        [CloudLogin pushCommentWithWithGalleryID:self.galleryID replyTo:nil voice:nil voiceLen:[NSString stringWithFormat:@"%d",_totleTime] content:content success:^(NSDictionary *responseObject) {
+            NSLog(@"%@",responseObject);
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            int status = [responseObject[@"status"] intValue];
+            if (status == 0) {
+                //重置数据
+                self.dataArr = nil;
+                [self dataArr];
+                
+                
+                //修改广场页评论数
+                if ([self.delegate respondsToSelector:@selector(reloadPlazaDataWithGalleryID:tabTag:indexPath:)]) {
+                    [self.delegate reloadPlazaDataWithGalleryID:self.galleryID tabTag:self.tabTag indexPath:self.indexPath];
+                }
             }
-        }
-    } failure:^(NSError *errorMessage) {
-        NSLog(@"%@",errorMessage);
-    }];
+        } failure:^(NSError *errorMessage) {
+            NSLog(@"%@",errorMessage);
+        }];
 
+    }
+    
+    
 }
 
 

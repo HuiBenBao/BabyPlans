@@ -7,7 +7,9 @@
 //
 
 #import "UserSettingController.h"
-@interface UserSettingController ()<UITableViewDelegate,UITableViewDataSource>
+#import "SuggestionController.h"
+
+@interface UserSettingController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate>
 
 @property (nonatomic,strong) UITableView * tableView;
 @property (nonatomic,strong) NSArray * titleArr;
@@ -109,6 +111,39 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    
+    NSInteger row = indexPath.row;
+    if (indexPath.section==0) {
+        if (row==0) {//意见反馈
+            
+            [self.navigationController pushViewController:[[SuggestionController alloc] init] animated:YES];
+            
+        }else if (row==1){//清除缓存
+        
+            UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"重置缓存"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"取消"
+                                                 destructiveButtonTitle:nil
+                                                      otherButtonTitles:@"重置", nil];
+            [sheet showInView:self.view];
+            
+        }
+    }
+}
+
+#pragma mark uiactionsheet delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        
+        NSString *imgPath = [NSTemporaryDirectory() stringByAppendingString:@"image"];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:imgPath]) {
+            [[NSFileManager defaultManager] removeItemAtPath:imgPath error:nil];
+        }
+        [[NSFileManager defaultManager] createDirectoryAtPath:imgPath
+                                  withIntermediateDirectories:NO
+                                                   attributes:nil
+                                                        error:nil];
+        
+        [self.view poptips:@"重置成功"];
+    }
 }
 @end

@@ -18,7 +18,6 @@ enum
 
 
 #import "PhotoViewController.h"
-#import "UIButton+DJBlock.h"
 #import <AVFoundation/AVFoundation.h>
 
 
@@ -74,11 +73,9 @@ enum
     [backBtn setTitle:@"返 回" forState:UIControlStateNormal];
     [backBtn setTitleColor:[UIColor yellowColor] forState:UIControlStateNormal];
     [topView addSubview:backBtn];
-    __weak typeof(self) weak = self;
-    [backBtn addActionBlock:^(id sender) {
-        [weak dismissViewControllerAnimated:YES completion:nil];
-    } forControlEvents:UIControlEventTouchUpInside];
     
+    [backBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
+   
     UIButton *enterBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     enterBtn.frame = CGRectMake(KScreenWidth - 20 - 44, 20, 44, 44);
     [enterBtn setTitle:@"确 定" forState:UIControlStateNormal];
@@ -89,7 +86,19 @@ enum
     [topView addSubview:enterBtn];
 
 }
+/**
+ *  返回上一页
+ */
+- (void)backBtnClick{
+    
+    [self stop];
+    [self stopRecording];
+    [self dismissViewControllerAnimated:YES completion:nil];
 
+}
+/**
+ *  点击确定按钮
+ */
 - (void)updateVoice{
 
     if (_soundPath == nil) {
@@ -133,23 +142,26 @@ enum
     
     [self.view addSubview:bottomView];
     
-//    //分类按钮
-//    UIButton * classBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    
-//    CGFloat classW = 60*SCREEN_WIDTH_RATIO55;
-//    CGFloat classH = classW;
-//    CGFloat classX = (KScreenWidth/3 - classW)/2;
-//    CGFloat classY = (BottomHeight - classH)/2;
-//    
-//    [classBtn setTitle:@"分类" forState:UIControlStateNormal];
-//    [classBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-//    classBtn.layer.cornerRadius = 8*SCREEN_WIDTH_RATIO55;
-//    classBtn.layer.borderColor = [UIColor orangeColor].CGColor;
-//    classBtn.layer.borderWidth = 1;
-//    classBtn.clipsToBounds = YES;
-//    
-//    classBtn.frame = CGRectMake(classX, classY, classW, classH);
-//    [bottomView addSubview:classBtn];
+    /*  按钮取消，暂时隐藏
+     *
+    //分类按钮
+    UIButton * classBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    CGFloat classW = 60*SCREEN_WIDTH_RATIO55;
+    CGFloat classH = classW;
+    CGFloat classX = (KScreenWidth/3 - classW)/2;
+    CGFloat classY = (BottomHeight - classH)/2;
+    
+    [classBtn setTitle:@"分类" forState:UIControlStateNormal];
+    [classBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+    classBtn.layer.cornerRadius = 8*SCREEN_WIDTH_RATIO55;
+    classBtn.layer.borderColor = [UIColor orangeColor].CGColor;
+    classBtn.layer.borderWidth = 1;
+    classBtn.clipsToBounds = YES;
+    
+    classBtn.frame = CGRectMake(classX, classY, classW, classH);
+    [bottomView addSubview:classBtn];
+    */
     
     //录音按钮
     UIButton * recordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -353,20 +365,17 @@ enum
 - (void)levelTimerCallback:(NSTimer *)timer {
     _currentTime++;
     
+    [_audioRecorder updateMeters];
+    
     float   level;                // The linear 0.0 .. 1.0 value we need.
     float   minDecibels = -80.0f; // Or use -60dB, which I measured in a silent room.
     float   decibels    = [_audioRecorder averagePowerForChannel:0];
     
-    if (decibels < minDecibels)
-    {
+    if (decibels < minDecibels){
         level = 0.0f;
-    }
-    else if (decibels >= 0.0f)
-    {
+    }else if (decibels >= 0.0f){
         level = 1.0f;
-    }
-    else
-    {
+    }else{
         float   root            = 2.0f;
         float   minAmp          = powf(10.0f, 0.05f * minDecibels);
         float   inverseAmpRange = 1.0f / (1.0f - minAmp);
@@ -377,14 +386,11 @@ enum
     }
     
 
-    
-
-    
     [UIView animateWithDuration:0.5 animations:^{
         
         CGRect littleF = self.chageLittleView.frame;
-        littleF.size.height = (_changeView.height/2)*level;
-        littleF.origin.y = littleF.origin.y - littleF.size.height;
+        littleF.size.height = (_changeView.height/2)*level+10*SCREEN_WIDTH_RATIO55;
+        littleF.origin.y = _changeView.height/2 + 10 - littleF.size.height;
         
         self.chageLittleView.frame = littleF;
     }];

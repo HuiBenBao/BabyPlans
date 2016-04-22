@@ -66,9 +66,9 @@
  */
 - (void)bigBtnClick:(UIButton *)sender{
     
-    if (sender.tag==1) {
-        [self.navigationController pushViewController:[[LessonViewController alloc] init] animated:YES];
-    }else
+//    if (sender.tag==1) {
+//        [self.navigationController pushViewController:[[LessonViewController alloc] init] animated:YES];
+//    }else
         [self.navigationController pushViewController:[RecWebController RecWebWithIndex:sender.tag] animated:YES];
 }
 @end
