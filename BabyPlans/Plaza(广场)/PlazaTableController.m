@@ -570,6 +570,10 @@ enum{
             
             if (model.coverImg) {
                 
+                if (model.content ==nil || model.content.length==0) {
+                    model.content = @"看绘本，上绘本宝";
+                }
+                
                 NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
                 [shareParams SSDKSetupShareParamsByText:model.content
                                                  images:model.coverImg

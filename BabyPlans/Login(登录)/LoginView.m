@@ -8,6 +8,10 @@
 
 #import "LoginView.h"
 #import <ShareSDK/ShareSDK.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+#import "WXApi.h"
+#import "WeiboSDK.h"
+
 @interface LoginView ()
 
 @property (nonatomic,strong) UIImageView * logoView;
@@ -169,27 +173,49 @@
     }
     
     //第三方登录
-    NSArray * loginTypeArr = @[@"新浪登录",@"微信登录",@"QQ登录"];
+    NSMutableArray * tollArr = [NSMutableArray array];
+    
+//    if ([WeiboSDK isWeiboAppInstalled]) {
+//        [tollArr addObject:@"新浪登录"];
+//    }
+    if ([WXApi isWXAppInstalled]) {
+        [tollArr addObject:@"微信登录"];
+    }
+    if ([QQApiInterface isQQInstalled]) {
+        [tollArr addObject:@"QQ登录"];
+    }
+    //第三方登录
+    NSArray * loginTypeArr = tollArr;
     
     for (int i = 0; i < loginTypeArr.count; i++) {
         
         UIButton * customBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         
         CGFloat margic = 20*SCREEN_WIDTH_RATIO55;
-        CGFloat btnW = (txtBackW - (loginTypeArr.count-1)*margic)/loginTypeArr.count;
+        CGFloat btnW = (txtBackW - (3-1)*margic)/3;
         CGFloat btnX = txtBackX + (btnW + margic)*i;
         CGFloat btnY = maxY + 40*SCREEN_WIDTH_RATIO55;
         CGFloat btnH = btnW;
         
         customBtn.frame = CGRectMake(btnX, btnY, btnW, btnH);
         
-        customBtn.tag = i;
         customBtn.titleLabel.font = FONT_ADAPTED_NUM(11);
         [customBtn setTitleColor:ColorI(0x5b5b5b) forState:UIControlStateNormal];
         [customBtn setTitle:loginTypeArr[i] forState:UIControlStateNormal];
         [customBtn addTarget:self action:@selector(customBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         customBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, -btnH/2, 0);
-        [customBtn setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"signUpImg%d",i]] forState:UIControlStateNormal];
+        
+        if ([loginTypeArr[i] isEqualToString:@"新浪登录"]) {
+            customBtn.tag = 0;
+        }else if ([loginTypeArr[i] isEqualToString:@"微信登录"]){
+            
+            customBtn.tag = 1;
+        }else if ([loginTypeArr[i] isEqualToString:@"QQ登录"]){
+            
+            customBtn.tag = 2;
+        }
+        
+        [customBtn setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"signUpImg%ld",(long)customBtn.tag]] forState:UIControlStateNormal];
         
         [self addSubview:customBtn];
         

@@ -44,7 +44,7 @@
                     @"http://babyproject.faisco.cn/h-nd-537-112_454.html",
                     @"http://m.bbjhart.com/nd.jsp?id=543&from=groupmessage&isappinstalled=0",
                     @"http://babyproject.faisco.cn/h-nd-538-112_454.html",
-                    @"http://babyproject.faisco.cn/h-nd-539-112_454.html"];
+                    @"http://m.bbjhart.com/nd.jsp?id=541#module12"];
     }
     
     return _URLArr;

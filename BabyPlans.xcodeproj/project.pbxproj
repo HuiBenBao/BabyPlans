@@ -122,6 +122,7 @@
 		18CCD1521CB8F355002595FD /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CCD1511CB8F355002595FD /* LoginViewController.m */; };
 		18CCD1561CB8F3B8002595FD /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CCD1551CB8F3B8002595FD /* LoginView.m */; };
 		18CCD1581CB8FA9E002595FD /* appLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CCD1571CB8FA9E002595FD /* appLogo.png */; };
+		18EE4F0A1CCA13D0007CE01E /* palazImgCoverBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EE4F091CCA13D0007CE01E /* palazImgCoverBtn.png */; };
 		18F114AB1CAE36F600F53C42 /* FWBTarBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F114A61CAE36F600F53C42 /* FWBTarBarButton.m */; };
 		18F114AC1CAE36F600F53C42 /* MyTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F114A81CAE36F600F53C42 /* MyTabBar.m */; };
 		18F114AD1CAE36F600F53C42 /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F114AA1CAE36F600F53C42 /* RootTabBarController.m */; };
@@ -339,6 +340,7 @@
 		18CCD1541CB8F3B8002595FD /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		18CCD1551CB8F3B8002595FD /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		18CCD1571CB8FA9E002595FD /* appLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appLogo.png; sourceTree = "<group>"; };
+		18EE4F091CCA13D0007CE01E /* palazImgCoverBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palazImgCoverBtn.png; sourceTree = "<group>"; };
 		18F114A51CAE36F600F53C42 /* FWBTarBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWBTarBarButton.h; sourceTree = "<group>"; };
 		18F114A61CAE36F600F53C42 /* FWBTarBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWBTarBarButton.m; sourceTree = "<group>"; };
 		18F114A71CAE36F600F53C42 /* MyTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTabBar.h; sourceTree = "<group>"; };
@@ -799,6 +801,7 @@
 		18CCD1111CB7907E002595FD /* PlazaCellBottomImg */ = {
 			isa = PBXGroup;
 			children = (
+				18EE4F091CCA13D0007CE01E /* palazImgCoverBtn.png */,
 				183DDB1E1CBE1C410085A42F /* comtentSend.png */,
 				183DDB141CBE188D0085A42F /* touchSay.png */,
 				18CCD1121CB7907E002595FD /* plaza_bottomview0.png */,
@@ -1196,6 +1199,7 @@
 				18CCD13A1CB7A11E002595FD /* Recommend_btn1.png in Resources */,
 				183DDB1F1CBE1C410085A42F /* comtentSend.png in Resources */,
 				18FD4B3D1CAE34DD00ACD4BC /* Assets.xcassets in Resources */,
+				18EE4F0A1CCA13D0007CE01E /* palazImgCoverBtn.png in Resources */,
 				18CCD13B1CB7A11E002595FD /* Recommend_btn2.png in Resources */,
 				18CCD1281CB7907E002595FD /* plaza_bottomview3@2x.png in Resources */,
 				18CCD1251CB7907E002595FD /* plaza_bottomview2@2x.png in Resources */,

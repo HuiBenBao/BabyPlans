@@ -18,6 +18,10 @@
 @property (nonatomic,strong) UITableView * tableView;
 
 @property (nonatomic,weak) UIImageView * iconView;
+
+@property (nonatomic,weak) UIButton * imgCoverBtn;
+
+
 @property (nonatomic,weak) UILabel * nameLbl;
 @property (nonatomic,weak) UILabel * dateLbl;
 @property (nonatomic,weak) UIImageView * coverImgView;
@@ -79,6 +83,18 @@
         self.coverImgView = imageV;
         
         [self addSubview:imageV];
+        
+        //图片上按钮
+        UIButton * coverBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        [coverBtn setImage:[UIImage imageNamed:@"palazImgCoverBtn.png"] forState:UIControlStateNormal];
+        
+        coverBtn.backgroundColor = [UIColor blackColor];
+        coverBtn.alpha = 0.5;
+        
+        self.imgCoverBtn = coverBtn;
+        
+        [self addSubview:coverBtn];
         
         //图片上文字
         UILabel * imgTextLbl = [[UILabel alloc] init];
@@ -158,6 +174,9 @@
     
     self.coverImgView.frame = self.modelFrame.imageF;
     
+    self.imgCoverBtn.frame = self.modelFrame.imageF;
+    
+    [self.imgCoverBtn addTarget:self action:@selector(coverImgClick:)];
     //图片添加点击事件
     [self.coverImgView addTarget:self action:@selector(coverImgClick:)];
     

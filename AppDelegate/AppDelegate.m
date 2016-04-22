@@ -66,7 +66,8 @@
      */
     [ShareSDK registerApp:@"d3528fc0e720"
      
-          activePlatforms:@[@(SSDKPlatformTypeSinaWeibo),
+          activePlatforms:@[
+//                            @(SSDKPlatformTypeSinaWeibo),
                             @(SSDKPlatformTypeWechat),
                             @(SSDKPlatformTypeQQ),]
                  onImport:^(SSDKPlatformType platformType)
@@ -79,9 +80,9 @@
              case SSDKPlatformTypeQQ:
                  [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
                  break;
-             case SSDKPlatformTypeSinaWeibo:
-                 [ShareSDKConnector connectWeibo:[WeiboSDK class]];
-                 break;
+//             case SSDKPlatformTypeSinaWeibo:
+//                 [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+//                 break;
              default:
                  break;
          }
@@ -122,6 +123,7 @@
 }
 
 #pragma ----mark-----版本更新
+
 - (void)VersionUpdate{
 
     NSString *urlStr = @"https://itunes.apple.com/lookup?id=1061521366";
@@ -172,6 +174,8 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
     }
 }
+
+
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
