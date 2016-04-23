@@ -33,7 +33,9 @@
         if (ValidStr(dic[@"cover"])) {
             self.coverImg = dic[@"cover"];
         }
-        
+        if (ValidStr(dic[@"avatarSmall"])) {
+            self.minImg = dic[@"avatarSmall"];
+        }
         if (ValidNum(dic[@"pictureCnt"])) {
             self.pictureCount = dic[@"pictureCnt"];
         }

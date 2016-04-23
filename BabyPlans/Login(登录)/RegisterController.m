@@ -51,7 +51,7 @@
     topLbl.frame = CGRectMake(0, 0, KScreenWidth, LblH);
     topLbl.backgroundColor = ColorI(0xf26522);
     
-    topLbl.text = @"注册";
+    topLbl.text = (_type==0) ? @"找回密码" : @"注册";
     topLbl.textColor = ColorI(0xffffff);
     topLbl.textAlignment = NSTextAlignmentCenter;
     
@@ -117,7 +117,7 @@
             textField.keyboardType = UIKeyboardTypePhonePad;
             self.secondField = textField;
         }else if (i==2){
-            textField.placeholder = @"密码";
+            textField.placeholder = (_type==0) ? @"新密码" : @"密码";
             self.thirdField = textField;
         }
         
@@ -136,7 +136,9 @@
     
     registerBtn.frame = CGRectMake(reBtnX, reBtnY, reBtnW, reBtnH);
     [registerBtn setTitleColor:ColorI(0xffffff) forState:UIControlStateNormal];
-    [registerBtn setTitle:@"注册" forState:UIControlStateNormal];
+    
+    NSString * title = (_type==0) ? @"确定" : @"注册";
+    [registerBtn setTitle:title forState:UIControlStateNormal];
     registerBtn.backgroundColor = ColorI(0x20afc4);
     
     [registerBtn addTarget:self action:@selector(registerBtnClick) forControlEvents:UIControlEventTouchUpInside];
@@ -157,7 +159,8 @@
 //        _getCode.userInteractionEnabled = NO;
         _getCode.titleLabel.font = FONT_ADAPTED_WIDTH(GetCodeFont);
     
-        [CloudLogin getCodeWithPhoneNum:[self.firstField.text trim] success:^(NSDictionary *responseObject) {
+        NSString * type = (_type==0) ? @"1" : @"0";
+        [CloudLogin getCodeWithPhoneNum:[self.firstField.text trim] type:type success:^(NSDictionary *responseObject) {
             
             NSLog(@"-----%@",responseObject);
             
@@ -222,13 +225,17 @@
         [CloudLogin registerWithPhoneNum:[self.firstField.text trim]
                                 password:[self.thirdField.text trim]
                                     code:[self.secondField.text trim]
+                                type:_type
                                  success:^(NSDictionary *responseObject) {
             NSLog(@"%@",responseObject);
             
             int status = [responseObject[@"status"] intValue];
             if (status==0) {
                 
-                [self.view poptips:@"注册成功"];
+                if (_type==0) {
+                    [self.view poptips:@"修改成功"];
+                }else
+                    [self.view poptips:@"注册成功"];
                 
                 if ([self.delegate respondsToSelector:@selector(getInfoPhoneNum:passWord:)]) {
                     [self.delegate getInfoPhoneNum:_firstField.text passWord:_thirdField.text];

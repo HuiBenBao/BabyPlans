@@ -81,6 +81,7 @@
 
     RegisterController * VC = [[RegisterController alloc] init];
     
+    VC.type = btnTag;
     VC.delegate = self;
     
     [self presentViewController:VC animated:YES completion:nil];

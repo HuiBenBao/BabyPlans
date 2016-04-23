@@ -326,6 +326,8 @@ enum{
                 PlazaDataFrame * modelFrame = [[PlazaDataFrame alloc] init];
                 modelFrame.model = model;
                 
+                NSLog(@"%@,%@",model.user.name,model.coverImg);
+                
                 [myDataArr addObject:modelFrame];
             }
             
@@ -489,11 +491,17 @@ enum{
         PlazaDataModel * model = plazaFrame.model;
         UITableView * tableView = (tableTag==TableViewLeft) ? self.tableViewLeft : self.tableViewRight;
         
+        
         if (index==0) { //点赞
             
+            MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.dimBackground = YES;
+
             [CloudLogin likeWithGalleryID:galleryID type:@"1" success:^(NSDictionary *responseObject) {
                 NSLog(@"点赞----%@",responseObject);
                 
+                hud.hidden = YES;
+                [hud removeFromSuperview];
                 int status = [responseObject[@"status"] intValue];
                 if (status==0) {
                     [self.view poptips:@"点赞成功"];
@@ -524,11 +532,14 @@ enum{
                     [self.view poptips:responseObject[@"error"]];
                 
             } failure:^(NSError *errorMessage) {
+                
+                hud.hidden = YES;
+                [hud removeFromSuperview];
                 NSLog(@"点赞----%@",errorMessage);
             }];
             
         }else if (index == 1){//评论
-            
+
             CommentController * commentVC = [CommentController commentWithGalleryID:galleryID tabTag:(int)tableTag];
             commentVC.indexPath = indexPath;
             commentVC.delegate = self;
@@ -537,10 +548,16 @@ enum{
             
         }else if (index==2){//关注
             
+            MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.dimBackground = YES;
             
             [CloudLogin attentionToUserID:model.user.userID type:nil success:^(NSDictionary *responseObject) {
                 NSLog(@"%@",responseObject);
                 int status = [responseObject[@"status"] intValue];
+                
+                hud.hidden = YES;
+                [hud removeFromSuperview];
+                
                 if (status==0) {
                     
                     int following = [responseObject[@"following"] intValue];
@@ -551,10 +568,9 @@ enum{
                         int reslut = [responseObject[@"status"] intValue];
                         NSLog(@"------%@",responseObject);
                         if (reslut==0) {
-                            
+                                
                             NSString * mess = (following == 0) ? @"关注成功" : @"已取消";
                             [self.view poptips:mess];
-                            
                         }
                     } failure:nil];
                     
@@ -562,6 +578,9 @@ enum{
                 }
                 
             } failure:^(NSError *errorMessage) {
+                
+                hud.hidden = YES;
+                [hud removeFromSuperview];
                 NSLog(@"%@",errorMessage);
             }];
         }else if (index==3){//分享
@@ -570,27 +589,26 @@ enum{
             
             if (model.coverImg) {
                 
-                if (model.content ==nil || model.content.length==0) {
-                    model.content = @"看绘本，上绘本宝";
-                }
-                
                 NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
                 [shareParams SSDKSetupShareParamsByText:model.content
                                                  images:model.coverImg
                                                     url:[NSURL URLWithString:Urlstr]
-                                                  title:@"绘本宝"
+                                                  title:@"看绘本，上绘本宝"
                                                 type:SSDKContentTypeAuto];
+            
+                //获取图片
+                UIImage * littleImg = [UIImage imageWithURLString:model.coverImg];
                 
-                
-                UIImageView * imgV = [[UIImageView alloc] init];
-                [imgV sd_setImageWithURL:[NSURL URLWithString:model.coverImg]];
+                //压缩
+                float kCompressionQuality = 0.3;
+                NSData *photo = UIImageJPEGRepresentation(littleImg, kCompressionQuality);
                 
                 // 定制微信好友的分享内容
                 [shareParams SSDKSetupWeChatParamsByText:model.content
-                                                   title:@"绘本宝"
+                                                   title:@"看绘本，上绘本宝"
                                                    url:[NSURL URLWithString:Urlstr]
                                                    thumbImage:nil
-                                                   image:imgV.image
+                                                   image:[UIImage imageWithData:photo]
                                                    musicFileURL:[NSURL URLWithString:model.galleryBase]
                                                     extInfo:nil
                                                     fileData:nil
@@ -599,10 +617,10 @@ enum{
                                       forPlatformSubType:SSDKPlatformSubTypeWechatSession];
                 // 微信朋友圈
                 [shareParams SSDKSetupWeChatParamsByText:model.content
-                                                   title:@"绘本宝"
+                                                   title:@"看绘本，上绘本宝"
                                                      url:[NSURL URLWithString:Urlstr]
                                               thumbImage:nil
-                                                   image:imgV.image
+                                                   image:[UIImage imageWithData:photo]
                                             musicFileURL:[NSURL URLWithString:model.galleryBase]
                                                  extInfo:nil
                                                 fileData:nil

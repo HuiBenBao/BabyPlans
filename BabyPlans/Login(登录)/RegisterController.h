@@ -17,6 +17,11 @@
 
 @interface RegisterController : UIViewController
 
+/**
+ *  0：忘记密码  1：注册
+ */
+@property (nonatomic,assign) NSInteger type;
+
 @property (nonatomic,weak) id <RegisterControllerDelegate>delegate;
 
 @end

@@ -30,4 +30,12 @@
     
     return img;
 }
+// 根据url获取UIImage
++ (UIImage *)imageWithURLString:(NSString *)urlString{
+
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    // 这里并没有自动释放UIImage对象
+    return [[UIImage alloc] initWithData:data];
+}
 @end

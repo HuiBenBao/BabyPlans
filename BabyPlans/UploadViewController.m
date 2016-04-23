@@ -8,6 +8,7 @@
 
 #import "UploadViewController.h"
 #import "CreateMyPictureController.h"
+#import "LoginViewController.h"
 
 @interface UploadViewController ()
 
@@ -77,6 +78,27 @@
     [self.navigationController pushViewController:ngVC animated:YES];
 
 }
+- (void)goLogin{
+    
+    if ([self isLogin]) {
+        LoginViewController * loginVC = [[LoginViewController alloc] init];
+//        loginVC.delegate = self;
+        
+        [self presentViewController:loginVC animated:YES completion:nil];
+    }
+}
 
+#pragma ---mark-----判断是否登录
+- (BOOL)isLogin{
+    
+    if (![defaults objectForKey:@"session"]) {//未登录
+        
+        [self goLogin];
+        return NO;
+    }else{
+        
+        return YES;
+    }
+}
 
 @end

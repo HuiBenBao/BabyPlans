@@ -26,7 +26,10 @@
  *  首张图片
  */
 @property (nonatomic,strong) NSString * coverImg;
-
+/**
+ *  缩略图（分享用）
+ */
+@property (nonatomic,strong) NSString * minImg;
 /**
  *  图片数量
  */

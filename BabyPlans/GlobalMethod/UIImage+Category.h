@@ -20,4 +20,8 @@
  *  根据颜色和尺寸来生成图片
  */
 + (UIImage *)imageWithColor:(UIColor *)color ImgSize:(CGRect)rect;
+/**
+ *  根据URL获取图片
+ */
++ (UIImage *)imageWithURLString:(NSString *)urlString;
 @end

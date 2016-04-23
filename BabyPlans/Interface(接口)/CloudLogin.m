@@ -39,10 +39,12 @@
 
 }
 
-+ (void)registerWithPhoneNum:(NSString *)phoneNum password:(NSString *)password code:(NSString *)code success:(Success)success failure:(Failure)failure{
++ (void)registerWithPhoneNum:(NSString *)phoneNum password:(NSString *)password code:(NSString *)code type:(NSInteger)type success:(Success)success failure:(Failure)failure{
 
     NSMutableDictionary * parma = [NSMutableDictionary dictionary];
-    [parma setValue:@"user_Register" forKey:@"action"];
+    
+    NSString * action = (type==0) ? @"user_Reset" : @"user_Register";
+    [parma setValue:action forKey:@"action"];
     
     [parma setValue:phoneNum forKey:@"mobile"];
     [parma setValue:code  forKey:@"verifi_code"];
@@ -57,11 +59,11 @@
     }];
 }
 
-+ (void)getCodeWithPhoneNum:(NSString *)phoneNum success:(Success)success failure:(Failure)failure{
++ (void)getCodeWithPhoneNum:(NSString *)phoneNum type:(NSString *)type success:(Success)success failure:(Failure)failure{
     
     NSMutableDictionary * parma = [NSMutableDictionary dictionary];
     [parma setValue:@"verificode_Query" forKey:@"action"];
-    
+    [parma setObject:type forKey:@"verifi_type"];
     [parma setValue:phoneNum forKey:@"mobile"];
     
     

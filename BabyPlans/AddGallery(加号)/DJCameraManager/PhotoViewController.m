@@ -134,7 +134,7 @@ enum
                 [self.view poptips:responseObject[@"error"]];
             }
         } failure:^(NSError *errorMessage) {
-            FONTBOLD_ADAPTED_WIDTH(<#s#>)
+            
             hud.hidden = YES;
             [hud removeFromSuperview];
             [self.view poptips:@"网络异常"];

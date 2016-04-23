@@ -17,7 +17,7 @@ typedef void (^Failure)(NSError * errorMessage);
  *
  *  @param phoneNum 手机号
  */
-+ (void)getCodeWithPhoneNum:(NSString *)phoneNum success:(Success)success failure:(Failure)failure;
++ (void)getCodeWithPhoneNum:(NSString *)phoneNum type:(NSString *)type success:(Success)success failure:(Failure)failure;
 /**
  *  登录
  *
@@ -26,13 +26,15 @@ typedef void (^Failure)(NSError * errorMessage);
  */
 + (void)loginWithPhoneNum:(NSString *)phoneNum password:(NSString *)password success:(Success)success failure:(Failure)failure;
 /**
- *  注册
+ *  注册 or 修改密码
  *
  *  @param phoneNum 手机号
  *  @param password 密码
  *  @param code 验证码
+ *  @param type 0:修改密码 1：注册
  */
-+ (void)registerWithPhoneNum:(NSString *)phoneNum password:(NSString *)password code:(NSString *)code success:(Success)success failure:(Failure)failure;
++ (void)registerWithPhoneNum:(NSString *)phoneNum password:(NSString *)password code:(NSString *)code type:(NSInteger)type success:(Success)success failure:(Failure)failure;
+
 /**
  *  获取广场数据
  *
