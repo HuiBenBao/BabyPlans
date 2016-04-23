@@ -105,9 +105,15 @@ enum
         [self.view poptips:@"请添加声音"];
     }else{
     
+        MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        hud.dimBackground = YES;
+        
         [CloudLogin updatePictureWithImage:_image voiceLength:[NSString stringWithFormat:@"%d",_currentTime] uccess:^(NSDictionary *responseObject) {
             NSLog(@"%@",responseObject);
             
+            hud.hidden = YES;
+            [hud removeFromSuperview];
             int status = [responseObject[@"staus"] intValue];
             if (status == 0) {
                 
@@ -128,6 +134,9 @@ enum
                 [self.view poptips:responseObject[@"error"]];
             }
         } failure:^(NSError *errorMessage) {
+            FONTBOLD_ADAPTED_WIDTH(<#s#>)
+            hud.hidden = YES;
+            [hud removeFromSuperview];
             [self.view poptips:@"网络异常"];
         }];
         
