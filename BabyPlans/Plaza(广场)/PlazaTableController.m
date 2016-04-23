@@ -589,13 +589,7 @@ enum{
             
             if (model.coverImg) {
                 
-                NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-                [shareParams SSDKSetupShareParamsByText:model.content
-                                                 images:model.coverImg
-                                                    url:[NSURL URLWithString:Urlstr]
-                                                  title:@"看绘本，上绘本宝"
-                                                type:SSDKContentTypeAuto];
-            
+                
                 //获取图片
                 UIImage * littleImg = [UIImage imageWithURLString:model.coverImg];
                 
@@ -603,12 +597,21 @@ enum{
                 float kCompressionQuality = 0.3;
                 NSData *photo = UIImageJPEGRepresentation(littleImg, kCompressionQuality);
                 
+                UIImage * upImage = [UIImage imageWithData:photo];
+                
+                NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+                [shareParams SSDKSetupShareParamsByText:model.content
+                                                 images:upImage
+                                                    url:[NSURL URLWithString:Urlstr]
+                                                  title:@"看绘本，上绘本宝"
+                                                type:SSDKContentTypeAuto];
+                
                 // 定制微信好友的分享内容
                 [shareParams SSDKSetupWeChatParamsByText:model.content
                                                    title:@"看绘本，上绘本宝"
                                                    url:[NSURL URLWithString:Urlstr]
                                                    thumbImage:nil
-                                                   image:[UIImage imageWithData:photo]
+                                                   image:upImage
                                                    musicFileURL:[NSURL URLWithString:model.galleryBase]
                                                     extInfo:nil
                                                     fileData:nil
@@ -620,7 +623,7 @@ enum{
                                                    title:@"看绘本，上绘本宝"
                                                      url:[NSURL URLWithString:Urlstr]
                                               thumbImage:nil
-                                                   image:[UIImage imageWithData:photo]
+                                                   image:upImage
                                             musicFileURL:[NSURL URLWithString:model.galleryBase]
                                                  extInfo:nil
                                                 fileData:nil
