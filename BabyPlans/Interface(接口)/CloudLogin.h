@@ -122,4 +122,8 @@ typedef void (^Failure)(NSError * errorMessage);
  *  @param content 反馈内容
  */
 + (void)SuggestWithContent:(NSString *)content Success:(Success)success failure:(Failure)failure;
+/**
+ *  获取系统反馈消息
+ */
++ (void)SystemMessSuccess:(Success)success failure:(Failure)failure;
 @end

@@ -106,7 +106,7 @@
 
 
 #define ValidStr(f) (f!=nil && [f isKindOfClass:[NSString class]] && ![f isEqualToString:@""])
-#define ValidDict(f) (f!=nil && [f isKindOfClass:[NSDictionary class]] && [f count]>0)
+#define ValidDict(f) (f!=nil && [f isKindOfClass:[NSDictionary class]])
 #define ValidArray(f) (f!=nil && [f isKindOfClass:[NSArray class]] && [f count]>0)
 #define ValidNum(f) (f!=nil && [f isKindOfClass:[NSNumber class]])
 #define ValidClass(f,cls) (f!=nil && [f isKindOfClass:[cls class]])

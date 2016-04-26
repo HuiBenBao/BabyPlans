@@ -81,11 +81,17 @@
         
         if (status==0) {
             
-            [self.view poptips:@"发布成功"];
+            UIAlertController *alertCtrl = [UIAlertController alertControllerWithTitle:@"上传成功，请耐心等待审核" message:nil preferredStyle:UIAlertControllerStyleAlert];
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                
                 [self.navigationController popViewControllerAnimated:YES];
-            });
+            }];
+
+            
+            [alertCtrl addAction:cancelAction];
+            [self presentViewController:alertCtrl animated:YES completion:nil];
+            
         }else{
         
             [self.view poptips:responseObject[@"error"]];

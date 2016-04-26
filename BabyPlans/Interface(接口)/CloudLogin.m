@@ -428,6 +428,19 @@
 
 }
 
++ (void)SystemMessSuccess:(Success)success failure:(Failure)failure{
+
+    NSMutableDictionary * parma = [NSMutableDictionary dictionary];
+    
+    [parma setValue:@"msgsend_query" forKey:@"action"];
+    [parma setValue:[defaults valueForKey:@"token"] forKey:@"userId"];
+    
+    [CloudLogin getDataWithURL:nil parameter:parma success:^(id data) {
+        success(data);
+    } failure:^(NSError *errorMessage) {
+        failure(errorMessage);
+    }];
+}
 
 
 #pragma mark>>>>>>------公用方法---------
