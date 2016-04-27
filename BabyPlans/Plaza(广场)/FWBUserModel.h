@@ -28,6 +28,9 @@
  */
 @property (nonatomic,strong) NSString * icon;
 
+//@property (nonatomic,strong) NSString * <#name#>;
+
+
 + (instancetype)valueWithDic:(NSDictionary *)dic;
 - (instancetype)initWithDic:(NSDictionary *)dic;
 @end

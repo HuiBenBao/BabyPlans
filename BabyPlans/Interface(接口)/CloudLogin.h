@@ -41,8 +41,9 @@ typedef void (^Failure)(NSError * errorMessage);
  *  @param type    0：原创绘本 1:经典绘本
  *  @param page    页码
  *  @param count   每页显示的信息条数
+ *  @param userID  要查询此用户的图集时使用
  */
-+ (void)getPlazaDataWithType:(NSString *)type page:(NSString *)page count:(NSString *)count success:(Success)success failure:(Failure)failure;
++ (void)getPlazaDataWithType:(NSString *)type page:(NSString *)page count:(NSString *)count userID:(NSString *)userID success:(Success)success failure:(Failure)failure;
 /**
  *  获取图集
  *
@@ -126,4 +127,26 @@ typedef void (^Failure)(NSError * errorMessage);
  *  获取系统反馈消息
  */
 + (void)SystemMessSuccess:(Success)success failure:(Failure)failure;
+/**
+ *  获取用户收藏
+ *
+ *  @param page    页数
+ *  @param count   每页个数
+ */
++ (void)UserCollectWihtPage:(NSString *)page count:(NSString *)count Success:(Success)success failure:(Failure)failure;
+
+/**
+ *  获取用户关注
+ *
+ *  @param page    页数
+ *  @param count   每页个数
+ */
++ (void)UserAttentionWihtPage:(NSString *)page count:(NSString *)count Success:(Success)success failure:(Failure)failure;
+/**
+ *  获取用户关注
+ *
+ *  @param page    页数
+ *  @param count   每页个数
+ */
++ (void)UserFansWihtPage:(NSString *)page count:(NSString *)count Success:(Success)success failure:(Failure)failure;
 @end

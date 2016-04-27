@@ -23,8 +23,8 @@ enum{
 } TableView;
 
 enum{
-    DataTypeClassical, //经典绘本
-    DataTypeOrginal //原创绘本
+     DataTypeOrginal, //原创绘本
+     DataTypeClassical //经典绘本
 
 } DataType;
 
@@ -77,7 +77,7 @@ enum{
         
         self.pageClassical = 1;
         
-        [CloudLogin getPlazaDataWithType:[NSString stringWithFormat:@"%d",DataTypeOrginal] page:[NSString stringWithFormat:@"%d",_pageClassical] count:DataCount success:^(NSDictionary *responseObject) {
+        [CloudLogin getPlazaDataWithType:[NSString stringWithFormat:@"%d",DataTypeClassical] page:[NSString stringWithFormat:@"%d",_pageClassical] count:DataCount userID:nil success:^(NSDictionary *responseObject) {
             
             NSLog(@"经典绘本：==%@",responseObject);
             HUD.hidden = YES;
@@ -126,7 +126,7 @@ enum{
         
         NSMutableArray * myDataArr = [NSMutableArray array];
 
-        [CloudLogin getPlazaDataWithType:[NSString stringWithFormat:@"%d",DataTypeClassical] page:[NSString stringWithFormat:@"%d",_pageOrginal] count:DataCount success:^(NSDictionary *responseObject) {
+        [CloudLogin getPlazaDataWithType:[NSString stringWithFormat:@"%d",DataTypeOrginal] page:[NSString stringWithFormat:@"%d",_pageOrginal] count:DataCount userID:nil success:^(NSDictionary *responseObject) {
             
             NSLog(@"原创绘本：==%@",responseObject);
             HUD.hidden = YES;
@@ -300,7 +300,7 @@ enum{
     
    
 
-    [CloudLogin getPlazaDataWithType:[NSString stringWithFormat:@"%d",type] page:[NSString stringWithFormat:@"%d",page] count:DataCount success:^(NSDictionary *responseObject) {
+    [CloudLogin getPlazaDataWithType:[NSString stringWithFormat:@"%d",type] page:[NSString stringWithFormat:@"%d",page] count:DataCount userID:nil success:^(NSDictionary *responseObject) {
         
         NSArray * currentArr = isLeftTable ? _dataArrLeft : _dataArrRight;
         NSMutableArray * myDataArr = [NSMutableArray arrayWithArray:currentArr];
@@ -325,8 +325,6 @@ enum{
                 
                 PlazaDataFrame * modelFrame = [[PlazaDataFrame alloc] init];
                 modelFrame.model = model;
-                
-                NSLog(@"%@,%@",model.user.name,model.coverImg);
                 
                 [myDataArr addObject:modelFrame];
             }
@@ -492,19 +490,19 @@ enum{
         UITableView * tableView = (tableTag==TableViewLeft) ? self.tableViewLeft : self.tableViewRight;
         
         
-        if (index==0) { //点赞
+        if (index==0) { //收藏
             
             MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             hud.dimBackground = YES;
 
             [CloudLogin likeWithGalleryID:galleryID type:@"1" success:^(NSDictionary *responseObject) {
-                NSLog(@"点赞----%@",responseObject);
+                NSLog(@"收藏----%@",responseObject);
                 
                 hud.hidden = YES;
                 [hud removeFromSuperview];
                 int status = [responseObject[@"status"] intValue];
                 if (status==0) {
-                    [self.view poptips:@"点赞成功"];
+                    [self.view poptips:@"收藏成功"];
                     
                     //修改并刷新数据
                     model.likeCount = [NSString stringWithFormat:@"%d",[model.likeCount intValue]+1];
@@ -512,11 +510,11 @@ enum{
                 }else if(status==2){//取消点赞
                     
                     [CloudLogin likeWithGalleryID:galleryID type:@"0" success:^(NSDictionary *responseObject) {
-                        NSLog(@"取消点赞----%@",responseObject);
+                        NSLog(@"取消收藏----%@",responseObject);
                         
                         int status = [responseObject[@"status"] intValue];
                         if (status==0) {
-                            [self.view poptips:@"已取消点赞"];
+                            [self.view poptips:@"已取消收藏"];
                             
                             //修改并刷新数据
                             model.likeCount = [NSString stringWithFormat:@"%d",[model.likeCount intValue]-1];
@@ -535,7 +533,7 @@ enum{
                 
                 hud.hidden = YES;
                 [hud removeFromSuperview];
-                NSLog(@"点赞----%@",errorMessage);
+                NSLog(@"收藏----%@",errorMessage);
             }];
             
         }else if (index == 1){//评论
@@ -569,7 +567,7 @@ enum{
                         NSLog(@"------%@",responseObject);
                         if (reslut==0) {
                                 
-                            NSString * mess = (following == 0) ? @"关注成功" : @"已取消";
+                            NSString * mess = (following == 1) ? @"关注成功" : @"已取消";
                             [self.view poptips:mess];
                         }
                     } failure:nil];

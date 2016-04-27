@@ -76,16 +76,24 @@
     
 }
 
-+ (void)getPlazaDataWithType:(NSString *)type page:(NSString *)page count:(NSString *)count success:(Success)success failure:(Failure)failure{
++ (void)getPlazaDataWithType:(NSString *)type page:(NSString *)page count:(NSString *)count userID:(NSString *)userID success:(Success)success failure:(Failure)failure{
     
     NSMutableDictionary * parma = [NSMutableDictionary dictionary];
-    [parma setValue:type forKey:@"type"];
+
+    if (type) {
+        [parma setValue:type forKey:@"type"];
+
+    }
+    
+    if (userID) {
+        [parma setValue:userID forKey:@"user_id"];
+    }
     [parma setValue:@"gallery_query" forKey:@"action"];
-//    [parma setValue:@"gallery_list" forKey:@"action"];
+
 
     [parma setValue:page forKey:@"page"];
     [parma setValue:count forKey:@"count"];
-//    [parma setValue:@"userId" forKey:@"5"];
+
 
     
     [CloudLogin getDataWithURL:nil parameter:parma success:^(id data) {
@@ -441,7 +449,51 @@
         failure(errorMessage);
     }];
 }
++ (void)UserCollectWihtPage:(NSString *)page count:(NSString *)count Success:(Success)success failure:(Failure)failure{
 
+    NSMutableDictionary * parma = [NSMutableDictionary dictionary];
+    
+    [parma setValue:@"gallery_Like" forKey:@"action"];
+    [parma setValue:page forKey:@"page"];
+    [parma setValue:count forKey:@"count"];
+    
+    [CloudLogin getDataWithURL:nil parameter:parma success:^(id data) {
+        success(data);
+    } failure:^(NSError *errorMessage) {
+        failure(errorMessage);
+    }];
+}
++ (void)UserAttentionWihtPage:(NSString *)page count:(NSString *)count Success:(Success)success failure:(Failure)failure{
+    
+    NSMutableDictionary * parma = [NSMutableDictionary dictionary];
+    
+    [parma setValue:@"user_Friends" forKey:@"action"];
+    [parma setValue:page forKey:@"page"];
+    [parma setValue:count forKey:@"count"];
+    
+    [CloudLogin getDataWithURL:nil parameter:parma success:^(id data) {
+        success(data);
+    } failure:^(NSError *errorMessage) {
+        failure(errorMessage);
+    }];
+}
+
++ (void)UserFansWihtPage:(NSString *)page count:(NSString *)count Success:(Success)success failure:(Failure)failure{
+
+    NSMutableDictionary * parma = [NSMutableDictionary dictionary];
+    
+    [parma setValue:@"user_Fans" forKey:@"action"];
+    [parma setValue:page forKey:@"page"];
+    [parma setValue:count forKey:@"count"];
+    [parma setValue:[defaults valueForKey:@"token"] forKey:@"user_id"];
+    
+    [CloudLogin getDataWithURL:nil parameter:parma success:^(id data) {
+        success(data);
+    } failure:^(NSError *errorMessage) {
+        failure(errorMessage);
+    }];
+    
+}
 
 #pragma mark>>>>>>------公用方法---------
 #pragma -----mark------网络数据请求方法

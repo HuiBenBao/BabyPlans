@@ -1,18 +1,16 @@
 //
-//  PlazaMainCell.m
+//  CollectCell.m
 //  BabyPlans
 //
-//  Created by apple on 16/4/5.
+//  Created by apple on 16/4/27.
 //  Copyright © 2016年 apple. All rights reserved.
 //
 
-#import "PlazaMainCell.h"
-#import <ShareSDK/ShareSDK.h>
-#define BtnCount 4
+#import "CollectCell.h"
 
-@interface PlazaMainCell ()
+@interface CollectCell ()
 
-@property (nonatomic,strong) PlazaDataModel * model;
+@property (nonatomic,strong) CollectModel * model;
 
 @property (nonatomic,strong) NSIndexPath * indexPath;
 @property (nonatomic,strong) UITableView * tableView;
@@ -29,19 +27,19 @@
 @property (nonatomic,weak) UIView * divLine;
 @property (nonatomic,weak) UILabel * imgTextLbl;
 
-@property (nonatomic,strong) UIView * bottomView;//评论、点赞、分享、关注等按钮所在的view
 
 @end
 
-@implementation PlazaMainCell
-+ (instancetype)cellWithTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath{
+@implementation CollectCell
 
-    static NSString * ident = @"PlazaMainCell";
-    PlazaMainCell *cell = [tableView dequeueReusableCellWithIdentifier:ident];
++ (instancetype)cellWithTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath{
+    
+    static NSString * ident = @"CollectCell";
+    CollectCell *cell = [tableView dequeueReusableCellWithIdentifier:ident];
     
     
     if (cell == nil) {
-        cell = [[PlazaMainCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
+        cell = [[CollectCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ident];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
@@ -52,7 +50,7 @@
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-
+    
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         //头像
@@ -116,28 +114,6 @@
         self.contentLbl = contentLbl;
         [self addSubview:contentLbl];
         
-        //底部view
-        UIView * bottomV = [[UIView alloc] init];
-        
-        for (int i = 0; i < BtnCount; i++) {
-            
-            UIButton * bottomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            
-            bottomBtn.titleLabel.font = FONT_ADAPTED_NUM(16);
-            [bottomBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-//            bottomBtn.backgroundColor = [UIColor greenColor];
-            
-            bottomBtn.tag = i;
-            NSString * imgName = [NSString stringWithFormat:@"plaza_bottomview%d",i];
-            [bottomBtn setImage:[UIImage imageNamed:imgName] forState:UIControlStateNormal];
-            [bottomBtn addTarget:self action:@selector(bottomClick:) forControlEvents:UIControlEventTouchUpInside];
-            [bottomV addSubview:bottomBtn];
-        }
-        
-        self.bottomView = bottomV;
-        
-        [self addSubview:bottomV];
-        
         //分割线
         UIView * lineV = [[UIView alloc] init];
         lineV.backgroundColor = ColorI(0xdddddd);
@@ -148,15 +124,17 @@
     }
     return self;
 }
-- (void)setModelFrame:(PlazaDataFrame *)modelFrame{
+
+- (void)setModelFrame:(CollectFrame *)modelFrame{
 
     _modelFrame = modelFrame;
-    self.model = modelFrame.model;
-
+    _model = modelFrame.model;
 }
 
 - (void)layoutSubviews{
-
+    
+    [super layoutSubviews];
+    
     self.iconView.frame = self.modelFrame.iconF;
     [_iconView sd_setImageWithURL:[NSURL URLWithString:self.model.user.icon] placeholderImage:[UIImage imageNamed:@"defaultIconImg"]];
     _iconView.layer.cornerRadius = _iconView.height/2;
@@ -175,6 +153,8 @@
     self.coverImgView.frame = self.modelFrame.imageF;
     
     self.imgCoverBtn.frame = self.modelFrame.imageF;
+    self.imgCoverBtn.layer.cornerRadius = 8*SCREEN_WIDTH_RATIO55;
+    self.imgCoverBtn.clipsToBounds = YES;
     
     [self.imgCoverBtn addTarget:self action:@selector(coverImgClick:)];
     //图片添加点击事件
@@ -186,42 +166,11 @@
         self.imgTextLbl.layer.cornerRadius = 3;
         self.imgTextLbl.clipsToBounds = YES;
         self.imgTextLbl.text = [NSString stringWithFormat:@" %@ 张",self.model.pictureCount];
-
+        
     }
     
     self.contentLbl.text = self.model.content;
     self.contentLbl.frame = self.modelFrame.contentF;
-    
-    self.bottomView.frame = self.modelFrame.bottomViewF;
-    for (UIButton * btn in self.bottomView.subviews) {
-        
-        CGFloat btnH = self.bottomView.height;
-        CGFloat btnW = (KScreenWidth - kMargin*(BtnCount+1))/BtnCount;
-        CGFloat btnX = kMargin + (kMargin + btnW)*btn.tag;
-        
-        btn.frame = CGRectMake(btnX, 0, btnW, btnH);
-        
-        NSString * title;
-        switch (btn.tag) {
-            case 0:
-                title = _model.likeCount;
-                break;
-            case 1:
-                title = _model.commentCount;
-                break;
-            case 2:
-                title = @"关注";
-                break;
-            default:
-                title = @"分享";
-                break;
-        }
-        [btn setTitle:title forState:UIControlStateNormal];
-        
-        btn.titleEdgeInsets = UIEdgeInsetsMake(0, kMargin, 0, 0);
-        btn.imageEdgeInsets = UIEdgeInsetsMake(0, -kMargin, 0, 0);
-        
-    }
     
     self.divLine.frame = self.modelFrame.divLineF;
 }
@@ -232,15 +181,6 @@
     
     if ([self.delegate respondsToSelector:@selector(getImageArrWithID:)]) {
         [self.delegate getImageArrWithID:_model.galleryID];
-    }
-}
-/**
- *  底部按钮点击方法
- */
-- (void)bottomClick:(UIButton *)sender{
-
-    if ([self.delegate respondsToSelector:@selector(clickBottomBtn:galleryID:indexPath:tableTag:)]) {
-        [self.delegate clickBottomBtn:sender galleryID:_model.galleryID indexPath:self.indexPath tableTag:self.tableView.tag];
     }
 }
 @end

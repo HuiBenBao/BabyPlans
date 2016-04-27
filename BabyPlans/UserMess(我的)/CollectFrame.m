@@ -1,17 +1,16 @@
 //
-//  PlazaDataFrame.m
+//  CollectFrame.m
 //  BabyPlans
 //
-//  Created by apple on 16/4/6.
+//  Created by apple on 16/4/27.
 //  Copyright © 2016年 apple. All rights reserved.
 //
 
-#import "PlazaDataFrame.h"
+#import "CollectFrame.h"
 
+@implementation CollectFrame
 
-@implementation PlazaDataFrame
-
-- (void)setModel:(PlazaDataModel *)model{
+- (void)setModel:(CollectModel *)model{
     
     //1、模型赋值
     _model = model;
@@ -31,7 +30,7 @@
     //4、时间
     NSString * dateStr = _model.user.date;
     CGSize dateSize = textSizeFont(dateStr, FONT_ADAPTED_NUM(kDateFont), MAXFLOAT, MAXFLOAT);
-
+    
     CGFloat dateX = CGRectGetMaxX(_iconF)+kMargin;
     CGFloat dateY = CGRectGetMaxY(_iconF) - dateSize.height;
     _dateF = CGRectMake(dateX, dateY, dateSize.width, dateSize.height);
@@ -53,20 +52,24 @@
     
     
     // 6、计算内容位置
-    CGFloat contentX = kMargin;
-    CGFloat contentY = iconY;
-    
-    contentY = CGRectGetMaxY(_imageF) + kMargin;
-    
-    CGSize contentSize = textSizeFont(model.content, FONT_ADAPTED_WIDTH(kContentFont), imageW, MAXFLOAT);
 
-    _contentF = CGRectMake(contentX, contentY, contentSize.width, contentSize.height);
-    
-    //7、底部view
-    _bottomViewF = CGRectMake(0, CGRectGetMaxY(_contentF), KScreenWidth, kBottomH);
+    CGFloat maxHeight = CGRectGetMaxY(_imageF);
+    if (ValidStr(model.content)) {
+        
+        CGFloat contentX = kMargin;
+        CGFloat contentY = iconY;
+        
+        contentY = maxHeight + kMargin;
+        
+        CGSize contentSize = textSizeFont(model.content, FONT_ADAPTED_WIDTH(kContentFont), imageW, MAXFLOAT);
+        
+        _contentF = CGRectMake(contentX, contentY, contentSize.width, contentSize.height);
+        
+        maxHeight = CGRectGetMaxY(_contentF);
+    }
     
     //分割线
-    CGFloat lineY = CGRectGetMaxY(_bottomViewF)+kMargin;
+    CGFloat lineY = maxHeight+kMargin;
     
     _divLineF = CGRectMake(0, lineY, KScreenWidth, 1);
     

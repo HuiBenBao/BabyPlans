@@ -15,6 +15,11 @@
 #import "UserMessController.h"
 #import "TwoCodeController.h"
 #import "ZCZBarViewController.h"
+#import "UserCollectController.h"
+#import "MyAttentionController.h"
+#import "UserFansController.h"
+#import "UserGallerysController.h"
+
 
 @interface UserTableController ()<LoginDelegate,UserMessCellDelegate,UserSettingDelegate,UserDetailControllerDelegate>
 
@@ -25,6 +30,16 @@
 @end
 
 @implementation UserTableController
+
+- (void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+    
+    if (_model) {
+        _model = nil;
+        [self model];
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -155,98 +170,36 @@
             
             NSInteger row = indexPath.row;
             
-            UIViewController * VC;
-            if (row==0) {//二维码
-
-                VC = [[TwoCodeController alloc] init];
-                [self.navigationController pushViewController:VC animated:YES];
-
-            }else if (row==1){//消息
-                VC = [[UserMessController alloc] init];
-                [self.navigationController pushViewController:VC animated:YES];
-
-            }else if (row==2){
-            
-            }else{
-            
-                //扫描二维码
+            if (row==3) { //扫描二维码
+                
                 ZCZBarViewController*vc=[[ZCZBarViewController alloc]initWithBlock:^(NSString *str, BOOL isSucceed) {
                     
                     if (isSucceed) {
                         
-                        [CloudLogin getUserMessageWithID:str success:^(NSDictionary *responseObject) {
-                            
-                            int status = [responseObject[@"status"] intValue];
-                            NSLog(@"%@",responseObject);
-                            
-                            if (status == 0) {
-                                
-                                
-                                [CloudLogin attentionToUserID:str type:nil success:^(NSDictionary *responseObject) {
-                                    NSLog(@"%@",responseObject);
-                                    
-                                    int status = [responseObject[@"status"] intValue];
-                                    if (status == 0) {
-                                        
-                                        int following = [responseObject[@"following"] intValue];
-                                        
-                                        following = (following==0) ? 1 : 0;
-                                        
-                                        [CloudLogin attentionToUserID:str type:[NSString stringWithFormat:@"%d",following] success:^(NSDictionary *responseObject) {
-                                            int reslut = [responseObject[@"status"] intValue];
-                                            NSLog(@"------%@",responseObject);
-                                            if (reslut==0) {
-                                                
-                                                NSString * mess = (following == 0) ? @"关注成功" : @"已取消";
-//                                                [self.view poptips:mess];
-                                                
-                                                UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:mess preferredStyle:UIAlertControllerStyleAlert];
-                                                
-                                                UIAlertAction * cancelBtn = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                                                    
-                                                    
-                                                }];
-                                                
-                                                [alertVC addAction:cancelBtn];
-                                                [self presentViewController:alertVC animated:YES completion:nil];
-                                            }
-                                        } failure:nil];
-
-                                        
-                                    }
-                                    
-                                    
-                                    
-                                    
-                                } failure:^(NSError *errorMessage) {
-                                    
-                                }];
-                                
-                            }else{
-                            
-                                UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"查询不到此用记，请确认后再扫描" preferredStyle:UIAlertControllerStyleAlert];
-                                
-                                UIAlertAction * cancelBtn = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                                    
-                                }];
-                                
-                                [alertVC addAction:cancelBtn];
-                                
-                                [vc presentViewController:alertVC animated:YES completion:nil];
-
-                            }
-                        } failure:^(NSError *errorMessage) {
-                           
-                            [self.view poptips:@"网络异常"];
-                        }];
+                        [self scanSuccessWithKey:str];
                         
                     }else{
-                        
+                        [self.view poptips:@"扫码失败，请稍后再试"];
                     }
                 }];
                 
                 [self presentViewController:vc animated:YES completion:nil];
+            }else{
+            
+                UIViewController * VC;
+                if (row==0) {//二维码
+                    VC = [[TwoCodeController alloc] init];
+                }else if (row==1){//消息
+                    VC = [[UserMessController alloc] init];
+                }else if (row==2){//收藏
+                    VC = [[UserCollectController alloc] init];
+                }
+                
+                [self.navigationController pushViewController:VC animated:YES];
+
             }
+            
+            
             
             
         }else if(indexPath.section==0){
@@ -264,6 +217,84 @@
     
     
 }
+/**
+ *  扫码成功后调用
+ */
+- (void)scanSuccessWithKey:(NSString *)str{
+
+    [CloudLogin getUserMessageWithID:str success:^(NSDictionary *responseObject) {
+        
+        int status = [responseObject[@"status"] intValue];
+        NSLog(@"%@",responseObject);
+        
+        if (status == 0) {
+            
+            
+            [CloudLogin attentionToUserID:str type:nil success:^(NSDictionary *responseObject) {
+                NSLog(@"%@",responseObject);
+                
+                int status = [responseObject[@"status"] intValue];
+                if (status == 0) {
+                    
+                    BOOL following = [responseObject[@"following"] boolValue];
+                    
+                    if (following) {
+                        
+                        [self addAlertVC];
+                    }else{
+                        
+                        following = !following;
+                        
+                        [CloudLogin attentionToUserID:str type:[NSString stringWithFormat:@"%d",following] success:^(NSDictionary *responseObject) {
+                            int reslut = [responseObject[@"status"] intValue];
+                            NSLog(@"------%@",responseObject);
+                            if (reslut==0) {
+                                
+                                [self addAlertVC];
+                                
+                            }
+                        } failure:nil];
+                    }
+                    
+                }
+                
+                
+            } failure:nil];
+            
+        }else{
+            
+            UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"查询不到此用记，请确认后再扫描" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction * cancelBtn = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            
+            [alertVC addAction:cancelBtn];
+            
+            [self presentViewController:alertVC animated:YES completion:nil];
+            
+        }
+    } failure:^(NSError *errorMessage) {
+        
+        [self.view poptips:@"网络异常"];
+    }];
+
+}
+/**
+ *  关注成功弹窗
+ */
+- (void)addAlertVC{
+
+    UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"关注成功" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction * cancelBtn = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+        
+    }];
+    
+    [alertVC addAction:cancelBtn];
+    [self presentViewController:alertVC animated:YES completion:nil];
+}
 
 #pragma ----mark-----UserDetailControllerDelegate
 - (void)updateUserMess{
@@ -276,6 +307,23 @@
 - (void)bottomBtnIndex:(NSInteger)index{
 
     NSLog(@"%ld",(long)index);
+    
+    UIViewController * VC = nil;
+    
+    switch (index) {
+        case 0:
+            VC = [[UserGallerysController alloc] init];
+            break;
+        case 1:
+            VC = [[MyAttentionController alloc] init];
+            break;
+        case 2:
+            VC = [[UserFansController alloc] init];
+        default:
+            break;
+    }
+    
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 - (void)goLogin{
