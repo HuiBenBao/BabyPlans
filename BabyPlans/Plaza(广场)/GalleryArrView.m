@@ -225,10 +225,10 @@
     
     int index = currentX/self.width;
     
-    if (index>1) {
-        self.titleLbl.text = [NSString stringWithFormat:@"%d/%ld",index,(unsigned long)self.galleryArr.count];
+//    if (index>0) {
+        self.titleLbl.text = [NSString stringWithFormat:@"%d/%ld",index+1,(unsigned long)self.galleryArr.count];
 
-    }
+//    }
 }
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
 
