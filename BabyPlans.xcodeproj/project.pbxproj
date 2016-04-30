@@ -1792,6 +1792,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1806,9 +1807,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/MLAudioRecorder/amr_en_de/include/opencore-amrwb",
-					"$(PROJECT_DIR)/MLAudioRecorder/mp3_en_de",
-					"$(PROJECT_DIR)/MLAudioRecorder/amr_en_de/include/opencore-amrnb",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/BabyPlans/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
 					"$(PROJECT_DIR)/BabyPlans/ShareSDK/Support/PlatformSDK/WeChatSDK",
@@ -1816,6 +1814,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.baby.huibenbao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1827,6 +1826,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1841,9 +1841,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/MLAudioRecorder/amr_en_de/include/opencore-amrwb",
-					"$(PROJECT_DIR)/MLAudioRecorder/mp3_en_de",
-					"$(PROJECT_DIR)/MLAudioRecorder/amr_en_de/include/opencore-amrnb",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/BabyPlans/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
 					"$(PROJECT_DIR)/BabyPlans/ShareSDK/Support/PlatformSDK/WeChatSDK",
@@ -1851,6 +1848,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.baby.huibenbao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

@@ -68,7 +68,10 @@
 
     NSMutableArray * tempArr = [NSMutableArray array];
     
-    for (UIImageView * imgV in self.addPicView.imageViewArr) {
+    int count = (int)self.addPicView.imageViewArr.count;
+    for (int i = count-1; i >=0 ; i--) {
+        UIImageView * imgV = [_addPicView.imageViewArr objectAtIndex:i];
+        
         if (imgV.tag > 0) {
             [tempArr addObject:@(imgV.tag)];
         }
