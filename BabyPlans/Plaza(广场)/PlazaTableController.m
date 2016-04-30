@@ -604,6 +604,7 @@ enum{
                                                   title:@"看绘本，上绘本宝"
                                                 type:SSDKContentTypeAuto];
                 
+                
                 // 定制微信好友的分享内容
                 [shareParams SSDKSetupWeChatParamsByText:model.content
                                                    title:@"看绘本，上绘本宝"
