@@ -35,6 +35,10 @@
  */
 @property (nonatomic,strong) NSString * pictureCount;
 /**
+ *  发布时间
+ */
+@property (nonatomic,strong) NSString * date;
+/**
  *  点赞数量
  */
 @property (nonatomic,strong) NSString * likeCount;

@@ -28,7 +28,7 @@
     _nameF = CGRectMake(nameX, iconY, nameSize.width, nameSize.height);
     
     //4、时间
-    NSString * dateStr = _model.user.date;
+    NSString * dateStr = _model.date;
     CGSize dateSize = textSizeFont(dateStr, FONT_ADAPTED_NUM(kDateFont), MAXFLOAT, MAXFLOAT);
     
     CGFloat dateX = CGRectGetMaxX(_iconF)+kMargin;

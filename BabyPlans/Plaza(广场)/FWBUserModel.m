@@ -37,7 +37,7 @@
         if (ValidNum(dic[@"createTime"])) {
             
             long long time = [dic[@"createTime"] longLongValue];
-            self.date = [PersonalMethod stringFromUnixTime:time];
+            self.createTime = [PersonalMethod stringFromUnixTime:time];
             
         }
         

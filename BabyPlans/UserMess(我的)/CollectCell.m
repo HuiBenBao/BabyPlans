@@ -143,7 +143,7 @@
     self.nameLbl.frame = self.modelFrame.nameF;
     self.nameLbl.text = (_model.user.nickName) ? _model.user.nickName : _model.user.name;;
     
-    self.dateLbl.text = self.model.user.date;
+    self.dateLbl.text = self.model.date;
     self.dateLbl.frame = self.modelFrame.dateF;
     
     [self.coverImgView sd_setImageWithURL:[NSURL URLWithString:self.model.coverImg] placeholderImage:[UIImage imageNamed:@"DefaultImage"]];

@@ -119,7 +119,7 @@
     self.nameLbl.frame = self.dataFrame.nameF;
     self.nameLbl.text = (_model.user.nickName) ? _model.user.nickName : _model.user.name;;
     
-    self.dateLbl.text = self.model.user.date;
+    self.dateLbl.text = self.model.createTime;
     self.dateLbl.frame = self.dataFrame.dateF;
     
     

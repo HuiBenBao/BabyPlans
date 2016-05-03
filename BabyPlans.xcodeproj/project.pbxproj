@@ -259,8 +259,8 @@
 		1824D4CD1CD0BC3900D5BB35 /* UserGallerysController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserGallerysController.h; sourceTree = "<group>"; };
 		1824D4CE1CD0BC3900D5BB35 /* UserGallerysController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserGallerysController.m; sourceTree = "<group>"; };
 		1829DE4C1CC8F4D200D0DB02 /* slider_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_left.png; sourceTree = "<group>"; };
-		1829DE4E1CC8FE6100D0DB02 /* MyTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTextView.h; sourceTree = "<group>"; };
-		1829DE4F1CC8FE6100D0DB02 /* MyTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTextView.m; sourceTree = "<group>"; };
+		1829DE4E1CC8FE6100D0DB02 /* MyTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyTextView.h; path = DJCameraManager/MyTextView.h; sourceTree = "<group>"; };
+		1829DE4F1CC8FE6100D0DB02 /* MyTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyTextView.m; path = DJCameraManager/MyTextView.m; sourceTree = "<group>"; };
 		182E23321CC9BCCC0076CE50 /* SuggestionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestionController.h; sourceTree = "<group>"; };
 		182E23331CC9BCCC0076CE50 /* SuggestionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestionController.m; sourceTree = "<group>"; };
 		182E23361CC9BCDB0076CE50 /* TCMSuggestionBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCMSuggestionBtn.h; sourceTree = "<group>"; };
@@ -867,8 +867,7 @@
 			isa = PBXGroup;
 			children = (
 				18550A251CC71C8D002834D3 /* Controller */,
-				18550A2C1CC732BE002834D3 /* AddPicScrollView.h */,
-				18550A2D1CC732BE002834D3 /* AddPicScrollView.m */,
+				186AC3AE1CD8329E007C99D6 /* View */,
 			);
 			path = "AddGallery(加号)";
 			sourceTree = "<group>";
@@ -882,8 +881,6 @@
 				18550A2A1CC729D9002834D3 /* CreateMyPictureController.m */,
 				18550A261CC71CE0002834D3 /* PhotoViewController.h */,
 				18550A271CC71CE0002834D3 /* PhotoViewController.m */,
-				1829DE4E1CC8FE6100D0DB02 /* MyTextView.h */,
-				1829DE4F1CC8FE6100D0DB02 /* MyTextView.m */,
 			);
 			name = Controller;
 			path = DJCameraManager;
@@ -963,6 +960,17 @@
 				18886C361CC0C9BC007AEC7B /* Controller */,
 			);
 			path = "UserMess(我的)";
+			sourceTree = "<group>";
+		};
+		186AC3AE1CD8329E007C99D6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1829DE4E1CC8FE6100D0DB02 /* MyTextView.h */,
+				1829DE4F1CC8FE6100D0DB02 /* MyTextView.m */,
+				18550A2C1CC732BE002834D3 /* AddPicScrollView.h */,
+				18550A2D1CC732BE002834D3 /* AddPicScrollView.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		18886C361CC0C9BC007AEC7B /* Controller */ = {

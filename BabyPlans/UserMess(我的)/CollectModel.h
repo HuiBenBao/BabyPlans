@@ -30,6 +30,10 @@
  *  图片数量
  */
 @property (nonatomic,strong) NSString * pictureCount;
+/**
+ *  发布时间
+ */
+@property (nonatomic,strong) NSString * date;
 
 
 - (instancetype)initWithDic:(NSDictionary *)dic;

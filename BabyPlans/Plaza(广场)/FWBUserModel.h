@@ -20,9 +20,9 @@
  */
 @property (nonatomic,strong) NSString * nickName;
 /**
- *  发布时间
+ *  创建时间
  */
-@property (nonatomic,strong) NSString * date;
+@property (nonatomic,strong) NSString * createTime;
 /**
  *  头像
  */

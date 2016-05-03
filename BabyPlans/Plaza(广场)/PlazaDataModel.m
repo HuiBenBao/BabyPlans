@@ -52,6 +52,13 @@
             
         }
         
+        if (ValidNum(dic[@"createTime"])) {
+            
+            long long time = [dic[@"createTime"] longLongValue];
+            self.date = [PersonalMethod stringFromUnixTime:time];
+            
+        }
+        
         if (ValidNum(dic[@"commentCnt"])) {
             self.commentCount = [[[NSNumberFormatter alloc] init] stringFromNumber:dic[@"commentCnt"]];
             
