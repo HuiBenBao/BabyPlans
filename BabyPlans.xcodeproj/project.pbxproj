@@ -92,6 +92,7 @@
 		186195BB1CB347080003A562 /* PlazaTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186195BA1CB347080003A562 /* PlazaTableController.m */; };
 		186195C81CB357B60003A562 /* PlazaMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 186195C71CB357B60003A562 /* PlazaMainCell.m */; };
 		186195CC1CB35BB00003A562 /* UserTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186195CB1CB35BB00003A562 /* UserTableController.m */; };
+		186AC3B21CD8535E007C99D6 /* CafToMp3.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AC3B11CD8535E007C99D6 /* CafToMp3.m */; };
 		18886BA51CBF33C7007AEC7B /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18886BA41CBF33C7007AEC7B /* libmp3lame.a */; };
 		18886C351CC0944A007AEC7B /* UserMessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18886C341CC0944A007AEC7B /* UserMessModel.m */; };
 		18886C391CC0CA0E007AEC7B /* UserDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18886C381CC0CA0E007AEC7B /* UserDetailController.m */; };
@@ -345,6 +346,9 @@
 		186195C71CB357B60003A562 /* PlazaMainCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlazaMainCell.m; sourceTree = "<group>"; };
 		186195CA1CB35BB00003A562 /* UserTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTableController.h; sourceTree = "<group>"; };
 		186195CB1CB35BB00003A562 /* UserTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTableController.m; sourceTree = "<group>"; };
+		186AC3AF1CD8531B007C99D6 /* lame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lame.h; sourceTree = "<group>"; };
+		186AC3B01CD8535E007C99D6 /* CafToMp3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CafToMp3.h; sourceTree = "<group>"; };
+		186AC3B11CD8535E007C99D6 /* CafToMp3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CafToMp3.m; sourceTree = "<group>"; };
 		18886BA41CBF33C7007AEC7B /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmp3lame.a; sourceTree = "<group>"; };
 		18886C331CC0944A007AEC7B /* UserMessModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserMessModel.h; path = ../UserMessModel.h; sourceTree = "<group>"; };
 		18886C341CC0944A007AEC7B /* UserMessModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserMessModel.m; path = ../UserMessModel.m; sourceTree = "<group>"; };
@@ -881,6 +885,8 @@
 				18550A2A1CC729D9002834D3 /* CreateMyPictureController.m */,
 				18550A261CC71CE0002834D3 /* PhotoViewController.h */,
 				18550A271CC71CE0002834D3 /* PhotoViewController.m */,
+				186AC3B01CD8535E007C99D6 /* CafToMp3.h */,
+				186AC3B11CD8535E007C99D6 /* CafToMp3.m */,
 			);
 			name = Controller;
 			path = DJCameraManager;
@@ -1339,6 +1345,7 @@
 				18886C711CC0D088007AEC7B /* JavaScriptCore.framework */,
 				18886C6F1CC0D083007AEC7B /* libstdc++.tbd */,
 				18886C6D1CC0D07B007AEC7B /* libz.tbd */,
+				186AC3AF1CD8531B007C99D6 /* lame.h */,
 				18886C6B1CC0D072007AEC7B /* libicucore.tbd */,
 				18886BA41CBF33C7007AEC7B /* libmp3lame.a */,
 				18A114631CB4F5AD00B13434 /* MBProgressHUD */,
@@ -1647,6 +1654,7 @@
 				1824D4A91CD0A85600D5BB35 /* UserAttentionCell.m in Sources */,
 				18A114691CB4FD5600B13434 /* PlazaDataFrame.m in Sources */,
 				18550A281CC71CE0002834D3 /* PhotoViewController.m in Sources */,
+				186AC3B21CD8535E007C99D6 /* CafToMp3.m in Sources */,
 				185509AE1CC5E36F002834D3 /* RecWebController.m in Sources */,
 				184BCA771CB362E5008314F4 /* CloudLogin.m in Sources */,
 				185509BF1CC61023002834D3 /* JRPlayerView.m in Sources */,

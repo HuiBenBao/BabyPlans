@@ -6,16 +6,6 @@
 //  Copyright © 2016年 Jason. All rights reserved.
 //
 
-enum
-{
-    ENC_AAC = 1,
-    ENC_ALAC = 2,
-    ENC_IMA4 = 3,
-    ENC_ILBC = 4,
-    ENC_ULAW = 5,
-    ENC_PCM = 6,
-} encodingType;
-
 
 #import "PhotoViewController.h"
 #import <AVFoundation/AVFoundation.h>
@@ -296,48 +286,6 @@ enum
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setCategory:AVAudioSessionCategoryRecord error:nil];
     
-    
-    NSMutableDictionary *recordSettings = [[NSMutableDictionary alloc] initWithCapacity:10];
-    if(_recordEncoding == ENC_PCM)
-    {
-        [recordSettings setObject:[NSNumber numberWithInt: kAudioFormatLinearPCM] forKey: AVFormatIDKey];
-        [recordSettings setObject:[NSNumber numberWithFloat:44100.0] forKey: AVSampleRateKey];
-        [recordSettings setObject:[NSNumber numberWithInt:2] forKey:AVNumberOfChannelsKey];
-        [recordSettings setObject:[NSNumber numberWithInt:16] forKey:AVLinearPCMBitDepthKey];
-        [recordSettings setObject:[NSNumber numberWithBool:NO] forKey:AVLinearPCMIsBigEndianKey];
-        [recordSettings setObject:[NSNumber numberWithBool:NO] forKey:AVLinearPCMIsFloatKey];
-    }else{
-        NSNumber *formatObject;
-        
-        switch (_recordEncoding) {
-            case (ENC_AAC):
-                formatObject = [NSNumber numberWithInt: kAudioFormatMPEG4AAC];
-                break;
-            case (ENC_ALAC):
-                formatObject = [NSNumber numberWithInt: kAudioFormatAppleLossless];
-                break;
-            case (ENC_IMA4):
-                formatObject = [NSNumber numberWithInt: kAudioFormatAppleIMA4];
-                break;
-            case (ENC_ILBC):
-                formatObject = [NSNumber numberWithInt: kAudioFormatiLBC];
-                break;
-            case (ENC_ULAW):
-                formatObject = [NSNumber numberWithInt: kAudioFormatULaw];
-                break;
-            default:
-                formatObject = [NSNumber numberWithInt: kAudioFormatAppleIMA4];
-        }
-        
-        [recordSettings setObject:formatObject forKey: AVFormatIDKey];
-        [recordSettings setObject:[NSNumber numberWithFloat:44100.0] forKey: AVSampleRateKey];
-        [recordSettings setObject:[NSNumber numberWithInt:2] forKey:AVNumberOfChannelsKey];
-        [recordSettings setObject:[NSNumber numberWithInt:12800] forKey:AVEncoderBitRateKey];
-        [recordSettings setObject:[NSNumber numberWithInt:16] forKey:AVLinearPCMBitDepthKey];
-        [recordSettings setObject:[NSNumber numberWithInt: AVAudioQualityHigh] forKey: AVEncoderAudioQualityKey];
-    }
-    
-    
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
     NSString *soundFilePath = [docsDir stringByAppendingPathComponent:@"recordTest.caf"];
@@ -348,7 +296,21 @@ enum
     
     
     NSError *error = nil;
-    self.audioRecorder = [[ AVAudioRecorder alloc] initWithURL:url settings:recordSettings error:&error];
+    
+    //录音设置
+    NSMutableDictionary *settings = [[NSMutableDictionary alloc] init];
+    //录音格式 无法使用
+    [settings setValue :[NSNumber numberWithInt:kAudioFormatLinearPCM] forKey: AVFormatIDKey];
+    //采样率
+    [settings setValue :[NSNumber numberWithFloat:11025.0] forKey: AVSampleRateKey];//44100.0
+    //通道数
+    [settings setValue :[NSNumber numberWithInt:2] forKey: AVNumberOfChannelsKey];
+    //线性采样位数
+    //[recordSettings setValue :[NSNumber numberWithInt:16] forKey: AVLinearPCMBitDepthKey];
+    //音频质量,采样质量
+    [settings setValue:[NSNumber numberWithInt:AVAudioQualityMin] forKey:AVEncoderAudioQualityKey];
+
+    self.audioRecorder = [[ AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
     _audioRecorder.meteringEnabled = YES;
     if ([_audioRecorder prepareToRecord] == YES){
         _audioRecorder.meteringEnabled = YES;
