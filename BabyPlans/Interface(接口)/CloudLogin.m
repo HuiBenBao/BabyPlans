@@ -183,6 +183,10 @@
             NSString *docsDir = [dirPaths objectAtIndex:0];
             NSString *soundFilePath = [docsDir stringByAppendingPathComponent:@"recordTest.caf"];
             
+            NSString *mp3FilePath = [docsDir stringByAppendingPathComponent:@"recordTest.mp3"];;//存储mp3文件的路径
+            
+            [CafToMp3 audio_PCMtoMP3:soundFilePath andMP3FilePath:mp3FilePath];
+            
             NSData * myData = [NSData dataWithContentsOfFile:soundFilePath];
             
             [formData appendPartWithFileData:myData name:@"voice" fileName:soundFilePath mimeType:@"audio/mp3"];

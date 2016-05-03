@@ -42,6 +42,7 @@
     self.textView = [[MyTextView alloc] initWithFrame:CGRectMake(10, _addPicView.bottom+10, KScreenWidth-20, 150*SCREEN_WIDTH_RATIO55)];
     
     self.textView.backgroundColor = ViewBackColor;
+    self.textView.placeholderLabel.hidden = NO;
     _textView.delegate = self;
     [self.view addSubview:_textView];
     
@@ -106,7 +107,11 @@
 #pragma ----mark-----UITextVIewDelegate
 - (void)textViewDidEndEditing:(UITextView *)textView{
 
-    _textView.placeholderLabel.hidden = YES;
+    if ([_textView.text trim].length<=0) {
+        _textView.placeholderLabel.hidden = NO;
+    }else{
+        _textView.placeholderLabel.hidden = YES;
+    }
 }
 
 - (void)textViewDidChange:(UITextView *)textView{
