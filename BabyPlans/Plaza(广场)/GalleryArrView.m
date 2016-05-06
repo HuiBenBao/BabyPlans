@@ -94,7 +94,7 @@
         [self addSubview:_imgScrollView];
         
         self.titleLbl = [[UILabel alloc] init];
-        _titleLbl.font = FONT_ADAPTED_NUM(15);
+        _titleLbl.font = FONTBOLD_ADAPTED_WIDTH(17);
         _titleLbl.textColor = [UIColor whiteColor];
         _titleLbl.textAlignment = NSTextAlignmentCenter;
         _titleLbl.backgroundColor = [UIColor blackColor];
@@ -121,11 +121,22 @@
         
         CGFloat imgW = self.width;
         CGFloat imgH = self.height;
+        
+        
+//        UIImage * image = [UIImage imageWithURLString:model.picture.image];
+        
+        
+        
         UIImageView * imgView = [[UIImageView alloc] initWithFrame:CGRectMake(imgW*i, 0, imgW, imgH)];
         
         GalleryImgModel * model = [self.galleryArr objectAtIndex:i];
-        
         [imgView sd_setImageWithURL:[NSURL URLWithString:model.picture.image] placeholderImage:[UIImage imageNamed:@"DefaultImage"]];
+        
+        [imgView setContentMode:UIViewContentModeScaleAspectFit];
+        imgView.clipsToBounds = YES;
+        
+        
+        
         [self.imgScrollView addSubview:imgView];
     }
     
@@ -144,7 +155,7 @@
     
     self.imgScrollView.frame = self.bounds;
     
-    CGFloat titleH = 40*SCREEN_WIDTH_RATIO55;
+    CGFloat titleH = 50*SCREEN_WIDTH_RATIO55;
     CGFloat titleW = self.width;
     CGFloat titleX = 0;
     CGFloat titleY = self.height - titleH;

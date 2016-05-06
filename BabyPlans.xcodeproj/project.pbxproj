@@ -117,6 +117,8 @@
 		18886C761CC0D0BF007AEC7B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18886C751CC0D0BF007AEC7B /* libsqlite3.tbd */; };
 		18886C781CC0DB27007AEC7B /* NagavitionBarImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 18886C771CC0DB27007AEC7B /* NagavitionBarImg.png */; };
 		18886C7E1CC2195C007AEC7B /* defaultIconImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 18886C7D1CC2195C007AEC7B /* defaultIconImg.png */; };
+		1888A1B41CDC7866004FD8CD /* libPushSDK-1.8.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888A1B21CDC7866004FD8CD /* libPushSDK-1.8.8.a */; };
+		1888A1B51CDC7866004FD8CD /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1888A1B31CDC7866004FD8CD /* PushConfig.plist */; };
 		18A114541CB3A66000B13434 /* UserMessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A114531CB3A66000B13434 /* UserMessCell.m */; };
 		18A114561CB3BF4600B13434 /* Back_to_mainpage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A114551CB3BF4600B13434 /* Back_to_mainpage@3x.png */; };
 		18A114591CB3C3D500B13434 /* PlazaTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A114581CB3C3D500B13434 /* PlazaTopView.m */; };
@@ -389,6 +391,9 @@
 		18886C751CC0D0BF007AEC7B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		18886C771CC0DB27007AEC7B /* NagavitionBarImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NagavitionBarImg.png; sourceTree = "<group>"; };
 		18886C7D1CC2195C007AEC7B /* defaultIconImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultIconImg.png; sourceTree = "<group>"; };
+		1888A1B11CDC7866004FD8CD /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
+		1888A1B21CDC7866004FD8CD /* libPushSDK-1.8.8.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.8.a"; sourceTree = "<group>"; };
+		1888A1B31CDC7866004FD8CD /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
 		18A114521CB3A66000B13434 /* UserMessCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserMessCell.h; path = ../UserMessCell.h; sourceTree = "<group>"; };
 		18A114531CB3A66000B13434 /* UserMessCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserMessCell.m; path = ../UserMessCell.m; sourceTree = "<group>"; };
 		18A114551CB3BF4600B13434 /* Back_to_mainpage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Back_to_mainpage@3x.png"; sourceTree = "<group>"; };
@@ -481,6 +486,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1888A1B41CDC7866004FD8CD /* libPushSDK-1.8.8.a in Frameworks */,
 				1824D4761CCF4F3900D5BB35 /* libiconv.tbd in Frameworks */,
 				18886C761CC0D0BF007AEC7B /* libsqlite3.tbd in Frameworks */,
 				18886C741CC0D0B3007AEC7B /* ImageIO.framework in Frameworks */,
@@ -1087,6 +1093,16 @@
 			path = Required;
 			sourceTree = "<group>";
 		};
+		1888A1B01CDC7866004FD8CD /* APPush */ = {
+			isa = PBXGroup;
+			children = (
+				1888A1B11CDC7866004FD8CD /* APService.h */,
+				1888A1B21CDC7866004FD8CD /* libPushSDK-1.8.8.a */,
+				1888A1B31CDC7866004FD8CD /* PushConfig.plist */,
+			);
+			path = APPush;
+			sourceTree = "<group>";
+		};
 		18A114631CB4F5AD00B13434 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -1277,6 +1293,7 @@
 		18FD4B2F1CAE34DD00ACD4BC /* BabyPlans */ = {
 			isa = PBXGroup;
 			children = (
+				1888A1B01CDC7866004FD8CD /* APPush */,
 				18886C3A1CC0CDE6007AEC7B /* ShareSdk(第三方登录) */,
 				18F114C81CAE37CC00F53C42 /* AppDelegate */,
 				182E23421CC9CD270076CE50 /* GuideViewPage（引导页） */,
@@ -1425,6 +1442,11 @@
 					18FD4B2C1CAE34DD00ACD4BC = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = W78FD6KLHE;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 					18FD4B451CAE34DD00ACD4BC = {
 						CreatedOnToolsVersion = 7.3;
@@ -1525,6 +1547,7 @@
 				18CCD13E1CB7A11E002595FD /* RecommednTxt.png in Resources */,
 				18F114EA1CAE3B6F00F53C42 /* TabBar5.png in Resources */,
 				18886C671CC0CE46007AEC7B /* read_me.txt in Resources */,
+				1888A1B51CDC7866004FD8CD /* PushConfig.plist in Resources */,
 				18550A301CC73430002834D3 /* addpic_btn.png in Resources */,
 				18CCD13C1CB7A11E002595FD /* Recommend_btn3.png in Resources */,
 				18CCD1201CB7907E002595FD /* plaza_bottomview0@3x.png in Resources */,
@@ -1827,6 +1850,7 @@
 					"$(PROJECT_DIR)/BabyPlans/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
 					"$(PROJECT_DIR)/BabyPlans/ShareSDK/Support/PlatformSDK/WeChatSDK",
 					"$(PROJECT_DIR)/libzbarSDK",
+					"$(PROJECT_DIR)/BabyPlans/APPush",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.baby.huibenbao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1841,8 +1865,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1861,6 +1885,7 @@
 					"$(PROJECT_DIR)/BabyPlans/ShareSDK/Support/PlatformSDK/SinaWeiboSDK",
 					"$(PROJECT_DIR)/BabyPlans/ShareSDK/Support/PlatformSDK/WeChatSDK",
 					"$(PROJECT_DIR)/libzbarSDK",
+					"$(PROJECT_DIR)/BabyPlans/APPush",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.baby.huibenbao;
 				PRODUCT_NAME = "$(TARGET_NAME)";

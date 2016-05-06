@@ -172,7 +172,7 @@
     PlazaMainCell * cell = [PlazaMainCell cellWithTableView:tableView indexPath:indexPath];
     cell.modelFrame = dataF;
     cell.delegate = self;
-    cell.backgroundColor = [UIColor redColor];
+//    cell.backgroundColor = [UIColor redColor];
     
     return cell;
 }

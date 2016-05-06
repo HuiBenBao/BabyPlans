@@ -29,8 +29,11 @@
     self.loginIP = dic[@"loginIP"];
 
     self.loginTime = dic[@"loginTime"];
+    
     self.sessionID = dic[@"session"];
-    self.userId = dic[@"userId"];
+    
+    int userid = [dic[@"userId"] intValue];
+    self.userId = [NSString stringWithFormat:@"%d",userid];
 
 }
 @end

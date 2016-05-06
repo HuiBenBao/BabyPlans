@@ -38,6 +38,14 @@
     if (_model) {
         _model = nil;
         [self model];
+    }else{
+        
+        NSLog(@"%@",[defaults objectForKey:@"session"]);
+        if (ValidStr([defaults objectForKey:@"session"])) {//已登录
+            
+            [self model];
+            
+        }
     }
 }
 
@@ -46,11 +54,7 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    if ([defaults objectForKey:@"session"]) {//已登录
-        
-        [self model];
-        
-    }
+    
     
     //设置导航栏右侧按钮
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:self action:@selector(pushSetting)];
@@ -338,7 +342,7 @@
 #pragma ---mark-----判断是否登录
 - (BOOL)isLogin{
 
-    if (![defaults objectForKey:@"session"]) {//未登录
+    if (!ValidStr([defaults objectForKey:@"session"])) {//未登录
         
         [self goLogin];
         return NO;

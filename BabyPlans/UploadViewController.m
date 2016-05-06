@@ -73,27 +73,34 @@
 #pragma mark uievent
 - (void)paintClick:(UIButton *)sender{
 
-    CreateMyPictureController *ngVC = [[CreateMyPictureController alloc] init];
-    ngVC.type = [NSString stringWithFormat:@"%ld",sender.tag];
-    [self.navigationController pushViewController:ngVC animated:YES];
+    if ([self isLogin]) {
+        
+        CreateMyPictureController *ngVC = [[CreateMyPictureController alloc] init];
+        ngVC.type = [NSString stringWithFormat:@"%ld",sender.tag];
+        [self.navigationController pushViewController:ngVC animated:YES];
+    }else{
+    
+        [self goLogin];
+    }
+    
 
 }
 - (void)goLogin{
     
-    if ([self isLogin]) {
-        LoginViewController * loginVC = [[LoginViewController alloc] init];
+
+    LoginViewController * loginVC = [[LoginViewController alloc] init];
 //        loginVC.delegate = self;
-        
-        [self presentViewController:loginVC animated:YES completion:nil];
-    }
+    
+    [self presentViewController:loginVC animated:YES completion:nil];
+    
 }
 
 #pragma ---mark-----判断是否登录
 - (BOOL)isLogin{
     
-    if (![defaults objectForKey:@"session"]) {//未登录
+    if (!(ValidStr([defaults objectForKey:@"session"]))) {//未登录
         
-        [self goLogin];
+//        [self goLogin];
         return NO;
     }else{
         

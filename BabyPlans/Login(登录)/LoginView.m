@@ -331,6 +331,10 @@
             
             [defaults setObject:session.userId forKey:@"token"];
             [defaults setObject:session.sessionID forKey:@"session"];
+            
+            NSLog(@"%@",session.sessionID);
+            
+            
             if ([self.delegate respondsToSelector:@selector(loginSuccess)]) {
                 [self.delegate loginSuccess];
             }
