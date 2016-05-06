@@ -133,7 +133,7 @@
         [imgView sd_setImageWithURL:[NSURL URLWithString:model.picture.image] placeholderImage:[UIImage imageNamed:@"DefaultImage"]];
         
         [imgView setContentMode:UIViewContentModeScaleAspectFit];
-        imgView.clipsToBounds = YES;
+//        imgView.clipsToBounds = YES;
         
         
         

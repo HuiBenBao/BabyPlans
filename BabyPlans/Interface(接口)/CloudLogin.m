@@ -37,6 +37,24 @@
     } failure:^(NSError *errorMessage) {
         failure(errorMessage);
     }];
+    
+}
++ (void)shareLoginWithPhoneNum:(NSString *)phoneNum openid:(NSString *)openid success:(Success)success failure:(Failure)failure{
+
+    NSMutableDictionary * parma = [NSMutableDictionary dictionary];
+    [parma setValue:@"user_Register1" forKey:@"action"];
+    
+    [parma setValue:phoneNum forKey:@"mobile"];
+ 
+        
+    [parma setValue:@"d41d8cd98f00b204e9800998ecf8427e" forKey:@"password"];
+    [parma setValue:openid forKey:@"openid"];
+    
+    [CloudLogin getDataWithURL:nil parameter:parma success:^(id data) {
+        success(data);
+    } failure:^(NSError *errorMessage) {
+        failure(errorMessage);
+    }];
 
 }
 

@@ -260,7 +260,7 @@
                 NSLog(@"token=%@",user.credential.token);
                 NSLog(@"nickname=%@",user.nickname);
 
-                [self loginWithName:user.nickname];
+                [self loginWithName:user.nickname openid:user.uid];
             } else
             {
                 NSLog(@"%@",error);
@@ -279,7 +279,7 @@
                  NSLog(@"%@",user.credential);
                  NSLog(@"token=%@",user.credential.token);
                  NSLog(@"nickname=%@",user.nickname);
-                 [self loginWithName:user.nickname];
+                 [self loginWithName:user.nickname openid:user.uid];
              }
              else
              {
@@ -302,7 +302,7 @@
                  NSLog(@"token=%@",user.credential.token);
                  NSLog(@"nickname=%@",user.nickname);
                  
-                 [self loginWithName:user.nickname];
+                 [self loginWithName:user.nickname openid:user.uid];
              }
              else
              {
@@ -316,14 +316,16 @@
 /**
  *  第三方登录成功后回调
  */
-- (void)loginWithName:(NSString *)name{
+- (void)loginWithName:(NSString *)name openid:(NSString*)openid{
 
-    [CloudLogin loginWithPhoneNum:name password:nil success:^(NSDictionary *responseObject) {
+    
+    [CloudLogin shareLoginWithPhoneNum:name openid:openid success:^(NSDictionary *responseObject) {
         int status = [responseObject[@"status"] intValue];
         
         if (status==0) {
             [self poptips:@"登录成功"];
             
+             NSLog(@"%@",responseObject);
             //存入本地
             NSDictionary * sessionDic = responseObject[@"session"];
             Session * session = [Session shareSession];
@@ -332,7 +334,7 @@
             [defaults setObject:session.userId forKey:@"token"];
             [defaults setObject:session.sessionID forKey:@"session"];
             
-            NSLog(@"%@",session.sessionID);
+           
             
             
             if ([self.delegate respondsToSelector:@selector(loginSuccess)]) {

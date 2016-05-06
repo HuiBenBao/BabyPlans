@@ -33,6 +33,11 @@
 @property (nonatomic,strong) NSString * galleryCnt;
 
 @property (nonatomic,strong) NSString * iconStr;
+/**
+ *  昵称
+ */
+@property (nonatomic, strong) NSString * nickName;
+
 
 
 - (instancetype)initWithDic:(NSDictionary *)dic;

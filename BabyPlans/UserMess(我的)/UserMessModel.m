@@ -23,6 +23,10 @@
             self.name = dic[@"name"];
         }
         
+        if (ValidStr(dic[@"nickName"])) {
+            self.nickName = dic[@"nickName"];
+        }
+        
         if (ValidNum(dic[@"friendCnt"])) {
             int count = [dic[@"friendCnt"] intValue];
             self.friendCount = [NSString stringWithFormat:@"%d",count];

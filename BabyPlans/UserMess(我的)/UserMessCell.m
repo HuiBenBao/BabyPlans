@@ -12,7 +12,7 @@
 
 @property (nonatomic,strong) NSIndexPath * indexPath;
 @property (nonatomic,weak) UIImageView * iconView;
-
+@property (nonatomic,weak) UIView * lineV;
 @property (nonatomic,strong) UserMessModel * model;
 
 @end
@@ -80,7 +80,7 @@ Model:(UserMessModel *)model{
             cell.textLabel.font = FONT_ADAPTED_NUM(15);
             cell.textLabel.textColor = ColorI(0x5b5b5b);
             if (model) {
-                cell.textLabel.text = model.name;
+                cell.textLabel.text = ValidStr(model.nickName) ? model.nickName : model.name;
             }else{
                 cell.textLabel.text = @"请登录";
             }
@@ -107,7 +107,16 @@ Model:(UserMessModel *)model{
             self.backgroundColor = [UIColor whiteColor];
             self.textLabel.textColor = ColorI(0x3b3b3b);
             self.textLabel.font = FONT_ADAPTED_NUM(14);
+            
+            
         }
+        
+        UIView * lineV = [[UIView alloc] init];
+        lineV.backgroundColor = ColorI(0xdddddd);
+        
+        self.lineV = lineV;
+        
+        [self.contentView addSubview:lineV];
         
     }
     
@@ -219,11 +228,8 @@ Model:(UserMessModel *)model{
     
     [super layoutSubviews];
     //分割线
-    UIView * lineV = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height-1, KScreenWidth, 1)];
+    self.lineV.frame = CGRectMake(0, self.frame.size.height-1, KScreenWidth, 1);
     
-    lineV.backgroundColor = ColorI(0xeeeeee);
-    
-    [self.contentView addSubview:lineV];
     
     CGRect imgF = self.imageView.frame;
     imgF.size.height = self.height*2/3;

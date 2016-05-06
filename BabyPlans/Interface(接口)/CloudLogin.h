@@ -25,6 +25,16 @@ typedef void (^Failure)(NSError * errorMessage);
  *  @param password 密码
  */
 + (void)loginWithPhoneNum:(NSString *)phoneNum password:(NSString *)password success:(Success)success failure:(Failure)failure;
+
+/**
+ *  第三方登录
+ *
+ *  @param phoneNum 手机号
+ *  @param password 密码
+ *  @param openid 第三方登录返回参数
+ */
++ (void)shareLoginWithPhoneNum:(NSString *)phoneNum openid:(NSString*)openid success:(Success)success failure:(Failure)failure;
+
 /**
  *  注册 or 修改密码
  *

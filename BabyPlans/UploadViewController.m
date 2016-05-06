@@ -76,7 +76,7 @@
     if ([self isLogin]) {
         
         CreateMyPictureController *ngVC = [[CreateMyPictureController alloc] init];
-        ngVC.type = [NSString stringWithFormat:@"%ld",sender.tag];
+        ngVC.type = [NSString stringWithFormat:@"%ld",(long)sender.tag];
         [self.navigationController pushViewController:ngVC animated:YES];
     }else{
     
