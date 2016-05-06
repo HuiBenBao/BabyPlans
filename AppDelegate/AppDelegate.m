@@ -160,8 +160,6 @@
         [alert addButtonWithTitle:@"前往更新"];
         [alert show];
         alert.tag = 20;
-    }else{
-        [[[UIAlertView alloc] initWithTitle:nil message:@"已是最新版本" delegate:self.class cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil] show];
     }
     
 }
