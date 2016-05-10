@@ -11,6 +11,7 @@
 #import <TencentOpenAPI/QQApiInterface.h>
 #import "WXApi.h"
 #import "WeiboSDK.h"
+#import "APService.h"
 
 @interface LoginView ()
 
@@ -334,7 +335,11 @@
             [defaults setObject:session.userId forKey:@"token"];
             [defaults setObject:session.sessionID forKey:@"session"];
             
-           
+            if (ValidStr([defaults objectForKey:@"token"])) {
+                
+                NSLog(@"%@",[defaults objectForKey:@"token"]);
+                [APService setTags:nil alias:[defaults objectForKey:@"token"] callbackSelector:nil object:nil];
+            }
             
             
             if ([self.delegate respondsToSelector:@selector(loginSuccess)]) {
@@ -386,6 +391,12 @@
             
             [defaults setObject:session.userId forKey:@"token"];
             [defaults setObject:session.sessionID forKey:@"session"];
+            
+            if (ValidStr([defaults objectForKey:@"token"])) {
+                
+                NSLog(@"%@",[defaults objectForKey:@"token"]);
+                [APService setTags:nil alias:[defaults objectForKey:@"token"] callbackSelector:nil object:nil];
+            }
             if ([self.delegate respondsToSelector:@selector(loginSuccess)]) {
                 [self.delegate loginSuccess];
             }

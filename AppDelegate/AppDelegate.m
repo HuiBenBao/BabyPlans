@@ -165,7 +165,13 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     devTokenStr = [devTokenStr stringByReplacingOccurrencesOfString:@"<" withString:@""];
     devTokenStr = [devTokenStr stringByReplacingOccurrencesOfString:@">" withString:@""];
     
-    [APService setTags:[NSSet setWithObject:[defaults objectForKey:@"token"]] alias:nil callbackSelector:nil object:nil];
+    
+    if (ValidStr([defaults objectForKey:@"token"])) {
+        
+        NSLog(@"%@",[defaults objectForKey:@"token"]);
+        [APService setTags:nil alias:[defaults objectForKey:@"token"] callbackSelector:nil object:nil];
+    }
+    
     
 }
 - (void)application:(UIApplication *)application
@@ -173,7 +179,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     // Required
     
     [APService handleRemoteNotification:userInfo];
-    NSLog(@"%@",userInfo);
+    NSLog(@"APService userInfo:%@",userInfo);
     
 }
 - (void)application:(UIApplication *)application
@@ -254,7 +260,9 @@ fetchCompletionHandler:(void
     [application setApplicationIconBadgeNumber:0];
 
 }
-
+/**
+ *  app即将唤醒时调用
+ */
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 
@@ -262,6 +270,7 @@ fetchCompletionHandler:(void
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

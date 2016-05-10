@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FWBUserModel.h"
 
+
 @interface CommentModel : NSObject
 
 @property (nonatomic,strong) FWBUserModel * user;
