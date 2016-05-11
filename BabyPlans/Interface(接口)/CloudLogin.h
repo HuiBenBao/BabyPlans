@@ -159,4 +159,8 @@ typedef void (^Failure)(NSError * errorMessage);
  *  @param count   每页个数
  */
 + (void)UserFansWihtPage:(NSString *)page count:(NSString *)count Success:(Success)success failure:(Failure)failure;
+/**
+ *  获取未读消息数目
+ */
++ (void)GetUnreadMessCountSuccess:(Success)success failure:(Failure)failure;
 @end

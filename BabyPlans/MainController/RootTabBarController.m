@@ -30,12 +30,12 @@
     [super viewDidLoad];
     
     //自定义tabBar
-    MyTabBar * tabBar = [[MyTabBar alloc] init];
-    tabBar.frame = self.tabBar.bounds;
+    _myTabBar = [[MyTabBar alloc] init];
+    _myTabBar.frame = self.tabBar.bounds;
     
-    tabBar.delegate = self;
+    _myTabBar.delegate = self;
     
-    [self.tabBar addSubview:tabBar];
+    [self.tabBar addSubview:_myTabBar];
     
     //添加对应的按钮个数
     
@@ -51,7 +51,7 @@
         if (i!=2) {
             title = i < 2 ? titleArr[i] : titleArr[i-1];
         }
-        [tabBar addTarBarButtonWithImageName:name selectedImage:selectName btnName:title];
+        [_myTabBar addTarBarButtonWithImageName:name selectedImage:selectName btnName:title];
     }
 }
 
@@ -59,6 +59,7 @@
 - (void)tabBar:(MyTabBar *)tabBar didSelectedItemFrom:(NSInteger)from to:(NSInteger)to{
     
     self.selectedIndex = to;
+    
 }
 
 @end

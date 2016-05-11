@@ -93,6 +93,7 @@
 		186195C81CB357B60003A562 /* PlazaMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 186195C71CB357B60003A562 /* PlazaMainCell.m */; };
 		186195CC1CB35BB00003A562 /* UserTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186195CB1CB35BB00003A562 /* UserTableController.m */; };
 		186AC3B21CD8535E007C99D6 /* CafToMp3.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AC3B11CD8535E007C99D6 /* CafToMp3.m */; };
+		186DB5191CE3157700061450 /* DataDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 186DB5181CE3157700061450 /* DataDemo.m */; };
 		18886BA51CBF33C7007AEC7B /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18886BA41CBF33C7007AEC7B /* libmp3lame.a */; };
 		18886C351CC0944A007AEC7B /* UserMessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18886C341CC0944A007AEC7B /* UserMessModel.m */; };
 		18886C391CC0CA0E007AEC7B /* UserDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18886C381CC0CA0E007AEC7B /* UserDetailController.m */; };
@@ -351,6 +352,8 @@
 		186AC3AF1CD8531B007C99D6 /* lame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lame.h; sourceTree = "<group>"; };
 		186AC3B01CD8535E007C99D6 /* CafToMp3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CafToMp3.h; sourceTree = "<group>"; };
 		186AC3B11CD8535E007C99D6 /* CafToMp3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CafToMp3.m; sourceTree = "<group>"; };
+		186DB5171CE3157700061450 /* DataDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataDemo.h; sourceTree = "<group>"; };
+		186DB5181CE3157700061450 /* DataDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataDemo.m; sourceTree = "<group>"; };
 		18886BA41CBF33C7007AEC7B /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmp3lame.a; sourceTree = "<group>"; };
 		18886C331CC0944A007AEC7B /* UserMessModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserMessModel.h; path = ../UserMessModel.h; sourceTree = "<group>"; };
 		18886C341CC0944A007AEC7B /* UserMessModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserMessModel.m; path = ../UserMessModel.m; sourceTree = "<group>"; };
@@ -913,6 +916,8 @@
 				186195C51CB3578A0003A562 /* Model */,
 				186195C41CB357820003A562 /* View */,
 				186195C31CB357790003A562 /* Controller */,
+				186DB5171CE3157700061450 /* DataDemo.h */,
+				186DB5181CE3157700061450 /* DataDemo.m */,
 			);
 			path = "Plaza(广场)";
 			sourceTree = "<group>";
@@ -1314,9 +1319,9 @@
 		18FD4B301CAE34DD00ACD4BC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				18F114CA1CAE385D00F53C42 /* PrefixHeader.pch */,
 				1824D4B11CD0B52D00D5BB35 /* ZbarImage */,
 				182E23491CC9CFFD0076CE50 /* GuidePageImg */,
-				18F114CA1CAE385D00F53C42 /* PrefixHeader.pch */,
 				18FD4B3C1CAE34DD00ACD4BC /* Assets.xcassets */,
 				18FD4B411CAE34DD00ACD4BC /* Info.plist */,
 				1829DE4C1CC8F4D200D0DB02 /* slider_left.png */,
@@ -1658,6 +1663,7 @@
 				182E233C1CC9BCE00076CE50 /* TCMSuggestionTextView.m in Sources */,
 				182E23471CC9CD270076CE50 /* ABCIntroView.m in Sources */,
 				18FD4B321CAE34DD00ACD4BC /* main.m in Sources */,
+				186DB5191CE3157700061450 /* DataDemo.m in Sources */,
 				185509AD1CC5E36F002834D3 /* RecommendController.m in Sources */,
 				185509AA1CC5E36F002834D3 /* LessonCell.m in Sources */,
 				18F114AD1CAE36F600F53C42 /* RootTabBarController.m in Sources */,

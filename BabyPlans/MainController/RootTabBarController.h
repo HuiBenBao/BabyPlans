@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@class MyTabBar;
 
 @interface RootTabBarController : UITabBarController
 
+@property (nonatomic,strong) MyTabBar * myTabBar;
 
 
 @end

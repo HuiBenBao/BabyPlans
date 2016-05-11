@@ -105,6 +105,7 @@ enum{
             
         } failure:^(NSError *errorMessage) {
             HUD.hidden = YES;
+            [self.view requsetFaild];
             NSLog(@"广场接口请求Error ==%@",errorMessage);
         }];
         
@@ -208,6 +209,45 @@ enum{
     [self createTopView];
 //    [self dataArrRight];
     [self dataArrLeft];
+    
+    
+    dispatch_queue_t queue =dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    dispatch_async(queue, ^{
+        
+        //获取未读消息数目
+        [self getMessCount];
+    });
+    
+    
+}
+/**
+ *  获取未读消息
+ */
+- (void)getMessCount{
+
+    UITabBarController * tabVC = (UITabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+    tabVC.tabBar.items.lastObject.badgeValue = nil;
+
+    [CloudLogin GetUnreadMessCountSuccess:^(NSDictionary *responseObject) {
+        
+        int status = [responseObject[@"status"] intValue];
+        if (status==0) {
+            int number = [responseObject[@"count"] intValue];
+            NSString * badge;
+            if (number>0) {
+                badge = [NSString stringWithFormat:@"%d",number];
+            }
+            tabVC.tabBar.items.lastObject.badgeValue = badge;
+
+        }else{
+        
+            tabVC.tabBar.items.lastObject.badgeValue = nil;
+        }
+        
+    } failure:^(NSError *errorMessage) {
+        
+    }];
     
     
 }
@@ -353,7 +393,7 @@ enum{
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
+ 
     return 1;
 }
 
@@ -382,7 +422,6 @@ enum{
     }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     
     PlazaDataFrame * dataF;
     

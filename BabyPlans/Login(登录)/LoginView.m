@@ -326,7 +326,7 @@
         if (status==0) {
             [self poptips:@"登录成功"];
             
-             NSLog(@"%@",responseObject);
+             NSLog(@"登录成功:%@",responseObject);
             //存入本地
             NSDictionary * sessionDic = responseObject[@"session"];
             Session * session = [Session shareSession];

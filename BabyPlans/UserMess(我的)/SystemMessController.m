@@ -34,6 +34,11 @@
             
             if (status == 0) {
                 
+                //清空未读消息提醒数字
+                UITabBarController * rootVC = (UITabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+                
+                rootVC.tabBar.items.lastObject.badgeValue = nil;
+                
                 if (ValidArray(responseObject[@"msgSend"])) {
                     NSArray * dataArr = responseObject[@"msgSend"];
                     
@@ -81,6 +86,8 @@
     self.view.backgroundColor = ColorI(0xeeeeee);
     
     [self titleArr];
+    
+    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

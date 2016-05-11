@@ -159,12 +159,6 @@
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // Required
     [APService registerDeviceToken:deviceToken];
-    NSLog(@"%@", [NSString stringWithFormat:@"Device Token: %@", deviceToken]);
-    
-    NSString *devTokenStr = [[deviceToken description] stringByReplacingOccurrencesOfString:@" " withString:@""];
-    devTokenStr = [devTokenStr stringByReplacingOccurrencesOfString:@"<" withString:@""];
-    devTokenStr = [devTokenStr stringByReplacingOccurrencesOfString:@">" withString:@""];
-    
     
     if (ValidStr([defaults objectForKey:@"token"])) {
         

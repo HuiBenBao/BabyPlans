@@ -25,6 +25,10 @@
 
 
 @property (nonatomic,weak) id <UserMessCellDelegate>delegate;
+/**
+ *  小红点
+ */
+@property (nonatomic,strong,readonly) UIView * redView;
 
 
 + (instancetype)cellWithTableView:(UITableView *)tableView indexPath:(NSIndexPath*)indexPath Model:(UserMessModel *)model;

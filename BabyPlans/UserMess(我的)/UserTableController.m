@@ -27,6 +27,9 @@
 
 @property (nonatomic,strong) UserMessModel * model;
 
+@property (nonatomic,strong) UITabBarController * tabVC;
+
+
 @end
 
 @implementation UserTableController
@@ -47,6 +50,15 @@
             
         }
     }
+}
+
+- (UITabBarController *)tabVC{
+
+    if (!_tabVC) {
+        _tabVC = (UITabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+    }
+    
+    return _tabVC;
 }
 
 - (void)viewDidLoad {
@@ -160,6 +172,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UserMessCell * cell = [UserMessCell cellWithTableView:tableView indexPath:indexPath Model:_model];
+    
+    if (indexPath.section == 1 && indexPath.row == 1) {
+        cell.redView.hidden = !self.tabBarController.tabBar.items.lastObject.badgeValue;
+    }
+    
     
     cell.delegate = self;
     

@@ -38,6 +38,7 @@ Model:(UserMessModel *)model{
             
         }
 
+        cell.redView.hidden = YES;
         switch (indexPath.row) {
             case 0:
                 cell.textLabel.text = @"我的二维码";
@@ -108,6 +109,10 @@ Model:(UserMessModel *)model{
             self.textLabel.textColor = ColorI(0x3b3b3b);
             self.textLabel.font = FONT_ADAPTED_NUM(14);
             
+            _redView = [[UIView alloc] init];
+            
+            _redView.backgroundColor = [UIColor redColor];
+            [self.contentView addSubview:_redView];
             
         }
         
@@ -243,6 +248,19 @@ Model:(UserMessModel *)model{
     
     self.imageView.layer.cornerRadius = imgF.size.height/2;
     self.imageView.clipsToBounds = YES;
+    
+    if (_redView) {
+
+        CGFloat redH = 10;
+        _redView.frame = CGRectMake(KScreenWidth-50, 0, redH, redH);
+        _redView.layer.cornerRadius = redH/2;
+        _redView.clipsToBounds = YES;
+        
+
+        CGPoint center = _redView.center;
+        center.y = self.contentView.center.y;
+        _redView.center = center;
+    }
 }
 
 @end
