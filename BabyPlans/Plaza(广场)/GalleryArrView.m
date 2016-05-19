@@ -110,7 +110,7 @@
 - (void)createUI{
     
     //显示当前位置
-    self.titleLbl.text = [NSString stringWithFormat:@"1/%ld",(unsigned long)self.galleryArr.count];
+    self.titleLbl.text = [NSString stringWithFormat:@"自动播放/滑动翻页   第1页/共%ld页",(unsigned long)self.galleryArr.count];
 
     //设置图集
     self.imgScrollView.pagingEnabled = YES;
@@ -128,11 +128,11 @@
         
         
         UIImageView * imgView = [[UIImageView alloc] initWithFrame:CGRectMake(imgW*i, 0, imgW, imgH)];
-        
+        [imgView setContentMode:UIViewContentModeScaleAspectFit];
+
         GalleryImgModel * model = [self.galleryArr objectAtIndex:i];
         [imgView sd_setImageWithURL:[NSURL URLWithString:model.picture.image] placeholderImage:[UIImage imageNamed:@"DefaultImage"]];
         
-        [imgView setContentMode:UIViewContentModeScaleAspectFit];
 //        imgView.clipsToBounds = YES;
         
         
@@ -223,7 +223,7 @@
     if (currentX == 0) {
         [self stop];
         [self poptips:@"播放完成"];
-        self.titleLbl.text = [NSString stringWithFormat:@"1/%ld",(unsigned long)self.galleryArr.count];
+        self.titleLbl.text = [NSString stringWithFormat:@"自动播放/滑动翻页   第1页/共%ld页",(unsigned long)self.galleryArr.count];
     }else{
         [self play];
     }
@@ -237,7 +237,7 @@
     int index = currentX/self.width;
     
 //    if (index>0) {
-        self.titleLbl.text = [NSString stringWithFormat:@"%d/%ld",index+1,(unsigned long)self.galleryArr.count];
+        self.titleLbl.text = [NSString stringWithFormat:@"自动播放/滑动翻页   第%d页/共%ld页",index+1,(unsigned long)self.galleryArr.count];
 
 //    }
 }
