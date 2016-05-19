@@ -26,6 +26,10 @@
             self.image = dic[@"imageBig"];
         }
         
+        if (ValidStr(dic[@"imageSmall"])) {
+            self.imageSmall = dic[@"imageSmall"];
+        }
+        
         if (ValidStr(dic[@"voice"])) {
             self.voice = dic[@"voice"];
         }

@@ -11,6 +11,7 @@
 @interface PictureModel : NSObject
 @property (nonatomic,strong) NSString * pictureID;
 @property (nonatomic,strong) NSString * image;
+@property (nonatomic,strong) NSString * imageSmall;
 @property (nonatomic,strong) NSString * voice;
 @property (nonatomic,strong) NSString * voiceLength;
 @property (nonatomic,strong) NSString * date;

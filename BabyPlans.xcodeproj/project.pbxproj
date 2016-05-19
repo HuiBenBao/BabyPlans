@@ -65,6 +65,7 @@
 		184644381CB628BC0082F346 /* GalleryArrView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184644371CB628BC0082F346 /* GalleryArrView.m */; };
 		1846443B1CB63FF30082F346 /* GalleryImgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846443A1CB63FF30082F346 /* GalleryImgModel.m */; };
 		1846443E1CB642CB0082F346 /* PictureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1846443D1CB642CB0082F346 /* PictureModel.m */; };
+		184AF5BA1CED5ABA0025D27B /* NagavitionBarImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 184AF5B91CED5ABA0025D27B /* NagavitionBarImg.png */; };
 		184BCA771CB362E5008314F4 /* CloudLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 184BCA761CB362E5008314F4 /* CloudLogin.m */; };
 		1855099B1CC5DCEA002834D3 /* LessonPlacdehoder.png in Resources */ = {isa = PBXBuildFile; fileRef = 1855099A1CC5DCEA002834D3 /* LessonPlacdehoder.png */; };
 		185509AA1CC5E36F002834D3 /* LessonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 185509A11CC5E36F002834D3 /* LessonCell.m */; };
@@ -105,7 +106,6 @@
 		18886C641CC0CE46007AEC7B /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18886C471CC0CE46007AEC7B /* libWeiboSDK.a */; };
 		18886C651CC0CE46007AEC7B /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18886C511CC0CE46007AEC7B /* WeiboSDK.bundle */; };
 		18886C661CC0CE46007AEC7B /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18886C551CC0CE46007AEC7B /* libWeChatSDK.a */; };
-		18886C671CC0CE46007AEC7B /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 18886C561CC0CE46007AEC7B /* read_me.txt */; };
 		18886C681CC0CE46007AEC7B /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18886C5B1CC0CE46007AEC7B /* MOBFoundation.framework */; };
 		18886C691CC0CE46007AEC7B /* ShareSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18886C5C1CC0CE46007AEC7B /* ShareSDK.bundle */; };
 		18886C6A1CC0CE46007AEC7B /* ShareSDKConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18886C5D1CC0CE46007AEC7B /* ShareSDKConnector.framework */; };
@@ -115,7 +115,6 @@
 		18886C721CC0D088007AEC7B /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18886C711CC0D088007AEC7B /* JavaScriptCore.framework */; };
 		18886C741CC0D0B3007AEC7B /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18886C731CC0D0B3007AEC7B /* ImageIO.framework */; };
 		18886C761CC0D0BF007AEC7B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18886C751CC0D0BF007AEC7B /* libsqlite3.tbd */; };
-		18886C781CC0DB27007AEC7B /* NagavitionBarImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 18886C771CC0DB27007AEC7B /* NagavitionBarImg.png */; };
 		18886C7E1CC2195C007AEC7B /* defaultIconImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 18886C7D1CC2195C007AEC7B /* defaultIconImg.png */; };
 		1888A1B41CDC7866004FD8CD /* libPushSDK-1.8.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888A1B21CDC7866004FD8CD /* libPushSDK-1.8.8.a */; };
 		1888A1B51CDC7866004FD8CD /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1888A1B31CDC7866004FD8CD /* PushConfig.plist */; };
@@ -303,6 +302,7 @@
 		1846443A1CB63FF30082F346 /* GalleryImgModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryImgModel.m; sourceTree = "<group>"; };
 		1846443C1CB642CB0082F346 /* PictureModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureModel.h; sourceTree = "<group>"; };
 		1846443D1CB642CB0082F346 /* PictureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureModel.m; sourceTree = "<group>"; };
+		184AF5B91CED5ABA0025D27B /* NagavitionBarImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NagavitionBarImg.png; sourceTree = "<group>"; };
 		184BCA751CB362E5008314F4 /* CloudLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloudLogin.h; sourceTree = "<group>"; };
 		184BCA761CB362E5008314F4 /* CloudLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloudLogin.m; sourceTree = "<group>"; };
 		1855099A1CC5DCEA002834D3 /* LessonPlacdehoder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LessonPlacdehoder.png; sourceTree = "<group>"; };
@@ -376,7 +376,6 @@
 		18886C521CC0CE46007AEC7B /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
 		18886C531CC0CE46007AEC7B /* WeiboUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboUser.h; sourceTree = "<group>"; };
 		18886C551CC0CE46007AEC7B /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
-		18886C561CC0CE46007AEC7B /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = read_me.txt; sourceTree = "<group>"; };
 		18886C571CC0CE46007AEC7B /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		18886C581CC0CE46007AEC7B /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		18886C591CC0CE46007AEC7B /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
@@ -389,7 +388,6 @@
 		18886C711CC0D088007AEC7B /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		18886C731CC0D0B3007AEC7B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		18886C751CC0D0BF007AEC7B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		18886C771CC0DB27007AEC7B /* NagavitionBarImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NagavitionBarImg.png; sourceTree = "<group>"; };
 		18886C7D1CC2195C007AEC7B /* defaultIconImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultIconImg.png; sourceTree = "<group>"; };
 		1888A1B11CDC7866004FD8CD /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
 		1888A1B21CDC7866004FD8CD /* libPushSDK-1.8.8.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.8.a"; sourceTree = "<group>"; };
@@ -1075,7 +1073,6 @@
 			isa = PBXGroup;
 			children = (
 				18886C551CC0CE46007AEC7B /* libWeChatSDK.a */,
-				18886C561CC0CE46007AEC7B /* read_me.txt */,
 				18886C571CC0CE46007AEC7B /* WechatAuthSDK.h */,
 				18886C581CC0CE46007AEC7B /* WXApi.h */,
 				18886C591CC0CE46007AEC7B /* WXApiObject.h */,
@@ -1161,10 +1158,10 @@
 		18CCD1491CB8DA45002595FD /* DefaultImg */ = {
 			isa = PBXGroup;
 			children = (
+				184AF5B91CED5ABA0025D27B /* NagavitionBarImg.png */,
 				18550A2F1CC73430002834D3 /* addpic_btn.png */,
 				1855099A1CC5DCEA002834D3 /* LessonPlacdehoder.png */,
 				18886C7D1CC2195C007AEC7B /* defaultIconImg.png */,
-				18886C771CC0DB27007AEC7B /* NagavitionBarImg.png */,
 				18CCD14A1CB8DA5C002595FD /* DefaultImage.png */,
 				18CCD1571CB8FA9E002595FD /* appLogo.png */,
 			);
@@ -1546,14 +1543,13 @@
 				18CCD11E1CB7907E002595FD /* plaza_bottomview0.png in Resources */,
 				18CCD13E1CB7A11E002595FD /* RecommednTxt.png in Resources */,
 				18F114EA1CAE3B6F00F53C42 /* TabBar5.png in Resources */,
-				18886C671CC0CE46007AEC7B /* read_me.txt in Resources */,
 				1888A1B51CDC7866004FD8CD /* PushConfig.plist in Resources */,
 				18550A301CC73430002834D3 /* addpic_btn.png in Resources */,
 				18CCD13C1CB7A11E002595FD /* Recommend_btn3.png in Resources */,
 				18CCD1201CB7907E002595FD /* plaza_bottomview0@3x.png in Resources */,
 				18F114E91CAE3B6F00F53C42 /* TabBar4.png in Resources */,
+				184AF5BA1CED5ABA0025D27B /* NagavitionBarImg.png in Resources */,
 				18CCD1231CB7907E002595FD /* plaza_bottomview1@3x.png in Resources */,
-				18886C781CC0DB27007AEC7B /* NagavitionBarImg.png in Resources */,
 				18CCD1391CB7A11E002595FD /* Recommend_btn0.png in Resources */,
 				1824D4C91CD0B52D00D5BB35 /* qrcode_scan_light_green@2x.png in Resources */,
 				18F114E81CAE3B6F00F53C42 /* TabBar3.png in Resources */,

@@ -68,7 +68,7 @@
     [ShareSDK registerApp:@"d3528fc0e720"
      
           activePlatforms:@[
-//                            @(SSDKPlatformTypeSinaWeibo),
+                            @(SSDKPlatformTypeSinaWeibo),
                             @(SSDKPlatformTypeWechat),
                             @(SSDKPlatformTypeQQ),]
                  onImport:^(SSDKPlatformType platformType)
@@ -81,9 +81,9 @@
              case SSDKPlatformTypeQQ:
                  [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
                  break;
-//             case SSDKPlatformTypeSinaWeibo:
-//                 [ShareSDKConnector connectWeibo:[WeiboSDK class]];
-//                 break;
+             case SSDKPlatformTypeSinaWeibo:
+                 [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+                 break;
              default:
                  break;
          }

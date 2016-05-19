@@ -123,15 +123,14 @@
         CGFloat imgH = self.height;
         
         
-//        UIImage * image = [UIImage imageWithURLString:model.picture.image];
-        
-        
-        
         UIImageView * imgView = [[UIImageView alloc] initWithFrame:CGRectMake(imgW*i, 0, imgW, imgH)];
         [imgView setContentMode:UIViewContentModeScaleAspectFit];
 
         GalleryImgModel * model = [self.galleryArr objectAtIndex:i];
-        [imgView sd_setImageWithURL:[NSURL URLWithString:model.picture.image] placeholderImage:[UIImage imageNamed:@"DefaultImage"]];
+        
+        UIImage * smallImg = [UIImage imageWithURLString:model.picture.imageSmall];
+        
+        [imgView sd_setImageWithURL:[NSURL URLWithString:model.picture.image] placeholderImage:smallImg];
         
 //        imgView.clipsToBounds = YES;
         
@@ -140,13 +139,18 @@
         [self.imgScrollView addSubview:imgView];
     }
     
-    //初始化音频类 并且添加播放文件
-    self.avAudioPlayer = nil;
-    //设置代理
-    _avAudioPlayer.delegate = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        //初始化音频类 并且添加播放文件
+        self.avAudioPlayer = nil;
+        //设置代理
+        _avAudioPlayer.delegate = self;
+        
+        //自动播放
+        [self play];
+        
+    });
     
-    //自动播放
-    [self play];
+    
 }
 
 - (void)layoutSubviews{
@@ -174,15 +178,20 @@
     GalleryImgModel * model = [self.galleryArr objectAtIndex:index];
     
     if (model.picture.voice) {
-        self.avAudioPlayer = [[AVAudioPlayer alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:model.picture.voice]] error:nil];
-        //设置代理
-        _avAudioPlayer.delegate = self;
         
-        [_avAudioPlayer play];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            
+            self.avAudioPlayer = [[AVAudioPlayer alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:model.picture.voice]] error:nil];
+            //设置代理
+            _avAudioPlayer.delegate = self;
+            
+            [_avAudioPlayer play];
+        });
+        
         
     }else{ //声音是空时,1秒后滑动到下一张
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
             [self nextImage];
         });

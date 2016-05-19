@@ -638,12 +638,20 @@ enum{
                 UIImage * upImage = [UIImage imageWithData:photo];
                 
                 NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+                
+                [shareParams SSDKEnableUseClientShare];
                 [shareParams SSDKSetupShareParamsByText:model.content
                                                  images:upImage
                                                     url:[NSURL URLWithString:Urlstr]
                                                   title:@"看绘本，上绘本宝"
                                                 type:SSDKContentTypeAuto];
                 
+//                [shareParams SSDKSetupSinaWeiboShareParamsByText:model.content title:@"看绘本，上绘本宝" image:upImage url:[NSURL URLWithString:Urlstr] latitude:0 longitude:0 objectID:nil type:SSDKContentTypeImage];
+                //定制QQ分享内容
+                [shareParams SSDKSetupQQParamsByText:model.content title:@"看绘本，上绘本宝" url:[NSURL URLWithString:Urlstr] audioFlashURL:[NSURL URLWithString:model.galleryBase] videoFlashURL:nil thumbImage:nil image:upImage type:SSDKContentTypeAudio forPlatformSubType:SSDKPlatformSubTypeQQFriend];
+                
+                //定制QQ空间分享内容
+                [shareParams SSDKSetupQQParamsByText:model.content title:@"看绘本，上绘本宝" url:[NSURL URLWithString:Urlstr] audioFlashURL:[NSURL URLWithString:model.galleryBase] videoFlashURL:nil thumbImage:nil image:upImage type:SSDKContentTypeAudio forPlatformSubType:SSDKPlatformSubTypeQZone];
                 
                 // 定制微信好友的分享内容
                 [shareParams SSDKSetupWeChatParamsByText:model.content

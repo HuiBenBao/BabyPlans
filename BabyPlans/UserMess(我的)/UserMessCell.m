@@ -239,15 +239,25 @@ Model:(UserMessModel *)model{
     CGRect imgF = self.imageView.frame;
     imgF.size.height = self.height*2/3;
     imgF.size.width = imgF.size.height;
+    imgF.origin.x = 35*SCREEN_WIDTH_RATIO55;
     
+    self.imageView.frame = imgF;
+
     CGPoint imgPoint = self.imageView.center;
     imgPoint.y = self.height/2;
     
-    self.imageView.frame = imgF;
     self.imageView.center = imgPoint;
     
     self.imageView.layer.cornerRadius = imgF.size.height/2;
     self.imageView.clipsToBounds = YES;
+    
+    
+    if (self.model) {
+        CGRect textF = self.textLabel.frame;
+        textF.origin.x = self.imageView.right + 10*SCREEN_WIDTH_RATIO55;
+        
+        self.textLabel.frame = textF;
+    }
     
     if (_redView) {
 

@@ -176,9 +176,9 @@
     //第三方登录
     NSMutableArray * tollArr = [NSMutableArray array];
     
-//    if ([WeiboSDK isWeiboAppInstalled]) {
-//        [tollArr addObject:@"新浪登录"];
-//    }
+    if ([WeiboSDK isWeiboAppInstalled]) {
+        [tollArr addObject:@"新浪登录"];
+    }
     if ([WXApi isWXAppInstalled]) {
         [tollArr addObject:@"微信登录"];
     }
