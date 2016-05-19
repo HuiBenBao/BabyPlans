@@ -12,6 +12,7 @@
 
 @interface UploadViewController ()
 
+@property (nonatomic,strong) NSArray * BtnArr;
 
 @end
 
@@ -21,6 +22,10 @@
 
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
+    
+    if ([self isViewLoaded]) {
+        [self animationIn];
+    }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,6 +47,8 @@
     CGFloat btnX = (KScreenWidth - btnW)/2;
     
     CGFloat tempY = (KScreenHeight - KTabBarHeight - btnH*titleArr.count - margic)/2;
+    
+    NSMutableArray * tempArr = [NSMutableArray array];
     for (int i = 0; i < titleArr.count; i++) {
         
         CGFloat btnY = tempY + (btnH+margic)*i;
@@ -64,11 +71,37 @@
         paintBtn.tag = i;
         [paintBtn addTarget:self action:@selector(paintClick:) forControlEvents:UIControlEventTouchUpInside];
         
+        paintBtn.alpha = 0;
         [self.view addSubview:paintBtn];
+        
+        [tempArr addObject:paintBtn];
     }
+    
+    self.BtnArr = tempArr;
+    
+
 
 }
+- (void)animationIn{
 
+    [_BtnArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIButton * btn = obj;
+        CGFloat x = btn.frame.origin.x;
+        CGFloat y = btn.frame.origin.y;
+        CGFloat width = btn.frame.size.width;
+        CGFloat height = btn.frame.size.height;
+        btn.frame = CGRectMake(x, 0, width, height);
+        
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(idx * 0.03 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.75 delay:0 usingSpringWithDamping:0.55 initialSpringVelocity:20 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                btn.alpha = 1;
+                btn.frame = CGRectMake(x, y, width, height);
+            } completion:^(BOOL finished) {
+            }];
+        });
+    }];
+}
 
 #pragma mark uievent
 - (void)paintClick:(UIButton *)sender{
