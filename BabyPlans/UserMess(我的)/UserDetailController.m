@@ -157,6 +157,8 @@
     [finishBtn addTarget:self action:@selector(updateNikeName) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton * clickBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    clickBtn.titleLabel.font = FONTBOLD_ADAPTED_WIDTH(18);
     clickBtn.frame = CGRectMake(15*SCREEN_WIDTH_RATIO55, 0, 40*SCREEN_WIDTH_RATIO55, keyBoardTopView.frame.size.height);
     [clickBtn setTitle:@"取消" forState:UIControlStateNormal];
     [clickBtn setTitleColor:[UIColor colorWithRed:17/255.0 green:102/255.0 blue:254/255.0 alpha:1] forState:UIControlStateNormal];
@@ -188,37 +190,44 @@
  */
 - (void)updateMess{
 
-    MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    if (self.iconImg == nil && [[defaults valueForKey:UserNickName] isEqualToString:self.textField.text]) {
+        
+        [self.view poptips:@"未做任何修改"];
+    }else{
     
-    hud.dimBackground = YES;
-    
-    [CloudLogin changeIcon:_iconImg nikeName:[self.textField.text trim] birthday:nil sex:nil Success:^(NSDictionary *responseObject) {
+        MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         
-        NSLog(@"%@",responseObject);
+        hud.dimBackground = YES;
         
-        hud.hidden = YES;
-        [hud removeFromSuperview];
-
-        int status = [responseObject[@"status"] intValue];
-        
-        if (status==0) {
-            [self.view poptips:@"修改成功"];
+        [CloudLogin changeIcon:_iconImg nikeName:[self.textField.text trim] birthday:nil sex:nil Success:^(NSDictionary *responseObject) {
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSLog(@"%@",responseObject);
+            
+            hud.hidden = YES;
+            [hud removeFromSuperview];
+            
+            int status = [responseObject[@"status"] intValue];
+            
+            if (status==0) {
+                [self.view poptips:@"修改成功"];
                 
-                [self.navigationController popViewControllerAnimated:YES];
-            });
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+                    [self.navigationController popViewControllerAnimated:YES];
+                });
+                
+            }else{
+                
+                [self.view poptips:responseObject[@"error" ]];
+            }
+        } failure:^(NSError *errorMessage) {
+            hud.hidden = YES;
+            [hud removeFromSuperview];
+            [self.view poptips:@"网络异常"];
+        }];
 
-        }else{
-            
-            [self.view poptips:responseObject[@"error" ]];
-        }
-    } failure:^(NSError *errorMessage) {
-        hud.hidden = YES;
-        [hud removeFromSuperview];
-        [self.view poptips:@"网络异常"];
-    }];
-
+    }
+    
 }
 /**
  *  图像点击方法
