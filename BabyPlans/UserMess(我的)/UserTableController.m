@@ -21,7 +21,7 @@
 #import "UserGallerysController.h"
 
 
-@interface UserTableController ()<LoginDelegate,UserMessCellDelegate,UserSettingDelegate,UserDetailControllerDelegate>
+@interface UserTableController ()<LoginDelegate,UserMessCellDelegate,UserSettingDelegate>
 
 @property (nonatomic,strong) NSArray * dataArr;
 
@@ -124,6 +124,12 @@
                 
                 if (ValidDict(responseObject[@"user"])) {
                     _model = [UserMessModel valueWithDic:responseObject[@"user"]];
+                    
+                    //将昵称存入本地
+                    NSString * nickName = ValidStr(_model.nickName) ? _model.nickName : _model.name;
+                    
+                    [defaults setValue:nickName forKey:UserNickName];
+                    
                     [self.tableView reloadData];
                 }
                 
@@ -228,7 +234,6 @@
             if (indexPath.row==0) {
                 
                 UserDetailController * VC = [UserDetailController userDetailWithModel:_model];
-                VC.delegate = self;
                 
                 [self.navigationController pushViewController:VC animated:YES];
 
@@ -315,13 +320,6 @@
     
     [alertVC addAction:cancelBtn];
     [self presentViewController:alertVC animated:YES completion:nil];
-}
-
-#pragma ----mark-----UserDetailControllerDelegate
-- (void)updateUserMess{
-
-    self.model = nil;
-    [self model];
 }
 
 #pragma ----mark-----UserMessCellDelegate

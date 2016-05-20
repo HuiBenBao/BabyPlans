@@ -121,7 +121,7 @@
         
         CGFloat imgW = self.width;
         CGFloat imgH = self.height;
-        
+                
         
         UIImageView * imgView = [[UIImageView alloc] initWithFrame:CGRectMake(imgW*i, 0, imgW, imgH)];
         [imgView setContentMode:UIViewContentModeScaleAspectFit];
@@ -142,8 +142,6 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         //初始化音频类 并且添加播放文件
         self.avAudioPlayer = nil;
-        //设置代理
-        _avAudioPlayer.delegate = self;
         
         //自动播放
         [self play];

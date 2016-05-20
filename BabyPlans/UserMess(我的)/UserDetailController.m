@@ -10,12 +10,18 @@
 
 #define iconCellHeight 120*SCREEN_WIDTH_RATIO55
 #define generalCellHeight 60*SCREEN_WIDTH_RATIO55
+#define footerHeight 120*SCREEN_WIDTH_RATIO55
 
 @interface UserDetailController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate>
 
 @property (nonatomic,strong) UserMessModel * userModel;
 
 @property (nonatomic,weak) UIImageView * iconView;
+
+@property (nonatomic,weak) UITextField * textField;
+
+@property (nonatomic,strong) UIImage * iconImg;
+
 
 @end
 
@@ -44,7 +50,32 @@
 
     return (indexPath.row==0) ?  iconCellHeight: generalCellHeight;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
 
+    return footerHeight;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+
+    UIView * footer = [[UIView alloc] init];
+    
+    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    CGFloat btnX = 30*SCREEN_WIDTH_RATIO55;
+    btn.frame = CGRectMake(btnX, footerHeight/2, KScreenWidth-btnX*2, footerHeight/2);
+    
+    [btn setTitle:@"上传" forState:UIControlStateNormal];
+    [btn setBackgroundColor:[UIColor orangeColor]];
+    [btn setTitleColor:ColorI(0xffffff) forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(updateMess) forControlEvents:UIControlEventTouchUpInside];
+    
+    btn.layer.cornerRadius = 8*SCREEN_WIDTH_RATIO55;
+    btn.clipsToBounds = YES;
+    
+    [footer addSubview:btn];
+    footer.backgroundColor = [UIColor clearColor];
+    
+    return footer;
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
     static NSString * ident = @"UserDetailCell";
@@ -80,18 +111,23 @@
         switch (indexPath.row) {
             case 1:{
                 
-                    cell.textLabel.text = @"昵称";
-                    
-                    UILabel * detailLbl = [[UILabel alloc] initWithFrame:CGRectMake(iconCellHeight, 1, KScreenWidth-iconCellHeight, generalCellHeight-2)];
-                    detailLbl.text = self.userModel.name;
-                    
-                    detailLbl.textColor = ColorI(0x5b5b5b);
-                    detailLbl.font = FONT_ADAPTED_NUM(15);
-                    [cell.contentView addSubview:detailLbl];
-                }
-                break;
-            default:
-                break;
+                cell.textLabel.text = @"昵称";
+                
+                UITextField * detailLbl = [[UITextField alloc] initWithFrame:CGRectMake(iconCellHeight, 1, KScreenWidth-iconCellHeight, generalCellHeight-2)];
+                detailLbl.text = [defaults valueForKey:UserNickName];
+                
+                detailLbl.textColor = ColorI(0x5b5b5b);
+                detailLbl.font = FONT_ADAPTED_NUM(15);
+                
+                
+                detailLbl.inputAccessoryView = [self getKeyBoardView];
+                self.textField = detailLbl;
+                
+                [cell.contentView addSubview:detailLbl];
+            }
+            break;
+        default:
+            break;
         }
     }
     
@@ -101,6 +137,88 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
+}
+/**
+ *  添加键盘上方按钮
+ */
+- (UIView *)getKeyBoardView{
+
+    UIView *keyBoardTopView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 44*SCREEN_WIDTH_RATIO55)];
+    
+    keyBoardTopView.backgroundColor = [UIColor colorWithRed:200/255.0 green:203/255.0 blue:210/255.0 alpha:0.8];
+    
+    UIButton * finishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    finishBtn.frame = CGRectMake(KScreenWidth-50*SCREEN_WIDTH_RATIO55 ,0, 40*SCREEN_WIDTH_RATIO55, 44*SCREEN_WIDTH_RATIO55);
+    
+    [finishBtn setTitle:@"完成" forState:UIControlStateNormal];
+    finishBtn.titleLabel.font = FONTBOLD_ADAPTED_WIDTH(18);
+    [finishBtn setTitleColor:[UIColor colorWithRed:17/255.0 green:102/255.0 blue:254/255.0 alpha:1] forState:UIControlStateNormal];
+    
+    [finishBtn addTarget:self action:@selector(updateNikeName) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton * clickBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    clickBtn.frame = CGRectMake(15*SCREEN_WIDTH_RATIO55, 0, 40*SCREEN_WIDTH_RATIO55, keyBoardTopView.frame.size.height);
+    [clickBtn setTitle:@"取消" forState:UIControlStateNormal];
+    [clickBtn setTitleColor:[UIColor colorWithRed:17/255.0 green:102/255.0 blue:254/255.0 alpha:1] forState:UIControlStateNormal];
+    
+    [clickBtn addTarget:self action:@selector(onKeyBoardDown) forControlEvents:UIControlEventTouchUpInside];
+    
+    [keyBoardTopView addSubview:finishBtn];
+    [keyBoardTopView addSubview:clickBtn];
+
+    return keyBoardTopView;
+}
+/**
+ *  点击取消隐藏键盘,并将昵称还原
+ */
+- (void)onKeyBoardDown{
+
+    [self.textField resignFirstResponder];
+    self.textField.text = [defaults valueForKey:UserNickName];
+}
+/**
+ *  点击完成，隐藏键盘
+ */
+- (void)updateNikeName{
+
+    [self.textField resignFirstResponder];
+}
+/**
+ *  上传信息
+ */
+- (void)updateMess{
+
+    MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    hud.dimBackground = YES;
+    
+    [CloudLogin changeIcon:_iconImg nikeName:[self.textField.text trim] birthday:nil sex:nil Success:^(NSDictionary *responseObject) {
+        
+        NSLog(@"%@",responseObject);
+        
+        hud.hidden = YES;
+        [hud removeFromSuperview];
+
+        int status = [responseObject[@"status"] intValue];
+        
+        if (status==0) {
+            [self.view poptips:@"修改成功"];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+
+        }else{
+            
+            [self.view poptips:responseObject[@"error" ]];
+        }
+    } failure:^(NSError *errorMessage) {
+        hud.hidden = YES;
+        [hud removeFromSuperview];
+        [self.view poptips:@"网络异常"];
+    }];
+
 }
 /**
  *  图像点击方法
@@ -153,6 +271,12 @@
     {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
+        
+        if (IOS8) {
+            picker.modalPresentationStyle=UIModalPresentationOverCurrentContext;
+
+        }
+        
         //设置拍照后的图片可被编辑
         picker.allowsEditing = YES;
         picker.sourceType = sourceType;
@@ -175,6 +299,10 @@
     
     [picker.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:FONTBOLD_ADAPTED_WIDTH(21)}];
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    if (IOS8) {
+        picker.modalPresentationStyle=UIModalPresentationOverCurrentContext;
+        
+    }
     picker.delegate = self;
     //设置选择后的图片可被编辑
     picker.allowsEditing = YES;
@@ -238,26 +366,9 @@
         [picker dismissViewControllerAnimated:YES completion:^{
             
             UIImage * img = [UIImage imageWithData:data];
+            self.iconView.image = img;
+            self.iconImg = img;
             
-            [CloudLogin changeIcon:img nikeName:nil birthday:nil sex:nil Success:^(NSDictionary *responseObject) {
-                
-                NSLog(@"%@",responseObject);
-                int status = [responseObject[@"status"] intValue];
-                
-                if (status==0) {
-                    [self.view poptips:@"修改成功"];
-                    self.iconView.image = img;
-                    
-                    if ([self.delegate respondsToSelector:@selector(updateUserMess)]) {
-                        [self.delegate updateUserMess];
-                    }
-                }else{
-                
-                    [self.view poptips:responseObject[@"error" ]];
-                }
-            } failure:^(NSError *errorMessage) {
-                [self.view poptips:@"网络异常"];
-            }];
             
         }];
         

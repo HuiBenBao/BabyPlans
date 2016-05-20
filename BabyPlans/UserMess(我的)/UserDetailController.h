@@ -9,17 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "UserMessModel.h"
 
-@protocol UserDetailControllerDelegate <NSObject>
 
-@optional
-- (void)updateUserMess;
-
-@end
 
 @interface UserDetailController : UITableViewController
 
 + (instancetype)userDetailWithModel:(UserMessModel *)model;
 
-@property (nonatomic,weak) id <UserDetailControllerDelegate>delegate;
 
 @end
