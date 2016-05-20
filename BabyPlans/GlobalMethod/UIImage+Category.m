@@ -38,4 +38,21 @@
     // 这里并没有自动释放UIImage对象
     return [[UIImage alloc] initWithData:data];
 }
+
++(NSData *)imageData:(UIImage *)myimage
+{
+    NSData *data=UIImageJPEGRepresentation(myimage, 1.0);
+    if (data.length>=10*1024) {
+        if (data.length>100*1024) {//100k以及以上
+            data=UIImageJPEGRepresentation(myimage, 0.1);
+        }else if (data.length>50*1024) {//50-100k
+            data=UIImageJPEGRepresentation(myimage, 0.2);
+        }else if (data.length>20*1024) {//20-50k
+            data=UIImageJPEGRepresentation(myimage, 0.5);
+        }else if (data.length>10*1024) {//10-20k
+            data=UIImageJPEGRepresentation(myimage, 0.8);
+        }
+    }
+    return data;
+}
 @end

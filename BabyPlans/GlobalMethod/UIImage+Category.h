@@ -24,4 +24,9 @@
  *  根据URL获取图片
  */
 + (UIImage *)imageWithURLString:(NSString *)urlString;
+/**
+ *  将任意图片转化成小于10k的图
+ */
++(NSData *)imageData:(UIImage *)myimage;
+
 @end
