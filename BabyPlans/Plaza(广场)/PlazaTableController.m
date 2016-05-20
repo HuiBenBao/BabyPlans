@@ -99,6 +99,9 @@ enum{
                 _dataArrLeft = myDataArr;
                 
                 [self.tableViewLeft.mj_header setState:MJRefreshStateIdle];
+                self.tableViewLeft.mj_footer.hidden = NO;
+                [self.tableViewLeft.mj_footer setState:MJRefreshStateIdle];
+                
                 [self.tableViewLeft reloadData];
 
             }
@@ -148,6 +151,10 @@ enum{
                 _dataArrRight = myDataArr;
                 
                 [self.tableViewRight.mj_header setState:MJRefreshStateIdle];
+                
+                self.tableViewRight.mj_footer.hidden = NO;
+                [self.tableViewRight.mj_footer setState:MJRefreshStateIdle];
+
                 [self.tableViewRight reloadData];
             }
             
