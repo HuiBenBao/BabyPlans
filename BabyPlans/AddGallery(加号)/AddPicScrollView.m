@@ -36,7 +36,10 @@
         
         [self addSubview:_addImgView];
         
-        _imageViewArr = [NSMutableArray array];
+        if (_imageViewArr==nil) {
+            _imageViewArr = [NSMutableArray array];
+
+        }
     }
     
     return self;
@@ -51,10 +54,18 @@
     [_imageViewArr insertObject:imgView atIndex:0];
     
 }
+
+- (void)removeImageViewWithTag:(NSInteger)tag{
+    
+    for (UIImageView * imgV in _imageViewArr) {
+        if (imgV.tag == tag) {
+            [imgV removeFromSuperview];
+        }
+    }
+}
 - (void)layoutSubviews{
 
     [super layoutSubviews];
-    
     
     CGFloat maxW = margic;
     for (int i = 0; i < _imageViewArr.count; i++) {
@@ -72,6 +83,7 @@
     CGRect addF = _addImgView.frame;
     addF.origin.x = maxW;
     self.addImgView.frame = addF;
+    self.addImgView.image = [UIImage imageNamed:@"addpic_btn.png"];
     
     self.contentSize = CGSizeMake(CGRectGetMaxX(_addImgView.frame)+margic, 0);
     

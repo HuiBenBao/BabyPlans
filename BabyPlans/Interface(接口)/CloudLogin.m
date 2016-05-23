@@ -372,11 +372,11 @@
     NSMutableDictionary * parma = [NSMutableDictionary dictionary];
     
     [parma setValue:@"gallery_Add" forKey:@"action"];
-    [parma setValue:content forKey:@"content"];
+    
     NSMutableDictionary *galleryJson = [[NSMutableDictionary alloc] init];
     
     [galleryJson setObject:type forKey:@"type"];
-    
+    [galleryJson setObject:content forKey:@"content"];
     
     [galleryJson setValue:imgIDArr forKey:@"pictures"];
     

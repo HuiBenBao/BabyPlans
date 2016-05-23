@@ -127,7 +127,18 @@
             
             hud.hidden = YES;
             [hud removeFromSuperview];
-            [self.view poptips:@"网络异常"];
+            UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@"网络异常，请检查您的网络" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction * enter = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+                [self dismissViewControllerAnimated:YES completion:^{
+                    _soundPath = nil;
+                    _currentTime = 0;
+                }];
+            }];
+            
+            [alertVC addAction:enter];
+            [self presentViewController:alertVC animated:YES completion:nil];
         }];
         
     }

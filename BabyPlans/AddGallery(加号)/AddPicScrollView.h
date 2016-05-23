@@ -20,7 +20,9 @@
 
 - (void)addPicture:(UIImage *)img imgID:(NSString *)imgID;
 
+- (void)removeImageViewWithTag:(NSInteger)tag;
+
 @property (nonatomic,weak) id <AddPicScrollViewDelegate>picDelegate;
-@property (nonatomic,strong,readonly) NSMutableArray * imageViewArr;
+@property (nonatomic,strong) NSMutableArray * imageViewArr;
 
 @end

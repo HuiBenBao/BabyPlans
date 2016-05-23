@@ -7,9 +7,9 @@
 //
 
 #import "SystemMessController.h"
+#import "SystemMessCell.h"
 
 #define CellHeight 50
-#define CellTextFont FONT_ADAPTED_NUM(15)
 
 @interface SystemMessController ()
 
@@ -110,19 +110,9 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString * identFier = @"SystemMessCell";
+    NSString *text = [_titleArr objectAtIndex:indexPath.row];
     
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identFier];
-    
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identFier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    
-    cell.textLabel.text = [_titleArr objectAtIndex:indexPath.row];
-    cell.textLabel.font = CellTextFont;
-    cell.textLabel.textColor = ColorI(0x3b3b3b);
-    cell.textLabel.numberOfLines = 0;
+    SystemMessCell * cell = [SystemMessCell valueWithTableView:tableView text:text];
     
     return cell;
 }

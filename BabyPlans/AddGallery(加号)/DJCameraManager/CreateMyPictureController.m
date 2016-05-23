@@ -10,8 +10,10 @@
 #import "AddPicScrollView.h"
 #import "PhotoViewController.h"
 #import "MyTextView.h"
+#import "EditImageController.h"
+#import "UploadViewController.h"
 
-@interface CreateMyPictureController ()<UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,AddPicScrollViewDelegate,PhotoViewControllerDelegate,UITextViewDelegate>
+@interface CreateMyPictureController ()<UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,AddPicScrollViewDelegate,PhotoViewControllerDelegate,UITextViewDelegate,EditImageDelegate>
 
 //选择相片后存储在沙盒中的完整路径
 @property (nonatomic,strong) NSString * filePath;
@@ -30,6 +32,7 @@
 
     [super viewDidLoad];
 
+    self.navigationController.delegate = self;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor whiteColor];
     self.addPicView = [[AddPicScrollView alloc] initWithFrame:CGRectMake(0, KNavBarHeight, KScreenWidth, 100*SCREEN_WIDTH_RATIO55)];
@@ -46,22 +49,72 @@
     _textView.delegate = self;
     [self.view addSubview:_textView];
     
-    UIButton * publishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    NSArray * titleArr = @[@"发布",@"修改"];
     
-    publishBtn.frame = CGRectMake(20, _textView.bottom+30*SCREEN_WIDTH_RATIO55, KScreenWidth-40, 50*SCREEN_WIDTH_RATIO55);
+    for (int i = 0; i < titleArr.count; i++) {
+        
+        UIButton * publishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        CGFloat margicX = 20*SCREEN_WIDTH_RATIO55;
+        CGFloat btnW = (KScreenWidth - margicX*(titleArr.count+1))/(titleArr.count);
+        CGFloat btnX = margicX + (margicX + btnW)*i;
+        CGFloat btnH = 50*SCREEN_WIDTH_RATIO55;
+        publishBtn.frame = CGRectMake(btnX, _textView.bottom+30*SCREEN_WIDTH_RATIO55, btnW, btnH);
+        
+        publishBtn.layer.cornerRadius = 8*SCREEN_WIDTH_RATIO55;
+        publishBtn.clipsToBounds = YES;
+        [publishBtn setTitle:titleArr[i] forState:UIControlStateNormal];
+        [publishBtn setTitleColor:ColorI(0xffffff) forState:UIControlStateNormal];
+        publishBtn.backgroundColor = [UIColor orangeColor];
+        
+        if (i==0) {//点击发布
+            [publishBtn addTarget:self action:@selector(publishClick) forControlEvents:UIControlEventTouchUpInside];
+        }else if (i==1){//点击修改
+            [publishBtn addTarget:self action:@selector(editImage) forControlEvents:UIControlEventTouchUpInside];
+        }
+        
+        
+        [self.view addSubview:publishBtn];
+        
+        [self.view addTarget:self action:@selector(packUpKeyborad)];
+    }
     
-    publishBtn.layer.cornerRadius = 8*SCREEN_WIDTH_RATIO55;
-    publishBtn.clipsToBounds = YES;
-    [publishBtn setTitle:@"发布" forState:UIControlStateNormal];
-    [publishBtn setTitleColor:ColorI(0xffffff) forState:UIControlStateNormal];
-    publishBtn.backgroundColor = [UIColor orangeColor];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返 回"style:UIBarButtonItemStylePlain target:self action:@selector(leftDrawerButtonPress:)];
     
-    [publishBtn addTarget:self action:@selector(publishClick) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:publishBtn];
-    
-    [self.view addTarget:self action:@selector(packUpKeyborad)];
 }
+/**
+ *  返回按钮点击方法
+ */
+-(void)leftDrawerButtonPress:(id)sender{
+    
+    int count = (int)self.addPicView.imageViewArr.count;
+    
+    if (count == 0) {
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+    
+        UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@"提醒" message:@"返回后已录入的数据将无法保存，确认返回？" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction * cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction * sure = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            
+            //返回
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        
+        [alertVC addAction:cancel];
+        [alertVC addAction:sure];
+        
+        [self presentViewController:alertVC animated:YES completion:nil];
+        
+        
+    }
+    
+    
+    
+}
+
 /**
  *  发布按钮点击
  */
@@ -70,6 +123,12 @@
     NSMutableArray * tempArr = [NSMutableArray array];
     
     int count = (int)self.addPicView.imageViewArr.count;
+    
+    if (count == 0) {
+        [self.view poptips:@"上传内容为空"];
+        
+        return;
+    }
     for (int i = count-1; i >=0 ; i--) {
         UIImageView * imgV = [_addPicView.imageViewArr objectAtIndex:i];
         
@@ -104,6 +163,51 @@
         [self.view poptips:@"网络异常"];
     }];
 }
+/**
+ *  修改按钮点击
+ */
+- (void)editImage{
+
+    int count = (int)self.addPicView.imageViewArr.count;
+    
+    if (count == 0) {
+        [self.view poptips:@"未上传图片"];
+        
+        return;
+    }
+
+    EditImageController * VC = [[EditImageController alloc] init];
+
+    VC.delegate = self;
+    VC.imageArr = self.addPicView.imageViewArr;
+    
+    [self presentViewController:VC animated:YES completion:nil];
+    
+}
+
+#pragma ----mark----EditImageDelegate
+- (void)reloadImageWithArr:(NSArray *)imageArr{
+
+    
+    if (self.addPicView.imageViewArr.count != imageArr.count) {
+        
+        for (int i = 0; i < self.addPicView.imageViewArr.count; i++) {
+            UIImageView * imgV = self.addPicView.imageViewArr[i];
+            
+            if ([imageArr indexOfObject:imgV] == NSNotFound) {
+                
+                [self.addPicView removeImageViewWithTag:imgV.tag];
+            }
+            
+        }
+    }
+    self.addPicView.imageViewArr = nil;
+    self.addPicView.imageViewArr = [NSMutableArray arrayWithArray:imageArr];
+    
+    [self.addPicView setNeedsLayout];
+
+}
+
 #pragma ----mark-----UITextVIewDelegate
 - (void)textViewDidEndEditing:(UITextView *)textView{
 
@@ -118,12 +222,15 @@
 
     if ([_textView.text trim].length<=0) {
         _textView.placeholderLabel.hidden = NO;
+    }else{
+        _textView.placeholderLabel.hidden = YES;
     }
 }
 #pragma ------mark-----AddPicScrollViewDelegate
 
 - (void)addPictureBtnClick{
 
+    [self packUpKeyborad];
     [self openMenu];
 }
 
@@ -171,14 +278,14 @@
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
         //设置拍照后的图片可被编辑
+        picker.modalPresentationStyle = UIModalPresentationOverCurrentContext;
         picker.allowsEditing = NO;
         picker.sourceType = sourceType;
         
         [self presentViewController:picker animated:YES completion:^{
             
         }];
-    }else
-    {
+    }else{
         NSLog(@"模拟其中无法打开照相机,请在真机中使用");
     }
 }
@@ -188,6 +295,7 @@
 {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     
+    picker.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     [picker.navigationBar setBackgroundImage:[UIImage imageNamed:@"NagavitionBarImg"] forBarMetrics:UIBarMetricsDefault];
     
     [picker.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:FONTBOLD_ADAPTED_WIDTH(21)}];

@@ -109,6 +109,7 @@ enum{
         } failure:^(NSError *errorMessage) {
             HUD.hidden = YES;
             [self.view requsetFaild];
+            [self.tableViewLeft.mj_header setState:MJRefreshStateIdle];
             NSLog(@"广场接口请求Error ==%@",errorMessage);
         }];
         
@@ -163,6 +164,7 @@ enum{
             HUD.hidden = YES;
             
             [self.view requsetFaild];
+            [self.tableViewLeft.mj_header setState:MJRefreshStateIdle];
             NSLog(@"广场接口请求Error ==%@",errorMessage);
         }];
 
@@ -194,7 +196,8 @@ enum{
 - (void)removeBackView{
 
     [UIApplication sharedApplication].statusBarHidden = NO;
-
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
+    
     [UIView animateWithDuration:0.2 animations:^{
         _backView.alpha = 0;
         _galleryView.alpha = 0;
@@ -505,8 +508,12 @@ enum{
     
     [UIView animateWithDuration:0.2 animations:^{
         
+        //隐藏时间栏
         [UIApplication sharedApplication].statusBarHidden = YES;
-
+        
+        //设置播放期间禁止锁屏
+        [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+        
         _backView.frame = KScreenRect;
         _backView.alpha = 0.8;
 

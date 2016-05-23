@@ -154,6 +154,10 @@
 		18CCD1521CB8F355002595FD /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CCD1511CB8F355002595FD /* LoginViewController.m */; };
 		18CCD1561CB8F3B8002595FD /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CCD1551CB8F3B8002595FD /* LoginView.m */; };
 		18CCD1581CB8FA9E002595FD /* appLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 18CCD1571CB8FA9E002595FD /* appLogo.png */; };
+		18D9F9AE1CF29B4400AEB0F0 /* SystemMessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D9F9AD1CF29B4400AEB0F0 /* SystemMessCell.m */; };
+		18D9F9B11CF2AD8100AEB0F0 /* EditImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D9F9B01CF2AD8100AEB0F0 /* EditImageController.m */; };
+		18D9F9B41CF2B55C00AEB0F0 /* MyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D9F9B31CF2B55C00AEB0F0 /* MyCollectionViewCell.m */; };
+		18D9F9B61CF2DEEA00AEB0F0 /* EditImageDel.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D9F9B51CF2DEEA00AEB0F0 /* EditImageDel.png */; };
 		18EE4F0A1CCA13D0007CE01E /* palazImgCoverBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EE4F091CCA13D0007CE01E /* palazImgCoverBtn.png */; };
 		18F114AB1CAE36F600F53C42 /* FWBTarBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F114A61CAE36F600F53C42 /* FWBTarBarButton.m */; };
 		18F114AC1CAE36F600F53C42 /* MyTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F114A81CAE36F600F53C42 /* MyTabBar.m */; };
@@ -441,6 +445,13 @@
 		18CCD1541CB8F3B8002595FD /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		18CCD1551CB8F3B8002595FD /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		18CCD1571CB8FA9E002595FD /* appLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appLogo.png; sourceTree = "<group>"; };
+		18D9F9AC1CF29B4400AEB0F0 /* SystemMessCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemMessCell.h; sourceTree = "<group>"; };
+		18D9F9AD1CF29B4400AEB0F0 /* SystemMessCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemMessCell.m; sourceTree = "<group>"; };
+		18D9F9AF1CF2AD8100AEB0F0 /* EditImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditImageController.h; sourceTree = "<group>"; };
+		18D9F9B01CF2AD8100AEB0F0 /* EditImageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditImageController.m; sourceTree = "<group>"; };
+		18D9F9B21CF2B55C00AEB0F0 /* MyCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionViewCell.h; sourceTree = "<group>"; };
+		18D9F9B31CF2B55C00AEB0F0 /* MyCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionViewCell.m; sourceTree = "<group>"; };
+		18D9F9B51CF2DEEA00AEB0F0 /* EditImageDel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EditImageDel.png; sourceTree = "<group>"; };
 		18EE4F091CCA13D0007CE01E /* palazImgCoverBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palazImgCoverBtn.png; sourceTree = "<group>"; };
 		18F114A51CAE36F600F53C42 /* FWBTarBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWBTarBarButton.h; sourceTree = "<group>"; };
 		18F114A61CAE36F600F53C42 /* FWBTarBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWBTarBarButton.m; sourceTree = "<group>"; };
@@ -554,6 +565,8 @@
 				1824D3F11CCE06E000D5BB35 /* UserMessController.m */,
 				1824D3F51CCEFD3300D5BB35 /* SystemMessController.h */,
 				1824D3F61CCEFD3300D5BB35 /* SystemMessController.m */,
+				18D9F9AC1CF29B4400AEB0F0 /* SystemMessCell.h */,
+				18D9F9AD1CF29B4400AEB0F0 /* SystemMessCell.m */,
 			);
 			name = "Message(消息)";
 			sourceTree = "<group>";
@@ -883,10 +896,14 @@
 		18550A251CC71C8D002834D3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				18D9F9B21CF2B55C00AEB0F0 /* MyCollectionViewCell.h */,
+				18D9F9B31CF2B55C00AEB0F0 /* MyCollectionViewCell.m */,
 				185509D51CC6363B002834D3 /* UploadViewController.h */,
 				185509D41CC6363B002834D3 /* UploadViewController.m */,
 				18550A291CC729D9002834D3 /* CreateMyPictureController.h */,
 				18550A2A1CC729D9002834D3 /* CreateMyPictureController.m */,
+				18D9F9AF1CF2AD8100AEB0F0 /* EditImageController.h */,
+				18D9F9B01CF2AD8100AEB0F0 /* EditImageController.m */,
 				18550A261CC71CE0002834D3 /* PhotoViewController.h */,
 				18550A271CC71CE0002834D3 /* PhotoViewController.m */,
 				186AC3B01CD8535E007C99D6 /* CafToMp3.h */,
@@ -1158,6 +1175,7 @@
 		18CCD1491CB8DA45002595FD /* DefaultImg */ = {
 			isa = PBXGroup;
 			children = (
+				18D9F9B51CF2DEEA00AEB0F0 /* EditImageDel.png */,
 				184AF5B91CED5ABA0025D27B /* NagavitionBarImg.png */,
 				18550A2F1CC73430002834D3 /* addpic_btn.png */,
 				1855099A1CC5DCEA002834D3 /* LessonPlacdehoder.png */,
@@ -1529,6 +1547,7 @@
 				18F114ED1CAE3B6F00F53C42 /* TabBarSeleted4.png in Resources */,
 				18CCD1271CB7907E002595FD /* plaza_bottomview3.png in Resources */,
 				182E23411CC9C7740076CE50 /* suggestion_QQ.png in Resources */,
+				18D9F9B61CF2DEEA00AEB0F0 /* EditImageDel.png in Resources */,
 				18CCD13D1CB7A11E002595FD /* Recommend_btn4.png in Resources */,
 				182E23401CC9C7740076CE50 /* suggestion_Phone.png in Resources */,
 				18CCD13A1CB7A11E002595FD /* Recommend_btn1.png in Resources */,
@@ -1634,6 +1653,7 @@
 				18550A2B1CC729D9002834D3 /* CreateMyPictureController.m in Sources */,
 				18CCD12D1CB79A1B002595FD /* AppDelegate.m in Sources */,
 				182E23481CC9CD270076CE50 /* GuideViewController.m in Sources */,
+				18D9F9AE1CF29B4400AEB0F0 /* SystemMessCell.m in Sources */,
 				18B316401CC235DD00CA4A11 /* UserSettingController.m in Sources */,
 				18886C391CC0CA0E007AEC7B /* UserDetailController.m in Sources */,
 				18A114591CB3C3D500B13434 /* PlazaTopView.m in Sources */,
@@ -1675,6 +1695,7 @@
 				18550A281CC71CE0002834D3 /* PhotoViewController.m in Sources */,
 				186AC3B21CD8535E007C99D6 /* CafToMp3.m in Sources */,
 				185509AE1CC5E36F002834D3 /* RecWebController.m in Sources */,
+				18D9F9B41CF2B55C00AEB0F0 /* MyCollectionViewCell.m in Sources */,
 				184BCA771CB362E5008314F4 /* CloudLogin.m in Sources */,
 				185509BF1CC61023002834D3 /* JRPlayerView.m in Sources */,
 				183DDB0F1CBCD9C90085A42F /* CommentCell.m in Sources */,
@@ -1699,6 +1720,7 @@
 				18A114621CB4DBC400B13434 /* FWBUserModel.m in Sources */,
 				1829DE501CC8FE6100D0DB02 /* MyTextView.m in Sources */,
 				185509C01CC61023002834D3 /* PlayerViewController.m in Sources */,
+				18D9F9B11CF2AD8100AEB0F0 /* EditImageController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
