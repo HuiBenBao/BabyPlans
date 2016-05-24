@@ -8,6 +8,7 @@
 
 #import "UserSettingController.h"
 #import "SuggestionController.h"
+#import "AppAboutViewController.h"
 
 @interface UserSettingController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate>
 
@@ -126,6 +127,8 @@
                                                       otherButtonTitles:@"重置", nil];
             [sheet showInView:self.view];
             
+        }else if (row==2){//关于
+            [self.navigationController pushViewController:[[AppAboutViewController alloc] init] animated:YES];
         }
     }
 }

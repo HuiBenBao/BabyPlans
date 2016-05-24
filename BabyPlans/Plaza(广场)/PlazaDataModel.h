@@ -50,6 +50,14 @@
  *  合在一起的声音（分享时用到）
  */
 @property (nonatomic,strong) NSString * galleryBase;
+/**
+ *  标题(合成后)
+ */
+@property (nonatomic,strong) NSString * title;
+/**
+ *  原始标题（分享用）
+ */
+@property (nonatomic,strong) NSString * oldTitle;
 
 
 - (instancetype)initWithDic:(NSDictionary *)dic;

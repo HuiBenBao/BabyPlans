@@ -118,6 +118,7 @@
     
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
+    _collectionView.minimumZoomScale = 20;
     [_collectionView registerClass:[MyCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
 
     [self.view addSubview:_collectionView];

@@ -117,7 +117,7 @@ typedef void (^Failure)(NSError * errorMessage);
  *  @param content  内容
  *  @param imgIDArr 图片id数组
  */
-+ (void)publishContent:(NSString *)content type:(NSString *)type ImgIDArr:(NSArray *)imgIDArr Success:(Success)success failure:(Failure)failure;
++ (void)publishContent:(NSString *)content title:(NSString *)title type:(NSString *)type ImgIDArr:(NSArray *)imgIDArr Success:(Success)success failure:(Failure)failure;
 /**
  *  修改用户信息
  *

@@ -650,22 +650,25 @@ enum{
                 NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
                 
                 [shareParams SSDKEnableUseClientShare];
-                [shareParams SSDKSetupShareParamsByText:model.content
+                
+                NSString * title = ValidStr(model.oldTitle) ? model.oldTitle : @"看绘本，上绘本宝";
+                NSString * content = ValidStr(model.user.nickName) ? model.user.nickName : @"绘本宝热心用户";
+                [shareParams SSDKSetupShareParamsByText:content
                                                  images:upImage
                                                     url:[NSURL URLWithString:Urlstr]
-                                                  title:@"看绘本，上绘本宝"
+                                                  title:title
                                                 type:SSDKContentTypeAuto];
                 
 //                [shareParams SSDKSetupSinaWeiboShareParamsByText:model.content title:@"看绘本，上绘本宝" image:upImage url:[NSURL URLWithString:Urlstr] latitude:0 longitude:0 objectID:nil type:SSDKContentTypeImage];
                 //定制QQ分享内容
-                [shareParams SSDKSetupQQParamsByText:model.content title:@"看绘本，上绘本宝" url:[NSURL URLWithString:Urlstr] audioFlashURL:[NSURL URLWithString:model.galleryBase] videoFlashURL:nil thumbImage:thumbImg image:upImage type:SSDKContentTypeAudio forPlatformSubType:SSDKPlatformSubTypeQQFriend];
+                [shareParams SSDKSetupQQParamsByText:content title:title url:[NSURL URLWithString:Urlstr] audioFlashURL:[NSURL URLWithString:model.galleryBase] videoFlashURL:nil thumbImage:thumbImg image:upImage type:SSDKContentTypeAudio forPlatformSubType:SSDKPlatformSubTypeQQFriend];
                 
                 //定制QQ空间分享内容
-                [shareParams SSDKSetupQQParamsByText:model.content title:@"看绘本，上绘本宝" url:[NSURL URLWithString:Urlstr] audioFlashURL:[NSURL URLWithString:model.galleryBase] videoFlashURL:nil thumbImage:thumbImg image:upImage type:SSDKContentTypeAudio forPlatformSubType:SSDKPlatformSubTypeQZone];
+                [shareParams SSDKSetupQQParamsByText:content title:title url:[NSURL URLWithString:Urlstr] audioFlashURL:[NSURL URLWithString:model.galleryBase] videoFlashURL:nil thumbImage:thumbImg image:upImage type:SSDKContentTypeAudio forPlatformSubType:SSDKPlatformSubTypeQZone];
                 
                 // 定制微信好友的分享内容
-                [shareParams SSDKSetupWeChatParamsByText:model.content
-                                                   title:@"看绘本，上绘本宝"
+                [shareParams SSDKSetupWeChatParamsByText:content
+                                                   title:title
                                                    url:[NSURL URLWithString:Urlstr]
                                                    thumbImage:thumbImg
                                                    image:upImage
@@ -676,8 +679,8 @@ enum{
                                                     type:SSDKContentTypeAudio
                                       forPlatformSubType:SSDKPlatformSubTypeWechatSession];
                 // 微信朋友圈
-                [shareParams SSDKSetupWeChatParamsByText:model.content
-                                                   title:@"看绘本，上绘本宝"
+                [shareParams SSDKSetupWeChatParamsByText:content
+                                                   title:title
                                                      url:[NSURL URLWithString:Urlstr]
                                               thumbImage:thumbImg
                                                    image:upImage

@@ -8,6 +8,7 @@
 
 #import "MyAttentionController.h"
 #import "UserAttentionCell.h"
+#import "UserGalleryController.h"
 
 #define DataCount 10
 #define CellHeight 100*SCREEN_WIDTH_RATIO55
@@ -116,6 +117,13 @@
 }
 
 #pragma ----mark-----UITableVIewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    FWBUserModel * user = [_dataSource objectAtIndex:indexPath.row];
+    
+    [self.navigationController pushViewController:[[UserGalleryController alloc] initWithUserID:user.userID] animated:YES];
+}
+
 /**
  *  先要设Cell可编辑
  */

@@ -158,6 +158,9 @@
 		18D9F9B11CF2AD8100AEB0F0 /* EditImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D9F9B01CF2AD8100AEB0F0 /* EditImageController.m */; };
 		18D9F9B41CF2B55C00AEB0F0 /* MyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D9F9B31CF2B55C00AEB0F0 /* MyCollectionViewCell.m */; };
 		18D9F9B61CF2DEEA00AEB0F0 /* EditImageDel.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D9F9B51CF2DEEA00AEB0F0 /* EditImageDel.png */; };
+		18D9F9B91CF3F27A00AEB0F0 /* UserGalleryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D9F9B81CF3F27A00AEB0F0 /* UserGalleryController.m */; };
+		18D9F9BE1CF42CE300AEB0F0 /* AppSynopsisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D9F9BA1CF42CE300AEB0F0 /* AppSynopsisViewController.m */; };
+		18D9F9BF1CF42CE300AEB0F0 /* AppAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D9F9BC1CF42CE300AEB0F0 /* AppAboutViewController.m */; };
 		18EE4F0A1CCA13D0007CE01E /* palazImgCoverBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EE4F091CCA13D0007CE01E /* palazImgCoverBtn.png */; };
 		18F114AB1CAE36F600F53C42 /* FWBTarBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F114A61CAE36F600F53C42 /* FWBTarBarButton.m */; };
 		18F114AC1CAE36F600F53C42 /* MyTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F114A81CAE36F600F53C42 /* MyTabBar.m */; };
@@ -452,6 +455,12 @@
 		18D9F9B21CF2B55C00AEB0F0 /* MyCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionViewCell.h; sourceTree = "<group>"; };
 		18D9F9B31CF2B55C00AEB0F0 /* MyCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionViewCell.m; sourceTree = "<group>"; };
 		18D9F9B51CF2DEEA00AEB0F0 /* EditImageDel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EditImageDel.png; sourceTree = "<group>"; };
+		18D9F9B71CF3F27A00AEB0F0 /* UserGalleryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserGalleryController.h; sourceTree = "<group>"; };
+		18D9F9B81CF3F27A00AEB0F0 /* UserGalleryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserGalleryController.m; sourceTree = "<group>"; };
+		18D9F9BA1CF42CE300AEB0F0 /* AppSynopsisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSynopsisViewController.m; sourceTree = "<group>"; };
+		18D9F9BB1CF42CE300AEB0F0 /* AppSynopsisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSynopsisViewController.h; sourceTree = "<group>"; };
+		18D9F9BC1CF42CE300AEB0F0 /* AppAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppAboutViewController.m; sourceTree = "<group>"; };
+		18D9F9BD1CF42CE300AEB0F0 /* AppAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppAboutViewController.h; sourceTree = "<group>"; };
 		18EE4F091CCA13D0007CE01E /* palazImgCoverBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palazImgCoverBtn.png; sourceTree = "<group>"; };
 		18F114A51CAE36F600F53C42 /* FWBTarBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWBTarBarButton.h; sourceTree = "<group>"; };
 		18F114A61CAE36F600F53C42 /* FWBTarBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWBTarBarButton.m; sourceTree = "<group>"; };
@@ -666,6 +675,10 @@
 		1824D4951CD055AF00D5BB35 /* UserMessAndSet(详情和设置) */ = {
 			isa = PBXGroup;
 			children = (
+				18D9F9BB1CF42CE300AEB0F0 /* AppSynopsisViewController.h */,
+				18D9F9BA1CF42CE300AEB0F0 /* AppSynopsisViewController.m */,
+				18D9F9BD1CF42CE300AEB0F0 /* AppAboutViewController.h */,
+				18D9F9BC1CF42CE300AEB0F0 /* AppAboutViewController.m */,
 				18886C371CC0CA0E007AEC7B /* UserDetailController.h */,
 				18886C381CC0CA0E007AEC7B /* UserDetailController.m */,
 				18B3163E1CC235DD00CA4A11 /* UserSettingController.h */,
@@ -694,6 +707,8 @@
 			children = (
 				1824D4A31CD09D6100D5BB35 /* MyAttentionController.h */,
 				1824D4A41CD09D6100D5BB35 /* MyAttentionController.m */,
+				18D9F9B71CF3F27A00AEB0F0 /* UserGalleryController.h */,
+				18D9F9B81CF3F27A00AEB0F0 /* UserGalleryController.m */,
 				1824D4A71CD0A85600D5BB35 /* UserAttentionCell.h */,
 				1824D4A81CD0A85600D5BB35 /* UserAttentionCell.m */,
 			);
@@ -1680,6 +1695,7 @@
 				185509C41CC611DE002834D3 /* MSWeakTimer.m in Sources */,
 				185509D61CC6363B002834D3 /* UploadViewController.m in Sources */,
 				186195C81CB357B60003A562 /* PlazaMainCell.m in Sources */,
+				18D9F9BF1CF42CE300AEB0F0 /* AppAboutViewController.m in Sources */,
 				183DDB091CBCCE560085A42F /* CommentModel.m in Sources */,
 				1824D3F21CCE06E000D5BB35 /* UserMessController.m in Sources */,
 				18F114AC1CAE36F600F53C42 /* MyTabBar.m in Sources */,
@@ -1687,7 +1703,9 @@
 				1824D49C1CD0604000D5BB35 /* CollectCell.m in Sources */,
 				183DDB021CBB93990085A42F /* NSString+Category.m in Sources */,
 				1824D4AD1CD0B29F00D5BB35 /* UserFansController.m in Sources */,
+				18D9F9B91CF3F27A00AEB0F0 /* UserGalleryController.m in Sources */,
 				186195BB1CB347080003A562 /* PlazaTableController.m in Sources */,
+				18D9F9BE1CF42CE300AEB0F0 /* AppSynopsisViewController.m in Sources */,
 				18CCD14E1CB8E85B002595FD /* CommentController.m in Sources */,
 				18F114C61CAE378600F53C42 /* PersonalMethod.m in Sources */,
 				1824D4A91CD0A85600D5BB35 /* UserAttentionCell.m in Sources */,

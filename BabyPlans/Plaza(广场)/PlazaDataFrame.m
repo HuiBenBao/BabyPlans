@@ -51,12 +51,18 @@
         _imageTextF = CGRectMake(imgTextX, imgTextY, imgTextSize.width, imgTextSize.height);
     }
     
+    //计算标题位置
+    CGFloat titleX = kMargin;
+    CGFloat titleY = CGRectGetMaxY(_imageF) + kMargin;
+    
+    CGSize titleSize = textSizeFont(model.title, FONT_ADAPTED_WIDTH(kTitleFont), imageW, MAXFLOAT);
+    
+    _titleF = CGRectMake(titleX, titleY, titleSize.width, titleSize.height);
     
     // 6、计算内容位置
     CGFloat contentX = kMargin;
-    CGFloat contentY = iconY;
+    CGFloat contentY = CGRectGetMaxY(_titleF) + kMargin;
     
-    contentY = CGRectGetMaxY(_imageF) + kMargin;
     
     CGSize contentSize = textSizeFont(model.content, FONT_ADAPTED_WIDTH(kContentFont), imageW, MAXFLOAT);
 

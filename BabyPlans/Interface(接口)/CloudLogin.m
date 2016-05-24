@@ -367,7 +367,7 @@
 
 }
 
-+ (void)publishContent:(NSString *)content type:(NSString *)type ImgIDArr:(NSArray *)imgIDArr Success:(Success)success failure:(Failure)failure{
++ (void)publishContent:(NSString *)content title:(NSString *)title type:(NSString *)type ImgIDArr:(NSArray *)imgIDArr Success:(Success)success failure:(Failure)failure{
 
     NSMutableDictionary * parma = [NSMutableDictionary dictionary];
     
@@ -376,6 +376,7 @@
     NSMutableDictionary *galleryJson = [[NSMutableDictionary alloc] init];
     
     [galleryJson setObject:type forKey:@"type"];
+    [galleryJson setObject:title forKey:@"title"];
     [galleryJson setObject:content forKey:@"content"];
     
     [galleryJson setValue:imgIDArr forKey:@"pictures"];

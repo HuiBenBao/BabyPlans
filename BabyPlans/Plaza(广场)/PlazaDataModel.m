@@ -27,11 +27,17 @@
         }
         
         if (ValidStr(dic[@"content"])) {
-            self.content = dic[@"content"];
+            self.content = [NSString stringWithFormat:@"简介：%@",dic[@"content"]];;
         }
         
         if (ValidStr(dic[@"cover"])) {
             self.coverImg = dic[@"cover"];
+        }
+        
+        if (ValidStr(dic[@"title"])) {
+            
+            self.title = [NSString stringWithFormat:@"标题：%@",dic[@"title"]];
+            self.oldTitle = dic[@"title"];
         }
         if (ValidStr(dic[@"smallPicture"])) {
             self.minImg = dic[@"smallPicture"];

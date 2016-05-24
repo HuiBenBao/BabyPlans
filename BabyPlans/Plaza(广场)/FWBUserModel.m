@@ -43,6 +43,7 @@
         
         if (ValidStr(dic[@"gender"])) {
             self.sex = ([dic[@"gender"] intValue]==0);
+            
         }
         
         if (ValidStr(dic[@"avatarSmall"])) {
@@ -53,4 +54,6 @@
     
     return self;
 }
+
+
 @end

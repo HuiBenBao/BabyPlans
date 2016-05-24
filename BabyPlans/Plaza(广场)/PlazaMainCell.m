@@ -25,6 +25,7 @@
 @property (nonatomic,weak) UILabel * nameLbl;
 @property (nonatomic,weak) UILabel * dateLbl;
 @property (nonatomic,weak) UIImageView * coverImgView;
+@property (nonatomic,weak) UILabel * titleLbl;
 @property (nonatomic,weak) UILabel * contentLbl;
 @property (nonatomic,weak) UIView * divLine;
 @property (nonatomic,weak) UILabel * imgTextLbl;
@@ -106,6 +107,16 @@
         self.imgTextLbl = imgTextLbl;
         [imageV addSubview:imgTextLbl];
         
+        //标题
+        UILabel * titleLbl = [[UILabel alloc] init];
+        titleLbl.font = FONT_ADAPTED_NUM(kTitleFont);
+        titleLbl.textColor = ColorI(0x3b3b3b);
+        titleLbl.textAlignment = NSTextAlignmentLeft;
+        titleLbl.numberOfLines = 0;
+        
+        self.titleLbl = titleLbl;
+        [self addSubview:titleLbl];
+        
         //内容
         UILabel * contentLbl = [[UILabel alloc] init];
         contentLbl.font = FONT_ADAPTED_NUM(kContentFont);
@@ -163,8 +174,9 @@
     _iconView.clipsToBounds = YES;
     
     self.nameLbl.frame = self.modelFrame.nameF;
-    self.nameLbl.text = (_model.user.nickName) ? _model.user.nickName : _model.user.name;;
     
+    self.nameLbl.text = (_model.user.nickName) ? _model.user.nickName : [PersonalMethod phoneAddSecretWithStr:_model.user.name];
+
     self.dateLbl.text = self.model.date;
     self.dateLbl.frame = self.modelFrame.dateF;
     
@@ -188,6 +200,8 @@
         self.imgTextLbl.text = [NSString stringWithFormat:@" %@ 张",self.model.pictureCount];
 
     }
+    self.titleLbl.text = self.model.title;
+    self.titleLbl.frame = self.modelFrame.titleF;
     
     self.contentLbl.text = self.model.content;
     self.contentLbl.frame = self.modelFrame.contentF;

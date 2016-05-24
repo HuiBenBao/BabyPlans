@@ -42,7 +42,7 @@
     
     [self.view addSubview:_addPicView];
     
-    self.textView = [[MyTextView alloc] initWithFrame:CGRectMake(10, _addPicView.bottom+10, KScreenWidth-20, 150*SCREEN_WIDTH_RATIO55)];
+    self.textView = [[MyTextView alloc] initWithFrame:CGRectMake(10, _addPicView.bottom+10, KScreenWidth-20, 130*SCREEN_WIDTH_RATIO55)];
     
     self.textView.backgroundColor = ViewBackColor;
     self.textView.placeholderLabel.hidden = NO;
@@ -79,7 +79,7 @@
         [self.view addTarget:self action:@selector(packUpKeyborad)];
     }
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返 回"style:UIBarButtonItemStylePlain target:self action:@selector(leftDrawerButtonPress:)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"  返 回"style:UIBarButtonItemStylePlain target:self action:@selector(leftDrawerButtonPress:)];
     
 }
 /**
@@ -120,15 +120,54 @@
  */
 - (void)publishClick{
 
-    NSMutableArray * tempArr = [NSMutableArray array];
-    
-    int count = (int)self.addPicView.imageViewArr.count;
-    
-    if (count == 0) {
-        [self.view poptips:@"上传内容为空"];
+    if (self.addPicView.imageViewArr.count == 0) {
+        [self.view poptips:@"图片不能为空"];
         
         return;
     }
+    if ([self.textView.text trim].length == 0) {
+        [self.view poptips:@"内容简介不能为空"];
+        
+        return;
+    }
+    
+    UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@"请添加一个标题" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertVC addTextFieldWithConfigurationHandler:^(UITextField *textField){
+        textField.placeholder = @"标题";
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertTextFieldDidChange:) name:UITextFieldTextDidChangeNotification object:textField];
+    }];
+    
+    UIAlertAction * cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    UIAlertAction * okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        UITextField * textFild = alertVC.textFields.firstObject;
+        
+        [self updateGalleryWithTitle:[textFild.text trim]];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:nil];
+        
+    }];
+
+    okAction.enabled = NO;
+    
+    [alertVC addAction:cancle];
+    [alertVC addAction:okAction];
+    
+    [self presentViewController:alertVC animated:YES completion:nil];
+    
+    
+    
+}
+/**
+ *  上传绘本
+ */
+- (void)updateGalleryWithTitle:(NSString *)title{
+
+    NSMutableArray * tempArr = [NSMutableArray array];
+
+    int count = (int)self.addPicView.imageViewArr.count;
     for (int i = count-1; i >=0 ; i--) {
         UIImageView * imgV = [_addPicView.imageViewArr objectAtIndex:i];
         
@@ -136,8 +175,7 @@
             [tempArr addObject:@(imgV.tag)];
         }
     }
-    
-    [CloudLogin publishContent:self.textView.text type:_type ImgIDArr:tempArr Success:^(NSDictionary *responseObject) {
+    [CloudLogin publishContent:self.textView.text title:(NSString *)title type:_type ImgIDArr:tempArr Success:^(NSDictionary *responseObject) {
         NSLog(@"%@",responseObject);
         
         int status = [responseObject[@"status"] intValue];
@@ -150,18 +188,28 @@
                 
                 [self.navigationController popViewControllerAnimated:YES];
             }];
-
+            
             
             [alertCtrl addAction:cancelAction];
             [self presentViewController:alertCtrl animated:YES completion:nil];
             
         }else{
-        
+            
             [self.view poptips:responseObject[@"error"]];
         }
     } failure:^(NSError *errorMessage) {
         [self.view poptips:@"网络异常"];
     }];
+
+}
+
+- (void)alertTextFieldDidChange:(NSNotification *)notification{
+    UIAlertController *alertController = (UIAlertController *)self.presentedViewController;
+    if (alertController) {
+        UITextField *titleTextField = alertController.textFields.firstObject;
+        UIAlertAction *okAction = alertController.actions.lastObject;
+        okAction.enabled = [titleTextField.text trim].length > 0;
+    }
 }
 /**
  *  修改按钮点击
@@ -279,7 +327,7 @@
         picker.delegate = self;
         //设置拍照后的图片可被编辑
         picker.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-        picker.allowsEditing = NO;
+        picker.allowsEditing = YES;
         picker.sourceType = sourceType;
         
         [self presentViewController:picker animated:YES completion:^{
@@ -302,7 +350,7 @@
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     picker.delegate = self;
     //设置选择后的图片可被编辑
-    picker.allowsEditing = NO;
+    picker.allowsEditing = YES;
     [self presentViewController:picker animated:YES completion:^{
         
     }];
