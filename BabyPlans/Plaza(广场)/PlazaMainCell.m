@@ -135,12 +135,12 @@
             UIButton * bottomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             
             bottomBtn.titleLabel.font = FONT_ADAPTED_NUM(16);
-            [bottomBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-//            bottomBtn.backgroundColor = [UIColor greenColor];
+            [bottomBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
             
             bottomBtn.tag = i;
-            NSString * imgName = [NSString stringWithFormat:@"plaza_bottomview%d",i];
-            [bottomBtn setImage:[UIImage imageNamed:imgName] forState:UIControlStateNormal];
+            NSString * imgName = [NSString stringWithFormat:@"plaza_bottomview%d@2x",i];
+            
+            [bottomBtn setImage:[UIImage imageAutomaticName:imgName] forState:UIControlStateNormal];
             [bottomBtn addTarget:self action:@selector(bottomClick:) forControlEvents:UIControlEventTouchUpInside];
             [bottomV addSubview:bottomBtn];
         }
@@ -215,16 +215,36 @@
         
         btn.frame = CGRectMake(btnX, 0, btnW, btnH);
         
+        if (btn.tag==0) {//收藏按钮
+            
+        }
+        
         NSString * title;
         switch (btn.tag) {
             case 0:
                 title = _model.likeCount;
+                if (_model.isCollect) {
+                    [btn setImage:[UIImage imageAutomaticName:@"plaza_bottomviewSelect0@2x.png"] forState:UIControlStateNormal];
+                    [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+                }else{
+                    [btn setImage:[UIImage imageAutomaticName:@"plaza_bottomview0@2x.png"] forState:UIControlStateNormal];
+                    [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+                }
                 break;
             case 1:
                 title = _model.commentCount;
                 break;
             case 2:
                 title = @"关注";
+                if (_model.isAttention) {
+                    [btn setImage:[UIImage imageAutomaticName:@"plaza_bottomviewSelect2@2x.png"] forState:UIControlStateNormal];
+                    title = @"已关注";
+                    [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+                }else{
+                
+                    [btn setImage:[UIImage imageAutomaticName:@"plaza_bottomview2@2x.png"] forState:UIControlStateNormal];
+                    [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+                }
                 break;
             default:
                 title = @"分享";

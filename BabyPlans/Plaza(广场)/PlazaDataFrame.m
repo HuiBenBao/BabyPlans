@@ -72,7 +72,7 @@
     _bottomViewF = CGRectMake(0, CGRectGetMaxY(_contentF), KScreenWidth, kBottomH);
     
     //分割线
-    CGFloat lineY = CGRectGetMaxY(_bottomViewF)+kMargin;
+    CGFloat lineY = CGRectGetMaxY(_bottomViewF)+5*SCREEN_WIDTH_RATIO55;
     
     _divLineF = CGRectMake(0, lineY, KScreenWidth, 1);
     

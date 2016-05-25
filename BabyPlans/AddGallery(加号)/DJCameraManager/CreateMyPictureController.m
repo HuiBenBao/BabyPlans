@@ -175,8 +175,15 @@
             [tempArr addObject:@(imgV.tag)];
         }
     }
+    
+    MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.dimBackground = YES;
+    
     [CloudLogin publishContent:self.textView.text title:(NSString *)title type:_type ImgIDArr:tempArr Success:^(NSDictionary *responseObject) {
         NSLog(@"%@",responseObject);
+        
+        hud.hidden = YES;
+        [hud removeFromSuperview];
         
         int status = [responseObject[@"status"] intValue];
         
@@ -198,7 +205,22 @@
             [self.view poptips:responseObject[@"error"]];
         }
     } failure:^(NSError *errorMessage) {
-        [self.view poptips:@"网络异常"];
+        
+        hud.hidden = YES;
+        [hud removeFromSuperview];
+        UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@"亲，网络好像不给力" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"放弃" style:UIAlertActionStyleDestructive handler:nil];
+        
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"重试" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            
+            [self updateGalleryWithTitle:title];
+        }];
+        
+        [alertVC addAction:okAction];
+        [alertVC addAction:cancelAction];
+        
+        [self presentViewController:alertVC animated:YES completion:nil];
     }];
 
 }

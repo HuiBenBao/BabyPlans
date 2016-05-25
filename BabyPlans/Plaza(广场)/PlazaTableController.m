@@ -560,8 +560,9 @@ enum{
                     
                     //修改并刷新数据
                     model.likeCount = [NSString stringWithFormat:@"%d",[model.likeCount intValue]+1];
+                    model.isCollect = YES;
                     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-                }else if(status==2){//取消点赞
+                }else if(status==2){//取消收藏
                     
                     [CloudLogin likeWithGalleryID:galleryID type:@"0" success:^(NSDictionary *responseObject) {
                         NSLog(@"取消收藏----%@",responseObject);
@@ -572,6 +573,7 @@ enum{
                             
                             //修改并刷新数据
                             model.likeCount = [NSString stringWithFormat:@"%d",[model.likeCount intValue]-1];
+                            model.isCollect = NO;
                             [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                             
                         }else
@@ -622,7 +624,14 @@ enum{
                         if (reslut==0) {
                                 
                             NSString * mess = (following == 1) ? @"关注成功" : @"已取消";
+                            
+                            model.isAttention = (following ==1);
+                            
+                            [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                        
                             [self.view poptips:mess];
+                            
+                            
                         }
                     } failure:nil];
                     

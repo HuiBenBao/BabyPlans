@@ -58,6 +58,14 @@
  *  原始标题（分享用）
  */
 @property (nonatomic,strong) NSString * oldTitle;
+/**
+ *  是否收藏
+ */
+@property (nonatomic,assign) BOOL isCollect;
+/**
+ *  是否关注
+ */
+@property (nonatomic,assign) BOOL isAttention;
 
 
 - (instancetype)initWithDic:(NSDictionary *)dic;

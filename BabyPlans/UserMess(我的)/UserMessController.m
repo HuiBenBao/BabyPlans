@@ -97,9 +97,7 @@
  */
 - (BOOL)isMessageNotRead{
 
-    BOOL isHave = self.tabBarController.tabBar.items.lastObject.badgeValue;
-    
-    return isHave;
+    return (self.tabBarController.tabBar.items.lastObject.badgeValue) ? YES : NO;
 }
 
 @end

@@ -34,7 +34,7 @@
     //是否是第一次进入app
     if([defaults objectForKey:@"isFirstComeIn"] == nil){
         // 首次运行进入引导页
-        [[UIApplication sharedApplication] setStatusBarHidden:YES];
+        [application setStatusBarHidden:YES];
         self.window.rootViewController = [[GuideViewController alloc] init];
         
     }else {

@@ -73,6 +73,16 @@
         if (ValidStr(dic[@"galleryBase"])) {
             self.galleryBase = dic[@"galleryBase"];
         }
+        
+        if (ValidNum(dic[@"collection"])) {
+            int collection = [dic[@"collection"] intValue];
+            self.isCollect = (collection==1);
+        }
+        if (ValidNum(dic[@"attention"])) {
+            int attention = [dic[@"attention"] intValue];
+            self.isAttention = (attention==1);
+        }
+        
     }
     
     return self;

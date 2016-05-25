@@ -81,7 +81,12 @@
     label.textAlignment = NSTextAlignmentCenter;
     
     bg.tag = VIEW_TIPS_TAG;
-    if (fadeOut)	[self performSelector:@selector(fadetips:) withObject:bg afterDelay:2];
+    
+    
+    if (fadeOut){
+
+        [self performSelector:@selector(fadetips:) withObject:bg afterDelay:2];        
+    }
 }
 -(void)fadetips:(UIView*)v
 {
