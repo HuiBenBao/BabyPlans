@@ -38,7 +38,7 @@
         _page = 1;
         
         NSMutableArray * tempArr = [NSMutableArray array];
-        [CloudLogin getPlazaDataWithType:nil page:[NSString stringWithFormat:@"%d",_page] count:[NSString stringWithFormat:@"%d",DataCount] userID:[defaults valueForKey:@"token"] success:^(NSDictionary *responseObject) {
+        [CloudLogin getPlazaDataWithType:nil page:[NSString stringWithFormat:@"%d",_page] count:[NSString stringWithFormat:@"%d",DataCount] userID:[defaults valueForKey:@"token"] status:0 success:^(NSDictionary *responseObject) {
             
             hud.hidden = YES;
             [hud removeFromSuperview];
@@ -187,7 +187,7 @@
     
     _page++;
     
-    [CloudLogin getPlazaDataWithType:nil page:[NSString stringWithFormat:@"%d",_page] count:[NSString stringWithFormat:@"%d",DataCount] userID:[defaults valueForKey:@"token"] success:^(NSDictionary *responseObject) {
+    [CloudLogin getPlazaDataWithType:nil page:[NSString stringWithFormat:@"%d",_page] count:[NSString stringWithFormat:@"%d",DataCount] userID:[defaults valueForKey:@"token"] status:0 success:^(NSDictionary *responseObject) {
         
         int status = [responseObject[@"status"] intValue];
         if (status == 0) {

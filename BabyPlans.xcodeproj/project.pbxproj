@@ -158,6 +158,9 @@
 		18D9F9C61CF5412100AEB0F0 /* plaza_bottomviewSelect1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D9F9C21CF5412100AEB0F0 /* plaza_bottomviewSelect1@2x.png */; };
 		18D9F9C71CF5412100AEB0F0 /* plaza_bottomviewSelect3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18D9F9C31CF5412100AEB0F0 /* plaza_bottomviewSelect3@2x.png */; };
 		18D9FA091CF59FD000AEB0F0 /* AttentionAndCollectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D9FA081CF59FD000AEB0F0 /* AttentionAndCollectModel.m */; };
+		18D9FA0D1CF69AE400AEB0F0 /* UserGalleryArrController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D9FA0C1CF69AE400AEB0F0 /* UserGalleryArrController.m */; };
+		18D9FA131CF69B6600AEB0F0 /* FWBTitleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D9FA111CF69B6600AEB0F0 /* FWBTitleScrollView.m */; };
+		18D9FA161CF6EAA000AEB0F0 /* UserGalleryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D9FA151CF6EAA000AEB0F0 /* UserGalleryCell.m */; };
 		18EE4F0A1CCA13D0007CE01E /* palazImgCoverBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 18EE4F091CCA13D0007CE01E /* palazImgCoverBtn.png */; };
 		18F114AB1CAE36F600F53C42 /* FWBTarBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F114A61CAE36F600F53C42 /* FWBTarBarButton.m */; };
 		18F114AC1CAE36F600F53C42 /* MyTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F114A81CAE36F600F53C42 /* MyTabBar.m */; };
@@ -456,6 +459,12 @@
 		18D9F9C31CF5412100AEB0F0 /* plaza_bottomviewSelect3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plaza_bottomviewSelect3@2x.png"; sourceTree = "<group>"; };
 		18D9FA071CF59FD000AEB0F0 /* AttentionAndCollectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttentionAndCollectModel.h; sourceTree = "<group>"; };
 		18D9FA081CF59FD000AEB0F0 /* AttentionAndCollectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttentionAndCollectModel.m; sourceTree = "<group>"; };
+		18D9FA0B1CF69AE400AEB0F0 /* UserGalleryArrController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserGalleryArrController.h; sourceTree = "<group>"; };
+		18D9FA0C1CF69AE400AEB0F0 /* UserGalleryArrController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserGalleryArrController.m; sourceTree = "<group>"; };
+		18D9FA101CF69B6600AEB0F0 /* FWBTitleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWBTitleScrollView.h; sourceTree = "<group>"; };
+		18D9FA111CF69B6600AEB0F0 /* FWBTitleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWBTitleScrollView.m; sourceTree = "<group>"; };
+		18D9FA141CF6EAA000AEB0F0 /* UserGalleryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserGalleryCell.h; sourceTree = "<group>"; };
+		18D9FA151CF6EAA000AEB0F0 /* UserGalleryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserGalleryCell.m; sourceTree = "<group>"; };
 		18EE4F091CCA13D0007CE01E /* palazImgCoverBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palazImgCoverBtn.png; sourceTree = "<group>"; };
 		18F114A51CAE36F600F53C42 /* FWBTarBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWBTarBarButton.h; sourceTree = "<group>"; };
 		18F114A61CAE36F600F53C42 /* FWBTarBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWBTarBarButton.m; sourceTree = "<group>"; };
@@ -742,6 +751,12 @@
 		1824D4CC1CD0BBED00D5BB35 /* UserGallerys(我的发布) */ = {
 			isa = PBXGroup;
 			children = (
+				18D9FA101CF69B6600AEB0F0 /* FWBTitleScrollView.h */,
+				18D9FA111CF69B6600AEB0F0 /* FWBTitleScrollView.m */,
+				18D9FA141CF6EAA000AEB0F0 /* UserGalleryCell.h */,
+				18D9FA151CF6EAA000AEB0F0 /* UserGalleryCell.m */,
+				18D9FA0B1CF69AE400AEB0F0 /* UserGalleryArrController.h */,
+				18D9FA0C1CF69AE400AEB0F0 /* UserGalleryArrController.m */,
 				1824D4CD1CD0BC3900D5BB35 /* UserGallerysController.h */,
 				1824D4CE1CD0BC3900D5BB35 /* UserGallerysController.m */,
 			);
@@ -1701,9 +1716,11 @@
 				18A114691CB4FD5600B13434 /* PlazaDataFrame.m in Sources */,
 				18550A281CC71CE0002834D3 /* PhotoViewController.m in Sources */,
 				186AC3B21CD8535E007C99D6 /* CafToMp3.m in Sources */,
+				18D9FA131CF69B6600AEB0F0 /* FWBTitleScrollView.m in Sources */,
 				185509AE1CC5E36F002834D3 /* RecWebController.m in Sources */,
 				18D9F9B41CF2B55C00AEB0F0 /* MyCollectionViewCell.m in Sources */,
 				184BCA771CB362E5008314F4 /* CloudLogin.m in Sources */,
+				18D9FA161CF6EAA000AEB0F0 /* UserGalleryCell.m in Sources */,
 				185509BF1CC61023002834D3 /* JRPlayerView.m in Sources */,
 				183DDB0F1CBCD9C90085A42F /* CommentCell.m in Sources */,
 				1846443E1CB642CB0082F346 /* PictureModel.m in Sources */,
@@ -1719,6 +1736,7 @@
 				18550A2E1CC732BE002834D3 /* AddPicScrollView.m in Sources */,
 				185509AB1CC5E36F002834D3 /* LessonListModel.m in Sources */,
 				18A1145F1CB4A63A00B13434 /* UIView+Category.m in Sources */,
+				18D9FA0D1CF69AE400AEB0F0 /* UserGalleryArrController.m in Sources */,
 				1824D49F1CD060EE00D5BB35 /* CollectModel.m in Sources */,
 				1824D44C1CCF4B8E00D5BB35 /* ZCZBarViewController.m in Sources */,
 				18F114C71CAE378600F53C42 /* UIImage+Category.m in Sources */,

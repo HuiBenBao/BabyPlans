@@ -77,7 +77,7 @@ enum{
         
         self.pageClassical = 1;
         
-        [CloudLogin getPlazaDataWithType:[NSString stringWithFormat:@"%d",DataTypeClassical] page:[NSString stringWithFormat:@"%d",_pageClassical] count:DataCount userID:nil success:^(NSDictionary *responseObject) {
+        [CloudLogin getPlazaDataWithType:[NSString stringWithFormat:@"%d",DataTypeClassical] page:[NSString stringWithFormat:@"%d",_pageClassical] count:DataCount userID:nil status:0 success:^(NSDictionary *responseObject) {
             
             NSLog(@"经典绘本：==%@",responseObject);
             HUD.hidden = YES;
@@ -131,7 +131,7 @@ enum{
         
         NSMutableArray * myDataArr = [NSMutableArray array];
 
-        [CloudLogin getPlazaDataWithType:[NSString stringWithFormat:@"%d",DataTypeOrginal] page:[NSString stringWithFormat:@"%d",_pageOrginal] count:DataCount userID:nil success:^(NSDictionary *responseObject) {
+        [CloudLogin getPlazaDataWithType:[NSString stringWithFormat:@"%d",DataTypeOrginal] page:[NSString stringWithFormat:@"%d",_pageOrginal] count:DataCount userID:nil status:0 success:^(NSDictionary *responseObject) {
             
             NSLog(@"原创绘本：==%@",responseObject);
             HUD.hidden = YES;
@@ -352,7 +352,7 @@ enum{
     
    
 
-    [CloudLogin getPlazaDataWithType:[NSString stringWithFormat:@"%d",type] page:[NSString stringWithFormat:@"%d",page] count:DataCount userID:nil success:^(NSDictionary *responseObject) {
+    [CloudLogin getPlazaDataWithType:[NSString stringWithFormat:@"%d",type] page:[NSString stringWithFormat:@"%d",page] count:DataCount userID:nil status:0 success:^(NSDictionary *responseObject) {
         
         NSArray * currentArr = isLeftTable ? _dataArrLeft : _dataArrRight;
         NSMutableArray * myDataArr = [NSMutableArray arrayWithArray:currentArr];

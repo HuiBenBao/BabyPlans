@@ -21,6 +21,9 @@
 #import "UserGallerysController.h"
 #import "SuggestionController.h"
 
+#import "UserGalleryArrController.h"
+
+
 @interface UserTableController ()<LoginDelegate,UserMessCellDelegate,UserSettingDelegate>
 
 @property (nonatomic,strong) NSArray * dataArr;
@@ -338,7 +341,8 @@
     
     switch (index) {
         case 0:
-            VC = [[UserGallerysController alloc] init];
+//            VC = [[UserGallerysController alloc] init];
+            VC = [[UserGalleryArrController alloc] init];
             break;
         case 1:
             VC = [[MyAttentionController alloc] init];

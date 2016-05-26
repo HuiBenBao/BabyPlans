@@ -52,7 +52,7 @@ NSString * const Count = @"10";  //每页显示数据
         
         //初始化请求页码
         _page = 1;
-        [CloudLogin getPlazaDataWithType:nil page:[NSString stringWithFormat:@"%d",_page] count:Count userID:_userID success:^(NSDictionary *responseObject) {
+        [CloudLogin getPlazaDataWithType:nil page:[NSString stringWithFormat:@"%d",_page] count:Count userID:_userID status:0 success:^(NSDictionary *responseObject) {
             
             hud.hidden = YES;
             [hud removeFromSuperview];
@@ -181,7 +181,7 @@ NSString * const Count = @"10";  //每页显示数据
 - (void)refreshData{
     
     _page++;
-    [CloudLogin getPlazaDataWithType:nil page:[NSString stringWithFormat:@"%d",_page] count:Count userID:_userID success:^(NSDictionary *responseObject) {
+    [CloudLogin getPlazaDataWithType:nil page:[NSString stringWithFormat:@"%d",_page] count:Count userID:_userID status:0 success:^(NSDictionary *responseObject) {
         
         if ([responseObject[@"status"] intValue] == 0) {
             NSArray * dataArr = responseObject[@"galleries"];

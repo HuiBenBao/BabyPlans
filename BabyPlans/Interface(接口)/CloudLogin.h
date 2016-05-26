@@ -52,8 +52,10 @@ typedef void (^Failure)(NSError * errorMessage);
  *  @param page    页码
  *  @param count   每页显示的信息条数
  *  @param userID  要查询此用户的图集时使用
+ *  @param status  0 : 默认为0 ，表示成功发布的状态
+ *                  1: 未通过审核  2:审核中
  */
-+ (void)getPlazaDataWithType:(NSString *)type page:(NSString *)page count:(NSString *)count userID:(NSString *)userID success:(Success)success failure:(Failure)failure;
++ (void)getPlazaDataWithType:(NSString *)type page:(NSString *)page count:(NSString *)count userID:(NSString *)userID status:(NSInteger)status success:(Success)success failure:(Failure)failure;
 /**
  *  获取图集
  *

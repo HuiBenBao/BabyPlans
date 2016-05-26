@@ -95,7 +95,7 @@
     
 }
 
-+ (void)getPlazaDataWithType:(NSString *)type page:(NSString *)page count:(NSString *)count userID:(NSString *)userID success:(Success)success failure:(Failure)failure{
++ (void)getPlazaDataWithType:(NSString *)type page:(NSString *)page count:(NSString *)count userID:(NSString *)userID status:(NSInteger)status success:(Success)success failure:(Failure)failure{
     
     NSMutableDictionary * parma = [NSMutableDictionary dictionary];
 
@@ -109,6 +109,8 @@
     }
     [parma setValue:@"gallery_query" forKey:@"action"];
 
+    NSString * statusStr = [NSString stringWithFormat:@"%ld",status];
+    [parma setValue:statusStr forKey:@"status"];
 
     [parma setValue:page forKey:@"page"];
     [parma setValue:count forKey:@"count"];

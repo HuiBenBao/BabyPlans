@@ -115,10 +115,10 @@
 // 计算文本的尺寸
 #define textSizeFont(text, fontSizeFont, width, height) [text boundingRectWithSize:CGSizeMake(width, height) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:fontSizeFont} context:nil].size;
 
-#define BASEURL @"http://115.28.136.139:8080/newbb/service"
+//#define BASEURL @"http://115.28.136.139:8080/newbb/service"
 
 //测试使用
-//#define BASEURL @"http://192.168.1.104:9080/babycms/service"
+#define BASEURL @"http://192.168.1.104:9080/babycms/service"
 
 //#define GALLERY_PAGE @"http://115.28.136.139:8080/bbweb/g4.jsp?id="
 #define GALLERY_PAGE @"http://www.huibenyuanchuang.com/bbweb/g4.jsp?id="
