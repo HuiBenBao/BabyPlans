@@ -169,34 +169,34 @@
 //播放
 - (void)play{
     
-    CGFloat currentX = self.imgScrollView.contentOffset.x + self.width/2;
-    int index = currentX/self.width;
-    
+    if (self.width>0) {
+        CGFloat currentX = self.imgScrollView.contentOffset.x + self.width/2;
+        int index = currentX/self.width;
+        
+        
+        GalleryImgModel * model = [self.galleryArr objectAtIndex:index];
+        
+        if (model.picture.voice) {
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                
+                self.avAudioPlayer = [[AVAudioPlayer alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:model.picture.voice]] error:nil];
+                //设置代理
+                _avAudioPlayer.delegate = self;
+                
+                [_avAudioPlayer play];
+            });
+            
+            
+        }else{ //声音是空时,1秒后滑动到下一张
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                
+                [self nextImage];
+            });
+        }
 
-    GalleryImgModel * model = [self.galleryArr objectAtIndex:index];
-    
-    if (model.picture.voice) {
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            
-            self.avAudioPlayer = [[AVAudioPlayer alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:model.picture.voice]] error:nil];
-            //设置代理
-            _avAudioPlayer.delegate = self;
-            
-            [_avAudioPlayer play];
-        });
-        
-        
-    }else{ //声音是空时,1秒后滑动到下一张
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            
-            [self nextImage];
-        });
     }
-    
-    
-    
     
 }
 /**
