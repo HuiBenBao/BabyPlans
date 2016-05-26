@@ -7,7 +7,6 @@
 //
 
 #import "UserSettingController.h"
-#import "SuggestionController.h"
 #import "AppAboutViewController.h"
 
 @interface UserSettingController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate>
@@ -22,7 +21,7 @@
 - (NSArray *)titleArr{
     
     if (!_titleArr) {
-        _titleArr = @[@"意见反馈",@"清除缓存",@"关于"];
+        _titleArr = @[@"清除缓存",@"关于"];
     }
     return _titleArr;
 }
@@ -46,10 +45,12 @@
 
     return 2;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     return (section==0) ? self.titleArr.count : 1;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
     UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
@@ -114,11 +115,7 @@
 
     NSInteger row = indexPath.row;
     if (indexPath.section==0) {
-        if (row==0) {//意见反馈
-            
-            [self.navigationController pushViewController:[[SuggestionController alloc] init] animated:YES];
-            
-        }else if (row==1){//清除缓存
+   if (row==0){//清除缓存
         
             UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"重置缓存"
                                                                delegate:self
@@ -127,7 +124,7 @@
                                                       otherButtonTitles:@"重置", nil];
             [sheet showInView:self.view];
             
-        }else if (row==2){//关于
+        }else if (row==1){//关于
             [self.navigationController pushViewController:[[AppAboutViewController alloc] init] animated:YES];
         }
     }

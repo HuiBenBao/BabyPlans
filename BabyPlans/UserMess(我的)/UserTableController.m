@@ -19,7 +19,7 @@
 #import "MyAttentionController.h"
 #import "UserFansController.h"
 #import "UserGallerysController.h"
-
+#import "SuggestionController.h"
 
 @interface UserTableController ()<LoginDelegate,UserMessCellDelegate,UserSettingDelegate>
 
@@ -69,7 +69,7 @@
     
     
     //设置导航栏右侧按钮
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:self action:@selector(pushSetting)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:self action:@selector(pushSetting)];
     
     //测试用
 //    [defaults removeObjectForKey:@"session"];
@@ -156,16 +156,16 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return (section == 0) ? 2 : 4;
+    return (section == 0) ? 2 : (section == 1) ? 4 : 2;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
 
-    return (section==0)?10:0;
+    return (section==0)?10:10;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
 
@@ -237,6 +237,13 @@
                 
                 [self.navigationController pushViewController:VC animated:YES];
 
+            }
+        }else if (indexPath.section==2){
+            if (indexPath.row==0) {
+                [self.navigationController pushViewController:[[SuggestionController alloc] init] animated:YES];
+
+            }else{
+                [self pushSetting];
             }
         }
     }

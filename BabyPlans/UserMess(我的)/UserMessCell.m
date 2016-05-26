@@ -24,41 +24,49 @@
 + (instancetype)cellWithTableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath
 Model:(UserMessModel *)model{
     
-    if (indexPath.section == 1) {
-        
+    if (indexPath.section == 1 || indexPath.section == 2) {
         static NSString *ID = @"UserMessCell";
-        
         UserMessCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-        
         cell.indexPath = indexPath;
-        
         if (cell == nil) {
             cell = [[UserMessCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
-            
-            
         }
-
+        
         cell.redView.hidden = YES;
-        switch (indexPath.row) {
-            case 0:
-                cell.textLabel.text = @"我的二维码";
-                break;
-            case 1:
-                cell.textLabel.text = @"消息";
-                break;
-            case 2:
-                cell.textLabel.text = @"我的收藏";
-                break;
-            case 3:
-                cell.textLabel.text = @"扫码加好友";
-                break;
-            default:
-                break;
+        
+        if (indexPath.section == 1) {
+            switch (indexPath.row) {
+                case 0:
+                    cell.textLabel.text = @"我的二维码";
+                    break;
+                case 1:
+                    cell.textLabel.text = @"消息";
+                    break;
+                case 2:
+                    cell.textLabel.text = @"我的收藏";
+                    break;
+                case 3:
+                    cell.textLabel.text = @"扫码加好友";
+                    break;
+                default:
+                    break;
+            }
+            
+        }else{
+            switch (indexPath.row) {
+                case 0:
+                    cell.textLabel.text = @"意见反馈";
+                    break;
+                case 1:
+                    cell.textLabel.text = @"设置";
+                    break;
+                default:
+                    break;
+            }
+            
         }
-        
-        
         return cell;
-    }else {
+    }else if (indexPath.section == 0){
         
         
         UserMessCell *cell = [[UserMessCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
@@ -68,11 +76,8 @@ Model:(UserMessModel *)model{
         cell.model = model;
         
         if (indexPath.row == 0) {
-            
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
             cell.backgroundColor = [UIColor whiteColor];
-            
             [cell.imageView sd_setImageWithURL:[NSURL URLWithString:model.iconStr] placeholderImage:[UIImage imageAutomaticName:@"defaultIconImg"]];
             
             cell.imageView.layer.cornerRadius = 10;
@@ -89,11 +94,11 @@ Model:(UserMessModel *)model{
         }else{
             [cell createThreeBtn];
         }
-        
         return cell;
-    }
-
+    }else{
     
+        return [[UserMessCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+    }
 }
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     
