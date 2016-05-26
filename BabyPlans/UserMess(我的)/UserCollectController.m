@@ -278,8 +278,8 @@
         _backView.frame = KScreenRect;
         _backView.alpha = 0.8;
         
-        CGFloat gallArrH = KScreenHeight*2/3;
-        _galleryView.frame = CGRectMake(20, KScreenHeight/8, KScreenWidth-40, gallArrH);
+        CGFloat gallArrH = KScreenHeight;
+        _galleryView.frame = CGRectMake(0, 0, KScreenWidth, gallArrH);
         _galleryView.alpha = 1;
     }];
 

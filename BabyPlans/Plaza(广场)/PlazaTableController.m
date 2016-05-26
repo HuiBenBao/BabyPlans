@@ -229,6 +229,8 @@ enum{
         [self getMessCount];
     });
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccessWithNotification:) name:kLoginSuccessNotification object:nil];
+    
     
 }
 /**
@@ -748,6 +750,64 @@ enum{
     
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     
+    
+}
+
+#pragma ---mark------登录成功后修改相应状态
+- (void)loginSuccessWithNotification:(NSNotification *)info{
+
+    NSString * userID = info.object;
+    
+    [CloudLogin getUserCollectAndAttentionWithUserID:userID success:^(NSDictionary *responseObject) {
+        
+        int status = [responseObject[@"status"] intValue];
+        
+        if (status == 0) {
+            NSLog(@"---收藏和关注的id号 -- %@",responseObject);
+            
+            CGFloat currentX = self.mainScrollView.contentOffset.x;
+            currentX = currentX+KScreenWidth/2;
+            
+            int cuIndex = currentX/KScreenWidth;
+            
+            NSArray * dataArr = (cuIndex==0) ? self.dataArrLeft : self.dataArrRight;
+            
+            for (PlazaDataFrame * plazaFrame in dataArr) {
+                PlazaDataModel * model = plazaFrame.model;
+                
+                if (ValidArray(responseObject[@"attentionList"])) {
+                    
+                    NSArray * attentiontArr = responseObject[@"attentionList"];
+                    
+                    for (int i = 0; i < attentiontArr.count; i++) {
+                        int attentionID = [attentiontArr[i] intValue];
+                        
+                        if ([model.user.userID intValue] == attentionID) {
+                            model.isAttention = YES;
+                        }
+                    }
+                }
+                if (ValidArray(responseObject[@"collectionList"])) {
+                    NSArray * collectArr = responseObject[@"collectionList"];
+                    
+                    for (int i = 0; i < collectArr.count; i++) {
+                        int galleryID = [collectArr[i] intValue];
+                        
+                        if ([model.galleryID intValue] == galleryID) {
+                            model.isCollect = YES;
+                        }
+                    }
+                }
+                
+            }
+            
+            UITableView * tableView = (cuIndex == 0) ? self.tableViewLeft : self.tableViewRight;
+            [tableView reloadData];
+           
+        }
+    } failure:^(NSError *errorMessage) {
+        
+    }];
     
 }
 @end

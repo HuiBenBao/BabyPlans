@@ -341,6 +341,8 @@
                 [APService setTags:nil alias:[defaults objectForKey:@"token"] callbackSelector:nil object:nil];
             }
             
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:kLoginSuccessNotification object:session.userId];
             
             if ([self.delegate respondsToSelector:@selector(loginSuccess)]) {
                 [self.delegate loginSuccess];
@@ -397,6 +399,9 @@
                 NSLog(@"%@",[defaults objectForKey:@"token"]);
                 [APService setTags:nil alias:[defaults objectForKey:@"token"] callbackSelector:nil object:nil];
             }
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:kLoginSuccessNotification object:session.userId];
+            
             if ([self.delegate respondsToSelector:@selector(loginSuccess)]) {
                 [self.delegate loginSuccess];
             }

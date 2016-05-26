@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+static NSString * const  kLoginSuccessNotification = @"loginSuccessNotification";
+
 @class LoginView;
 
 @protocol LoginViewDelegate <NSObject>

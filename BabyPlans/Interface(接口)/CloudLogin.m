@@ -432,6 +432,20 @@
     }];
 }
 
+
++ (void)getUserCollectAndAttentionWithUserID:(NSString *)userID success:(Success)success failure:(Failure)failure{
+
+    NSMutableDictionary * parma = [NSMutableDictionary dictionary];
+    
+    [parma setValue:@"user_list" forKey:@"action"];
+    [parma setValue:userID forKey:@"user_id"];
+    
+    [CloudLogin getDataWithURL:nil parameter:parma success:^(id data) {
+        success(data);
+    } failure:^(NSError *errorMessage) {
+        failure(errorMessage);
+    }];
+}
 + (void)getUserMessageWithID:(NSString *)userID success:(Success)success failure:(Failure)failure{
 
     NSMutableDictionary * parma = [NSMutableDictionary dictionary];

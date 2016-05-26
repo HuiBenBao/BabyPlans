@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LoginView.h"
 
 @protocol LoginDelegate <NSObject>
 

@@ -92,6 +92,11 @@ typedef void (^Failure)(NSError * errorMessage);
  *  @param type 0/1 true/false
  */
 + (void)attentionToUserID:(NSString *)userID type:(NSString *)type success:(Success)success failure:(Failure)failure;
+/**
+ *  获取用户的关注和收藏信息
+ *  返回的为关注的userID集合和收藏的图集ID集合
+ */
++ (void)getUserCollectAndAttentionWithUserID:(NSString *)userID success:(Success)success failure:(Failure)failure;
 
 /**
  *  查看用户资料

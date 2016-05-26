@@ -7,7 +7,6 @@
 //
 
 #import "LoginViewController.h"
-#import "LoginView.h"
 #import "RegisterController.h"
 
 @interface LoginViewController ()<LoginViewDelegate, RegisterControllerDelegate>
