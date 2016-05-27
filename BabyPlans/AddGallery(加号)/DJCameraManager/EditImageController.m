@@ -84,7 +84,7 @@
             for (UIImageView * imgV in _imageArr) {
                 if (imgV.tag == tag) {
                     
-                    [tempArr insertObject:imgV atIndex:0];
+                    [tempArr addObject:imgV];
                 }
             }
         }
@@ -280,8 +280,8 @@
     MyCollectionViewCell *cell = (MyCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     
     if (_imageArr.count>0) {
-        NSInteger index = _imageArr.count-indexPath.row-1;
-        UIImageView * imgV = (UIImageView *)_imageArr[index];
+        
+        UIImageView * imgV = (UIImageView *)_imageArr[indexPath.row];
         
         cell.imageView.image = imgV.image;
         cell.imageView.tag = imgV.tag;
@@ -294,7 +294,7 @@
 
     [self reloadImageArr];
     
-    NSString * text = [NSString stringWithFormat:@"确定要将第%ld张图删除？",indexPath.row+1];
+    NSString * text = [NSString stringWithFormat:@"确定要将第%d张图删除？",(int)indexPath.row+1];
     UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@"提醒" message:text preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction * cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];

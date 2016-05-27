@@ -12,6 +12,7 @@
 #import "WXApi.h"
 #import "WeiboSDK.h"
 #import "APService.h"
+#import "Session.h"
 
 @interface LoginView ()
 

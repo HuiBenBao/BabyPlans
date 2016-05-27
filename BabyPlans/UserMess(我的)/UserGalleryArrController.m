@@ -9,6 +9,7 @@
 #import "UserGalleryArrController.h"
 #import "FWBTitleScrollView.h"
 #import "UserGalleryCell.h"
+#import "GalleryArrView.h"
 
 static const int DataCount = 10;
 typedef enum : NSUInteger {
@@ -31,6 +32,11 @@ typedef enum : NSUInteger {
 
 @property (nonatomic,assign) Status status;
 
+/**
+ *  查看大图时的背景view
+ */
+@property (nonatomic,strong) UIView * backView;
+@property (nonatomic,strong) GalleryArrView * galleryView;
 @end
 
 @implementation UserGalleryArrController
@@ -188,6 +194,44 @@ typedef enum : NSUInteger {
     return _dataSource1;
 }
 
+- (UIView *)backView{
+    
+    if (!_backView) {
+        _backView = [[UIView alloc] init];
+        _backView.backgroundColor = [UIColor blackColor];
+        [_backView addTarget:self action:@selector(removeBackView)];
+    }
+    return _backView;
+}
+
+- (GalleryArrView *)galleryView{
+    
+    if (!_galleryView) {
+        _galleryView = [[GalleryArrView alloc] init];
+        [_galleryView addTarget:self action:@selector(removeBackView)];
+    }
+    
+    return _galleryView;
+}
+- (void)removeBackView{
+    
+    [UIApplication sharedApplication].statusBarHidden = NO;
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        _backView.alpha = 0;
+        _galleryView.alpha = 0;
+        _backView.frame = CGRectMake(KScreenWidth/2, KScreenHeight/2, 0, 0);
+        _galleryView.frame = CGRectMake(KScreenWidth/2, KScreenHeight/2, 0, 0);
+        
+        
+    } completion:^(BOOL finished) {
+        [_backView removeFromSuperview];
+        [_galleryView removeFromSuperview];
+        _galleryView = nil;
+        
+    }];
+}
+#pragma ---mark------界面加载
 
 - (void)viewDidLoad{
 
@@ -309,10 +353,11 @@ typedef enum : NSUInteger {
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
-    UserGalleryCell * cell = [UserGalleryCell cellWithTableView:tableView indexPath:indexPath];
+    
+    UserGalleryCell * cell = [tableView cellForRowAtIndexPath:indexPath];
     PlazaDataModel * model = cell.model;
     
+    [self getImageArrWithID:model.galleryID];
     
 }
 
@@ -389,6 +434,35 @@ typedef enum : NSUInteger {
     } failure:^(NSError *errorMessage) {
         
         [self.view poptips:@"网络异常"];
+    }];
+    
+}
+
+/**
+ *  展示图集
+ *
+ *  @param galleryID 图集id
+ */
+- (void)getImageArrWithID:(NSString *)galleryID{
+    
+    //弹窗
+    self.galleryView.galleryID = galleryID;
+    self.backView.frame = CGRectMake(KScreenWidth/2, KScreenHeight/2, 0, 0);
+    self.galleryView.frame = CGRectMake(KScreenWidth/2, KScreenHeight/2, 0, 0);
+    
+    [[[UIApplication sharedApplication].delegate window].rootViewController.view  addSubview:_backView];
+    [[[UIApplication sharedApplication].delegate window].rootViewController.view  addSubview:_galleryView];
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        
+        [UIApplication sharedApplication].statusBarHidden = YES;
+        
+        _backView.frame = KScreenRect;
+        _backView.alpha = 0.8;
+        
+        CGFloat gallArrH = KScreenHeight;
+        _galleryView.frame = CGRectMake(0, 0, KScreenWidth, gallArrH);
+        _galleryView.alpha = 1;
     }];
     
 }

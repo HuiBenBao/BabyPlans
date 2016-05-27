@@ -7,7 +7,7 @@
 //
 
 #import "AddPicScrollView.h"
-#define margic 20*SCREEN_WIDTH_RATIO55
+
 
 @interface AddPicScrollView ()
 
@@ -25,9 +25,9 @@
      
         self.addImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"addpic_btn.png"]];
         
-        CGFloat imgY = 10*SCREEN_WIDTH_RATIO55;
-        CGFloat imgH = frame.size.height - imgY*2;
-        CGFloat imgW = imgH;
+        CGFloat imgW = imageRadius;
+        CGFloat imgH = imgW;
+        CGFloat imgY = (frame.size.height - imgH)/2;
         
 
         _addImgView.frame = CGRectMake(margic, imgY, imgW, imgH);
@@ -51,7 +51,7 @@
     imgView.tag = [imgID intValue];
     
     [self addSubview:imgView];
-    [_imageViewArr insertObject:imgView atIndex:0];
+    [_imageViewArr addObject:imgView];
     
 }
 
@@ -67,25 +67,31 @@
 
     [super layoutSubviews];
     
-    CGFloat maxW = margic;
+    CGFloat maxX = margic;
+    CGFloat maxY = margic;
     for (int i = 0; i < _imageViewArr.count; i++) {
         UIImageView * imageView = [_imageViewArr objectAtIndex:i];
        
         CGRect imgF = self.addImgView.frame;
         
-        imgF.origin.x = margic + (self.addImgView.width+margic)*i;
+        imgF.origin.x = margic + (self.addImgView.width+margic)*(i%ImgNumOnOneline);
+        imgF.origin.y = margic + (self.addImgView.width+margic)*(i/ImgNumOnOneline);
         
         imageView.frame = imgF;
        
-        maxW = CGRectGetMaxX(imgF) + margic;
+        maxX = CGRectGetMaxX(imgF) + margic;
+        maxY = CGRectGetMaxY(imgF) + margic;
     }
     
     CGRect addF = _addImgView.frame;
-    addF.origin.x = maxW;
+    NSInteger index = _imageViewArr.count;
+    addF.origin.x = margic + (self.addImgView.width+margic)*(index%ImgNumOnOneline);
+    addF.origin.y = margic + (self.addImgView.width+margic)*(index/ImgNumOnOneline);
+    
     self.addImgView.frame = addF;
     self.addImgView.image = [UIImage imageNamed:@"addpic_btn.png"];
     
-    self.contentSize = CGSizeMake(CGRectGetMaxX(_addImgView.frame)+margic, 0);
+    self.contentSize = CGSizeMake(CGRectGetMaxX(_addImgView.frame)+margic, CGRectGetMaxY(_addImgView.frame)+margic);
     
 }
 

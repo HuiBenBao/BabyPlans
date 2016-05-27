@@ -109,7 +109,6 @@
 		18886C681CC0CE46007AEC7B /* MOBFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18886C5B1CC0CE46007AEC7B /* MOBFoundation.framework */; };
 		18886C691CC0CE46007AEC7B /* ShareSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18886C5C1CC0CE46007AEC7B /* ShareSDK.bundle */; };
 		18886C6A1CC0CE46007AEC7B /* ShareSDKConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18886C5D1CC0CE46007AEC7B /* ShareSDKConnector.framework */; };
-		18886C6C1CC0D072007AEC7B /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18886C6B1CC0D072007AEC7B /* libicucore.tbd */; };
 		18886C6E1CC0D07B007AEC7B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18886C6D1CC0D07B007AEC7B /* libz.tbd */; };
 		18886C701CC0D083007AEC7B /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18886C6F1CC0D083007AEC7B /* libstdc++.tbd */; };
 		18886C721CC0D088007AEC7B /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18886C711CC0D088007AEC7B /* JavaScriptCore.framework */; };
@@ -515,7 +514,6 @@
 				18886C721CC0D088007AEC7B /* JavaScriptCore.framework in Frameworks */,
 				18886C701CC0D083007AEC7B /* libstdc++.tbd in Frameworks */,
 				18886C6E1CC0D07B007AEC7B /* libz.tbd in Frameworks */,
-				18886C6C1CC0D072007AEC7B /* libicucore.tbd in Frameworks */,
 				18886C611CC0CE46007AEC7B /* ShareSDKUI.framework in Frameworks */,
 				18886C621CC0CE46007AEC7B /* TencentOpenAPI.framework in Frameworks */,
 				18886C661CC0CE46007AEC7B /* libWeChatSDK.a in Frameworks */,

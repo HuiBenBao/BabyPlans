@@ -109,7 +109,7 @@
     }
     [parma setValue:@"gallery_query" forKey:@"action"];
 
-    NSString * statusStr = [NSString stringWithFormat:@"%ld",status];
+    NSString * statusStr = [NSString stringWithFormat:@"%ld",(long)status];
     [parma setValue:statusStr forKey:@"status"];
 
     [parma setValue:page forKey:@"page"];

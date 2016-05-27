@@ -563,6 +563,8 @@ enum{
                     //修改并刷新数据
                     model.likeCount = [NSString stringWithFormat:@"%d",[model.likeCount intValue]+1];
                     model.isCollect = YES;
+                    
+                    
                     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                 }else if(status==2){//取消收藏
                     
@@ -630,6 +632,24 @@ enum{
                             model.isAttention = (following ==1);
                             
                             [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                            
+                            for (PlazaDataFrame * dataFrame in dataArr) {
+                                
+                                PlazaDataModel * data = dataFrame.model;
+                                
+                                
+                                if ([data.user.userID intValue] == [model.user.userID intValue]) {
+                                    
+                                    //修改状态
+                                    data.isAttention = model.isAttention;
+                                    
+                                    //刷新cell
+                                    NSInteger tempIndex = [dataArr indexOfObject:dataFrame];
+                                    NSIndexPath * tempIndexPath = [NSIndexPath indexPathForRow:tempIndex inSection:0];
+                                    [tableView reloadRowsAtIndexPaths:@[tempIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                                }
+                            }
+                            
                         
                             [self.view poptips:mess];
                             

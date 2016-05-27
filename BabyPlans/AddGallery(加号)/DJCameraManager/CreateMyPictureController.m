@@ -22,6 +22,8 @@
 
 @property (nonatomic,strong) MyTextView * textView;
 
+@property (nonatomic,strong) UIView * btnView;
+
 @end
 
 
@@ -32,22 +34,30 @@
 
     [super viewDidLoad];
 
+    UIScrollView * scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    self.view = scrollView;
+    
     self.navigationController.delegate = self;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor whiteColor];
-    self.addPicView = [[AddPicScrollView alloc] initWithFrame:CGRectMake(0, KNavBarHeight, KScreenWidth, 100*SCREEN_WIDTH_RATIO55)];
+    self.addPicView = [[AddPicScrollView alloc] initWithFrame:CGRectMake(0, KNavBarHeight, KScreenWidth, imageRadius + margic*2)];
     self.addPicView.backgroundColor = ViewBackColor;
     
     self.addPicView.picDelegate = self;
     
     [self.view addSubview:_addPicView];
     
-    self.textView = [[MyTextView alloc] initWithFrame:CGRectMake(10, _addPicView.bottom+10, KScreenWidth-20, 130*SCREEN_WIDTH_RATIO55)];
+    self.textView = [[MyTextView alloc] initWithFrame:CGRectMake(10, _addPicView.bottom+margic, KScreenWidth-20, 130*SCREEN_WIDTH_RATIO55)];
     
     self.textView.backgroundColor = ViewBackColor;
     self.textView.placeholderLabel.hidden = NO;
     _textView.delegate = self;
     [self.view addSubview:_textView];
+    
+    
+    self.btnView = [[UIView alloc] init];
+    self.btnView.frame = CGRectMake(0, _textView.bottom+margic*2, KScreenWidth, 50*SCREEN_WIDTH_RATIO55);
+    [self.view addSubview:_btnView];
     
     NSArray * titleArr = @[@"发布",@"修改"];
     
@@ -58,8 +68,8 @@
         CGFloat margicX = 20*SCREEN_WIDTH_RATIO55;
         CGFloat btnW = (KScreenWidth - margicX*(titleArr.count+1))/(titleArr.count);
         CGFloat btnX = margicX + (margicX + btnW)*i;
-        CGFloat btnH = 50*SCREEN_WIDTH_RATIO55;
-        publishBtn.frame = CGRectMake(btnX, _textView.bottom+30*SCREEN_WIDTH_RATIO55, btnW, btnH);
+        CGFloat btnH = _btnView.height;
+        publishBtn.frame = CGRectMake(btnX, 0, btnW, btnH);
         
         publishBtn.layer.cornerRadius = 8*SCREEN_WIDTH_RATIO55;
         publishBtn.clipsToBounds = YES;
@@ -74,7 +84,7 @@
         }
         
         
-        [self.view addSubview:publishBtn];
+        [self.btnView addSubview:publishBtn];
         
         [self.view addTarget:self action:@selector(packUpKeyborad)];
     }
@@ -168,7 +178,7 @@
     NSMutableArray * tempArr = [NSMutableArray array];
 
     int count = (int)self.addPicView.imageViewArr.count;
-    for (int i = count-1; i >=0 ; i--) {
+    for (int i = 0; i < count ; i++) {
         UIImageView * imgV = [_addPicView.imageViewArr objectAtIndex:i];
         
         if (imgV.tag > 0) {
@@ -451,6 +461,34 @@
 - (void)updateImgID:(NSString *)imgID image:(UIImage *)image{
 
     [self.addPicView addPicture:image imgID:imgID];
+    
+    //更新addPicView的frame
+    NSInteger count = self.addPicView.imageViewArr.count;
+    
+    CGFloat picViewH = margic + (count/ImgNumOnOneline + 1) * (imageRadius + margic);
+    
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+       
+        CGRect picF = self.addPicView.frame;
+        picF.size.height = picViewH;
+        self.addPicView.frame = picF;
+        
+        CGRect textF = self.textView.frame;
+        textF.origin.y = CGRectGetMaxY(picF) + margic;
+        
+        self.textView.frame = textF;
+        
+        CGRect btnF = self.btnView.frame;
+        btnF.origin.y = CGRectGetMaxY(self.textView.frame) + margic*2;
+        
+        self.btnView.frame = btnF;
+        
+        UIScrollView * scrollV = (UIScrollView *)self.view;
+        scrollV.contentSize = CGSizeMake(KScreenWidth, self.btnView.bottom + margic);
+        
+        [self.view setNeedsLayout];
+    });
 }
 
 #pragma mark- 缩放图片
