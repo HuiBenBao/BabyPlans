@@ -1894,6 +1894,24 @@
 					"$(PROJECT_DIR)/libzbarSDK",
 					"$(PROJECT_DIR)/BabyPlans/APPush",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"MJRefresh\"",
+					"-l\"SDWebImage\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-licucore",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.baby.huibenbao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "76ee553b-2092-4cd2-b8c0-56f7d7674715";
@@ -1928,6 +1946,24 @@
 					"$(PROJECT_DIR)/BabyPlans/ShareSDK/Support/PlatformSDK/WeChatSDK",
 					"$(PROJECT_DIR)/libzbarSDK",
 					"$(PROJECT_DIR)/BabyPlans/APPush",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"MJRefresh\"",
+					"-l\"SDWebImage\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-licucore",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.baby.huibenbao;
 				PRODUCT_NAME = "$(TARGET_NAME)";

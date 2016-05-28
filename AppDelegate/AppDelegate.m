@@ -55,7 +55,7 @@
         self.window.rootViewController=controller;
         
         //版本更新
-        [self VersionUpdate];
+//        [self VersionUpdate];
     }
     
     
