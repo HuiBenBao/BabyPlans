@@ -39,17 +39,26 @@
     
     //添加对应的按钮个数
     
-    NSArray * titleArr = @[@"广场",@"分类",@"故事",@"我的"];
+//    NSArray * titleArr = @[@"广场",@"分类",@"故事",@"我的"];
+    NSArray * titleArr = @[@"广场",@"我的"];
     for (int i = 0; i < self.viewControllers.count; i++) {
         
         //设置图片和选中状态下的图片
         NSString * name = [NSString stringWithFormat:@"TabBar%d.png",i+1];
+        
         NSString * seletTwoName = @"TabBar3";
-        NSString * selectName = i == 2 ? seletTwoName :[NSString stringWithFormat:@"TabBarSeleted%d.png",i+1];
+        NSString * otherName = [NSString stringWithFormat:@"TabBarSeleted%d.png",i+1];
+        
+        if (i==self.viewControllers.count-1) {
+            name = [NSString stringWithFormat:@"TabBar%d.png",5];
+            otherName = [NSString stringWithFormat:@"TabBarSeleted%d.png",5];
+        }
+        
+        NSString * selectName = i == 1 ? seletTwoName :otherName;
         
         NSString * title;
-        if (i!=2) {
-            title = i < 2 ? titleArr[i] : titleArr[i-1];
+        if (i!=1) {
+            title = i < 1 ? titleArr[i] : titleArr[i-1];
         }
         [_myTabBar addTarBarButtonWithImageName:name selectedImage:selectName btnName:title];
     }

@@ -37,6 +37,9 @@
         
         button.titleLabel.font = FONT_ADAPTED_NUM(15);
         
+    }else{
+        
+        [button setImage:[UIImage imageAutomaticName:selectedName] forState:UIControlStateNormal];
     }
     
     //设置点击响应
