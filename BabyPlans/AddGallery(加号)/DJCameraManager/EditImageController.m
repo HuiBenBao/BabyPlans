@@ -114,7 +114,7 @@
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
     layout.itemSize = CGSizeMake(100, 100);
-    _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, KNavBarHeight + 10, self.view.frame.size.width, self.view.frame.size.height) collectionViewLayout:layout];
+    _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, KNavBarHeight + 10, self.view.frame.size.width, self.view.frame.size.height - KNavBarHeight - 10) collectionViewLayout:layout];
     
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
