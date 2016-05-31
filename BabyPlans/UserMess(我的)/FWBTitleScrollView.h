@@ -21,6 +21,9 @@
 @property (nonatomic,strong) UIView * scrollBar;
 @property (nonatomic,strong,readonly) NSArray * btnArr;
 
+@property (nonatomic,assign) NSInteger currentSelect;
+
+
 @property (nonatomic,weak) id <FWBTitleScrollDelegate>delegate;
 
 @end

@@ -85,7 +85,13 @@
     }
     return self;
 }
+- (void)setCurrentSelect:(NSInteger)currentSelect{
 
+    _currentSelect = currentSelect;
+
+    UIButton * btn = _btnArr[_currentSelect];
+    [self btnClick:btn];
+}
 - (void)btnClick:(UIButton *)sender{
 
     if ([self.delegate respondsToSelector:@selector(clickTitleButton:)]) {

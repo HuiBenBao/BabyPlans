@@ -249,6 +249,7 @@ typedef enum : NSUInteger {
     
     self.scrollView = [[FWBTitleScrollView alloc]initWithFrame: CGRectMake(0,KNavBarHeight, KScreenWidth,40*SCREEN_WIDTH_RATIO55)];
     self.scrollView.delegate = self;
+    self.scrollView.currentSelect = 0;
     
     [self.view addSubview:_scrollView];
 }

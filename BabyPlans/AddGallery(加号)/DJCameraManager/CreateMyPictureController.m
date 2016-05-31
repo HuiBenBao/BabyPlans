@@ -199,7 +199,7 @@
         
         if (status==0) {
             
-            UIAlertController *alertCtrl = [UIAlertController alertControllerWithTitle:@"上传成功，请耐心等待审核" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alertCtrl = [UIAlertController alertControllerWithTitle:@"上传成功，请耐心等待审核 ，也可以在 “我的” - @“发布的绘本”中查看进度" message:nil preferredStyle:UIAlertControllerStyleAlert];
             
             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
                 
