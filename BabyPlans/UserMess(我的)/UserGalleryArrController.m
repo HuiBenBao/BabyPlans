@@ -361,6 +361,78 @@ typedef enum : NSUInteger {
     [self getImageArrWithID:model.galleryID];
     
 }
+#pragma ----mark-----UITableVIewDelegate
+/**
+ *  先要设Cell可编辑
+ */
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+/**
+ *  定义编辑样式
+ */
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+/**
+ *  进入编辑模式，按下出现的删除按钮后
+ */
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UserGalleryCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+    PlazaDataModel * model = cell.model;
+    
+    MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.dimBackground = YES;
+    [CloudLogin deleteGalleryWithGalleryID:model.galleryID Success:^(NSDictionary *responseObject) {
+       
+        hud.hidden = YES;
+        [hud removeFromSuperview];
+        int status = [responseObject[@"status"] intValue];
+        if (status == 0) {
+            
+            NSArray * dataArr = (_status == StatusSuccess) ? _dataSource : (_status == StatusIng) ? _dataSource2 : _dataSource1;
+
+            NSMutableArray * tempArr = [NSMutableArray arrayWithArray:dataArr];
+            
+            [tempArr removeObjectAtIndex:indexPath.row];
+            
+            if (_status == StatusSuccess) {
+                _dataSource = tempArr;
+            }else if(_status == StatusIng){
+                _dataSource2 = tempArr;
+            }else{
+                _dataSource1 = tempArr;
+            }
+            
+            
+            
+            [self.tableView reloadData];
+            
+            [self.view poptips:@"删除成功"];
+        }
+    } failure:^(NSError *errorMessage) {
+        
+        hud.hidden = YES;
+        [hud removeFromSuperview];
+        [self.view poptips:@"网络好像不给力"];
+    }];
+}
+
+
+//修改编辑按钮文字
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
+}
+//设置进入编辑状态时，Cell不会缩进
+- (BOOL)tableView: (UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
 
 #pragma ----mark-----获取下一页数据
 /**

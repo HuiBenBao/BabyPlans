@@ -170,4 +170,9 @@ typedef void (^Failure)(NSError * errorMessage);
  *  获取未读消息数目
  */
 + (void)GetUnreadMessCountSuccess:(Success)success failure:(Failure)failure;
+/**
+ *  删除图集
+ */
++ (void)deleteGalleryWithGalleryID:(NSString *)galleryID Success:(Success)success failure:(Failure)failure;
+
 @end

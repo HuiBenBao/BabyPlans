@@ -37,7 +37,6 @@
 		1824D4C91CD0B52D00D5BB35 /* qrcode_scan_light_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1824D4BC1CD0B52D00D5BB35 /* qrcode_scan_light_green@2x.png */; };
 		1824D4CA1CD0B52D00D5BB35 /* qrcode_scan_titlebar_back_nor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1824D4BD1CD0B52D00D5BB35 /* qrcode_scan_titlebar_back_nor@2x.png */; };
 		1824D4CB1CD0B52D00D5BB35 /* qrcode_scan_titlebar_back_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1824D4BE1CD0B52D00D5BB35 /* qrcode_scan_titlebar_back_pressed@2x.png */; };
-		1824D4CF1CD0BC3900D5BB35 /* UserGallerysController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1824D4CE1CD0BC3900D5BB35 /* UserGallerysController.m */; };
 		1829DE4D1CC8F4D200D0DB02 /* slider_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 1829DE4C1CC8F4D200D0DB02 /* slider_left.png */; };
 		1829DE501CC8FE6100D0DB02 /* MyTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1829DE4F1CC8FE6100D0DB02 /* MyTextView.m */; };
 		182E23341CC9BCCC0076CE50 /* SuggestionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182E23331CC9BCCC0076CE50 /* SuggestionController.m */; };
@@ -264,8 +263,6 @@
 		1824D4BC1CD0B52D00D5BB35 /* qrcode_scan_light_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qrcode_scan_light_green@2x.png"; sourceTree = "<group>"; };
 		1824D4BD1CD0B52D00D5BB35 /* qrcode_scan_titlebar_back_nor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qrcode_scan_titlebar_back_nor@2x.png"; sourceTree = "<group>"; };
 		1824D4BE1CD0B52D00D5BB35 /* qrcode_scan_titlebar_back_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qrcode_scan_titlebar_back_pressed@2x.png"; sourceTree = "<group>"; };
-		1824D4CD1CD0BC3900D5BB35 /* UserGallerysController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserGallerysController.h; sourceTree = "<group>"; };
-		1824D4CE1CD0BC3900D5BB35 /* UserGallerysController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserGallerysController.m; sourceTree = "<group>"; };
 		1829DE4C1CC8F4D200D0DB02 /* slider_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slider_left.png; sourceTree = "<group>"; };
 		1829DE4E1CC8FE6100D0DB02 /* MyTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyTextView.h; path = DJCameraManager/MyTextView.h; sourceTree = "<group>"; };
 		1829DE4F1CC8FE6100D0DB02 /* MyTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyTextView.m; path = DJCameraManager/MyTextView.m; sourceTree = "<group>"; };
@@ -755,8 +752,6 @@
 				18D9FA151CF6EAA000AEB0F0 /* UserGalleryCell.m */,
 				18D9FA0B1CF69AE400AEB0F0 /* UserGalleryArrController.h */,
 				18D9FA0C1CF69AE400AEB0F0 /* UserGalleryArrController.m */,
-				1824D4CD1CD0BC3900D5BB35 /* UserGallerysController.h */,
-				1824D4CE1CD0BC3900D5BB35 /* UserGallerysController.m */,
 			);
 			name = "UserGallerys(我的发布)";
 			sourceTree = "<group>";
@@ -1682,7 +1677,6 @@
 				185509C11CC61023002834D3 /* SlideCollectionViewCell.m in Sources */,
 				18A114541CB3A66000B13434 /* UserMessCell.m in Sources */,
 				18CCD1521CB8F355002595FD /* LoginViewController.m in Sources */,
-				1824D4CF1CD0BC3900D5BB35 /* UserGallerysController.m in Sources */,
 				182E23341CC9BCCC0076CE50 /* SuggestionController.m in Sources */,
 				183DDB061CBC9AA30085A42F /* Session.m in Sources */,
 				1846443B1CB63FF30082F346 /* GalleryImgModel.m in Sources */,

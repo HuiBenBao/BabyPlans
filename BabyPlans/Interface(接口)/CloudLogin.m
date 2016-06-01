@@ -552,6 +552,20 @@
         failure(errorMessage);
     }];
 }
++ (void)deleteGalleryWithGalleryID:(NSString *)galleryID Success:(Success)success failure:(Failure)failure{
+
+    NSMutableDictionary * parma = [NSMutableDictionary dictionary];
+    
+    [parma setValue:@"gallery_del" forKey:@"action"];
+    [parma setValue:galleryID forKey:@"gallery_id"];
+    
+    [CloudLogin getDataWithURL:nil parameter:parma success:^(id data) {
+        success(data);
+    } failure:^(NSError *errorMessage) {
+        failure(errorMessage);
+    }];
+
+}
 
 #pragma mark>>>>>>------公用方法---------
 #pragma -----mark------网络数据请求方法

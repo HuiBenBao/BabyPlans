@@ -18,7 +18,6 @@
 #import "UserCollectController.h"
 #import "MyAttentionController.h"
 #import "UserFansController.h"
-#import "UserGallerysController.h"
 #import "SuggestionController.h"
 
 #import "UserGalleryArrController.h"
