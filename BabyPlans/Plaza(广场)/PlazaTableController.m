@@ -680,6 +680,7 @@ enum{
                 
                 NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
                 
+                
                 [shareParams SSDKEnableUseClientShare];
                 
                 NSString * title = ValidStr(model.oldTitle) ? model.oldTitle : @"看绘本，上绘本宝";
