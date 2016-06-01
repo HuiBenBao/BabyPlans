@@ -721,8 +721,7 @@ enum{
                                             emoticonData:nil
                                                     type:SSDKContentTypeAudio
                                       forPlatformSubType:SSDKPlatformSubTypeWechatTimeline];
-                
-                
+
                 //2、分享（可以弹出我们的分享菜单和编辑界面）
                 [ShareSDK showShareActionSheet:nil
                                          items:nil
