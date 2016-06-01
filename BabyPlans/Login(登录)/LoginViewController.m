@@ -32,7 +32,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
-
 /**
  *  手机号，密码
  */
