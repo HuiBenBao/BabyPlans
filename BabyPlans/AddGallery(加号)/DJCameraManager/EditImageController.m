@@ -334,7 +334,7 @@
         for (UIImageView * imgV in _imageArr) {
             if (imgV.tag == tag) {
                 
-                [tempArr insertObject:imgV atIndex:0];
+                [tempArr addObject:imgV];
             }
         }
     }

@@ -94,7 +94,17 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    //程序即将消失时调用
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
+    
+    //程序即将消失时调用
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
+    //监听是否重新进入程序程序.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
+
 }
+
 /**
  *  返回按钮点击方法
  */
@@ -295,15 +305,20 @@
 
 - (void)keyBoardWillShow:(NSNotification *)note{
     
-    CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    CGFloat ty = - rect.size.height;
+    BOOL isShow = note.userInfo[UIKeyboardIsLocalUserInfoKey];
     
-    if ((KScreenHeight - rect.size.height) < self.btnView.bottom) {
-        [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
-            self.view.transform = CGAffineTransformMakeTranslation(0, ty);
-        }];
-        UIScrollView * scrollV = (UIScrollView *)self.view;
-        scrollV.contentInset = UIEdgeInsetsMake(-ty, 0, 0, 0);
+    if (isShow) {
+        CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+        CGFloat ty = - rect.size.height;
+        
+        if ((KScreenHeight - rect.size.height) < self.btnView.bottom) {
+            [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
+                self.view.transform = CGAffineTransformMakeTranslation(0, ty);
+            }];
+            UIScrollView * scrollV = (UIScrollView *)self.view;
+            scrollV.contentInset = UIEdgeInsetsMake(-ty, 0, 0, 0);
+        }
+
     }
     
     
@@ -312,11 +327,30 @@
 #pragma mark 键盘即将退出
 - (void)keyBoardWillHide:(NSNotification *)note{
     
-    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
-        self.view.transform = CGAffineTransformIdentity;
-    }];
-    UIScrollView * scrollV = (UIScrollView *)self.view;
-    scrollV.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    BOOL isShow = note.userInfo[UIKeyboardIsLocalUserInfoKey];
+    if (isShow) {
+        [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
+            self.view.transform = CGAffineTransformIdentity;
+        }];
+        UIScrollView * scrollV = (UIScrollView *)self.view;
+        scrollV.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+
+    }
+    
+}
+
+- (void)applicationWillResignActive:(NSNotification *)note{
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+
+}
+- (void)applicationDidBecomeActive:(NSNotification *)note{
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 #pragma ----mark-----UITextVIewDelegate
 - (void)textViewDidEndEditing:(UITextView *)textView{
