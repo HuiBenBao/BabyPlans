@@ -28,5 +28,10 @@
  *  将任意图片转化成小于10k的图
  */
 +(NSData *)imageData:(UIImage *)myimage;
-
+/**
+ *  裁剪图片
+ *
+ *  @param rect 要裁剪的距形区域
+ */
+- (UIImage *)cutImageWithRect:(CGRect)rect;
 @end
