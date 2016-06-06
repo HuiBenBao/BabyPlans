@@ -13,6 +13,7 @@
 @protocol PlazaMainCellDelegate <NSObject>
 
 @optional
+
 - (void)getImageArrWithID:(NSString *)galleryID;
 
 - (void)clickBottomBtn:(UIButton *)button galleryID:(NSString *)galleryID indexPath:(NSIndexPath*)indexPath tableTag:(NSInteger)tableTag;
