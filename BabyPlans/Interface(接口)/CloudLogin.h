@@ -57,6 +57,14 @@ typedef void (^Failure)(NSError * errorMessage);
  */
 + (void)getPlazaDataWithType:(NSString *)type page:(NSString *)page count:(NSString *)count userID:(NSString *)userID status:(NSInteger)status success:(Success)success failure:(Failure)failure;
 /**
+ *  搜索绘本
+ *
+ *  @param word    关键字
+ *  @param page    页码
+ *  @param count   数量
+ */
++ (void)searchPalzaDataWithWord:(NSString *)word page:(NSNumber *)page count:(NSString *)count success:(Success)success failure:(Failure)failure;
+/**
  *  获取图集
  *
  *  @param galleryID 图集id

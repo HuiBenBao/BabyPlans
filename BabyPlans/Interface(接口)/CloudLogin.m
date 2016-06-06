@@ -124,6 +124,22 @@
     }];
 }
 
++ (void)searchPalzaDataWithWord:(NSString *)word page:(NSNumber *)page count:(NSString *)count success:(Success)success failure:(Failure)failure{
+
+    NSMutableDictionary * parma = [NSMutableDictionary dictionary];
+    [parma setValue:@"gallery_find" forKey:@"action"];
+    
+    
+    [parma setValue:word forKey:@"keyword"];
+    [parma setValue:page forKey:@"page"];
+    [parma setValue:count forKey:@"count"];
+    
+    [CloudLogin getDataWithURL:nil parameter:parma success:^(id data) {
+        success(data);
+    } failure:^(NSError *errorMessage) {
+        failure(errorMessage);
+    }];
+}
 + (void)getPictureArrWithGalleryID:(NSString *)galleryID success:(Success)success failure:(Failure)failure{
 
     NSMutableDictionary * parma = [NSMutableDictionary dictionary];
