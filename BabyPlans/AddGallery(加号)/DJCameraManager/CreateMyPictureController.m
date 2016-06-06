@@ -466,7 +466,7 @@
         UIImage* image = [info objectForKey:UIImagePickerControllerOriginalImage];
         
         //图片压缩，因为原图都是很大的，不必要传原图
-        UIImage *scaleImage = [self scaleImage:image toScale:0.3];
+        UIImage *scaleImage = [self scaleImage:image toScale:0.5];
         
         UIImageOrientation imageOrientation=image.imageOrientation;
         if(imageOrientation!=UIImageOrientationUp)
