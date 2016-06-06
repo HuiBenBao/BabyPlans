@@ -28,7 +28,7 @@
     //设置图片
     [button setImage:[UIImage imageAutomaticName:name] forState:UIControlStateNormal];
     [button setImage:[UIImage imageAutomaticName:selectedName] forState:UIControlStateSelected];
-    
+  
     if (title) {
         [button setTitle:title forState:UIControlStateNormal];
         
@@ -59,12 +59,12 @@
  *  当界面加载完成后，自动调用此方法设置按钮尺寸
  */
 - (void)layoutSubviews{
-    
+//    
     for (int i = 0; i < self.subviews.count; i++) {
         //取出按钮
         FWBTarBarButton * button = self.subviews[i];
         
-        //设置尺寸
+//        //设置尺寸
         CGFloat buttonW = self.frame.size.width/self.subviews.count;
         CGFloat buttonH = self.frame.size.height;
         CGFloat buttonY = 0;

@@ -27,7 +27,7 @@
         <!--分类-->
         <scene sceneID="wW1-Rm-hdD">
             <objects>
-                <viewController id="BpW-iV-sYP" customClass="RecommendController" sceneMemberID="viewController">
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="BpW-iV-sYP" customClass="RecommendController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fRR-z3-B5Z"/>
                         <viewControllerLayoutGuide type="bottom" id="9vF-00-h45"/>

@@ -350,7 +350,7 @@
             [fileManager createDirectoryAtPath:DocumentsPath withIntermediateDirectories:YES attributes:nil error:nil];
             
             //    图片压缩
-            NSData *imageDate = UIImageJPEGRepresentation(image, 0.5);
+            NSData *imageDate = UIImageJPEGRepresentation(image, 1.0);
 
             [fileManager createFileAtPath:[DocumentsPath stringByAppendingString:@"/image.png"] contents:imageDate attributes:nil];
             
