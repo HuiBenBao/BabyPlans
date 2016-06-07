@@ -11,6 +11,8 @@
 #import <ShareSDKConnector/ShareSDKConnector.h>
 #import "GuideViewController.h"
 #import "RootTabBarController.h"
+#import "PlazaTableController.h"
+
 
 //腾讯开放平台（对应QQ和QQ空间）SDK头文件
 #import <TencentOpenAPI/TencentOAuth.h>
@@ -165,9 +167,9 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         
         NSLog(@"%@",[defaults objectForKey:@"token"]);
         [APService setTags:nil alias:[defaults objectForKey:@"token"] callbackSelector:nil object:nil];
+        
     }
-    
-    
+
 }
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
@@ -177,6 +179,8 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSLog(@"APService userInfo:%@",userInfo);
     
 }
+
+
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo
 fetchCompletionHandler:(void
