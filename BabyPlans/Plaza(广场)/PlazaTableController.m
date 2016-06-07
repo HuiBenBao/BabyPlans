@@ -14,6 +14,7 @@
 #import "CommentController.h"
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKUI/ShareSDK+SSUI.h>
+#import "SearchViewController.h"
 
 
 
@@ -217,9 +218,8 @@ enum{
     [super viewDidLoad];
     
     [self createTopView];
-//    [self dataArrRight];
+
     [self dataArrLeft];
-    
     
     dispatch_queue_t queue =dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     
@@ -231,8 +231,13 @@ enum{
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccessWithNotification:) name:kLoginSuccessNotification object:nil];
     
-    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"plazaSearch"] style:UIBarButtonItemStylePlain target:self action:@selector(rightSearchButtonPress)];
 }
+- (void)rightSearchButtonPress{
+
+    [self.navigationController pushViewController:[[SearchViewController alloc] init] animated:YES];
+}
+
 /**
  *  获取未读消息
  */

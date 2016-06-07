@@ -89,6 +89,11 @@
 		18550A301CC73430002834D3 /* addpic_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 18550A2F1CC73430002834D3 /* addpic_btn.png */; };
 		18550A331CC77391002834D3 /* addImg_playBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 18550A321CC77391002834D3 /* addImg_playBtn.png */; };
 		18550A351CC78C46002834D3 /* voiceChangePic.png in Resources */ = {isa = PBXBuildFile; fileRef = 18550A341CC78C46002834D3 /* voiceChangePic.png */; };
+		185E711B1D0529510095B431 /* main_search@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185E711A1D0529510095B431 /* main_search@3x.png */; };
+		185E711E1D052A880095B431 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185E711D1D052A880095B431 /* SearchViewController.m */; };
+		185E71201D052CB80095B431 /* plazaSearch@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 185E711F1D052CB80095B431 /* plazaSearch@3x.png */; };
+		185E71231D0557F70095B431 /* CustomSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 185E71221D0557F70095B431 /* CustomSearchBar.m */; };
+		185E71251D055A910095B431 /* searBarTextBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 185E71241D055A910095B431 /* searBarTextBack.png */; };
 		186195BB1CB347080003A562 /* PlazaTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186195BA1CB347080003A562 /* PlazaTableController.m */; };
 		186195C81CB357B60003A562 /* PlazaMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 186195C71CB357B60003A562 /* PlazaMainCell.m */; };
 		186195CC1CB35BB00003A562 /* UserTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186195CB1CB35BB00003A562 /* UserTableController.m */; };
@@ -345,6 +350,13 @@
 		18550A2F1CC73430002834D3 /* addpic_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addpic_btn.png; sourceTree = "<group>"; };
 		18550A321CC77391002834D3 /* addImg_playBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addImg_playBtn.png; sourceTree = "<group>"; };
 		18550A341CC78C46002834D3 /* voiceChangePic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = voiceChangePic.png; sourceTree = "<group>"; };
+		185E711A1D0529510095B431 /* main_search@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_search@3x.png"; sourceTree = "<group>"; };
+		185E711C1D052A880095B431 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		185E711D1D052A880095B431 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		185E711F1D052CB80095B431 /* plazaSearch@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plazaSearch@3x.png"; sourceTree = "<group>"; };
+		185E71211D0557F70095B431 /* CustomSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSearchBar.h; sourceTree = "<group>"; };
+		185E71221D0557F70095B431 /* CustomSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSearchBar.m; sourceTree = "<group>"; };
+		185E71241D055A910095B431 /* searBarTextBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searBarTextBack.png; sourceTree = "<group>"; };
 		186195B91CB347080003A562 /* PlazaTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlazaTableController.h; sourceTree = "<group>"; };
 		186195BA1CB347080003A562 /* PlazaTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlazaTableController.m; sourceTree = "<group>"; };
 		186195C61CB357B60003A562 /* PlazaMainCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlazaMainCell.h; sourceTree = "<group>"; };
@@ -957,6 +969,8 @@
 				186195BA1CB347080003A562 /* PlazaTableController.m */,
 				18CCD14C1CB8E85B002595FD /* CommentController.h */,
 				18CCD14D1CB8E85B002595FD /* CommentController.m */,
+				185E711C1D052A880095B431 /* SearchViewController.h */,
+				185E711D1D052A880095B431 /* SearchViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -972,6 +986,8 @@
 				184644371CB628BC0082F346 /* GalleryArrView.m */,
 				183DDB0D1CBCD9C90085A42F /* CommentCell.h */,
 				183DDB0E1CBCD9C90085A42F /* CommentCell.m */,
+				185E71211D0557F70095B431 /* CustomSearchBar.h */,
+				185E71221D0557F70095B431 /* CustomSearchBar.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1149,6 +1165,9 @@
 		18CCD1111CB7907E002595FD /* PlazaCellBottomImg */ = {
 			isa = PBXGroup;
 			children = (
+				185E71241D055A910095B431 /* searBarTextBack.png */,
+				185E711F1D052CB80095B431 /* plazaSearch@3x.png */,
+				185E711A1D0529510095B431 /* main_search@3x.png */,
 				18D9F9C01CF5412100AEB0F0 /* plaza_bottomviewSelect0@2x.png */,
 				18D9F9C11CF5412100AEB0F0 /* plaza_bottomviewSelect2@2x.png */,
 				18D9F9C21CF5412100AEB0F0 /* plaza_bottomviewSelect1@2x.png */,
@@ -1518,6 +1537,7 @@
 				1824D4BF1CD0B52D00D5BB35 /* qrcode_scan_bar@2x.png in Resources */,
 				1824D4C01CD0B52D00D5BB35 /* qrcode_scan_bg_Green@2x.png in Resources */,
 				18CCD1381CB7A11E002595FD /* Recommend_btn5.png in Resources */,
+				185E71201D052CB80095B431 /* plazaSearch@3x.png in Resources */,
 				1824D46E1CCF4C0D00D5BB35 /* zbar-helpicons.png in Resources */,
 				183DDAF81CBB76240085A42F /* signUpImg0.png in Resources */,
 				18D9F9C61CF5412100AEB0F0 /* plaza_bottomviewSelect1@2x.png in Resources */,
@@ -1540,12 +1560,14 @@
 				1824D4C81CD0B52D00D5BB35 /* qrcode_scan_btn_scan_off@2x.png in Resources */,
 				18886C631CC0CE46007AEC7B /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				18886C691CC0CE46007AEC7B /* ShareSDK.bundle in Resources */,
+				185E71251D055A910095B431 /* searBarTextBack.png in Resources */,
 				18A114561CB3BF4600B13434 /* Back_to_mainpage@3x.png in Resources */,
 				18F114EE1CAE3B6F00F53C42 /* TabBarSeleted5.png in Resources */,
 				18CCD1221CB7907E002595FD /* plaza_bottomview1@2x.png in Resources */,
 				182E234E1CC9D0E80076CE50 /* GuidePageImg1.jpg in Resources */,
 				18F114E71CAE3B6F00F53C42 /* TabBar2.png in Resources */,
 				1824D4C31CD0B52D00D5BB35 /* qrcode_scan_btn_flash_nor@2x.png in Resources */,
+				185E711B1D0529510095B431 /* main_search@3x.png in Resources */,
 				1855099B1CC5DCEA002834D3 /* LessonPlacdehoder.png in Resources */,
 				18886C601CC0CE46007AEC7B /* ShareSDKUI.bundle in Resources */,
 				18886C7E1CC2195C007AEC7B /* defaultIconImg.png in Resources */,
@@ -1710,6 +1732,7 @@
 				186AC3B21CD8535E007C99D6 /* CafToMp3.m in Sources */,
 				18D9FA131CF69B6600AEB0F0 /* FWBTitleScrollView.m in Sources */,
 				185509AE1CC5E36F002834D3 /* RecWebController.m in Sources */,
+				185E71231D0557F70095B431 /* CustomSearchBar.m in Sources */,
 				18D9F9B41CF2B55C00AEB0F0 /* MyCollectionViewCell.m in Sources */,
 				184BCA771CB362E5008314F4 /* CloudLogin.m in Sources */,
 				18D9FA161CF6EAA000AEB0F0 /* UserGalleryCell.m in Sources */,
@@ -1726,6 +1749,7 @@
 				183DDB131CBCDE830085A42F /* CommentFrame.m in Sources */,
 				186195CC1CB35BB00003A562 /* UserTableController.m in Sources */,
 				18550A2E1CC732BE002834D3 /* AddPicScrollView.m in Sources */,
+				185E711E1D052A880095B431 /* SearchViewController.m in Sources */,
 				185509AB1CC5E36F002834D3 /* LessonListModel.m in Sources */,
 				18A1145F1CB4A63A00B13434 /* UIView+Category.m in Sources */,
 				18D9FA0D1CF69AE400AEB0F0 /* UserGalleryArrController.m in Sources */,
