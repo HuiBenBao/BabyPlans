@@ -34,7 +34,6 @@ static NSString * DataCount = @"5";
 
 @property (nonatomic,strong) NSArray * dataSource;
 @property (nonatomic,assign) int page;
-
 /**
  *  查看大图时的背景view
  */
