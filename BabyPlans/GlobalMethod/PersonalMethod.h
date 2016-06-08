@@ -27,4 +27,8 @@
  *  如果是手机号时，中间4个数字加密
  */
 + (NSString *)phoneAddSecretWithStr:(NSString*)str;
+/**
+ *  获取一个类的所有属性
+ */
++ (NSArray *)getProperties:(Class)cls;
 @end
