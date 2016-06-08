@@ -51,13 +51,8 @@ static NSString * DataCount = @"5";
         MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.dimBackground = YES;
         
-<<<<<<< HEAD
-        
-        [CloudLogin searchPalzaDataWithWord:_currentWord page:@1 count:DataCount success:^(NSDictionary *responseObject) {
-=======
         _page = 1;
         [CloudLogin searchPalzaDataWithWord:_currentWord page:[NSNumber numberWithInteger:_page] count:DataCount success:^(NSDictionary *responseObject) {
->>>>>>> origin/master
             
             hud.hidden = YES;
             [hud removeFromSuperview];
