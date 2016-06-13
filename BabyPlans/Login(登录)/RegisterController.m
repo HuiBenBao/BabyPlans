@@ -242,14 +242,13 @@
                     
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                         
-                        if (self.navigationController.viewControllers) {
-                            UIViewController * VC = [self.navigationController.viewControllers objectAtIndex:1];
+                        UIViewController * VC = self.parentViewController;
+                        
+                        if ([VC isKindOfClass:[UserSettingController class]]) {
                             
-                            if ([VC isKindOfClass:[UserSettingController class]]) {
-                                
-                                [self.navigationController popViewControllerAnimated:YES];
-                            }
+                            [self popViewController:nil];
                         }
+                        
                     });
                     
                     
