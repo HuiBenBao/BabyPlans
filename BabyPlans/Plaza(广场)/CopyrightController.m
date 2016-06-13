@@ -25,7 +25,7 @@
     _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
     _webView.backgroundColor = [UIColor whiteColor];
     
-    NSURLRequest * request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://www.baidu.com"]];
+    NSURLRequest * request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://www.huibenyuanchuang.com/bbweb/copyright.html"]];
     [_webView loadRequest:request];
     
     [self.view addSubview:_webView];
