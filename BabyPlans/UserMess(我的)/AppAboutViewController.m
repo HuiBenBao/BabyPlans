@@ -103,6 +103,7 @@ static const CGFloat CellHeight = 40.0;
             cell.textLabel.text = @"简介";
 
             break;
+
         default:
             break;
     }

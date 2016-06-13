@@ -37,17 +37,17 @@ Model:(UserMessModel *)model{
         if (indexPath.section == 1) {
             switch (indexPath.row) {
                 case 0:
-                    cell.textLabel.text = @"我的二维码";
-                    break;
-                case 1:
                     cell.textLabel.text = @"消息";
                     break;
-                case 2:
+                case 1:
                     cell.textLabel.text = @"我的收藏";
                     break;
-                case 3:
-                    cell.textLabel.text = @"扫码加好友";
-                    break;
+//                case 2:
+//                    cell.textLabel.text = @"我的收藏";
+//                    break;
+//                case 3:
+//                    cell.textLabel.text = @"扫码加好友";
+//                    break;
                 default:
                     break;
             }

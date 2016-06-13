@@ -8,7 +8,7 @@
 
 #import "UserSettingController.h"
 #import "AppAboutViewController.h"
-
+#import "RegisterController.h"
 @interface UserSettingController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate>
 
 @property (nonatomic,strong) UITableView * tableView;
@@ -21,7 +21,7 @@
 - (NSArray *)titleArr{
     
     if (!_titleArr) {
-        _titleArr = @[@"清除缓存",@"关于"];
+        _titleArr = @[@"清除缓存",@"关于",@"修改密码"];
     }
     return _titleArr;
 }
@@ -126,6 +126,8 @@
             
         }else if (row==1){//关于
             [self.navigationController pushViewController:[[AppAboutViewController alloc] init] animated:YES];
+        }else if (row==2){
+            [self.navigationController pushViewController:[[RegisterController alloc]init] animated:YES];
         }
     }
 }

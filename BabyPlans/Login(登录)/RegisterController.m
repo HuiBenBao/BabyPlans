@@ -7,6 +7,7 @@
 //
 
 #import "RegisterController.h"
+#import "UserSettingController.h"
 
 #define GetCodeFont 18
 
@@ -27,10 +28,7 @@
 
 @implementation RegisterController
 
-- (void)viewWillAppear:(BOOL)animated{
 
-    [UIApplication sharedApplication].statusBarHidden = YES;
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -240,6 +238,21 @@
                 if ([self.delegate respondsToSelector:@selector(getInfoPhoneNum:passWord:)]) {
                     [self.delegate getInfoPhoneNum:_firstField.text passWord:_thirdField.text];
                     [self popViewController:nil];
+                }else{
+                    
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        
+                        if (self.navigationController.viewControllers) {
+                            UIViewController * VC = [self.navigationController.viewControllers objectAtIndex:1];
+                            
+                            if ([VC isKindOfClass:[UserSettingController class]]) {
+                                
+                                [self.navigationController popViewControllerAnimated:YES];
+                            }
+                        }
+                    });
+                    
+                    
                 }
                 
             }else{

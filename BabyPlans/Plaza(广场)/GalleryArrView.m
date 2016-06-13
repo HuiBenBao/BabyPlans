@@ -132,9 +132,6 @@
         
         [imgView sd_setImageWithURL:[NSURL URLWithString:model.picture.image] placeholderImage:smallImg];
         
-//        imgView.clipsToBounds = YES;
-        
-        
         
         [self.imgScrollView addSubview:imgView];
     }

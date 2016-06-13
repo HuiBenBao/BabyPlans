@@ -163,7 +163,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return (section == 0) ? 2 : (section == 1) ? 4 : 2;
+    return (section == 0) ? 2 : (section == 1) ? 2 : 2;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
 
@@ -198,7 +198,7 @@
         if (indexPath.section == 1) {
             
             NSInteger row = indexPath.row;
-            
+  /*
             if (row==3) { //扫描二维码
                 
                 ZCZBarViewController*vc=[[ZCZBarViewController alloc]initWithBlock:^(NSString *str, BOOL isSucceed) {
@@ -214,19 +214,17 @@
                 
                 [self presentViewController:vc animated:YES completion:nil];
             }else{
-            
+     */
                 UIViewController * VC;
                 if (row==0) {//二维码
-                    VC = [[TwoCodeController alloc] init];
-                }else if (row==1){//消息
                     VC = [[UserMessController alloc] init];
-                }else if (row==2){//收藏
+                }else if (row==1){//消息
                     VC = [[UserCollectController alloc] init];
                 }
                 
                 [self.navigationController pushViewController:VC animated:YES];
 
-            }
+//            }
             
             
             

@@ -181,12 +181,14 @@
     self.dateLbl.frame = self.modelFrame.dateF;
     
     [self.coverImgView sd_setImageWithURL:[NSURL URLWithString:self.model.coverImg] placeholderImage:[UIImage imageNamed:@"DefaultImage"]];
-    self.coverImgView.layer.cornerRadius = 8*SCREEN_WIDTH_RATIO55;
+    self.coverImgView.layer.cornerRadius = 8;
     self.coverImgView.clipsToBounds = YES;
     
     self.coverImgView.frame = self.modelFrame.imageF;
     
     self.imgCoverBtn.frame = self.modelFrame.imageF;
+    self.imgCoverBtn.layer.cornerRadius = 8;
+    self.imgCoverBtn.clipsToBounds = YES;
     
     [self.imgCoverBtn addTarget:self action:@selector(coverImgClick:)];
     //图片添加点击事件
