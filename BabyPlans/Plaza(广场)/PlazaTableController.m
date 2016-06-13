@@ -231,7 +231,8 @@ enum{
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccessWithNotification:) name:kLoginSuccessNotification object:nil];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"plazaSearch"] style:UIBarButtonItemStylePlain target:self action:@selector(rightSearchButtonPress)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MainLeftIteam"] style:UIBarButtonItemStylePlain target:self action:@selector(rightSearchButtonPress)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MainRightIteam"] style:UIBarButtonItemStylePlain target:self action:@selector(rightSearchButtonPress)];
 }
 - (void)rightSearchButtonPress{
 
