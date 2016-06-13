@@ -15,7 +15,7 @@
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKUI/ShareSDK+SSUI.h>
 #import "SearchViewController.h"
-
+#import "CopyrightController.h"
 
 
 enum{
@@ -47,6 +47,8 @@ enum{
 
 @property (nonatomic,strong) NSArray * dataArrLeft;
 @property (nonatomic,strong) NSArray * dataArrRight;
+
+
 /**
  *  经典绘本页码
  */
@@ -231,7 +233,13 @@ enum{
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccessWithNotification:) name:kLoginSuccessNotification object:nil];
     
+    self.navigationItem.leftBarButtonItem =[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"plazaSearch"] style:UIBarButtonItemStylePlain target:self action:@selector(leftSearchButtonPress)];
+
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"plazaSearch"] style:UIBarButtonItemStylePlain target:self action:@selector(rightSearchButtonPress)];
+    
+}
+- (void)leftSearchButtonPress{
+    [self.navigationController pushViewController:[[CopyrightController alloc] init] animated:YES];
 }
 - (void)rightSearchButtonPress{
 

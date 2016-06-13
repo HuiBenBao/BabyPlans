@@ -184,6 +184,7 @@
 		18FD4B3D1CAE34DD00ACD4BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18FD4B3C1CAE34DD00ACD4BC /* Assets.xcassets */; };
 		18FD4B4B1CAE34DD00ACD4BC /* BabyPlansTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FD4B4A1CAE34DD00ACD4BC /* BabyPlansTests.m */; };
 		18FD4B561CAE34DD00ACD4BC /* BabyPlansUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FD4B551CAE34DD00ACD4BC /* BabyPlansUITests.m */; };
+		6E5A95C21D0E8C3B00633FE0 /* CopyrightController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5A95C11D0E8C3B00633FE0 /* CopyrightController.m */; };
 		B317B4D9BEC908EB6DC446BC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E09338FE85BB969CD7D58012 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -507,6 +508,8 @@
 		18FD4B551CAE34DD00ACD4BC /* BabyPlansUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BabyPlansUITests.m; sourceTree = "<group>"; };
 		18FD4B571CAE34DD00ACD4BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32FFFF55A949A5F1276D6E5A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		6E5A95C01D0E8C3B00633FE0 /* CopyrightController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopyrightController.h; sourceTree = "<group>"; };
+		6E5A95C11D0E8C3B00633FE0 /* CopyrightController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CopyrightController.m; sourceTree = "<group>"; };
 		8B327CE365CF29808C695EDB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E09338FE85BB969CD7D58012 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -967,6 +970,8 @@
 			children = (
 				186195B91CB347080003A562 /* PlazaTableController.h */,
 				186195BA1CB347080003A562 /* PlazaTableController.m */,
+				6E5A95C01D0E8C3B00633FE0 /* CopyrightController.h */,
+				6E5A95C11D0E8C3B00633FE0 /* CopyrightController.m */,
 				18CCD14C1CB8E85B002595FD /* CommentController.h */,
 				18CCD14D1CB8E85B002595FD /* CommentController.m */,
 				185E711C1D052A880095B431 /* SearchViewController.h */,
@@ -1697,6 +1702,7 @@
 				184644381CB628BC0082F346 /* GalleryArrView.m in Sources */,
 				18A1145C1CB49F7600B13434 /* PlazaDataModel.m in Sources */,
 				185509C11CC61023002834D3 /* SlideCollectionViewCell.m in Sources */,
+				6E5A95C21D0E8C3B00633FE0 /* CopyrightController.m in Sources */,
 				18A114541CB3A66000B13434 /* UserMessCell.m in Sources */,
 				18CCD1521CB8F355002595FD /* LoginViewController.m in Sources */,
 				182E23341CC9BCCC0076CE50 /* SuggestionController.m in Sources */,
