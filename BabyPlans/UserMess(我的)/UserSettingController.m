@@ -127,7 +127,7 @@
         }else if (row==1){//关于
             [self.navigationController pushViewController:[[AppAboutViewController alloc] init] animated:YES];
         }else if (row==2){
-            [self.navigationController pushViewController:[[RegisterController alloc]init] animated:YES];
+            [self.navigationController presentViewController:[[RegisterController alloc]init] animated:YES completion:nil];
         }
     }
 }
