@@ -21,7 +21,7 @@
 #import "WXApi.h"
 //新浪微博SDK头文件
 #import "WeiboSDK.h"
-#import "APService.h"
+#import "JPUSHService.h"
 
 @interface AppDelegate ()<UIAlertViewDelegate>
 
@@ -126,21 +126,21 @@
     
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
         //categories
-        [APService
+        [JPUSHService
          registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
                                              UIUserNotificationTypeSound |
                                              UIUserNotificationTypeAlert)
          categories:nil];
     } else {
         //categories nil
-        [APService
+        [JPUSHService
          registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
                                              UIUserNotificationTypeSound |
                                              UIUserNotificationTypeAlert)
 #else
          //categories nil
          categories:nil];
-        [APService
+        [JPUSHService
          registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
                                              UIRemoteNotificationTypeSound |
                                              UIRemoteNotificationTypeAlert)
@@ -148,7 +148,7 @@
          // Required
          categories:nil];
     }
-    [APService setupWithOption:launchOptions];
+    [JPUSHService setupWithOption:launchOptions appKey:@"80a3592000310b390a4257b8" channel:nil apsForProduction:YES];
     
 
     
@@ -161,12 +161,12 @@
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // Required
-    [APService registerDeviceToken:deviceToken];
+    [JPUSHService registerDeviceToken:deviceToken];
     
     if (ValidStr([defaults objectForKey:@"token"])) {
         
         NSLog(@"%@",[defaults objectForKey:@"token"]);
-        [APService setTags:nil alias:[defaults objectForKey:@"token"] callbackSelector:nil object:nil];
+        [JPUSHService setTags:nil alias:[defaults objectForKey:@"token"] callbackSelector:nil object:nil];
         
     }
 
@@ -175,7 +175,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
     // Required
     
-    [APService handleRemoteNotification:userInfo];
+    [JPUSHService handleRemoteNotification:userInfo];
     NSLog(@"APService userInfo:%@",userInfo);
     
 }
@@ -188,7 +188,7 @@ fetchCompletionHandler:(void
     
     // IOS 7 Support Required
     
-    [APService handleRemoteNotification:userInfo];
+    [JPUSHService handleRemoteNotification:userInfo];
     
     
     completionHandler(UIBackgroundFetchResultNewData);

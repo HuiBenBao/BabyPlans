@@ -121,8 +121,6 @@
 		18886C741CC0D0B3007AEC7B /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18886C731CC0D0B3007AEC7B /* ImageIO.framework */; };
 		18886C761CC0D0BF007AEC7B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18886C751CC0D0BF007AEC7B /* libsqlite3.tbd */; };
 		18886C7E1CC2195C007AEC7B /* defaultIconImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 18886C7D1CC2195C007AEC7B /* defaultIconImg.png */; };
-		1888A1B41CDC7866004FD8CD /* libPushSDK-1.8.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1888A1B21CDC7866004FD8CD /* libPushSDK-1.8.8.a */; };
-		1888A1B51CDC7866004FD8CD /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1888A1B31CDC7866004FD8CD /* PushConfig.plist */; };
 		18A114541CB3A66000B13434 /* UserMessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A114531CB3A66000B13434 /* UserMessCell.m */; };
 		18A114561CB3BF4600B13434 /* Back_to_mainpage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A114551CB3BF4600B13434 /* Back_to_mainpage@3x.png */; };
 		18A114591CB3C3D500B13434 /* PlazaTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A114581CB3C3D500B13434 /* PlazaTopView.m */; };
@@ -187,6 +185,7 @@
 		18FD4B4B1CAE34DD00ACD4BC /* BabyPlansTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FD4B4A1CAE34DD00ACD4BC /* BabyPlansTests.m */; };
 		18FD4B561CAE34DD00ACD4BC /* BabyPlansUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FD4B551CAE34DD00ACD4BC /* BabyPlansUITests.m */; };
 		6E5A95C21D0E8C3B00633FE0 /* CopyrightController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5A95C11D0E8C3B00633FE0 /* CopyrightController.m */; };
+		6EAE0EE11D12AE8A005E6A50 /* jpush-ios-2.1.7.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EAE0EDF1D12AE8A005E6A50 /* jpush-ios-2.1.7.a */; };
 		B317B4D9BEC908EB6DC446BC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E09338FE85BB969CD7D58012 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -409,9 +408,6 @@
 		18886C731CC0D0B3007AEC7B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		18886C751CC0D0BF007AEC7B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		18886C7D1CC2195C007AEC7B /* defaultIconImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultIconImg.png; sourceTree = "<group>"; };
-		1888A1B11CDC7866004FD8CD /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
-		1888A1B21CDC7866004FD8CD /* libPushSDK-1.8.8.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.8.a"; sourceTree = "<group>"; };
-		1888A1B31CDC7866004FD8CD /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
 		18A114521CB3A66000B13434 /* UserMessCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserMessCell.h; path = ../UserMessCell.h; sourceTree = "<group>"; };
 		18A114531CB3A66000B13434 /* UserMessCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserMessCell.m; path = ../UserMessCell.m; sourceTree = "<group>"; };
 		18A114551CB3BF4600B13434 /* Back_to_mainpage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Back_to_mainpage@3x.png"; sourceTree = "<group>"; };
@@ -514,6 +510,8 @@
 		32FFFF55A949A5F1276D6E5A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		6E5A95C01D0E8C3B00633FE0 /* CopyrightController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopyrightController.h; sourceTree = "<group>"; };
 		6E5A95C11D0E8C3B00633FE0 /* CopyrightController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CopyrightController.m; sourceTree = "<group>"; };
+		6EAE0EDF1D12AE8A005E6A50 /* jpush-ios-2.1.7.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.7.a"; sourceTree = "<group>"; };
+		6EAE0EE01D12AE8A005E6A50 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		8B327CE365CF29808C695EDB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E09338FE85BB969CD7D58012 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -523,7 +521,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1888A1B41CDC7866004FD8CD /* libPushSDK-1.8.8.a in Frameworks */,
 				1824D4761CCF4F3900D5BB35 /* libiconv.tbd in Frameworks */,
 				18886C761CC0D0BF007AEC7B /* libsqlite3.tbd in Frameworks */,
 				18886C741CC0D0B3007AEC7B /* ImageIO.framework in Frameworks */,
@@ -533,6 +530,7 @@
 				18886C611CC0CE46007AEC7B /* ShareSDKUI.framework in Frameworks */,
 				18886C621CC0CE46007AEC7B /* TencentOpenAPI.framework in Frameworks */,
 				18886C661CC0CE46007AEC7B /* libWeChatSDK.a in Frameworks */,
+				6EAE0EE11D12AE8A005E6A50 /* jpush-ios-2.1.7.a in Frameworks */,
 				18886C5E1CC0CE46007AEC7B /* ShareSDK.framework in Frameworks */,
 				18886C641CC0CE46007AEC7B /* libWeiboSDK.a in Frameworks */,
 				18886C5F1CC0CE46007AEC7B /* ShareSDKExtension.framework in Frameworks */,
@@ -1152,16 +1150,6 @@
 			path = Required;
 			sourceTree = "<group>";
 		};
-		1888A1B01CDC7866004FD8CD /* APPush */ = {
-			isa = PBXGroup;
-			children = (
-				1888A1B11CDC7866004FD8CD /* APService.h */,
-				1888A1B21CDC7866004FD8CD /* libPushSDK-1.8.8.a */,
-				1888A1B31CDC7866004FD8CD /* PushConfig.plist */,
-			);
-			path = APPush;
-			sourceTree = "<group>";
-		};
 		18A114631CB4F5AD00B13434 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -1354,7 +1342,7 @@
 		18FD4B2F1CAE34DD00ACD4BC /* BabyPlans */ = {
 			isa = PBXGroup;
 			children = (
-				1888A1B01CDC7866004FD8CD /* APPush */,
+				6EAE0EDE1D12AE8A005E6A50 /* APPush */,
 				18886C3A1CC0CDE6007AEC7B /* ShareSdk(第三方登录) */,
 				18F114C81CAE37CC00F53C42 /* AppDelegate */,
 				182E23421CC9CD270076CE50 /* GuideViewPage（引导页） */,
@@ -1430,6 +1418,15 @@
 				E09338FE85BB969CD7D58012 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6EAE0EDE1D12AE8A005E6A50 /* APPush */ = {
+			isa = PBXGroup;
+			children = (
+				6EAE0EDF1D12AE8A005E6A50 /* jpush-ios-2.1.7.a */,
+				6EAE0EE01D12AE8A005E6A50 /* JPUSHService.h */,
+			);
+			path = APPush;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1608,7 +1605,6 @@
 				1829DE4D1CC8F4D200D0DB02 /* slider_left.png in Resources */,
 				18CCD13E1CB7A11E002595FD /* RecommednTxt.png in Resources */,
 				18F114EA1CAE3B6F00F53C42 /* TabBar5.png in Resources */,
-				1888A1B51CDC7866004FD8CD /* PushConfig.plist in Resources */,
 				18200B4E1D0EAD85008DA817 /* MainLeftIteam@3x.png in Resources */,
 				18550A301CC73430002834D3 /* addpic_btn.png in Resources */,
 				18D9F9C41CF5412100AEB0F0 /* plaza_bottomviewSelect0@2x.png in Resources */,

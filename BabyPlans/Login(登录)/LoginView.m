@@ -11,7 +11,7 @@
 #import <TencentOpenAPI/QQApiInterface.h>
 #import "WXApi.h"
 #import "WeiboSDK.h"
-#import "APService.h"
+#import "JPUSHService.h"
 #import "Session.h"
 
 @interface LoginView ()
@@ -339,7 +339,7 @@
             if (ValidStr([defaults objectForKey:@"token"])) {
                 
                 NSLog(@"%@",[defaults objectForKey:@"token"]);
-                [APService setTags:nil alias:[defaults objectForKey:@"token"] callbackSelector:nil object:nil];
+                [JPUSHService setTags:nil alias:[defaults objectForKey:@"token"] callbackSelector:nil object:nil];
             }
             
             [[NSNotificationCenter defaultCenter]
@@ -398,7 +398,7 @@
             if (ValidStr([defaults objectForKey:@"token"])) {
                 
                 NSLog(@"%@",[defaults objectForKey:@"token"]);
-                [APService setTags:nil alias:[defaults objectForKey:@"token"] callbackSelector:nil object:nil];
+                [JPUSHService setTags:nil alias:[defaults objectForKey:@"token"] callbackSelector:nil object:nil];
             }
             [[NSNotificationCenter defaultCenter]
              postNotificationName:kLoginSuccessNotification object:session.userId];
