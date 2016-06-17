@@ -345,8 +345,8 @@
  *  时间监听
  */
 - (void)levelTimerCallback:(NSTimer *)timer {
-    _currentTime++;
-    
+//    _currentTime++;
+
     [_audioRecorder updateMeters];
     
     float   level;                // The linear 0.0 .. 1.0 value we need.
@@ -383,7 +383,8 @@
  *  停止录音
  */
 -(void) stopRecording {
-    
+
+    _currentTime = (int)_audioRecorder.currentTime;
     [_audioRecorder stop];
     
     self.changeView.hidden = YES;
