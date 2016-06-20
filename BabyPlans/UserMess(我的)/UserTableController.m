@@ -181,7 +181,7 @@
     
     UserMessCell * cell = [UserMessCell cellWithTableView:tableView indexPath:indexPath Model:_model];
     
-    if (indexPath.section == 1 && indexPath.row == 1) {
+    if (indexPath.section == 1 && indexPath.row == 0) {
         cell.redView.hidden = !self.tabBarController.tabBar.items.lastObject.badgeValue;
     }
     
