@@ -295,16 +295,18 @@ enum{
     _mainScrollView.pagingEnabled = YES;
     _mainScrollView.delegate = self;
     _mainScrollView.bounces = NO;
+    _mainScrollView.scrollsToTop = NO;
     [self.view addSubview:_mainScrollView];
     
     //将tabbleView添加到scrollerView上
     for (int i = 0; i < TabbleViewCount; i ++) {
         
         UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(KScreenWidth*i, tableHeaderHeight, KScreenWidth, KScreenHeight-KNavBarHeight-tableHeaderHeight-KTabBarHeight) style:UITableViewStylePlain];
-        
+        tableView.scrollsToTop = NO;
         if (i==0) {
             tableView.tag = TableViewLeft;
             self.tableViewLeft = tableView;
+            tableView.scrollsToTop = YES;
         }else{
             tableView.tag = TableViewRight;
             self.tableViewRight = tableView;
@@ -477,6 +479,16 @@ enum{
         int index = currentX/KScreenWidth;
         
         [self.topView selectAtIndex:index];
+        
+        if (index == TableViewRight) {
+            self.tableViewRight.scrollsToTop = YES;
+            self.tableViewLeft.scrollsToTop = NO;
+
+        }else{
+        
+            self.tableViewLeft.scrollsToTop = YES;
+            self.tableViewRight.scrollsToTop = NO;
+        }
         
         if (!_dataArrRight && index==TableViewRight) {
             [self dataArrRight];
