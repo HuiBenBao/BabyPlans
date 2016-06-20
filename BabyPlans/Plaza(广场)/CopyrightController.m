@@ -33,11 +33,11 @@
     switch ([self.type intValue]) {
         case 0:
             title = @"使用说明";
-            webUrl = @"http://www.sina.com.cn";
+            webUrl = @"http://www.huibenyuanchuang.com/bbweb/process.html";
             break;
         case 1:
             title = @"审核标准";
-            webUrl = @"http://www.baidu.com";
+            webUrl = @"http://www.huibenyuanchuang.com/bbweb/standard.html";
             break;
         case 2:
             title = @"版权声明";
