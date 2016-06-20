@@ -10,4 +10,5 @@
 
 @interface CopyrightController : UIViewController
 
++ (instancetype)copyControllerWithType:(NSString *)type;
 @end

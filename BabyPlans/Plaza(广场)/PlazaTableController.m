@@ -242,23 +242,29 @@ enum{
 - (void)leftSearchButtonPress{
 //    [self.navigationController pushViewController:[[CopyrightController alloc] init] animated:YES];
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"菜单" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *cancel =[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil];
     
-    UIAlertAction *oneAction = [UIAlertAction actionWithTitle:@"使用说明" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        NSLog(@"The \"Okay/Cancel\" alert's other action occured.");
-    }];
-    UIAlertAction *twoAction = [UIAlertAction actionWithTitle:@"审核标准" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        NSLog(@"The \"Okay/Cancel\" alert's other action occured.");
-    }];
-    UIAlertAction *threeAction = [UIAlertAction actionWithTitle:@"版权申明" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self.navigationController pushViewController:[[CopyrightController alloc] init] animated:YES];
-    }];
-    [alert addAction:oneAction];
-    [alert addAction:twoAction];
-    [alert addAction:threeAction];
-    [alert addAction:cancel];
+    NSArray * arrayAction = @[@"使用说明",@"审核标准",@"版权申明",@"取消"];
+    
+    for (int i = 0; i<arrayAction.count; i++) {
+        
+        if (i != arrayAction.count-1) {
+            UIAlertAction *action = [UIAlertAction actionWithTitle:arrayAction[i] style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                [self.navigationController pushViewController:[CopyrightController copyControllerWithType:[NSString stringWithFormat:@"%d",i]] animated:YES];
+            }];
+            
+            [alert addAction:action];
+        }else{
+            
+            UIAlertAction *cancel =[UIAlertAction actionWithTitle:arrayAction[i] style:UIAlertActionStyleDestructive handler:nil];
+            
+            [alert addAction:cancel];
+        }
+        
+
+    }
+
     
     [self presentViewController:alert animated:YES completion:nil];
 }
