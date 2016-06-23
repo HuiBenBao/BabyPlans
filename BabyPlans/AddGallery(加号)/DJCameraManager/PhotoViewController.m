@@ -93,6 +93,8 @@
 
     if (_soundPath == nil) {
         [self.view poptips:@"请添加声音"];
+    }if (_currentTime < 3) {
+        [self.view poptips:@"录音时间不能小于3秒"];
     }else{
     
         MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
