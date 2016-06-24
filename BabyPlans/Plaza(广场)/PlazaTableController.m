@@ -245,7 +245,7 @@ enum{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleAlert];
     
     
-    NSArray * arrayAction = @[@"使用说明",@"审核标准",@"版权申明",@"取消"];
+    NSArray * arrayAction = @[@"使用说明",@"审核标准",@"版权声明",@"取消"];
     
     for (int i = 0; i<arrayAction.count; i++) {
         
@@ -702,37 +702,23 @@ enum{
                                     [tableView reloadRowsAtIndexPaths:@[tempIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                                 }
                             }
-                            
-                        
                             [self.view poptips:mess];
-                            
-                            
                         }
                     } failure:nil];
-                    
-                    
                 }
-                
             } failure:^(NSError *errorMessage) {
-                
                 hud.hidden = YES;
                 [hud removeFromSuperview];
                 NSLog(@"%@",errorMessage);
             }];
         }else if (index==3){//分享
-            
             NSString *Urlstr = [NSString stringWithFormat:@"%@%@",GALLERY_PAGE,model.galleryID];
-            
             if (model.minImg) {
-                
-                
                 //获取缩略图和正常像素图
                 UIImage * thumbImg = [UIImage imageWithURLString:model.minImg];
                 UIImage * upImage = [UIImage imageWithURLString:model.coverImg];
                 
-                
                 NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-                
                 
                 [shareParams SSDKEnableUseClientShare];
                 
